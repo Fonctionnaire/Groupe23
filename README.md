@@ -9,6 +9,6 @@ Participants :
 
 - Bénédicte Guiriec -> Dev
 - Benoit Grisot -> Dev
-- Francisco Mourat -> Design
+- Francisco Moura -> Design
 - Nadège Grasswill -> Mark
 - Thibaut Gruffy -> Dev
