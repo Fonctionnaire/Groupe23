@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class listTaxrefsController extends BaseController
+class ListTaxrefsController extends BaseController
 {
     /**
      * @return Response
