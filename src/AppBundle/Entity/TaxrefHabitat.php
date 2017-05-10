@@ -7,20 +7,22 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
- * TaxrefHabitats
+ * TaxrefHabitat
  *
  * @ORM\Table(name="taxref_habitat")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefHabitatsRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefHabitatRepository")
  */
 class TaxrefHabitat
 {
+
+
     /**
-     * @var ArrayCollection Taxref
-     * @ORM\Id()
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="habitat", cascade={"persist"})
-     * @ORM\Column(name="habitat")
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(name="habitatId")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxref", mappedBy="habitat")
      */
-    private $taxrefs;
+     private $habitatId;
 
     /**
      * @var string
@@ -37,30 +39,28 @@ class TaxrefHabitat
     private $remarques;
 
 
-
-
     /**
-     * Set taxrefs
+     * Set habitatId
      *
-     * @param integer $taxrefs
+     * @param string $habitatId
      *
      * @return TaxrefHabitat
      */
-    public function setTaxrefs($taxrefs)
+    public function setHabitatId($habitatId)
     {
-        $this->taxrefs = $taxrefs;
+        $this->habitatId = $habitatId;
 
         return $this;
     }
 
     /**
-     * Get taxrefs
+     * Get habitatId
      *
-     * @return ArrayCollection taxrefs
+     * @return string
      */
-    public function getTaxrefs()
+    public function getHabitatId()
     {
-        return $this->taxrefs;
+        return $this->habitatId;
     }
 
     /**

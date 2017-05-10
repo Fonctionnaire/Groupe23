@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,7 +58,7 @@ class Taxref
 
     /**
      * @var int
-     * @ORM\OneToOne(targetEntity="Student")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
      * @ORM\JoinColumn(name="CD_TAXSUP", referencedColumnName="CD_NOM")
      * @ORM\Column(name="CD_TAXSUP", type="integer", nullable=true, options={"comment":"Identifiant (CD_NOM) du taxon supérieur"})
      */
@@ -71,12 +72,9 @@ class Taxref
     private $cdref;
 
     /**
-     * @var TaxrefRang
-     *
-     * @ORM\Column(name="RANG", type="string", length=255, options={"comment":"Rang taxonomique (clé vers TAXREF_RANG)"})
      * Plusieurs espèces peuvent avoir le même rang
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefRang", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="taxrefs", referencedColumnName="rang")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefRang")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="rang")
      */
     private $rang;
 
@@ -123,149 +121,115 @@ class Taxref
     private $nomverneng;
 
     /**
-     * @var TaxrefHabitat
-     * @ORM\Column(name="HABITAT", type="smallint", options={"comment":"Code de l'habitat (clé vers TAXREF_HABITAT)"})
+     *
      * Plusieurs espèces peuvent avoir le même habitat
-     * @ORM\ManyToOne(targetEntity="TaxrefHabitat", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="habitat", referencedColumnName="habitat")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefHabitat")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="habitatId")
      */
     private $habitat;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="FR", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique en France métropolitaine (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $fr_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="GF", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique en Guyane française (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $gf_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="MAR", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à la Martinique (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $mar_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="GUA", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à la Guadeloupe (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $gua_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="SM", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Saint-Martin (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $sm_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="SB", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Saint-Barthélemy (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $sb_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="SPM", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Saint-Pierre et Miquelon (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $spm_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="MAY", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Mayotte (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $may_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="EPA", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique aux îles Éparses (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $epa_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="REU", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à la Réunion (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $reu_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="SA", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique aux îles subantarctiques (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $sa_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="TA", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique en Terre Adélie (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $ta_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="TAAF", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique aux Terres australes et antarctiques françaises (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $taaf_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="NC", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique en Nouvelle-Calédonie (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $nc_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="WF", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Wallis et Futuna (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $wf_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="PF", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique en Polynésie française (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $pf_statut;
 
     /**
-     * @var TaxrefStatut
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut", inversedBy="taxrefs")
-     * @ORM\JoinColumn(name="statut", referencedColumnName="statut")
-     * @ORM\Column(name="CLI", type="string", length=1, nullable=true, options={"comment":"Statut biogéographique à Clipperton (clé vers TAXREF_STATUTS)"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $cli_statut;
+
 
 
 
@@ -462,30 +426,6 @@ class Taxref
     }
 
     /**
-     * Set rang
-     *
-     * @param string $rang
-     *
-     * @return Taxref
-     */
-    public function setRang($rang)
-    {
-        $this->rang = $rang;
-
-        return $this;
-    }
-
-    /**
-     * Get rang
-     *
-     * @return string
-     */
-    public function getRang()
-    {
-        return $this->rang;
-    }
-
-    /**
      * Set lbnom
      *
      * @param string $lbnom
@@ -630,13 +570,37 @@ class Taxref
     }
 
     /**
-     * Set habitat
+     * Set rang
      *
-     * @param integer $habitat
+     * @param \AppBundle\Entity\TaxrefRang $rang
      *
      * @return Taxref
      */
-    public function setHabitat($habitat)
+    public function setRang(\AppBundle\Entity\TaxrefRang $rang)
+    {
+        $this->rang = $rang;
+
+        return $this;
+    }
+
+    /**
+     * Get rang
+     *
+     * @return \AppBundle\Entity\TaxrefRang
+     */
+    public function getRang()
+    {
+        return $this->rang;
+    }
+
+    /**
+     * Set habitat
+     *
+     * @param \AppBundle\Entity\TaxrefHabitat $habitat
+     *
+     * @return Taxref
+     */
+    public function setHabitat(\AppBundle\Entity\TaxrefHabitat $habitat = null)
     {
         $this->habitat = $habitat;
 
@@ -646,7 +610,7 @@ class Taxref
     /**
      * Get habitat
      *
-     * @return integer
+     * @return \AppBundle\Entity\TaxrefHabitat
      */
     public function getHabitat()
     {
@@ -656,11 +620,11 @@ class Taxref
     /**
      * Set frStatut
      *
-     * @param string $frStatut
+     * @param \AppBundle\Entity\TaxrefStatut $frStatut
      *
      * @return Taxref
      */
-    public function setFrStatut($frStatut)
+    public function setFrStatut(\AppBundle\Entity\TaxrefStatut $frStatut = null)
     {
         $this->fr_statut = $frStatut;
 
@@ -670,7 +634,7 @@ class Taxref
     /**
      * Get frStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getFrStatut()
     {
@@ -680,11 +644,11 @@ class Taxref
     /**
      * Set gfStatut
      *
-     * @param string $gfStatut
+     * @param \AppBundle\Entity\TaxrefStatut $gfStatut
      *
      * @return Taxref
      */
-    public function setGfStatut($gfStatut)
+    public function setGfStatut(\AppBundle\Entity\TaxrefStatut $gfStatut = null)
     {
         $this->gf_statut = $gfStatut;
 
@@ -694,7 +658,7 @@ class Taxref
     /**
      * Get gfStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getGfStatut()
     {
@@ -704,11 +668,11 @@ class Taxref
     /**
      * Set marStatut
      *
-     * @param string $marStatut
+     * @param \AppBundle\Entity\TaxrefStatut $marStatut
      *
      * @return Taxref
      */
-    public function setMarStatut($marStatut)
+    public function setMarStatut(\AppBundle\Entity\TaxrefStatut $marStatut = null)
     {
         $this->mar_statut = $marStatut;
 
@@ -718,7 +682,7 @@ class Taxref
     /**
      * Get marStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getMarStatut()
     {
@@ -728,11 +692,11 @@ class Taxref
     /**
      * Set guaStatut
      *
-     * @param string $guaStatut
+     * @param \AppBundle\Entity\TaxrefStatut $guaStatut
      *
      * @return Taxref
      */
-    public function setGuaStatut($guaStatut)
+    public function setGuaStatut(\AppBundle\Entity\TaxrefStatut $guaStatut = null)
     {
         $this->gua_statut = $guaStatut;
 
@@ -742,7 +706,7 @@ class Taxref
     /**
      * Get guaStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getGuaStatut()
     {
@@ -752,11 +716,11 @@ class Taxref
     /**
      * Set smStatut
      *
-     * @param string $smStatut
+     * @param \AppBundle\Entity\TaxrefStatut $smStatut
      *
      * @return Taxref
      */
-    public function setSmStatut($smStatut)
+    public function setSmStatut(\AppBundle\Entity\TaxrefStatut $smStatut = null)
     {
         $this->sm_statut = $smStatut;
 
@@ -766,7 +730,7 @@ class Taxref
     /**
      * Get smStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getSmStatut()
     {
@@ -776,11 +740,11 @@ class Taxref
     /**
      * Set sbStatut
      *
-     * @param string $sbStatut
+     * @param \AppBundle\Entity\TaxrefStatut $sbStatut
      *
      * @return Taxref
      */
-    public function setSbStatut($sbStatut)
+    public function setSbStatut(\AppBundle\Entity\TaxrefStatut $sbStatut = null)
     {
         $this->sb_statut = $sbStatut;
 
@@ -790,7 +754,7 @@ class Taxref
     /**
      * Get sbStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getSbStatut()
     {
@@ -800,11 +764,11 @@ class Taxref
     /**
      * Set spmStatut
      *
-     * @param string $spmStatut
+     * @param \AppBundle\Entity\TaxrefStatut $spmStatut
      *
      * @return Taxref
      */
-    public function setSpmStatut($spmStatut)
+    public function setSpmStatut(\AppBundle\Entity\TaxrefStatut $spmStatut = null)
     {
         $this->spm_statut = $spmStatut;
 
@@ -814,7 +778,7 @@ class Taxref
     /**
      * Get spmStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getSpmStatut()
     {
@@ -824,11 +788,11 @@ class Taxref
     /**
      * Set mayStatut
      *
-     * @param string $mayStatut
+     * @param \AppBundle\Entity\TaxrefStatut $mayStatut
      *
      * @return Taxref
      */
-    public function setMayStatut($mayStatut)
+    public function setMayStatut(\AppBundle\Entity\TaxrefStatut $mayStatut = null)
     {
         $this->may_statut = $mayStatut;
 
@@ -838,7 +802,7 @@ class Taxref
     /**
      * Get mayStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getMayStatut()
     {
@@ -848,11 +812,11 @@ class Taxref
     /**
      * Set epaStatut
      *
-     * @param string $epaStatut
+     * @param \AppBundle\Entity\TaxrefStatut $epaStatut
      *
      * @return Taxref
      */
-    public function setEpaStatut($epaStatut)
+    public function setEpaStatut(\AppBundle\Entity\TaxrefStatut $epaStatut = null)
     {
         $this->epa_statut = $epaStatut;
 
@@ -862,7 +826,7 @@ class Taxref
     /**
      * Get epaStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getEpaStatut()
     {
@@ -872,11 +836,11 @@ class Taxref
     /**
      * Set reuStatut
      *
-     * @param string $reuStatut
+     * @param \AppBundle\Entity\TaxrefStatut $reuStatut
      *
      * @return Taxref
      */
-    public function setReuStatut($reuStatut)
+    public function setReuStatut(\AppBundle\Entity\TaxrefStatut $reuStatut = null)
     {
         $this->reu_statut = $reuStatut;
 
@@ -886,7 +850,7 @@ class Taxref
     /**
      * Get reuStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getReuStatut()
     {
@@ -896,11 +860,11 @@ class Taxref
     /**
      * Set saStatut
      *
-     * @param string $saStatut
+     * @param \AppBundle\Entity\TaxrefStatut $saStatut
      *
      * @return Taxref
      */
-    public function setSaStatut($saStatut)
+    public function setSaStatut(\AppBundle\Entity\TaxrefStatut $saStatut = null)
     {
         $this->sa_statut = $saStatut;
 
@@ -910,7 +874,7 @@ class Taxref
     /**
      * Get saStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getSaStatut()
     {
@@ -920,11 +884,11 @@ class Taxref
     /**
      * Set taStatut
      *
-     * @param string $taStatut
+     * @param \AppBundle\Entity\TaxrefStatut $taStatut
      *
      * @return Taxref
      */
-    public function setTaStatut($taStatut)
+    public function setTaStatut(\AppBundle\Entity\TaxrefStatut $taStatut = null)
     {
         $this->ta_statut = $taStatut;
 
@@ -934,7 +898,7 @@ class Taxref
     /**
      * Get taStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getTaStatut()
     {
@@ -944,11 +908,11 @@ class Taxref
     /**
      * Set taafStatut
      *
-     * @param string $taafStatut
+     * @param \AppBundle\Entity\TaxrefStatut $taafStatut
      *
      * @return Taxref
      */
-    public function setTaafStatut($taafStatut)
+    public function setTaafStatut(\AppBundle\Entity\TaxrefStatut $taafStatut = null)
     {
         $this->taaf_statut = $taafStatut;
 
@@ -958,7 +922,7 @@ class Taxref
     /**
      * Get taafStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getTaafStatut()
     {
@@ -968,11 +932,11 @@ class Taxref
     /**
      * Set ncStatut
      *
-     * @param string $ncStatut
+     * @param \AppBundle\Entity\TaxrefStatut $ncStatut
      *
      * @return Taxref
      */
-    public function setNcStatut($ncStatut)
+    public function setNcStatut(\AppBundle\Entity\TaxrefStatut $ncStatut = null)
     {
         $this->nc_statut = $ncStatut;
 
@@ -982,7 +946,7 @@ class Taxref
     /**
      * Get ncStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getNcStatut()
     {
@@ -992,11 +956,11 @@ class Taxref
     /**
      * Set wfStatut
      *
-     * @param string $wfStatut
+     * @param \AppBundle\Entity\TaxrefStatut $wfStatut
      *
      * @return Taxref
      */
-    public function setWfStatut($wfStatut)
+    public function setWfStatut(\AppBundle\Entity\TaxrefStatut $wfStatut = null)
     {
         $this->wf_statut = $wfStatut;
 
@@ -1006,7 +970,7 @@ class Taxref
     /**
      * Get wfStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getWfStatut()
     {
@@ -1016,11 +980,11 @@ class Taxref
     /**
      * Set pfStatut
      *
-     * @param string $pfStatut
+     * @param \AppBundle\Entity\TaxrefStatut $pfStatut
      *
      * @return Taxref
      */
-    public function setPfStatut($pfStatut)
+    public function setPfStatut(\AppBundle\Entity\TaxrefStatut $pfStatut = null)
     {
         $this->pf_statut = $pfStatut;
 
@@ -1030,7 +994,7 @@ class Taxref
     /**
      * Get pfStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getPfStatut()
     {
@@ -1040,11 +1004,11 @@ class Taxref
     /**
      * Set cliStatut
      *
-     * @param string $cliStatut
+     * @param \AppBundle\Entity\TaxrefStatut $cliStatut
      *
      * @return Taxref
      */
-    public function setCliStatut($cliStatut)
+    public function setCliStatut(\AppBundle\Entity\TaxrefStatut $cliStatut = null)
     {
         $this->cli_statut = $cliStatut;
 
@@ -1054,7 +1018,7 @@ class Taxref
     /**
      * Get cliStatut
      *
-     * @return string
+     * @return \AppBundle\Entity\TaxrefStatut
      */
     public function getCliStatut()
     {

@@ -14,30 +14,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 class TaxrefStatut
 {
 
+
     /**
-     * @var ArrayCollection Taxref
-     * @ORM\Id()
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="fr_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="gf_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="mar_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="gua_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="fr_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="sm_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="sb_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="spm_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="may_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="epa_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="reu_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="sa_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="ta_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="taaf_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="nc_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="wf_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="pf_statut", cascade={"persist"})
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="cli_statut", cascade={"persist"})
+     * @var string Taxref
+     * @ORM\Id
      * @ORM\Column(name="statut")
      */
-    private $taxrefs;
+    private $statut;
 
     /**
      * @var string
@@ -54,15 +37,6 @@ class TaxrefStatut
     private $definition;
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set statut
@@ -136,4 +110,3 @@ class TaxrefStatut
         return $this->definition;
     }
 }
-

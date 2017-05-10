@@ -8,18 +8,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * TaxrefRang
  *
- * @ORM\Table(name="taxref_rang")
+ * @ORM\Table(name="Taxref_rang")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefRangRepository")
  */
 class TaxrefRang
 {
     /**
-     * @var ArrayCollection Taxref
-     * @ORM\Id()
-     * @ORM\OneToMany(targetEntity="Taxref", mappedBy="rang", cascade={"persist"})
+     * @var string
+     * @ORM\Id
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxref", mappedBy="rang")
      * @ORM\Column(name="rang")
      */
-    private $taxrefs;
+    private $rang;
 
     /**
      * @var string
@@ -30,27 +30,27 @@ class TaxrefRang
 
 
     /**
-     * Set taxrefs
+     * Set Rang
      *
-     * @param string $taxrefs
+     * @param string $rang
      *
      * @return TaxrefRang
      */
-    public function setTaxrefs($taxrefs)
+    public function setRang($rang)
     {
-        $this->taxrefs = $taxrefs;
+        $this->rang = $rang;
 
         return $this;
     }
 
     /**
-     * Get taxrefs
+     * Get Rangs
      *
-     * @return ArrayCollection taxrefs
+     * @return string
      */
-    public function getTaxrefs()
+    public function getRang()
     {
-        return $this->taxrefs;
+        return $this->rang;
     }
 
     /**
