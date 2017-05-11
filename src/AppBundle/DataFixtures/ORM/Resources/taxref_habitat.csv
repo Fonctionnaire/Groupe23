@@ -1,0 +1,8 @@
+1;"Marin";"Espèces vivant uniquement en milieu marin"
+2;"Eau douce";"Espèces vivant uniquement en milieu d’eau douce"
+3;"Terrestre";"Espèces vivant uniquement en milieu terrestre"
+4;"Marin & Eau douce";"Espèces effectuant une partie de leur cycle de vie en eau douce et l’autre partie en mer (espèces diadromes, amphidromes, anadromes ou catadromes)."
+5;"Marin & Terrestre";"Cas des pinnipèdes, des tortues et des oiseaux marins par exemple."
+6;"Eau saumâtre";"Espèces vivant exclusivement en eau saumâtre. Sinon, l’habitat est marin & eau douce (habitat 4)."
+7;"Continental (terrestre ET/OU eau douce)";"Espèces continentales (non marines) dont on ne sait pas si elles sont terrestres ou d’eau douce (taxons provenant de Fauna Europaea)."
+8;"Continental (terrestre ET eau douce)";"Espèces terrestres effectuant une partie de leur cycle en eau douce (odonates par exemple), ou fortement liées au milieu aquatique (loutre par exemple)"

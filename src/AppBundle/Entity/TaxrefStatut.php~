@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * TaxrefStatuts
+ *
+ * @ORM\Table(name="taxref_statuts")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefStatutsRepository")
+ */
+class TaxrefStatut
+{
+    /**
+     *
+     * @return string String representation of this class
+     */
+    public function __toString()
+    {
+        return $this->getStatut();
+    }
+
+    /**
+     * @var string Taxref
+     * @ORM\Id
+     * @ORM\Column(name="statut")
+     */
+    private $statut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="definition", type="text")
+     */
+    private $definition;
+
+
+}

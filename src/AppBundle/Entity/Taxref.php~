@@ -1,0 +1,235 @@
+<?php
+
+namespace AppBundle\Entity;
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Taxref
+ *
+ * @ORM\Table(name="taxref")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefRepository")
+ */
+class Taxref
+{
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Regne", type="string", length=255, options={"comment":"Règne auquel le taxon appartient"})
+     */
+    private $regne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Phylum", type="string", length=255, options={"comment":"Embranchement auquel le taxon appartient"})
+     */
+    private $phylum;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Classe", type="string", length=255, options={"comment":"classe à laquelle le taxon appartient"})
+     */
+    private $classe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Ordre", type="string", length=255, options={"comment":"ordre auquel le taxon appartient"})
+     */
+    private $ordre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Famille", type="string", length=255, options={"comment":"Famille à laquelle le taxon appartient"})
+     */
+    private $famille;
+
+    /**
+     * @var int
+     * @ORM\id
+     * @ORM\Column(name="CD_NOM", type="integer", unique=true, options={"comment":"Identifiant unique du nom scientifique"})
+     */
+    private $cdnom;
+
+    /**
+     * @var int
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
+     * @ORM\JoinColumn(name="CD_TAXSUP", referencedColumnName="CD_NOM")
+     * @ORM\Column(name="CD_TAXSUP", type="integer", nullable=true, options={"comment":"Identifiant (CD_NOM) du taxon supérieur"})
+     */
+    private $cdtaxsup;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="CD_REF", type="integer", options={"comment":"Identifiant (CD_NOM) du taxon de référence (nom retenu)"})
+     */
+    private $cdref;
+
+    /**
+     * Plusieurs espèces peuvent avoir le même rang
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefRang")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="rang")
+     */
+    private $rang;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LB_NOM", type="string", length=255, options={"comment":"Nom scientifique du taxon (sans l’autorité)"})
+     */
+    private $lbnom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LB_AUTEUR", type="string", length=255, nullable=true, options={"comment":"Autorité du taxon (Auteur, année, gestion des parenthèses)"})
+     */
+    private $lbauteur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NOM_COMPLET", type="string", length=255, options={"comment":"Combinaison des champs pour donner le nom complet (~LB_NOM+' ' +LB_AUTEUR)"})
+     */
+    private $nomcomplet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NOM_VALIDE", type="string", length=255, options={"comment":"Le NOM_COMPLET du CD_REF"})
+     */
+    private $nomvalide;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NOM_VERN", type="string", length=255, nullable=true, options={"comment":"Nom(s) vernaculaire(s) du taxon"})
+     */
+    private $nonvern;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NOM_VERN_ENG", type="string", length=255, nullable=true, options={"comment":"Nom(s) vernaculaire(s) du taxon en Anglais"})
+     */
+    private $nomverneng;
+
+    /**
+     *
+     * Plusieurs espèces peuvent avoir le même habitat
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefHabitat", inversedBy="habitatId")
+     * @ORM\JoinColumn(name="habitat", referencedColumnName="habitat_id")
+     */
+    private $habitat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $fr_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $gf_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $mar_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $gua_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $sm_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $sb_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $spm_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $may_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $epa_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $reu_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $sa_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $ta_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $taaf_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $nc_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $wf_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $pf_statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefStatut")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
+     */
+    private $cli_statut;
+
+
+
+}

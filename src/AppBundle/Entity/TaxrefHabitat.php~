@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * TaxrefHabitat
+ *
+ * @ORM\Table(name="taxref_habitat")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefHabitatRepository")
+ */
+class TaxrefHabitat
+{
+
+
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(name="habitat_id")
+     */
+     private $habitatId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="remarques", type="text")
+     */
+    private $remarques;
+
+}
