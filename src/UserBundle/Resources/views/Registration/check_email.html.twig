@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+
+        <br/>
+        <div class="alert alert-info">
+            <strong>Merci !</strong><br>
+
+            <p>un Email de confirmation vous a été envoyé. Merci de suivre les instruction pour valider votre compte</p>
+
+            <a href="{{ path("accueil") }}" class="btnRegister">
+                <i class="fa fa-home"></i>
+                Retour à l'Acceuil
+            </a>
+
+        </div>
+
+{% endblock content %}

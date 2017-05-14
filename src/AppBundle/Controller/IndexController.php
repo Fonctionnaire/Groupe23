@@ -7,18 +7,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class AccueilController extends BaseController
+class IndexController extends BaseController
 {
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/", name="accueil")
+     * @Route("/", name="index")
      */
     public function accueilAction()
     {
         $content = $this
             ->get('templating')
-            ->render('default/accueil.html.twig', array('message' => 'Hello Groupe 23 !'));
+            ->render('default/index.html.twig', array('message' => 'Hello Groupe 23 !'));
         return new Response($content);
     }
 }
