@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    {% block fos_user_content %}
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form enctype="multipart/form-data" action="{{ path('fos_user_registration_register') }}" method="POST" class="form-signin box login">
+            <div id="fos_user_registration_form">
+
+
+                <fieldset class="boxBody">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'E-mail', 'tabindex': '1'} }) }}
+                    {{ form_errors(form.email) }}
+
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'nom d\'utilisateur' 'tabindex': '2'} }) }}
+                    {{ form_errors(form.username) }}
+
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe' 'tabindex': '3'} }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+
+                    {{ form_widget(form.plainPassword.second, { 'attr': {'placeholder': 'Confirmation du mot de passe' 'tabindex': '4'} }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+
+
+
+
+                </fieldset>
+                <footer>
+                    {{ form_rest(form) }}
+                    <input class="btnLogin" type="submit" value="{{ 'Enregistrer' }}" tabindex="5">
+                </footer>
+            </div>
+        </form>
+
+    {% endblock fos_user_content %}
+{% endblock%}
+
+
