@@ -6,7 +6,7 @@
                 <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Rang</th>
+                    <th>Nom Vern</th>
                     <th>Habitat</th>
                     <th>Statut</th>
                 </tr>
@@ -15,7 +15,7 @@
                 {% for taxref in listTaxrefs %}
                   <tr>
                       <td>{{ taxref.lbnom }}</td>
-                   <td>{{ taxref.rang.detail }}</td>
+                   <td>{{ taxref.nonvern }}</td>
 
                    <td>{{ taxref.habitat.description }}</td>
 

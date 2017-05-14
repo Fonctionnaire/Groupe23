@@ -14,7 +14,7 @@ class IndexController extends BaseController
      * @Method("GET")
      * @Route("/", name="index")
      */
-    public function indexAction()
+    public function accueilAction()
     {
         $content = $this
             ->get('templating')
