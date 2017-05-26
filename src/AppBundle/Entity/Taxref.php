@@ -123,7 +123,7 @@ class Taxref
 
     public function __toString()
     {
-        return $this->lbnom . "->" . $this->lbauteur;
+        return $this->lbnom . "->" . $this->nonvern;
     }
 
     /**
