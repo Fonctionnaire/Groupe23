@@ -15,6 +15,13 @@ class Taxref
 {
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="taxref")
+     */
+    private $observations;
+
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Regne", type="string", length=255, options={"comment":"Règne auquel le taxon appartient"})
@@ -112,6 +119,12 @@ class Taxref
      * @ORM\Column(name="NOM_VERN", type="string", length=255, nullable=true, options={"comment":"Nom(s) vernaculaire(s) du taxon"})
      */
     private $nonvern;
+
+
+    public function __toString()
+    {
+        return $this->lbnom . "->" . $this->nonvern;
+    }
 
     /**
      * @var string
@@ -229,7 +242,6 @@ class Taxref
      * @ORM\JoinColumn(nullable=true, referencedColumnName="statut")
      */
     private $cli_statut;
-
 
 
 
@@ -1023,5 +1035,47 @@ class Taxref
     public function getCliStatut()
     {
         return $this->cli_statut;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->observations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add observation
+     *
+     * @param \AppBundle\Entity\Observation $observation
+     *
+     * @return Taxref
+     */
+    public function addObservation(\AppBundle\Entity\Observation $observation)
+    {
+        $this->observations[] = $observation;
+        $observation->setTaxref($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove observation
+     *
+     * @param \AppBundle\Entity\Observation $observation
+     */
+    public function removeObservation(\AppBundle\Entity\Observation $observation)
+    {
+        $this->observations->removeElement($observation);
+    }
+
+    /**
+     * Get observations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObservations()
+    {
+        return $this->observations;
     }
 }

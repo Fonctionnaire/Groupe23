@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <div class="row">
+        <h1>Votre observation</h1>
+
+        {% if observation.image is not null %}
+            <img style="height:150px; float:right; margin-right: 100px" src="{{ asset('uploads/images/' ~ observation.image) }}"/>
+        {% endif %}
+
+        <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
+        <p>Auteur : {{ observation.user.username }} </p>
+        <p>Espèce : {{ observation.taxref }}</p>
+        <p>Famille : {{ observation.taxref.famille }} </p>
+        <p>Commentaire : {{ observation.comment }}</p>
+        <p>Latitude: {{ observation.latitude }}</p>
+        <p>Longitude: {{ observation.longitude }}</p>
+
+
+    </div>
+
+{% endblock %}
