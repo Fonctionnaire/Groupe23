@@ -9,6 +9,7 @@ use AppBundle\Entity\Taxref;
 use UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -19,6 +20,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/addObservation", name="addObservation")
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
      */
     public function addObservationAction(Request $request)
@@ -27,15 +29,14 @@ class ObservationController extends BaseController
         $observation = new Observation();
         $observation->setDate(new \Datetime);
 
-        // TODO : récupérer l'auteur
+
+        $observation->setUser($this->get('security.token_storage')->getToken()->getUser());
 
         $form = $this->createForm(ObservationType::class, $observation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            // $file stores the uploaded file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $observation->getImage();
 
             // Generate a unique name for the file before saving it

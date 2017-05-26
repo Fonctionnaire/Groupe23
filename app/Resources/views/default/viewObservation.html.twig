@@ -8,9 +8,9 @@
         {% endif %}
 
         <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
-        <p>Auteur : {# {{ user.username }} #}</p>
-        <p>Espèce : {{ observation.espece }}</p>
-        <p>Famille : {# {{ Taxref.Famille }} #}</p>#}
+        <p>Auteur : {{ observation.user.username }} </p>
+        <p>Espèce : {{ observation.taxref }}</p>
+        <p>Famille : {{ observation.taxref.famille }} </p>
         <p>Commentaire : {{ observation.comment }}</p>
         <p>Latitude: {{ observation.latitude }}</p>
         <p>Longitude: {{ observation.longitude }}</p>

@@ -14,14 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Observation
 {
 
-    // TODO : Passer à nullable=false après recup de l'user
+
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="observations")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
-    // TODO : Passer à nullable=false après modif de la table Taxref et changement de clé primaire (NOM_VERN)
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", inversedBy="observations")
      * @ORM\JoinColumn(nullable=true, referencedColumnName="CD_NOM")
@@ -53,21 +53,6 @@ class Observation
     private $dateObservation;
 
 
-    // TODO : Passer à nullable=false après recup de l'user
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255, nullable=true)
-     */
-    private $author;
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="espece", type="string", length=255)
-     */
-    private $espece;
 
     /**
      * @var string
@@ -170,53 +155,7 @@ class Observation
         return $this->dateObservation;
     }
 
-    /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Observation
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
 
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * Set espece
-     *
-     * @param string $espece
-     *
-     * @return Observation
-     */
-    public function setEspece($espece)
-    {
-        $this->espece = $espece;
-
-        return $this;
-    }
-
-    /**
-     * Get espece
-     *
-     * @return string
-     */
-    public function getEspece()
-    {
-        return $this->espece;
-    }
 
     /**
      * Set comment

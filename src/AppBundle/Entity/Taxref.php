@@ -15,7 +15,7 @@ class Taxref
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="Taxref")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="taxref")
      */
     private $observations;
 
@@ -119,6 +119,12 @@ class Taxref
      * @ORM\Column(name="NOM_VERN", type="string", length=255, nullable=true, options={"comment":"Nom(s) vernaculaire(s) du taxon"})
      */
     private $nonvern;
+
+
+    public function __toString()
+    {
+        return $this->lbnom . "->" . $this->lbauteur;
+    }
 
     /**
      * @var string
