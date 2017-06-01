@@ -2,10 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\ObservationFilterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use AppBundle\Entity\Observation;
-use AppBundle\Entity\Taxref;
 use AppBundle\Form\ObservationType;
+
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,10 +14,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Validator\Constraints\Date;
+
 
 class ObservationController extends BaseController
 {
-
 
 
     /**
@@ -36,8 +38,7 @@ class ObservationController extends BaseController
         $form = $this->createForm(ObservationType::class, $observation);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $file = $observation->getImage();
 
             // Generate a unique name for the file before saving it
@@ -74,27 +75,77 @@ class ObservationController extends BaseController
         // $advert est donc une instance de OC\PlatformBundle\Entity\Advert
         // ou null si l'id $id n'existe pas, d'où ce if :
         if (null === $observation) {
-            throw new NotFoundHttpException("L'observation d'id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("L'observation d'id " . $id . " n'existe pas.");
         }
 
 
-
         return $this->render('default/viewObservation.html.twig', array(
-            'observation'           => $observation,
+            'observation' => $observation,
         ));
     }
 
 
     /**
-     * @Route("/exportTotal", name="exportTotal")
+     * @Route("/filter", name="filter")
      * @Method({"GET", "POST"})
      *
      */
-    public function exportAllObservations()
+    public function filterAction(Request $request)
     {
-        //on récupère toutes nos observations
-        $observations = $this->getDoctrine()->getManager()->getRepository('AppBundle:Observation')->findAll();
+        $form = $this->createForm(ObservationFilterType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $taxref = $data['taxref'];
+
+
+            $query = $this->getDoctrine()
+                ->getRepository('AppBundle:Observation')
+                ->createQueryBuilder('o')
+                ->where('o.dateObservation > :debut')
+                ->andWhere('o.dateObservation < :fin');
+
+            if ($data['especeFilter']) {
+                $query->andWhere('o.taxref IN (:taxref)')
+                    ->setParameters(array(
+                        'debut' => $data['debut'],
+                        'fin' => $data['fin'],
+                        'taxref' => $data['taxref']
+                    ));
+            } else {
+                $query->setParameters(array(
+                    'debut' => $data['debut'],
+                    'fin' => $data['fin'],
+                ));
+            }
+
+
+            $observations = $query->getQuery()->getResult();
+
+
+            return $this->exportObservations($observations);
+
+        };
+
+        return $this->render('default/exportForm.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
+
+    //-------------------------------------------------
+    // Autres fonctions
+    //-------------------------------------------------
+    /**
+     * Fonction d'export Excel des observations
+     * @param $observations
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function exportObservations($observations)
+    {
         // On appel de service de création de fichier Excel
         $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 
@@ -103,7 +154,7 @@ class ObservationController extends BaseController
             ->setLastModifiedBy("Giulio De Donato")
             ->setTitle("Liste des observations")
             ->setSubject("Observations d'oiseaux")
-            ->setDescription("Liste de toutes les observations d'oiseau recencées par l'assosiation NAO")
+            ->setDescription("observations d'oiseau recencées par l'assosiation NAO")
             ->setKeywords("oiseaux nao taxref")
             ->setCategory("data export");
 
@@ -117,23 +168,21 @@ class ObservationController extends BaseController
             ->setCellValue('F1', 'Commentaire')
             ->setCellValue('G1', 'CDNom')
             ->setCellValue('H1', 'LbNom')
-            ->setCellValue('I1', 'Nom Vern')
-        ;
+            ->setCellValue('I1', 'Nom Vern');
 
         //ensuite on boucle pour remplir le tableau excel avec nos observations
         $i = 2;
-        foreach ($observations as $observation)
-        {
+        foreach ($observations as $observation) {
             $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $observation->getId())
-                ->setCellValue('B'.$i,$observation->getDate())
-                ->setCellValue('C'.$i,$observation->getUser()->getUsername())
-                ->setCellValue('D'.$i,$observation->getLatitude())
-                ->setCellValue('E'.$i,$observation->getLongitude())
-                ->setCellValue('F'.$i,$observation->getComment())
-                ->setCellValue('G'.$i,$observation->getTaxref()->getCdnom())
-                ->setCellValue('H'.$i,$observation->getTaxref()->getLbnom())
-                ->setCellValue('I'.$i,$observation->getTaxref()->getNonvern());
+                ->setCellValue('A' . $i, $observation->getId())
+                ->setCellValue('B' . $i, $observation->getDate())
+                ->setCellValue('C' . $i, $observation->getUser()->getUsername())
+                ->setCellValue('D' . $i, $observation->getLatitude())
+                ->setCellValue('E' . $i, $observation->getLongitude())
+                ->setCellValue('F' . $i, $observation->getComment())
+                ->setCellValue('G' . $i, $observation->getTaxref()->getCdnom())
+                ->setCellValue('H' . $i, $observation->getTaxref()->getLbnom())
+                ->setCellValue('I' . $i, $observation->getTaxref()->getNonvern());
             $i = $i + 1;
         }
 
@@ -159,9 +208,6 @@ class ObservationController extends BaseController
 
         return $response;
     }
-
-
-
 
 
 }
