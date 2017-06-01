@@ -1,3 +1,7 @@
+{# Conteneur Google map #}
+<div id="map"></div>
+<div id="map-text"><p>Cliquez sur la carte pour obtenir les coordonées du lieu de l'observation</p></div>
+
 <div class="well">
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
@@ -44,7 +48,7 @@
 
         <div class="col-sm-10">
             {# Génération de l'input. #}
-            {{ form_widget(form.longitude, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude'}}) }}
         </div>
     </div>
 
@@ -59,7 +63,7 @@
 
         <div class="col-sm-10">
             {# Génération de l'input. #}
-            {{ form_widget(form.latitude, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude'}}) }}
         </div>
     </div>
 
