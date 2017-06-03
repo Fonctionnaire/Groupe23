@@ -1,3 +1,9 @@
+
+.bootstrap-datetimepicker-widget
+{
+    z-index: 1200   !important;
+}
+
 /* OBSERVATION GOOGLE MAP */
 #map-text
 {
@@ -37,3 +43,4 @@
     font-size: 1.2em;
     font-weight: bold;
 }
+
