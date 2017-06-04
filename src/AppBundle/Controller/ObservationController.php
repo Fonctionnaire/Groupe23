@@ -54,6 +54,12 @@ class ObservationController extends BaseController
             // Étape 2 : On « flush » tout ce qui a été persisté avant
             $em->flush();
 
+            //$this->get('app.notification')->sendMailPostObservation($observation);
+            //$this->get('app.notification')->sendMailNewObservation($observation);
+
+
+
+
             return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
         }
 
