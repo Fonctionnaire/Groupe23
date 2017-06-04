@@ -20,18 +20,19 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
 
-<<<<<<< HEAD
-    app.notification:
-        class: AppBundle\Services\Notification
-=======
-    app.send_contact_mail:
-        class: AppBundle\Services\ContactMail\ContactMail
->>>>>>> a32e5888e431439b9040820003fcfd56c2d2503c
-        arguments:
-            - "@mailer"
-            - "@twig"
-            - "@doctrine.orm.entity_manager"
-<<<<<<< HEAD
 
-=======
->>>>>>> a32e5888e431439b9040820003fcfd56c2d2503c
+   app.notification:
+           class: AppBundle\Services\Notification
+           arguments:
+               - "@mailer"
+               - "@twig"
+               - "@doctrine.orm.entity_manager"
+
+    app.send_contact_mail:
+            class: AppBundle\Services\ContactMail\ContactMail
+            arguments:
+               - "@mailer"
+               - "@twig"
+               - "@doctrine.orm.entity_manager"
+
+
