@@ -17,3 +17,30 @@
 {
     text-align: center;
 }
+
+/* CONTACT FORM */
+
+#comments
+{
+    height: 260px !important;
+    resize: none;
+    overflow: auto;
+}
+
+#flashMsg
+{
+    margin-top: 35px;
+}
+
+.flashMsg
+{
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(42, 245, 48, 0.7);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
