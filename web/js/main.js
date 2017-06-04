@@ -12,6 +12,16 @@ $(function () {
     })
 });
 
+//script for datatables
+$(document).ready(function () {
+    $('#myTable').dataTable({
+        "order": [[0, "asc"]],
+        "language": {
+            "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/French.json"
+        }
+    });
+});
+
 //FONCTION PUR LE FORMULAIRE D'EXPORT
 $('#modal').on('show.bs.modal', function (e) {
     if
