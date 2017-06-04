@@ -25,13 +25,17 @@ class Notification extends \Twig_Extension
     private $twig;
 
 
+
+
     public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->em = $em;
         $this->twig = $twig;
+
     }
 
+    //Envoi d'un mail à un observateur lors d'une observation
     public function sendMailPostObservation(Observation $observation)
     {
 
@@ -45,20 +49,14 @@ class Notification extends \Twig_Extension
         $this->mailer->send($message);
     }
 
-    public function sendMailNewObservation(Observation $observation)
+    //Envoi d'un mail aux administrateurs lors d'une nouvelle observation
+    public function sendMailNewObservation(Observation $observation, User $user)
     {
-        $userManager = $this->get('fos_user.user_manager');
-        $listAdmins = $userManager->findBy(
-            array ('role' => 'ROLE_ADMIN')
-        );
 
-
-        foreach ($listAdmins as $user)
-        {
         $message = \Swift_Message::newInstance()
             ->setSubject('Nouvelle Observation')
             ->setFrom(array('noreply.naoasso@gmail.com' => 'Association NAO'))
-            ->setTo($user->getUser()->getEmail())
+            ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render('Emails/mailNewObservation.html.twig', array(
                     'user' => $user,
@@ -66,7 +64,7 @@ class Notification extends \Twig_Extension
                 )), 'text/html')
         ;
         $this->mailer->send($message);
-        }
+
     }
 
 }

@@ -6,13 +6,10 @@ use AppBundle\Form\ObservationFilterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use AppBundle\Entity\Observation;
 use AppBundle\Form\ObservationType;
-
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -41,7 +38,7 @@ class ObservationController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $observation->getImage();
 
-            // Generate a unique name for the file before saving it
+            // Générer un nom unique
             $fileName = $this->get('app.image_uploader')->upload($file);
 
             $observation->setImage($fileName);
@@ -49,16 +46,20 @@ class ObservationController extends BaseController
 
             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
-            // Étape 1 : On « persiste » l'entité
             $em->persist($observation);
-            // Étape 2 : On « flush » tout ce qui a été persisté avant
             $em->flush();
 
-            //$this->get('app.notification')->sendMailPostObservation($observation);
-            //$this->get('app.notification')->sendMailNewObservation($observation);
+            //Envoi d'un mail à l'observateur
+            $this->get('app.notification')->sendMailPostObservation($observation);
 
+            //Notification d'une nouvelle observation aux admin
 
+            $listAdmins = $em->getRepository('UserBundle:User')->findByRole("ROLE_SUPER_ADMIN");
+            foreach ($listAdmins as $user)
+            {
 
+                $this->get('app.notification')->sendMailNewObservation($observation, $user);
+            }
 
             return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
         }
@@ -214,6 +215,11 @@ class ObservationController extends BaseController
 
         return $response;
     }
+
+
+
+
+
 
 
 }
