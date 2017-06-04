@@ -20,13 +20,13 @@ class ObservationFilterType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true,
                 'attr' => array('class' => 'datepicker'),
-                'format' => 'dd/MM/yyyy',
+                'format' => 'yyyy-MM-dd',
             ))
             ->add('fin', DateType::class, array(
                 'widget' => 'single_text',
                 'html5' => true,
                 'attr' => array('class' => 'datepicker'),
-                'format' => 'dd/MM/yyyy',
+                'format' => 'yyyy-MM-dd',
             ))
             ->add('especeFilter', CheckboxType::class, array(
                 'label'    => 'Filtrer par espèce ?',

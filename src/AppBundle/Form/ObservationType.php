@@ -20,7 +20,7 @@ class ObservationType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true,
                 'attr' => array('class' => 'datepicker'),
-                'format' => 'dd/MM/yyyy',
+                'format' => 'yyyy-MM-dd',
             ))
             ->add('comment')
             ->add('image',FileType::class)
