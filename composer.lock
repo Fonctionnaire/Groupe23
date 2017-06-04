@@ -1010,12 +1010,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "5c7202de2fd7499d5633c866aac982c8ab7e8a5e"
+                "reference": "4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/5c7202de2fd7499d5633c866aac982c8ab7e8a5e",
-                "reference": "5c7202de2fd7499d5633c866aac982c8ab7e8a5e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a",
+                "reference": "4f92bfbb8742ac8cc195d0b34bf8ecd83b62404a",
                 "shasum": ""
             },
             "require": {
@@ -1079,7 +1079,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-05-24 14:07:50"
+            "time": "2017-05-31 11:50:14"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2565,66 +2565,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "lexik/form-filter-bundle",
-            "version": "v5.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lexik/LexikFormFilterBundle.git",
-                "reference": "28c09d6d9f278875ca9648c4b66eeb457c37d3b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikFormFilterBundle/zipball/28c09d6d9f278875ca9648c4b66eeb457c37d3b6",
-                "reference": "28c09d6d9f278875ca9648c4b66eeb457c37d3b6",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "^2.4.8",
-                "php": ">=5.5.9",
-                "symfony/form": "~2.8|~3.0",
-                "symfony/framework-bundle": "~2.8|~3.0"
-            },
-            "require-dev": {
-                "doctrine/mongodb-odm-bundle": "~3.0",
-                "phpunit/phpunit": "~3.7"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lexik\\Bundle\\FormFilterBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dev Lexik",
-                    "email": "dev@lexik.fr"
-                },
-                {
-                    "name": "Cedric Girard",
-                    "email": "c.girard@lexik.fr"
-                }
-            ],
-            "description": "This bundle aim to provide classes to build some form filters and then build a doctrine query from this form filter.",
-            "homepage": "https://github.com/lexik/LexikFormFilterBundle",
-            "keywords": [
-                "bundle",
-                "doctrine",
-                "filter",
-                "form",
-                "symfony"
-            ],
-            "time": "2017-03-27T07:28:34+00:00"
-        },
         {
             "name": "sensio/generator-bundle",
             "version": "v3.1.4",
