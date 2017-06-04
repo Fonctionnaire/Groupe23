@@ -19,3 +19,10 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+
+    app.send_contact_mail:
+        class: AppBundle\Services\ContactMail\ContactMail
+        arguments:
+            - "@mailer"
+            - "@twig"
+            - "@doctrine.orm.entity_manager"

@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+
+    {{ form_start(form) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_label(form.name, "Votre nom") }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+
+        {{ form_label(form.firstName, "Votre prénom") }}
+        {{ form_errors(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+
+        {{ form_label(form.mail, "Votre E-mail") }}
+        {{ form_errors(form.mail) }}
+        {{ form_widget(form.mail) }}
+
+        {{ form_label(form.subject, "Sujet") }}
+        {{ form_errors(form.subject) }}
+        {{ form_widget(form.subject) }}
+
+        {{ form_label(form.message, "Votre message") }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message) }}
+
+    {{ form_end(form) }}
+
+
+        <div id="flashMsg">
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="flashMsg">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        </div>
+
+{% endblock %}
