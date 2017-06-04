@@ -1,5 +1,5 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
-<form method="post" action="{{ path('filter') }}" onload="hide()">
+<form method="post" action="{{ path('filter') }}">
 <div class="modal-header">
     <h1>Exportation des données</h1>
 </div>
@@ -7,9 +7,6 @@
     {# Les erreurs générales du formulaire. #}
     {{ form_errors(form) }}
     {# Génération du label + error + widget pour un champ. #}
-    {% if form.date is defined %}
-        {{ form_row(form.date) }}
-    {% endif %}
     {# Génération manuelle et éclatée : #}
     <div>
         {{ form_label(form.debut, "Date de Début") }}

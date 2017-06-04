@@ -18,7 +18,7 @@ class ObservationFilterType extends AbstractType
         $builder
             ->add('debut', DateType::class, array(
                 'widget' => 'single_text',
-                'html5' => false,
+                'html5' => true,
                 'attr' => array('class' => 'datepicker'),
                 'format' => 'dd/MM/yyyy',
             ))
