@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ObservationType extends AbstractType
+class ObservationEditType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,18 +17,17 @@ class ObservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('dateObservation', DateType::class, array(
-                'widget' => 'single_text',
-                'html5' => true,
-                'attr' => array('class' => 'datepicker'),
-                'format' => 'yyyy-MM-dd',
-            ))
+            'widget' => 'single_text',
+            'html5' => true,
+            'attr' => array('class' => 'datepicker'),
+            'format' => 'yyyy-MM-dd',
+        ))
             ->add('comment')
-            ->add('image',FileType::class, array('data_class' => null, 'required' => false))
             ->add('longitude')
             ->add('latitude')
             ->add('taxref');
     }
-    
+
     /**
      * {@inheritdoc}
      */

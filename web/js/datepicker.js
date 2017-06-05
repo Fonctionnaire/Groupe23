@@ -9,7 +9,7 @@ $.datepicker.regional['fr'] = {
     dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
     dayNamesMin: ['D','L','M','M','J','V','S'],
     weekHeader: 'Sem.',
-    dateFormat: 'dd/mm/yy',
+    dateFormat: 'yy-mm-dd',
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
@@ -19,11 +19,19 @@ $.datepicker.setDefaults($.datepicker.regional['fr']);
 
 $(function()
 {
+    //si le navigateur ne prend pas en charge les dates au format HTML5
+    if (!navigator.userAgent.match(/(android|iphone|windows phone|ipad|edge|Chrome|CrOS|CriOS|Edge|Opera)/gi)) {
+        //On utilise Datepicker Jquery
+        $(".datepicker").datepicker(
+            {
+                maxDate: new Date()
+            }).attr("readonly", "readonly");;
 
-    $(".datepicker").datepicker(
-    {
-        maxDate: new Date()
-    });
+    }
+    else {
+
+        $(".datepicker").attr("type", "date");
+    }
 
 });
 

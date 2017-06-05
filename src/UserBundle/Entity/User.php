@@ -2,6 +2,9 @@
 
 namespace UserBundle\Entity;
 
+
+use AppBundle\Entity\Observation;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -28,6 +31,15 @@ class User extends BaseUser
     private $observations;
 
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->observations = new ArrayCollection();
+
+
+    }
+
+
     /**
      * Add observation
      *
@@ -35,7 +47,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addObservation(\AppBundle\Entity\Observation $observation)
+    public function addObservation(Observation $observation)
     {
         $this->observations[] = $observation;
         $observation->setUser($this);

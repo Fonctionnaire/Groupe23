@@ -34,4 +34,3 @@ swiftmailer:
     transport: gmail
     username:  '%mailer_user%'
     password:  '%mailer_password%'
-    delivery_addresses: ['thibaut.gruffy@gmail.com']
