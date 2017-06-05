@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Services;
+namespace AppBundle\Services\FileUploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

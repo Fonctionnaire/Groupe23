@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Taxrefs;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -17,6 +17,6 @@ class ListTaxrefsController extends BaseController
     public function listTaxrefsAction()
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->findAll();
-        return $this->render('default/especes.html.twig', array('listTaxrefs' => $listtaxrefs,));
+        return $this->render('Especes/especes.html.twig', array('listTaxrefs' => $listtaxrefs,));
     }
 }
