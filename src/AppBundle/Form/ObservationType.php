@@ -23,7 +23,7 @@ class ObservationType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ))
             ->add('comment')
-            ->add('image',FileType::class, array('data_class' => null, 'required' => false))
+            ->add('image',FileType::class, array('required' => false))
             ->add('longitude')
             ->add('latitude')
             ->add('taxref');
