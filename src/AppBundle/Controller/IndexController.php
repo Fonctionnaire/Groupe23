@@ -18,7 +18,7 @@ class IndexController extends BaseController
     {
         $content = $this
             ->get('templating')
-            ->render('default/index.html.twig', array('message' => 'Hello Groupe 23 !'));
+            ->render('Index/index.html.twig', array('message' => 'Hello Groupe 23 !'));
         return new Response($content);
     }
 }

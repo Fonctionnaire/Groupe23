@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\ObservationEditType;
+
 use AppBundle\Form\ObservationFilterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use AppBundle\Entity\Observation;
@@ -12,7 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\Validator\Constraints\Date;
 
 
 class ObservationController extends BaseController
@@ -37,12 +36,13 @@ class ObservationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $observation->getImage();
 
-            // Générer un nom unique
-            $fileName = $this->get('app.image_uploader')->upload($file);
-
-            $observation->setImage($fileName);
+            if($observation->getImage()){
+                $file = $observation->getImage();
+                // Générer un nom unique
+                $fileName = $this->get('app.image_uploader')->upload($file);
+                $observation->setImage($fileName);
+            }
 
 
             // On récupère l'EntityManager
@@ -65,7 +65,7 @@ class ObservationController extends BaseController
             return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
         }
 
-        return $this->render('default/addObservation.html.twig', array(
+        return $this->render(':AddObservation:addObservation.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -87,7 +87,7 @@ class ObservationController extends BaseController
         }
 
 
-        return $this->render('default/viewObservation.html.twig', array(
+        return $this->render('ViewObersavtion/viewObservation.html.twig', array(
             'observation' => $observation,
         ));
     }
@@ -136,95 +136,10 @@ class ObservationController extends BaseController
 
         };
 
-        return $this->render('default/exportForm.html.twig', array(
+        return $this->render('ExportForm/exportForm.html.twig', array(
             'form' => $form->createView(),
         ));
     }
-
-    /**
-     *--------------------------------------------------------------------------------------------------------------
-     *==============   PARTIE ADMIN   ======================================================================
-     * -------------------------------------------------------------------------------------------------------------
-     */
-
-
-    /**
-     * Voire toutes les observations
-     * @Route("/admin/observations", name="adminObservations")
-     * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function viewObservationsAction()
-    {
-        $listobservations = $this->getDoctrine()->getRepository("AppBundle:Observation")->findAll();
-        return $this->render('Admin/observations.html.twig', array('listObservations' => $listobservations,));
-    }
-
-    /**
-     * Supprime une observation
-     * @Route("/admin/{id}/delete", name="deleteObservation")
-     * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function deleteObservationAction(Observation $observation, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $entityManager->remove($observation);
-        $entityManager->flush();
-        $request->getSession()->getFlashbag()->add('success', 'L\'observation a été Supprimée');
-        return $this->redirect($referer);
-    }
-
-
-    /**
-     * Valide une observation
-     * @Method({"GET"})
-     * @Route("/admin/{id}/valid", name="validObservation")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function validObservation(Observation $observation, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $observation->setValided('1');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($observation);
-        $em->flush();
-        $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été validé');
-        return $this->redirect($referer);}
-
-    /**
-     * Affiche un formulaire pour modifier une observation
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/{id}/edit", requirements={"id": "\d+"}, name="edit")
-     */
-    public function editAction(Observation $observation, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ObservationEditType::class, $observation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $this->addFlash('success', 'Observation modifiée avec succès');
-            return $this->redirect($referer);
-
-        }
-
-        return $this->render(
-            'Admin/observationEdit.html.twig',
-            [
-                'observation' => $observation,
-                'form' => $form->createView(),
-            ]
-        );
-    }
-
-
-
 
     //-------------------------------------------------
     // Autres fonctions
@@ -298,11 +213,5 @@ class ObservationController extends BaseController
 
         return $response;
     }
-
-
-
-
-
-
 
 }

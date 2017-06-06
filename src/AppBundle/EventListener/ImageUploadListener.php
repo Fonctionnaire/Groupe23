@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Observation;
-use AppBundle\Services\FileUploader;
+use AppBundle\Services\FileUploader\FileUploader;
 
 class ImageUploadListener
 {

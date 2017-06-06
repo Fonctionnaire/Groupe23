@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Services;
+namespace AppBundle\Services\Notification;
 
 
 use Doctrine\ORM\EntityManagerInterface;

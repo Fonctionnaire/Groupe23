@@ -10,7 +10,7 @@ services:
 
 
     app.image_uploader:
-        class: AppBundle\Services\FileUploader
+        class: AppBundle\Services\FileUploader\FileUploader
         arguments: ['%images_directory%']
 
     app.doctrine_image_listener:
@@ -22,7 +22,7 @@ services:
 
 
     app.notification:
-        class: AppBundle\Services\Notification
+        class: AppBundle\Services\Notification\Notification
         arguments:
             - "@mailer"
             - "@twig"
