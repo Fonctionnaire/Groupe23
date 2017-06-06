@@ -5,9 +5,10 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ObservationType extends AbstractType
 {
@@ -22,10 +23,23 @@ class ObservationType extends AbstractType
                 'attr' => array('class' => 'datepicker'),
                 'format' => 'yyyy-MM-dd',
             ))
-            ->add('comment')
-            ->add('image',FileType::class, array('required' => false))
-            ->add('longitude')
-            ->add('latitude')
+
+            ->add('comment', TextType::class, array('required' => false))
+            ->add('image',FileType::class, array(
+                'required' => false
+
+            ))
+            ->add('longitude', NumberType::class, array(
+                 'invalid_message' => 'Ce champ est invalide.',
+                 "invalid_message_parameters" => array(
+        "{{ type }}" => "float"
+            )))
+            ->add('latitude', NumberType::class, array(
+                'invalid_message' => 'Ce champ est invalide.',
+                "invalid_message_parameters" => array(
+                    "{{ type }}" => "float"
+                )))
+
             ->add('taxref');
     }
     
@@ -35,7 +49,7 @@ class ObservationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Observation'
+            'data_class' => 'AppBundle\Entity\Observation',
         ));
     }
 
