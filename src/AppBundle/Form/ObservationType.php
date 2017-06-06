@@ -23,13 +23,14 @@ class ObservationType extends AbstractType
                 'attr' => array('class' => 'datepicker'),
                 'format' => 'yyyy-MM-dd',
             ))
+
             ->add('comment', TextType::class, array('required' => false))
             ->add('image',FileType::class, array(
                 'required' => false
 
             ))
             ->add('longitude', NumberType::class, array(
-                'invalid_message' => 'Ce champ est invalide.',
+                 'invalid_message' => 'Ce champ est invalide.',
                  "invalid_message_parameters" => array(
         "{{ type }}" => "float"
             )))
@@ -38,6 +39,7 @@ class ObservationType extends AbstractType
                 "invalid_message_parameters" => array(
                     "{{ type }}" => "float"
                 )))
+
             ->add('taxref');
     }
     
