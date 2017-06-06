@@ -25,6 +25,8 @@ class Observation
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", inversedBy="observations")
      * @ORM\JoinColumn(nullable=true, referencedColumnName="CD_NOM")
+     * @Assert\NotBlank(message = "Veuillez renseigner l'espèce")
+     *
      */
     private $taxref;
 
@@ -49,6 +51,8 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="dateObservation", type="datetime")
+     * @Assert\DateTime()
+     * @Assert\NotBlank(message = "Veuillez indiquer la date de votre observation")
      */
     private $dateObservation;
 
@@ -58,6 +62,7 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="comment", type="text", nullable=true)
+     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
      */
     private $comment;
 
@@ -65,6 +70,13 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\Valid()
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     maxSizeMessage = "  La taille de votre fichier ({{ size }} M) dépasse la taille maximale autorisée (2M).",
+     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
+     *     mimeTypesMessage = "Seules les extensions .jpeg .png .jpg et .gif sont autorisées"
+     *     )
      */
     private $image;
 
@@ -79,6 +91,8 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
+     * @Assert\NotBlank(message = "Veuillez renseigner ce champ")
+     * @Assert\Type(type="float", message="coordonnee invalide")
      */
     private $longitude;
 
@@ -86,6 +100,9 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="latitude", type="float")
+     * @Assert\NotBlank(message = "Veuillez renseigner ce champ")
+     * @Assert\Type(type="float", message="coordonnee invalide")
+     * )
      */
     private $latitude;
 
