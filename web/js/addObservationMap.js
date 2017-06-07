@@ -41,7 +41,7 @@
 
         // GEOLOCALISATION
 
-        var infoWindow = new google.maps.InfoWindow({map: map});
+        //var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -51,15 +51,26 @@
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('<h4 id="titre-infowindow">Vous êtes ici</h4>' + '<br>' + '<p>Latitude : ' + position.coords.latitude + '</p>' + '<p>Longitude : ' + position.coords.longitude + '</p>');
+
+                $('.latitude').val(pos.lat);
+                $('.longitude').val(pos.lng);
+
                 map.setCenter(pos);
+                map.setZoom(9);
+
+                marker = new google.maps.Marker({
+                    animation: google.maps.Animation.DROP,
+                    position: pos,
+                    map: map
+
+                });
+
             }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
+                handleLocationError(true, map.getCenter());
             });
         } else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
+            handleLocationError(false, map.getCenter());
         }
     }
 
