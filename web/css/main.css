@@ -4,13 +4,27 @@
     z-index: 1200   !important;
 }
 
+/* PAGE AJOUT OBSERVATION */
+
+#obs-title
+{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 /* OBSERVATION GOOGLE MAP */
+
 #map-text
 {
     font-style: italic;
     font-size: 0.8em;
     font-weight: bold;
     margin-top: 15px;
+}
+
+#map-text p
+{
+    text-align: center;
 }
 
 #titre-infowindow
