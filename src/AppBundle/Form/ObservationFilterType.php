@@ -2,8 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\AppBundle;
-use AppBundle\Entity\Taxref;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;

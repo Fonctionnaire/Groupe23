@@ -149,7 +149,7 @@ class ObservationController extends BaseController
      * @param $observations
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function exportObservations($observations)
+    public function exportObservationsAction($observations)
     {
         // On appel de service de création de fichier Excel
         $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();

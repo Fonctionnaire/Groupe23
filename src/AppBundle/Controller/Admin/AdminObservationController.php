@@ -58,7 +58,7 @@ class AdminObservationController extends Controller
      * @Route("/admin/{id}/valid", name="validObservation")
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function validObservation(Observation $observation, Request $request)
+    public function validObservationAction(Observation $observation, Request $request)
     {
         $referer = $request->headers->get('referer');
         $observation->setValided('1');
@@ -74,7 +74,7 @@ class AdminObservationController extends Controller
      * @Method({"GET", "POST"})
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="edit")
      */
-    public function editAction(Observation $observation, Request $request)
+    public function editObservationAction(Observation $observation, Request $request)
     {
         $referer = $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
