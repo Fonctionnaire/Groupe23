@@ -13,8 +13,8 @@ parameters:
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: ~
-    mailer_password: ~
+    mailer_user: mail@exemple.com
+    mailer_password: password
 
     # A secret key that's used to generate certain security-related tokens
     secret: 65c40daab028caf7ddf243bfd49e317c8261e593
