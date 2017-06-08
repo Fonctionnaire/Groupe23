@@ -105,7 +105,7 @@ class ObservationController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $taxref = $data['taxref'];
+
 
 
             $query = $this->getDoctrine()

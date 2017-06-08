@@ -16,13 +16,11 @@ class ContactMail extends \Twig_Extension
 
     private $twig;
     private $mailer;
-    private $em;
 
-    public function __construct(\Swift_Mailer $mailer,\Twig_Environment $twig, EntityManagerInterface $em)
+    public function __construct(\Swift_Mailer $mailer,\Twig_Environment $twig)
     {
         $this->twig = $twig;
         $this->mailer = $mailer;
-        $this->em = $em;
     }
 
     public function sendContactMail($data)

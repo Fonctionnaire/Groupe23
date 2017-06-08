@@ -15,10 +15,7 @@ class Notification extends \Twig_Extension
      * @var \Swift_Mailer
      */
     private $mailer;
-    /**
-     * @var
-     */
-    private $em;
+
     /**
      * @var
      */
@@ -27,10 +24,9 @@ class Notification extends \Twig_Extension
 
 
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, EntityManagerInterface $em)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
     {
         $this->mailer = $mailer;
-        $this->em = $em;
         $this->twig = $twig;
 
     }
