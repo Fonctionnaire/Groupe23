@@ -4,7 +4,7 @@ namespace AppBundle\Controller\Dashboard;
 
 
 use AppBundle\Form\ObservationFilterType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller as Controller;
 use AppBundle\Entity\Observation;
 use AppBundle\Form\ObservationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
-class DashboardController extends BaseController
+class DashboardController extends Controller
 {
 
     /**
