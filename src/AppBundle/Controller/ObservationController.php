@@ -80,8 +80,7 @@ class ObservationController extends BaseController
 
         $observation = $em->getRepository('AppBundle:Observation')->find($id);
 
-        // $advert est donc une instance de OC\PlatformBundle\Entity\Advert
-        // ou null si l'id $id n'existe pas, d'où ce if :
+
         if (null === $observation) {
             throw new NotFoundHttpException("L'observation d'id " . $id . " n'existe pas.");
         }
