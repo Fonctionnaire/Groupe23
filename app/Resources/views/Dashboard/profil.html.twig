@@ -1,0 +1,16 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+<div class="container">
+
+    <div class="dashboard"></div>
+
+    <h1>Mon profil</h1>
+
+
+    <p>Votre nom : </p>
+    <p>Votre prénom : </p>
+    <p> Votre nom d'utilsateur : {{ user.username }}</p>
+    <p>Votre email : {{ user.email }}
+
+</div>
+{% endblock %}
