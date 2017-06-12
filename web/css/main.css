@@ -66,6 +66,13 @@
     font-weight: bold;
 }
 
+/* PAGE fos */
+
+.fos_user_user_show
+{
+    margin-left: 50px;
+}
+
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
@@ -122,5 +129,7 @@
     {
         display: none;
     }
+
+
 }
 

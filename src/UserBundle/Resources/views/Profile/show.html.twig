@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <br/>
+    <div class="fos_user_user_show">
+<h1> Mon profil</h1>
+        <p>Bienvenue sur votre page profil, {{ user.username }}. </p>
+        <br />
+
+        <h2>Coordonnées</h2>
+
+        <p>Prénom : </p>
+        <p>Nom : </p>
+        <p>Pseudo : {{ user.username }}</p>
+        <p>Adresse mail : {{ user.email }}</p>
+        <p>Adresse: </p>
+        <p>Date de naissance: </p>
+    </div>
+
+
+{% endblock content %}
+
