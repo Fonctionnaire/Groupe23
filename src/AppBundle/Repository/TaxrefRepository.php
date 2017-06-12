@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class TaxrefRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getBirdsWithObservation()
+    {
+        return $this->createQueryBuilder('tax')
+            ->leftJoin('tax.observations', 'to')
+            ->addSelect('to')
+            ->where('to.valided = true')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

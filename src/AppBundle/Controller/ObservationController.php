@@ -27,8 +27,6 @@ class ObservationController extends BaseController
     {
         // Création de l'entité Observation
         $observation = new Observation();
-        $observation->setDate(new \Datetime);
-
 
         $observation->setUser($this->get('security.token_storage')->getToken()->getUser());
 
