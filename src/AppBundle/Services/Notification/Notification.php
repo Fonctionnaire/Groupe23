@@ -63,4 +63,19 @@ class Notification extends \Twig_Extension
 
     }
 
+    //Envoi d'un mail à un observateur après validation d'une observation
+    public function sendMailValidationObservation(Observation $observation)
+    {
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('NA0 : Félicitations ! Votre observation est publiée')
+            ->setFrom(array('noreply.naoasso@gmail.com' => 'Association NAO'))
+            ->setTo($observation->getUser()->getEmail())
+            ->setBody(
+                $this->twig->render('Emails/mailValidationObservation.html.twig', array('observation' => $observation)), 'text/html')
+        ;
+        $this->mailer->send($message);
+    }
+
+
 }
