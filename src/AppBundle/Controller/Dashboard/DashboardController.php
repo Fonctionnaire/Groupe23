@@ -30,18 +30,5 @@ class DashboardController extends Controller
         ));
     }
 
-    /**
-     * Voir profil
-     * @Route("/Dashboard/profil", name="dashboardProfil")
-     * @Method("GET")
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function viewProfilAction()
-    {
-        $user = $this->getUser();
-        $user->getEmail();
-        return $this->render(":Dashboard:profil.html.twig", array(
-            'user' => $user
-        ));
-    }
+
 }
