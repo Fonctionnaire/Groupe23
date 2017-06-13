@@ -1,0 +1,9 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <h1>Ajout d'un nouvel article</h1>
+    <hr>
+    {# On définit un nouveau bloc, que les vues de l'application pourront remplir #}
+    {% block app_body %}
+        {{ include("Actualites/form.html.twig") }}
+    {% endblock %}
+{% endblock %}
