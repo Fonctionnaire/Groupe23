@@ -14,7 +14,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{ path('listTaxrefs') }}">Espèces</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_listTaxrefs') }}">Espèces</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <a href="{{ path('user_listTaxrefs') }}">Espèces</a>
+                    {% else %}
+                        <a href="{{ path('listTaxrefs') }}">Espèces</a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="{{ path('addObservation') }}">Observations</a>

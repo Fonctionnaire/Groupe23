@@ -1,6 +1,9 @@
 {% extends "layout.html.twig" %}
 {% block content %}
 <div class="container">
+
+        <div id="map-view"></div>
+
     <div class="row">
         <div id="commenttab" class="table-responsive">
             <table class="table table-hover" id="myTable">
@@ -10,17 +13,37 @@
                     <th>Nom Vern</th>
                     <th>Habitat</th>
                     <th>Statut</th>
+                    <th hidden>Latitude</th>
+                    <th hidden>Longitude</th>
+                    <th>Filtre</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for taxref in listTaxrefs %}
                   <tr>
                       <td>{{ taxref.lbnom }}</td>
-                   <td>{{ taxref.nonvern }}</td>
+                      <td>{{ taxref.nonvern }}</td>
+                      <td></td>
+                      <td></td>
+                      <td class="latitude" hidden>
 
-                   <td>{{ taxref.habitat.description }}</td>
+                      {% for obstest in taxref.observations %}
+                          <p class="latitude">{{ obstest.latitude }}</p>
+                      {% endfor %}
 
-                    <td> {% if taxref.frStatut != null %}{{ taxref.frStatut.description }}{% endif %}</td>
+                      </td>
+
+                      <td class="longitude" hidden>
+
+                               {% for obstestDeux in taxref.observations %}
+                                   <p class="longitude">{{ obstestDeux.longitude }}</p>
+                               {% endfor %}
+
+                      </td>
+                      <td class="filtre-td"><button type="button" class="filtrer">Filtrer</button></td>
+                  {# <td>{{ taxref.habitat.description }}</td>#}
+
+                    {#<td> {% if taxref.frStatut != null %}{{ taxref.frStatut.description }}{% endif %}</td>#}
                   </tr>
                 {% endfor %}
                 </tbody>
