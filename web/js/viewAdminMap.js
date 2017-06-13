@@ -2,7 +2,7 @@ var map3;
 var allMarkers = [];
 var markers;
 var currentUrl = document.location.href;
-var domain = 'nao.groupe23.ovh';
+var domain = 'https://nao.groupe23.ovh';
 
 var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/admin/listTaxrefs';
 var localProdUrl = 'http://localhost/Groupe23/web/admin/listTaxrefs';
