@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
 
-    <div id="map-view-obs"></div>
+        <div id="map-view"></div>
 
     <div class="row">
         <div id="commenttab" class="table-responsive">
@@ -13,8 +13,8 @@
                     <th>Nom Vern</th>
                     <th>Habitat</th>
                     <th>Statut</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
+                    <th hidden>Latitude</th>
+                    <th hidden>Longitude</th>
                     <th>Filtre</th>
                 </tr>
                 </thead>
@@ -25,7 +25,7 @@
                       <td>{{ taxref.nonvern }}</td>
                       <td></td>
                       <td></td>
-                      <td class="latitude">
+                      <td class="latitude" hidden>
 
                       {% for obstest in taxref.observations %}
                           <p class="latitude">{{ obstest.latitude }}</p>
@@ -33,7 +33,7 @@
 
                       </td>
 
-                      <td class="longitude">
+                      <td class="longitude" hidden>
 
                                {% for obstestDeux in taxref.observations %}
                                    <p class="longitude">{{ obstestDeux.longitude }}</p>

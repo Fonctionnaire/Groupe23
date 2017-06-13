@@ -1,20 +1,19 @@
 
-
 var map2;
 var allMarkers = [];
 var markers;
 var currentUrl = document.location.href;
 
 
-   if (currentUrl === 'http://localhost/Groupe23/web/app_dev.php/listTaxrefs')
+   if (currentUrl === 'http://localhost/Groupe23/web/app_dev.php/user/listTaxrefs')
    {
        function initMap() {
 
            var france = {lat: 46.460374, lng: 2.232049};
 
-           map2 = new google.maps.Map(document.getElementById('map-view-obs'), {
+           map2 = new google.maps.Map(document.getElementById('map-view'), {
                zoom: 5,
-               maxZoom: 9,
+               maxZoom: 11,
                center: france
            });
        }
@@ -69,7 +68,7 @@ var currentUrl = document.location.href;
                        },
                        icon: {
                            path: google.maps.SymbolPath.CIRCLE,
-                           scale: 25,
+                           scale: 30,
                            fillColor: 'red',
                            fillOpacity: 0.5,
                            strokeWeight: 1,
@@ -85,7 +84,7 @@ var currentUrl = document.location.href;
            }else{
                for (i = 0; i < latitudes.length && i < longitudes.length; i++)
                {
-                   console.log(latitudes[i].textContent);
+
                    markers = new google.maps.Marker({
                        animation: google.maps.Animation.DROP,
                        position: {lat: parseFloat(latitudes[i].textContent),
