@@ -2,9 +2,19 @@ var map4;
 var allMarkers = [];
 var markers;
 var currentUrl = document.location.href;
+var domain = 'https://nao.groupe23.ovh';
+
+var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/listTaxrefs';
+var localProdUrl = 'http://localhost/Groupe23/web/listTaxrefs';
+var srvDevUrl = domain + '/app_dev.php/listTaxrefs';
+var srvProdUrl = domain + '/listTaxrefs';
 
 
-if (currentUrl === 'http://localhost/Groupe23/web/app_dev.php/listTaxrefs')
+if (currentUrl === localDevUrl ||
+    currentUrl === localProdUrl ||
+    currentUrl === srvDevUrl ||
+    currentUrl === srvProdUrl )
+
 {
     function initMap() {
 
