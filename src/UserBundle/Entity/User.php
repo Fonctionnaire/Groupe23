@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 
 use AppBundle\Entity\Observation;
+use AppBundle\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -30,11 +31,17 @@ class User extends BaseUser
      */
     private $observations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="author", cascade={"remove","persist"})
+     */
+    private $comments;
+
 
     public function __construct()
     {
         parent::__construct();
         $this->observations = new ArrayCollection();
+        $this->comments = new ArrayCollection();
 
 
     }
@@ -74,4 +81,40 @@ class User extends BaseUser
     {
         return $this->observations;
     }
+
+    /**
+     * Add comment
+     *
+     * @param Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+
+    }
 }
+

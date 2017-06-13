@@ -1,0 +1,60 @@
+{% extends "layout.html.twig" %}
+{% import "Actualites/showComments.html.twig" as macro %}
+{% block title %}
+    Lecture d'un Article - {{ parent() }}
+{% endblock %}
+
+    {% block content %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{ article.title }}</h1>
+                    <h5>le {{ article.date|date('d/m/Y') }}</h5>
+                </div>
+                {% if article.enableComments == true  %}
+                <div class="col-md-1">
+                    <h3> {{ article.comments|length }}</h3>
+                    <span>commentaire(s)</span>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{ article.content|rawdescr }}
+
+                </div>
+
+
+            </div>
+
+
+            <div>
+                <a href="{{ path('actualites') }}" class="btn btn-default">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    Retour à la liste
+                </a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Modifier l'article
+                    </a>
+                {% endif %}
+                {% if article.enableComments == true  %}
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
+                       class="btn btn-default openmodal">
+                        <i class="fa fa-comment"></i>
+                        Commenter
+                    </a>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% if article.enableComments == true  %}
+            {{ macro.afficherCommentaires(comments) }}
+            {% endif %}
+        </div>
+    {% endblock %}

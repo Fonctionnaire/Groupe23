@@ -1,6 +1,5 @@
 
 
-
 //script for modals
 $(function () {
     $("a.openmodal").click(function (e) {
@@ -53,4 +52,13 @@ $('#modal').on('show.bs.modal', function (e) {
         }
     });
 });
+
+
+
+jQuery.datetimepicker.setLocale('fr');
+jQuery('.datetimepicker').datetimepicker({
+    format: 'd/m/Y H:i'
+});
+
+
 
