@@ -2,8 +2,19 @@
     // INIT DE LA GOOGLE MAP
     var map;
     var currentUrl = document.location.href;
+    var domain = 'https://nao.groupe23.ovh';
 
-    if (currentUrl === 'http://localhost/Groupe23/web/app_dev.php/addObservation')
+    var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/addObservation';
+    var localProdUrl = 'http://localhost/Groupe23/web/addObservation';
+    var srvDevUrl = domain + '/app_dev.php/addObservation';
+    var srvProdUrl = domain + '/addObservation';
+
+
+    if (currentUrl === localDevUrl ||
+        currentUrl === localProdUrl ||
+        currentUrl === srvDevUrl ||
+        currentUrl === srvProdUrl )
+
     {
         function initMap() {
 
