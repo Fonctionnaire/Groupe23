@@ -3,24 +3,42 @@
 
 {% block content %}
 
-    <br/>
-    <div class="fos_user_user_show">
-<h1> Mon profil</h1>
-        <p>Bienvenue sur votre page profil, {{ user.username }}. </p>
-        <br />
+<br/>
+<div class="fos_user_user_show">
 
-        <h2>Coordonnées</h2>
-
-        <p>Prénom : </p>
-        <p>Nom : </p>
-        <p>Pseudo : {{ user.username }}</p>
-        <p>Adresse : </p>
-        <p>Code postal :</p>
-        <p>Ville : </p>
-        <p>Téléphone : </p>
-        <p>Adresse mail : {{ user.email }}</p>
-        <p>Date de naissance : </p>
-    </div>
+    <h1> Mon profil</h1>
+    <br />
+    <p>Date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
+    <h2>Coordonnées</h2>
+    <p>Prénom : {{ user.firstName }}</p>
+    <p>Nom : {{ user.lastName }}</p>
+    <p>Pseudo : {{ user.username }}</p>
+    <p>Code postal : {{ user.codePostal }}</p>
+    <p>Ville : {{ user.town }}</p>
+    <p>Email : {{ user.email }}</p>
+    <p>
+        Date de naissance :
+        {% if user.birthDate|date('d/m/Y') == '01/01/1897' %}
+            Non précisée
+        {% else %}
+            {{ user.birthDate|date('d/m/Y') }}</p>
+        {% endif %}
+    <p>
+        Rôle :
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            Super administateur
+        {% elseif is_granted('ROLE_ADMIN') %}
+            Administrateur naturaliste
+        {% else %}
+            Observateur
+        {% endif %}
+    </p>
+    <br />
+    <p><a class="btn btn-primary pull-left" id="editprofile" href="{{ path('fos_user_profile_edit') }}" role="button">Modifier mon profil</a></p>
+    <br />
+    <br />
+    <p> <a class="btn btn-primary pull-left" id="fos_user_change_password" href="{{ path('fos_user_change_password') }}" role="button">Modifier mon mot de passe</a></p>
+</div>
 
 
 {% endblock content %}
