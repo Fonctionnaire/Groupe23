@@ -162,6 +162,8 @@ class User extends BaseUser
     public function setDateRegister($dateRegister)
     {
         $this->dateRegister = $dateRegister;
+
+        return $this;
     }
 
     /**
