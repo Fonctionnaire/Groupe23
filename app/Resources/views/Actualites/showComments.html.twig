@@ -1,0 +1,43 @@
+{% macro afficherCommentaires(commentaires) %}
+    {% import _self as self %}
+    {% for comment in commentaires %}
+        {% set decalage = comment.level - 1 %}
+
+        <div class="row">
+
+            <div class="col-md-offset-{{ decalage }} col-md-2">
+                <div>
+                    <p><strong>{{ comment.author }}</strong></p>
+                    <p>{{ comment.date|date("d-m-Y H:i:s") }}</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-7">
+                <p>{{ comment.content|nl2br }}</p>
+                <div class="btn btn-group">
+
+                    {% if comment.level < constant('\\AppBundle\\Entity\\Comment::NUM_LEVELS') %}<a href="{{ path('replyComment', {'slug': comment.article.slug, 'id': comment.id}) }}" class="btn btn-default openmodal"><i class="fa fa-reply" aria-hidden="true"></i> Répondre
+                        </a>
+                    {% endif %}
+                    <a href="{{ path('signalComment', {'slug': comment.article.slug, 'id': comment.id}) }}" class="btn btn-default"><i class="fa fa-flag" aria-hidden="true"></i> Signaler</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+
+
+                        <form action="{{ url('deleteComment', {'id': comment.id}) }}" method="post" data-confirmation="true" id="delete-form">
+                            <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+                            <button type="submit" class="btn  btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                Supprimer
+                            </button>
+                        </form>
+
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            {{ self.afficherCommentaires(comment.childs) }}
+        </div>
+
+    {% endfor %}
+{% endmacro %}

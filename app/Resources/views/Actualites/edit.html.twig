@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <div class="container">
+    <h1>Modification d'un article</h1>
+    <hr>
+
+    {% block app_body %}
+        {{ include("Actualites/form.html.twig") }}
+    {% endblock %}
+    </div>
+{% endblock %}
+

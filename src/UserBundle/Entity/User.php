@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 
 use AppBundle\Entity\Observation;
+use AppBundle\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -37,6 +38,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user")
      */
     private $observations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="author", cascade={"remove","persist"})
+     */
+    private $comments;
 
 
     /**
@@ -104,6 +110,7 @@ class User extends BaseUser
         parent::__construct();
         $this->dateRegister = new \Datetime();
         $this->observations = new ArrayCollection();
+        $this->comments = new ArrayCollection();
 
 
     }
@@ -144,6 +151,7 @@ class User extends BaseUser
         return $this->observations;
     }
 
+
     /**
      * Set dateRegister
      *
@@ -154,11 +162,10 @@ class User extends BaseUser
     public function setDateRegister($dateRegister)
     {
         $this->dateRegister = $dateRegister;
-
-        return $this;
     }
 
     /**
+
      * Get dateRegister
      *
      * @return \DateTime
@@ -288,6 +295,39 @@ class User extends BaseUser
         return $this->birthDate;
     }
 
+    /**
+     * Add comment
+     *
+     * @param Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments[] = $comment;
+        return $this;
+    }
 
+    /**
+     * Remove comment
+     *
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+
+    }
 
 }
+

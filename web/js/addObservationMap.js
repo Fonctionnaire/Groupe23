@@ -2,84 +2,99 @@
     // INIT DE LA GOOGLE MAP
     var map;
     var currentUrl = document.location.href;
+    var domain = 'https://nao.groupe23.ovh';
 
-    function initMap() {
-
-        var france = {lat: 46.460374, lng: 2.232049};
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 5,
-            center: france
-        });
+    var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/addObservation';
+    var localProdUrl = 'http://localhost/Groupe23/web/addObservation';
+    var srvDevUrl = domain + '/app_dev.php/addObservation';
+    var srvProdUrl = domain + '/addObservation';
 
 
-        map.addListener('click', function (e) {
+    if (currentUrl === localDevUrl ||
+        currentUrl === localProdUrl ||
+        currentUrl === srvDevUrl ||
+        currentUrl === srvProdUrl )
 
-            placeMarkerAndPanTo(e.latLng, map);
-        });
+    {
+        function initMap() {
 
-        // AFFICHE DU MARKER AU CLIC ET DE SA LOCALISATION LAT ET LNG
+            var france = {lat: 46.460374, lng: 2.232049};
 
-        var marker;
-
-        function placeMarkerAndPanTo(latLng, map) {
-
-            if (marker) {
-                marker.setPosition(latLng);
-
-            } else {
-                marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map
-                });
-                map.panTo(latLng);
-            }
-            $('.latitude').val(latLng.lat());
-            $('.longitude').val(latLng.lng());
-
-        }
-
-        // GEOLOCALISATION
-
-        //var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-
-                $('.latitude').val(pos.lat);
-                $('.longitude').val(pos.lng);
-
-                map.setCenter(pos);
-                map.setZoom(9);
-
-                marker = new google.maps.Marker({
-                    animation: google.maps.Animation.DROP,
-                    position: pos,
-                    map: map
-
-                });
-
-            }, function () {
-                handleLocationError(true, map.getCenter());
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: france
             });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, map.getCenter());
+
+
+            map.addListener('click', function (e) {
+
+                placeMarkerAndPanTo(e.latLng, map);
+            });
+
+            // AFFICHE DU MARKER AU CLIC ET DE SA LOCALISATION LAT ET LNG
+
+            var marker;
+
+            function placeMarkerAndPanTo(latLng, map) {
+
+                if (marker) {
+                    marker.setPosition(latLng);
+
+                } else {
+                    marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                    map.panTo(latLng);
+                }
+                $('.latitude').val(latLng.lat());
+                $('.longitude').val(latLng.lng());
+
+            }
+
+            // GEOLOCALISATION
+
+            //var infoWindow = new google.maps.InfoWindow({map: map});
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+
+                    $('.latitude').val(pos.lat);
+                    $('.longitude').val(pos.lng);
+
+                    map.setCenter(pos);
+                    map.setZoom(9);
+
+                    marker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        position: pos,
+                        map: map
+
+                    });
+
+                }, function () {
+                    handleLocationError(true, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Erreur: La géolocalisation n\'a pas fonctionné.' :
+                'Erreur: Votre appareil ne supporte pas la géolocalisation.');
+
+            // ========================================
+
         }
     }
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Erreur: La géolocalisation n\'a pas fonctionné.' :
-            'Erreur: Votre appareil ne supporte pas la géolocalisation.');
-
-        // ========================================
-
-    }

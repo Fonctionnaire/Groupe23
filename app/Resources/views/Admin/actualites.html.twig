@@ -1,0 +1,42 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Date publication</th>
+            <th>Titre</th>
+            <th>Nb Comm's</th>
+            <th>Activ Comm's</th>
+            <th>Lire</th>
+            <th>Editer</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for article in listArticles %}
+            <tr>
+                <td>{{ article.date|date("d-m-Y H:i:s") }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.comments|length }}</td>
+                <td>{% if article.enableComments == false  %}<i class="fa fa-ban" aria-hidden="true"></i>{% else %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>{% endif %}</td>
+                <td>
+                    <a href="{{ path('view_article', {'slug': article.slug}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
+                </td>
+                <td>
+                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-edit"></i></a>
+
+                </td>
+                <td>
+                    <a href="{{ path('deleteArticle', {'slug': article.slug}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer cet Article ?"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+    </table>
+    </div>
+{% endblock %}
+

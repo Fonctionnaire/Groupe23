@@ -16,9 +16,14 @@
         height: 400px;
         width: 400px;
         margin: auto;
-        border: 1px solid black;
-        box-shadow: 5px 5px grey;
     }
+    #map-view
+    {
+        height: 400px;
+        width: 400px;
+        margin: auto;
+    }
+
 </style>
 
 </head>
@@ -27,7 +32,7 @@
 
 {% include 'menu.html.twig' %}
 
-
+{% include 'utils/flash-messages.html.twig' %}
 
     {% block content %}
 

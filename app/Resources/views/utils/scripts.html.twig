@@ -2,6 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+
 <!-- Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -12,12 +13,15 @@
 
 
 
-
 <!-- GOOGLE MAP -->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
 </script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="{{ asset('js/addObservationMap.js') }}"></script>
+<script src="{{ asset('js/viewUserMap.js') }}"></script>
+<script src="{{ asset('js/viewAdminMap.js') }}"></script>
+<script src="{{ asset('js/viewUnconnectedMap.js') }}"></script>
 
 <!-- script for data tables -->
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
@@ -26,6 +30,12 @@
 <!-- MailMunch for NAO -->
 <!-- Paste this code right before the </head> tag on every page of your site. -->
 <script src="//a.mailmunch.co/app/v1/site.js" id="mailmunch-script" data-mailmunch-site-id="388428" async="async"></script>
+
+
+
+<!-- script for datetimepicker -->
+<script src="{{ asset('js/jquery.datetimepicker.full.min.js') }}"></script>
+
 
 <!-- JS personnalisé -->
 <script src="{{ asset('js/main.js') }}"></script>

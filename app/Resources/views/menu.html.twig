@@ -14,7 +14,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{ path('listTaxrefs') }}">Espèces</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_listTaxrefs') }}">Espèces</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <a href="{{ path('user_listTaxrefs') }}">Espèces</a>
+                    {% else %}
+                        <a href="{{ path('listTaxrefs') }}">Espèces</a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="{{ path('addObservation') }}">Observations</a>
@@ -24,6 +30,9 @@
                 </li>
                 <li>
                     <a href="{{ path('filter') }}" class="openmodal">Export</a>
+                </li>
+                <li>
+                    <a href="{{ path('actualites') }}">Actualités</a>
                 </li>
 
                 <!-- MENU DEROULANT MON COMPTE -->
@@ -45,7 +54,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" aria-hidden="true"></i> Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ path('adminUsers') }}">Gestion des utilisateurs</a></li>
+                        <li role="separator" class="divider"></li>
                         <li><a href="{{ path('adminObservations') }}">Gestion des Observations</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('adminActualites') }}">Gestion des Actualites</a></li>
+                        <li><a href="{{ path('adminComments') }}">Gestion des Commentaires</a></li>
+                        <li><a href="{{ path('add') }}">Ajout d'une Actualité</a></li>
 
                     </ul>
                     </li>
