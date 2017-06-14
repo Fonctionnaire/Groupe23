@@ -17,3 +17,4 @@ services:
         class: UserBundle\Form\Type\ChangePasswordType
         tags:
             - { name: form.type, alias: user_user_change_password }
+            
