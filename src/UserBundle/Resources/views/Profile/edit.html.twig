@@ -1,0 +1,60 @@
+{% extends "layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <h1>Modifier mon profil</h1>
+
+    <div id="fos_user_profile_form">
+
+        <p>Les champs marqués d'une * sont obligatoires.</p>
+
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit col-lg-4 form-horizontal' } }) }}
+
+            <div class="form-group">
+                <label for="fos_user_registration_form_email" class="control-label">Email* :</label>
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="form-group">
+                <label for="fos_user_registration_form_username" class="control-label">Pseudo* :</label>
+                {{ form_widget(form.username) }}
+                {{ form_errors(form.username) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.codePostal, "Code Postal* :") }}
+
+                {{ form_widget(form.codePostal) }}
+                {{ form_errors(form.codePostal) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.town, "Ville* :") }}
+
+                {{ form_widget(form.town) }}
+                {{ form_errors(form.town) }}
+            </div>
+
+
+            <div class="form-group formbirthday">
+                {{ form_label(form.birthDate, "Date de naissance :") }}
+
+                {{ form_widget(form.birthDate) }}
+                {{ form_errors(form.birthDate) }}
+            </div>
+
+            <p>Renseignez votre mot de passe actuel pour pouvoir modifier votre profil.</p>
+
+            {{ form_rest(form) }}
+
+            <div class="form-group">
+                <input class="btn" type="submit" value="{{ 'Enregistrer les modifications' }}">
+            </div>
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock content %}

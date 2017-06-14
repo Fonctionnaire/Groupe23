@@ -2,3 +2,18 @@ services:
 #    user.example:
 #        class: UserBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    user.form.registration:
+        class: UserBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type, alias: user_user_registration }
+
+    user.form.profile:
+        class: UserBundle\Form\Type\ProfileType
+        tags:
+            - { name: form.type, alias: user_user_profile }
+
+    user.form.change_password:
+        class: UserBundle\Form\Type\ChangePasswordType
+        tags:
+            - { name: form.type, alias: user_user_change_password }

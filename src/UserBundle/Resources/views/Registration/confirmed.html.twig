@@ -1,0 +1,16 @@
+{% extends "layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <h1>Inscription confirmée</h1>
+    <p>Félicitations {{ user.firstName }}.</p>
+    <p>Vous êtes désormais membre de l'association NAO.</p>
+    <br />
+    <p> <a class="btn btn-primary pull-left" href="{{ path('index') }}" role="button">Retour accueil</a></p>
+    <br />
+    <br />
+    <p> <a class="btn btn-primary pull-left" href="{{ path('addObservation') }}" role="button">Poster une observation</a></p>
+
+{% endblock content %}
