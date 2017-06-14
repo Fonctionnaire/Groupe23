@@ -90,8 +90,8 @@ fos_user:
     registration:
         form:
             type: UserBundle\Form\Type\RegistrationType
-        #confirmation:
-         #   enabled: true
+        confirmation:
+            enabled: true
     profile:
         form:
             type: UserBundle\Form\Type\ProfileType
