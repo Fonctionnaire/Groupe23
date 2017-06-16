@@ -82,7 +82,7 @@ class ObservationController extends BaseController
         }
 
 
-        return $this->render(':ViewObservation:viewObservation.html.twig', array(
+        return $this->render(':ViewObersavtion:viewObservation.html.twig', array(
             'observation' => $observation,
         ));
     }
