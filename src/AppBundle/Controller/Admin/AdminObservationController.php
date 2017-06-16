@@ -85,8 +85,7 @@ class AdminObservationController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
             $this->addFlash('success', 'Observation modifiée avec succès');
-            return $this->redirect($referer);
-
+            return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
         }
 
         return $this->render(

@@ -11,7 +11,14 @@
                         </a></h1>
                     <h5><span class="metadata"><i class="fa fa-calendar"></i>{{ article.date|date('d/m/Y') }}</span>
                     </h5>
-                    <p>{{ article.content | resume(constant('NUM_WORDS', article)) }}</p>
+                    <p>
+                        {% if article.image is not null %}
+                            <img style="width:150px; float: right; margin-bottom: 20px;" src="{{ asset(article.image) }}"/>
+                        {% endif %}
+                        {{ article.content | resume(constant('NUM_WORDS', article)) }}...
+
+                    </p>
+                    <p><a class="btn btn-default pull-left" id="lire" href="{{ path('view_article', {'slug': article.slug})}}" role="button">Lire l'article</a></p>
                 </div>
             {% else %}
                 <li>Pas (encore !) d'articles</li>
