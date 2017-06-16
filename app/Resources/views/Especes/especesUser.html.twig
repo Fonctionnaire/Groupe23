@@ -1,5 +1,10 @@
-
 {% extends "layout.html.twig" %}
+{% block googleMapScript %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+    </script>
+    <script src="{{ asset('js/viewUserMap.js') }}"></script>
+{% endblock %}
 {% block content %}
     {% if is_granted('ROLE_USER') %}
     <div class="container">

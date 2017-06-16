@@ -1,22 +1,7 @@
-
 var map2;
 var allMarkers = [];
 var markers;
-var currentUrl = document.location.href;
-var domain = 'https://nao.groupe23.ovh';
 
-var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/user/listTaxrefs';
-var localProdUrl = 'http://localhost/Groupe23/web/user/listTaxrefs';
-var srvDevUrl = domain + '/app_dev.php/user/listTaxrefs';
-var srvProdUrl = domain + '/user/listTaxrefs';
-
-
-if (currentUrl === localDevUrl ||
-    currentUrl === localProdUrl ||
-    currentUrl === srvDevUrl ||
-    currentUrl === srvProdUrl )
-
-{
     function initMap() {
 
         var france = {lat: 46.460374, lng: 2.232049};
@@ -35,8 +20,6 @@ if (currentUrl === localDevUrl ||
         }
         allMarkers = [];
     }
-
-
 
     // AFFICHAGE DES MARKER D'OBS SUR LA MAP
 
@@ -150,4 +133,4 @@ if (currentUrl === localDevUrl ||
         }
 
     });
-}
+
