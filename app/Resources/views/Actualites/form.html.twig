@@ -8,26 +8,29 @@
     {{ form_errors(form) }}
 
     {% if form.date is defined %}
-        {{ form_row(form.date) }}
+        {{ form_label(form.date, "Date de publication") }}
+        {{ form_errors(form.date) }}
+        {{ form_widget(form.date) }}
     {% endif %}
 
 
     <div>
-        {{ form_label(form.title)}}
+        {{ form_label(form.title, "Titre")}}
         {{ form_errors(form.title) }}
-
-        <div>
-            {{ form_widget(form.title) }}
-        </div>
+        {{ form_widget(form.title) }}
     </div>
 
     <div>
-        {{ form_label(form.content) }}
-        {{ form_errors(form.content) }}
+        {{ form_label(form.image, "Ajouter une image") }}
+        {{ form_errors(form.image) }}
+        {{ form_widget(form.image) }}
+    </div>
 
-        <div>
-            {{ form_widget(form.content) }}
-        </div>
+
+    <div>
+        {{ form_label(form.content, "Contenu") }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content) }}
     </div>
 
 
@@ -36,7 +39,7 @@
         {{ form_row(form.published) }}
     {% endif %}
 
-
+    {{ form_rest(form) }}
 
     <div class="row">
         <div class="col-md-6">
@@ -47,7 +50,5 @@
         </div>
     </div>
 
-
-    {{ form_rest(form) }}
     {{ form_end(form) }}
 </div>
