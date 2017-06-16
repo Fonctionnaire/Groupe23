@@ -13,9 +13,10 @@
         <p>Espèce : {{ observation.taxref }}</p>
         <p>Famille : {{ observation.taxref.famille }} </p>
         <p>Commentaire : {{ observation.comment }}</p>
+        {% if is_granted('ROLE_ADMIN') %}
         <p>Latitude: {{ observation.latitude }}</p>
         <p>Longitude: {{ observation.longitude }}</p>
-
+        {% endif %}
 
     </div>
 </div>
