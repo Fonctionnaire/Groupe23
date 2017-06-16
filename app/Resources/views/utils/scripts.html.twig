@@ -1,3 +1,4 @@
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -14,24 +15,8 @@
 
 
 <!-- GOOGLE MAP -->
-
-
-{% if app.request.uri  == "http://localhost/Groupe23/web/app_dev.php/addObservation"
-    or app.request.uri == "http://localhost/Groupe23/web/app_dev.php/admin/listTaxrefs"
-    or app.request.uri == "http://localhost/Groupe23/web/app_dev.php/user/listTaxrefs"
-    or app.request.uri == "http://localhost/Groupe23/web/app_dev.php/listTaxrefs"
-    or app.request.uri == "https://nao.groupe23.ovh/listTaxrefs"
-    or app.request.uri == "https://nao.groupe23.ovh/user/listTaxrefs"
-    or app.request.uri == "https://nao.groupe23.ovh/admin/listTaxrefs"
-%}
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
-</script>
-{% endif %}
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="{{ asset('js/addObservationMap.js') }}"></script>
-<script src="{{ asset('js/viewUserMap.js') }}"></script>
-<script src="{{ asset('js/viewAdminMap.js') }}"></script>
 <script src="{{ asset('js/viewUnconnectedMap.js') }}"></script>
 
 <!-- script for data tables -->
