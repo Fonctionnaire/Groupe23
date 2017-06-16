@@ -34,6 +34,8 @@ if (currentUrl === localDevUrl ||
         allMarkers = [];
     }
 
+
+
     // AFFICHAGE DES MARKER D'OBS SUR LA MAP
 
     // supprime les markercluster si il y en a
@@ -54,18 +56,50 @@ if (currentUrl === localDevUrl ||
 
     });
 
+
+
     // affiche les marqueur de l'espèce choisie sur la map
     $('.filtrer').click(function(){
 
         var row = $(this).closest("tr");
         var longitudes = row.find(".longitude p");
         var latitudes = row.find(".latitude p");
+        var viewObsId = row.find(".obsId p");
+        var dateObs = row.find('.obsDate p');
         var i;
+        var urlViewObs = 'http://localhost/Groupe23/web/app_dev.php/viewObservation/';
+
+        // INFOWINDOWS SUR LES MARKERS
+        function addInfo(){
+
+            var contentString =
+                '<h4 class="titre-infowindow"> Observation</h4>' +
+                    '<p class="text-infowindow">Date de l\'observation : '+ dateObs[i].textContent +' </p>' +
+                    '<p class="lat-lng">Latitude: '+ latitudes[i].textContent +' </p>' +
+                    '<p class="lat-lng">Longitude: '+ longitudes[i].textContent +' </p>' +
+                '<p><a class="pathObs" href="'+ urlViewObs + viewObsId[i].textContent +'"> Voir cette observation</a></p>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 350
+            });
+
+            google.maps.event.addListener(markers,'click', (function(markers,content,infowindow){
+
+                return function() {
+                    infowindow.close();
+                    infowindow.open(map3, markers);
+
+                };
+            })(markers,contentString,infowindow));
+        }
+
+
+        // =================================
 
         toggleMarkers();
 
         if (markers){
-
             for (i = 0; i < latitudes.length && i < longitudes.length; i++)
             {
 
@@ -79,9 +113,11 @@ if (currentUrl === localDevUrl ||
 
                 map3.setZoom(5);
                 allMarkers.push(markers);
+                addInfo();
             }
 
         }else{
+
             for (i = 0; i < latitudes.length && i < longitudes.length; i++)
             {
                 console.log(latitudes[i].textContent);
@@ -93,7 +129,10 @@ if (currentUrl === localDevUrl ||
                     map: map3
                 });
                 allMarkers.push(markers);
+
+                addInfo();
             }
         }
+
     });
 }
