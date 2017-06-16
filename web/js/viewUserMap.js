@@ -1,118 +1,136 @@
-
 var map2;
 var allMarkers = [];
 var markers;
-var currentUrl = document.location.href;
-var domain = 'https://nao.groupe23.ovh';
 
-var localDevUrl = 'http://localhost/Groupe23/web/app_dev.php/user/listTaxrefs';
-var localProdUrl = 'http://localhost/Groupe23/web/user/listTaxrefs';
-var srvDevUrl = domain + '/app_dev.php/user/listTaxrefs';
-var srvProdUrl = domain + '/user/listTaxrefs';
+    function initMap() {
 
+        var france = {lat: 46.460374, lng: 2.232049};
 
-if (currentUrl === localDevUrl ||
-    currentUrl === localProdUrl ||
-    currentUrl === srvDevUrl ||
-    currentUrl === srvProdUrl )
+        map2 = new google.maps.Map(document.getElementById('map-view'), {
+            zoom: 5,
+            maxZoom: 11,
+            center: france
+        });
+    }
 
-   {
-       function initMap() {
+    function toggleMarkers() {
+        for (i = 0; i < allMarkers.length; i++) {
+            allMarkers[i].setMap(null);
 
-           var france = {lat: 46.460374, lng: 2.232049};
+        }
+        allMarkers = [];
+    }
 
-           map2 = new google.maps.Map(document.getElementById('map-view'), {
-               zoom: 5,
-               maxZoom: 11,
-               center: france
-           });
-       }
+    // AFFICHAGE DES MARKER D'OBS SUR LA MAP
 
-       function toggleMarkers() {
-           for (i = 0; i < allMarkers.length; i++) {
-               allMarkers[i].setMap(null);
-
-           }
-           allMarkers = [];
-       }
-
-       // AFFICHAGE DES MARKER D'OBS SUR LA MAP
-
-       // supprime les markercluster si il y en a
-        var markerCluster;
-       $('.filtre-td').click(function(){
-           if(!markerCluster){
+    // supprime les markercluster si il y en a
+    var markerCluster;
+    $('.filtre-td').click(function(){
+        if(!markerCluster){
 
 
-               markerCluster = new MarkerClusterer(map2, allMarkers,
-                   {
-                       imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-           }else{
-               markerCluster.clearMarkers();
-               markerCluster = new MarkerClusterer(map2, allMarkers,
-                   {
-                       imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-           }
+            markerCluster = new MarkerClusterer(map2, allMarkers,
+                {
+                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        }else{
+            markerCluster.clearMarkers();
+            markerCluster = new MarkerClusterer(map2, allMarkers,
+                {
+                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        }
 
-       });
+    });
 
-       // affiche les marqueur de l'espèce choisie sur la map
-       $('.filtrer').click(function(){
 
-           var row = $(this).closest("tr");
-           var longitudes = row.find(".longitude p");
-           var latitudes = row.find(".latitude p");
-           var i;
 
-           toggleMarkers();
+    // affiche les marqueur de l'espèce choisie sur la map
+    $('.filtrer').click(function(){
 
-           if (markers){
+        var row = $(this).closest("tr");
+        var longitudes = row.find(".longitude p");
+        var latitudes = row.find(".latitude p");
+        var viewObsId = row.find(".obsId p");
+        var dateObs = row.find('.obsDate p');
+        var i;
+        var urlViewObs = 'http://localhost/Groupe23/web/app_dev.php/viewObservation/';
 
-               for (i = 0; i < latitudes.length && i < longitudes.length; i++)
-               {
+        // INFOWINDOWS SUR LES MARKERS
+        function addInfo(){
 
-                   markers = new google.maps.Marker({
-                       animation: google.maps.Animation.DROP,
-                       position: {lat: parseFloat(latitudes[i].textContent),
-                           lng: parseFloat(longitudes[i].textContent)
-                       },
-                       icon: {
-                           path: google.maps.SymbolPath.CIRCLE,
-                           scale: 30,
-                           fillColor: 'red',
-                           fillOpacity: 0.5,
-                           strokeWeight: 1,
-                           strokeColor: 'red'
-                       },
-                       map: map2
-                   });
+            var contentString =
+                '<h4 class="titre-infowindow"> Observation</h4>' +
+                '<p class="text-infowindow">Date de l\'observation : '+ dateObs[i].textContent +' </p>' +
+                '<p><a class="pathObs" href="'+ urlViewObs + viewObsId[i].textContent +'"> Voir cette observation</a></p>';
 
-                   map2.setZoom(5);
-                   allMarkers.push(markers);
-               }
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
 
-           }else{
-               for (i = 0; i < latitudes.length && i < longitudes.length; i++)
-               {
+            google.maps.event.addListener(markers,'click', (function(markers,content,infowindow){
 
-                   markers = new google.maps.Marker({
-                       animation: google.maps.Animation.DROP,
-                       position: {lat: parseFloat(latitudes[i].textContent),
-                           lng: parseFloat(longitudes[i].textContent)
-                       },
-                       icon: {
-                           path: google.maps.SymbolPath.CIRCLE,
-                           scale: 25,
-                           fillColor: 'red',
-                           fillOpacity: 0.5,
-                           strokeWeight: 1,
-                           strokeColor: 'red'
-                       },
-                       map: map2
-                   });
-                   allMarkers.push(markers);
-               }
-           }
-       });
-   }
+                return function() {
+                    infowindow.close();
+                    infowindow.open(map2, markers);
+
+                };
+            })(markers,contentString,infowindow));
+        }
+
+
+        // =================================
+
+        toggleMarkers();
+
+        if (markers){
+            for (i = 0; i < latitudes.length && i < longitudes.length; i++)
+            {
+
+                markers = new google.maps.Marker({
+                    animation: google.maps.Animation.DROP,
+                    position: {lat: parseFloat(latitudes[i].textContent),
+                        lng: parseFloat(longitudes[i].textContent)
+                    },
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 30,
+                        fillColor: 'red',
+                        fillOpacity: 0.5,
+                        strokeWeight: 1,
+                        strokeColor: 'red'
+                    },
+                    map: map2
+                });
+
+                map3.setZoom(5);
+                allMarkers.push(markers);
+                addInfo();
+            }
+
+        }else{
+
+            for (i = 0; i < latitudes.length && i < longitudes.length; i++)
+            {
+
+                markers = new google.maps.Marker({
+                    animation: google.maps.Animation.DROP,
+                    position: {lat: parseFloat(latitudes[i].textContent),
+                        lng: parseFloat(longitudes[i].textContent)
+                    },
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 30,
+                        fillColor: 'red',
+                        fillOpacity: 0.5,
+                        strokeWeight: 1,
+                        strokeColor: 'red'
+                    },
+                    map: map2
+                });
+                allMarkers.push(markers);
+
+                addInfo();
+            }
+        }
+
+    });
 

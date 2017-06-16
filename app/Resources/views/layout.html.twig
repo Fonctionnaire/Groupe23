@@ -19,8 +19,8 @@
     }
     #map-view
     {
-        height: 400px;
-        width: 400px;
+        height: 450px;
+        width: 600px;
         margin: auto;
     }
 
@@ -42,10 +42,7 @@
 {% include 'utils/modal.html.twig' %}
 
 {% include 'utils/scripts.html.twig' %}
-
-
-
-
-
+{% block googleMapScript %}
+{% endblock %}
 </body>
 </html>

@@ -1,5 +1,10 @@
 {% extends "layout.html.twig" %}
-
+{% block googleMapScript %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+    </script>
+    <script src="{{ asset('js/viewAdminMap.js') }}"></script>
+{% endblock %}
 {% block content %}
     {% if is_granted('ROLE_ADMIN') %}
     <div class="container">
@@ -17,6 +22,8 @@
                         <th>Statut</th>
                         <th hidden>Latitude</th>
                         <th hidden>Longitude</th>
+                        <th hidden>id</th>
+                        <th hidden>Date observation</th>
                         <th>Filtre</th>
                     </tr>
                     </thead>
@@ -41,6 +48,16 @@
                                     <p class="longitude">{{ obstestDeux.longitude }}</p>
                                 {% endfor %}
 
+                            </td>
+                            <td class="obsId" hidden>
+                                {% for obsId in taxref.observations %}
+                                    <p>{{ obsId.id }}</p>
+                                {% endfor %}
+                            </td>
+                            <td class="obsDate" hidden>
+                                {% for obsDate in taxref.observations %}
+                                    <p>{{ obsDate.dateObservation|date('d/m/Y') }}</p>
+                                {% endfor %}
                             </td>
                             <td class="filtre-td"><button type="button" class="filtrer">Filtrer</button></td>
                             {# <td>{{ taxref.habitat.description }}</td>#}
