@@ -17,6 +17,8 @@
                         <th>Statut</th>
                         <th hidden>Latitude</th>
                         <th hidden>Longitude</th>
+                        <th hidden>id</th>
+                        <th hidden>Date observation</th>
                         <th>Filtre</th>
                     </tr>
                     </thead>
@@ -41,6 +43,16 @@
                                     <p class="longitude">{{ obstestDeux.longitude }}</p>
                                 {% endfor %}
 
+                            </td>
+                            <td class="obsId" hidden>
+                                {% for obsId in taxref.observations %}
+                                    <p>{{ obsId.id }}</p>
+                                {% endfor %}
+                            </td>
+                            <td class="obsDate" hidden>
+                                {% for obsDate in taxref.observations %}
+                                    <p>{{ obsDate.dateObservation|date('d/m/Y') }}</p>
+                                {% endfor %}
                             </td>
                             <td class="filtre-td"><button type="button" class="filtrer">Filtrer</button></td>
                             {# <td>{{ taxref.habitat.description }}</td>#}
