@@ -1,4 +1,10 @@
 {% extends "layout.html.twig" %}
+{% block googleMapScript %}
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+    </script>
+    <script src="{{ asset('js/addObservationMap.js') }}"></script>
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
