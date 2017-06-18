@@ -12,19 +12,18 @@ use AppBundle\Form\Type\TinyMCEType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
-class ArticleType extends AbstractType
+class ArticleEditType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date', DatePickerType::class)
+        $builder
+            ->add('date', DatePickerType::class)
             ->add('title')
-            ->add('image',FileType::class, array(
-                'required' => false))
             ->add('content', TinyMCEType::class)
-        ->add('enableComments', CheckboxType::class, array(
+            ->add('enableComments', CheckboxType::class, array(
             'label'    => 'Autoriser les commentaire ?',
             'required' => false,));
     }

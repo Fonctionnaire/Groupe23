@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -80,6 +81,23 @@ class Article
      * @ORM\Column(name="enableComments", type="boolean")
      */
     private $enableComments = false;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\Valid()
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     maxSizeMessage = "  La taille de votre fichier ({{ size }} M) dépasse la taille maximale autorisée (2M).",
+     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
+     *     mimeTypesMessage = "Seules les extensions .jpeg .png .jpg et .gif sont autorisées"
+     *     )
+     */
+    private $image;
+
+
+
 
 
     public function __construct()
@@ -278,4 +296,30 @@ class Article
     {
         return $this->enableComments;
     }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Article
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
 }

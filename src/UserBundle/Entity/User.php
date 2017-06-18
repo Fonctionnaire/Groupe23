@@ -76,7 +76,7 @@ class User extends BaseUser
      * @var string
      * @Assert\NotBlank(message="Veuillez préciser votre code postal.")
      * @Assert\Length(max="5", min="5", minMessage="Code postal invalide", maxMessage="Code postal invalide")
-     * @Assert\Regex("/[0-9]{2}[0-9]{3}/", message="Veuillez ne pas mettre d'espace entre les chiffres.")
+     * @Assert\Regex("/[0-9]{2}[0-9]{3}/", message="Code postal à 5 chiffres, sans espace.")
      *
      * @ORM\Column(name="codePostal", length=5)
      */

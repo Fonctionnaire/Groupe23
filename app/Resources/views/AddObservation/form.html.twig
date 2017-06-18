@@ -8,107 +8,58 @@
 <div id="map-text"><p>Cliquez sur la carte pour obtenir les coordonées du lieu de l'observation</p></div>
 
 <div class="well">
-    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-    {# Les erreurs générales du formulaire. #}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     {{ form_errors(form) }}
 
-
-    {# Champ date d'observation #}
-    <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.dateObservation, "Date d'observation", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
+    <div>
+        {{ form_label(form.dateObservation, "Date d'observation") }}
         {{ form_errors(form.dateObservation) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.dateObservation, {'attr':{'placeholder':'Sélectionner une date'}}) }}
-        </div>
+        {{ form_widget(form.dateObservation, {'attr':{'placeholder':'Sélectionner une date'}}) }}
     </div>
 
-
-    {# Champ espece #}
-
-
-
-    {# Champ commentaires #}
-    <div class="form-group">
-        {{ form_label(form.comment, "Commentaires", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    <div>
+        {{ form_label(form.comment, "Commentaires") }}
         {{ form_errors(form.comment) }}
-        <div class="col-sm-10">
-            {{ form_widget(form.comment, {'attr': {'class': 'form-control'}}) }}
-        </div>
+        {{ form_widget(form.comment) }}
     </div>
 
-
-    {# Champ longitude #}
-    <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.longitude, "Longitude", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
+    <div>
+        {{ form_label(form.longitude, "Longitude") }}
         {{ form_errors(form.longitude) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude'}}) }}
-        </div>
+        {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude'}}) }}
     </div>
 
-
-    {# Champ latitude #}
-    <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.latitude, "Latitude", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
+    <div>
+        {{ form_label(form.latitude, "Latitude") }}
         {{ form_errors(form.latitude) }}
+        {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude'}}) }}
 
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude'}}) }}
-        </div>
     </div>
 
-    {# Champ image #}
-    <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.image, "Ajouter une image", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {{ form_errors(form.image) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-
-
-    {# Champ Taxref #}
-    <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.taxref, "Choisissez un espèce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
+    <div>
+        {{ form_label(form.taxref, "Choisissez un espèce") }}
         {{ form_errors(form.taxref) }}
-
-        <div class="col-sm-10">
-            {# Génération de l'input. #}
-            {{ form_widget(form.taxref, {'attr': {'class': 'form-control'}}) }}
-        </div>
+        {{ form_widget(form.taxref) }}
     </div>
 
+    <div>
+        {{ form_label(form.image, "Ajouter une image") }}
+        {{ form_errors(form.image) }}
+        {{ form_widget(form.image) }}
+    </div>
 
     {{ form_rest(form) }}
 
+    <br />
 
-    <div class="form-group">
-        <input type="submit" value="Valider" class="btn btn-default pull-right"/>
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-default" type="submit">Valider</button>
+
+        </div>
     </div>
 
-    {# Fermeture de la balise <form> du formulaire HTML #}
+
     {{ form_end(form) }}
 </div>

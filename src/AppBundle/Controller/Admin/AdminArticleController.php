@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
+use AppBundle\Form\ArticleEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -41,6 +42,15 @@ class AdminArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if($Article->getImage()){
+                $file = $Article->getImage();
+                // Générer un nom unique
+                $fileName = $this->get('app.image_uploader')->upload($file);
+                $Article->setImage('uploads/images/' . $fileName);
+            }
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($Article);
             $em->flush();
@@ -68,13 +78,15 @@ class AdminArticleController extends Controller
     {
         $referer = $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        $formEdit = $this->createForm(ArticleEditType::class, $article);
+        $formEdit->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+
             $entityManager->flush();
             $this->addFlash('success', 'Article modifié avec succès');
-            return $this->redirect($referer);
+            return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
 
         }
 
@@ -82,7 +94,7 @@ class AdminArticleController extends Controller
             'Actualites/edit.html.twig',
             [
                 'article' => $article,
-                'form' => $form->createView(),
+                'formEdit' => $formEdit->createView(),
             ]
         );
     }
