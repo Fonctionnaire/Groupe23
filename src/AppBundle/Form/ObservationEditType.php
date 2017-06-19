@@ -18,7 +18,7 @@ class ObservationEditType extends AbstractType
         $builder->add('dateObservation', DateType::class, array(
             'widget' => 'single_text',
             'html5' => true,
-            'attr' => array('class' => 'datepicker'),
+            'attr' => array('class' => 'datepicker', 'max' => date('Y-m-d')),
             'format' => 'yyyy-MM-dd',
         ))
             ->add('comment')
