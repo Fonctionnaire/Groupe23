@@ -71,6 +71,12 @@
     max-width: 300px !important;
 }
 
+.text-identifier
+{
+    margin-top: 10px;
+    font-style: italic;
+}
+
 /* CONTACT FORM */
 
 #comments
