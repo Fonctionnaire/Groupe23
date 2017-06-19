@@ -111,10 +111,11 @@ class User extends BaseUser
      * @Assert\Length(
      *     min=12,
      *     max=12,
-     *     exactMessage="Un numéro de téléphone doit comporter exactement 10 caractères",
+     *     minMessage="un numéro de téléphone doit comporter au moins 10 caractères.",
+     *     maxMessage="un numéro de téléphone ne comporte que 10 caractères",
      * )
      * @Assert\Regex(
-     *     pattern="/^(\+33)[1234567]\d{8}/",
+     *     pattern="/^[0][1234567]\d{8}/",
      *     match=true,
      *     message="Ce numéro de téléphone n'est pas valide",
      *
@@ -351,28 +352,5 @@ class User extends BaseUser
 
     }
 
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     *
-     * @return User
-     */
-    public function setPhone($phone)
-    {
-        $remplace = '+33';
-        $this->phone = substr_replace($phone, $remplace, 0, 1);
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
 }
+

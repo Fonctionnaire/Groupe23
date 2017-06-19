@@ -36,6 +36,8 @@ class RegistrationType extends AbstractType
             ->add('town', TextType::class)
             ->add('birthDate', BirthdayType::class, array(
                 'format' =>'ddMMyyyy'))
+            ->add('phone', TextType::class, array('required' => false))
+
         ;
     }
 
