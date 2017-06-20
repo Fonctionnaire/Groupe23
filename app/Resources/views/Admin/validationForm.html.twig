@@ -1,0 +1,32 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<form method="post" action="{{ path('validation', {'id': observation.id}) }}">
+    <div class="modal-header">
+        <h1>Traitement de l'observation</h1>
+    </div>
+    <div class="modal-body">
+        {{ form_errors(form) }}
+
+        <div>
+            {{ form_label(form.adminComment, "Votre commentaire") }}
+            {{ form_errors(form.adminComment) }}
+            <div>
+                {{ form_widget(form.adminComment) }}
+            </div>
+        </div>
+
+        <div>
+            {{ form_label(form.valided, "Validation") }}
+            {{ form_errors(form.valided) }}
+            <div>
+                {{ form_widget(form.valided) }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        {{ form_rest(form) }}
+        <div class="form-group">
+            <input type="submit" value="Valider" class="btn btn-default pull-right"/>
+        </div>
+    </div>
+</form>

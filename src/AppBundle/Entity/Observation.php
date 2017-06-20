@@ -69,6 +69,14 @@ class Observation
     /**
      * @var string
      *
+     * @ORM\Column(name="adminComment", type="text", nullable=true)
+     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
+     */
+    private $adminComment;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      * @Assert\Valid()
      * @Assert\File(
@@ -83,9 +91,17 @@ class Observation
     /**
      * @var bool
      *
-     * @ORM\Column(name="valided", type="boolean")
+     * @ORM\Column(name="valided", type="boolean", nullable=true)
      */
-    private $valided=false;
+    private $valided;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="waiting", type="boolean")
+     */
+    private $waiting=true;
+
 
     /**
      * @var float
@@ -343,4 +359,52 @@ class Observation
     }
 
 
+
+    /**
+     * Set waiting
+     *
+     * @param boolean $waiting
+     *
+     * @return Observation
+     */
+    public function setWaiting($waiting)
+    {
+        $this->waiting = $waiting;
+
+        return $this;
+    }
+
+    /**
+     * Get waiting
+     *
+     * @return boolean
+     */
+    public function getWaiting()
+    {
+        return $this->waiting;
+    }
+
+    /**
+     * Set adminComment
+     *
+     * @param string $adminComment
+     *
+     * @return Observation
+     */
+    public function setAdminComment($adminComment)
+    {
+        $this->adminComment = $adminComment;
+
+        return $this;
+    }
+
+    /**
+     * Get adminComment
+     *
+     * @return string
+     */
+    public function getAdminComment()
+    {
+        return $this->adminComment;
+    }
 }
