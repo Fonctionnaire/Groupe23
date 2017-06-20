@@ -9,9 +9,14 @@
             Votre navigateur ne prend pas en charge cette vidéo.
         </video>
 
-        <div class="text-video">
-            <a href="{{ path('addObservation') }}"><p>PARTICIPER A NOTRE PROGRAMME DE RECHERCHE</p></a>
-        </div>
-
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+            <div class="text-video">
+                <a href="{{ path('addObservation') }}"><p>Je participe !</p></a>
+            </div>
+        {% else %}
+            <div class="text-video">
+                <a href="{{ path('addObservation') }}"><p>Je rejoins le programme !</p></a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

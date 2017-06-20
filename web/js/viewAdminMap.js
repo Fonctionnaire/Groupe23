@@ -54,9 +54,6 @@ var markers;
         var i;
 
 
-        //var urlViewObs = 'http://localhost/Groupe23/web/app_dev.php/viewObservation/';
-
-
         // INFOWINDOWS SUR LES MARKERS
         function addInfo(){
             var urlViewObs = Routing.generate('viewObservation', {'id': viewObsId[i].textContent});
@@ -123,4 +120,3 @@ var markers;
         }
 
     });
-

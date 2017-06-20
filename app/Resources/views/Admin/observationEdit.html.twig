@@ -1,11 +1,15 @@
 {% extends "layout.html.twig" %}
+{% block googleMapScript %}
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+        </script>
+        <script src="{{ asset('js/viewObsMapAdminEdit.js') }}"></script>
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
         <h1>Modification d'une observation</h1>
-        {# Conteneur Google map #}
-        <div id="map"></div>
-        <div id="map-text"><p>Cliquez sur la carte pour obtenir les coordonées du lieu de l'observation</p></div>
+        <div id="admin-map-edit-obs"></div>
 
         <div class="well">
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -42,6 +46,19 @@
                 </div>
             </div>
 
+            {# Champ latitude #}
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.latitude, "Latitude", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.latitude) }}
+
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.latitude, {'attr': {'class': 'form-control view-edit-obs-latitude'}}) }}
+                </div>
+            </div>
 
             {# Champ longitude #}
             <div class="form-group">
@@ -53,22 +70,7 @@
 
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude'}}) }}
-                </div>
-            </div>
-
-
-            {# Champ latitude #}
-            <div class="form-group">
-                {# Génération du label. #}
-                {{ form_label(form.latitude, "Latitude", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-                {# Affichage des erreurs pour ce champ précis. #}
-                {{ form_errors(form.latitude) }}
-
-                <div class="col-sm-10">
-                    {# Génération de l'input. #}
-                    {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude'}}) }}
+                    {{ form_widget(form.longitude, {'attr': {'class': 'form-control view-edit-obs-longitude'}}) }}
                 </div>
             </div>
 
