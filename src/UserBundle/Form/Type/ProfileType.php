@@ -19,12 +19,15 @@ class ProfileType extends AbstractType
     {
 
         $builder
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
             ->add('username', null, array('label' => 'Pseudo'))
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'email'))
             ->add('codePostal', TextType::class)
             ->add('town', TextType::class)
             ->add('birthDate', BirthdayType::class, array(
                 'format' =>'ddMMyyyy'))
+            ->add('phone', TextType::class, array('required' => false))
             ->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
                 'label' => 'Mot de passe actuel*',
                 'translation_domain' => 'FOSUserBundle',

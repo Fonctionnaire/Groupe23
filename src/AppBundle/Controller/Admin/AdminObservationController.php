@@ -15,14 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminObservationController extends Controller
 {
 
-
-    /**
-     *--------------------------------------------------------------------------------------------------------------
-     *==============   PARTIE ADMIN   ======================================================================
-     * -------------------------------------------------------------------------------------------------------------
-     */
-
-
     /**
      * Voire toutes les observations
      * @Route("/admin/observations", name="adminObservations")

@@ -21,8 +21,17 @@
         {% if user.birthDate|date('d/m/Y') == '01/01/1897' %}
             Non précisée
         {% else %}
-            {{ user.birthDate|date('d/m/Y') }}</p>
+            {{ user.birthDate|date('d/m/Y') }}
+    </p>
         {% endif %}
+    <p>
+        Téléphone :
+        {% if user.phone is null %}
+           non renseigné
+        {% else %}
+            {{ user.phone }}
+        {% endif %}
+    </p>
     <p>
         Rôle :
         {% if is_granted('ROLE_SUPER_ADMIN') %}

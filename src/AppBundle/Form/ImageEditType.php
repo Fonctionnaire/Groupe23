@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 
-class ArticleEditType extends AbstractType
+class ImageEditType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -21,13 +21,10 @@ class ArticleEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DatePickerType::class)
-            ->add('title')
-            ->add('content', TinyMCEType::class)
-
-            ->add('enableComments', CheckboxType::class, array(
-            'label'    => 'Autoriser les commentaire ?',
-            'required' => false,));
+            ->add('image',FileType::class, array(
+                'required' => false,
+                'data_class' => null
+            ));
     }
 
     /**
