@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Form\ObservationEditType;
 use AppBundle\Entity\Observation;
+use AppBundle\Form\ObservationValidationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -14,14 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminObservationController extends Controller
 {
 
-
-    /**
-     *--------------------------------------------------------------------------------------------------------------
-     *==============   PARTIE ADMIN   ======================================================================
-     * -------------------------------------------------------------------------------------------------------------
-     */
-
-
     /**
      * Voire toutes les observations
      * @Route("/admin/observations", name="adminObservations")
@@ -30,7 +23,7 @@ class AdminObservationController extends Controller
      */
     public function viewObservationsAction()
     {
-        $listobservations = $this->getDoctrine()->getRepository("AppBundle:Observation")->findAll();
+        $listobservations = $this->getDoctrine()->getRepository("AppBundle:Observation")->myfindAll();
         return $this->render('Admin/observations.html.twig', array('listObservations' => $listobservations,));
     }
 
@@ -51,24 +44,6 @@ class AdminObservationController extends Controller
         return $this->redirect($referer);
     }
 
-
-    /**
-     * Valide une observation
-     * @Method({"GET"})
-     * @Route("/admin/{id}/valid", name="validObservation")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function validObservationAction(Observation $observation, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $observation->setValided('1');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($observation);
-        $em->flush();
-        $this->get('app.notification')->sendMailValidationObservation($observation);
-        $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été validé');
-        return $this->redirect($referer);}
-
     /**
      * Affiche un formulaire pour modifier une observation
      * @Security("has_role('ROLE_ADMIN')")
@@ -77,7 +52,6 @@ class AdminObservationController extends Controller
      */
     public function editObservationAction(Observation $observation, Request $request)
     {
-        $referer = $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
         $form = $this->createForm(ObservationEditType::class, $observation);
         $form->handleRequest($request);
@@ -96,4 +70,31 @@ class AdminObservationController extends Controller
             ]
         );
     }
+
+    /**
+     * Affiche un formulaire pour valider une observation
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"GET", "POST"})
+     * @Route("/{id}/validation", name="validation")
+     */
+    public function validationObservationAction(Observation $observation, Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(ObservationValidationType::class, $observation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $observation->setWaiting(false);
+            $entityManager->flush();
+            $this->get('app.notification')->sendMailValidationObservation($observation);
+            $this->addFlash('success', 'Observation traitée avec succès');
+            return $this->redirect($this->generateUrl('adminObservations'));
+        }
+
+        return $this->render('Admin/validationForm.html.twig', array(
+            'form' => $form->createView(),
+            'observation' => $observation,
+        ));
+    }
+
 }

@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
 use AppBundle\Form\ArticleEditType;
+use AppBundle\Form\ImageEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -37,27 +38,26 @@ class AdminArticleController extends Controller
      */
     public function addAction(Request $request)
     {
-        $Article = new Article();
-        $form = $this->createForm(ArticleType::class, $Article);
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if($Article->getImage()){
-                $file = $Article->getImage();
-                // Générer un nom unique
+            if($article->getImage()){
+                $file = $article->getImage();
                 $fileName = $this->get('app.image_uploader')->upload($file);
-                $Article->setImage('uploads/images/' . $fileName);
+                $article->setImage('uploads/images/' . $fileName);
             }
 
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($Article);
+            $em->persist($article);
             $em->flush();
 
-            $request->getSession()->getFlashbag()->add('success', 'Le nouvel article a bien été enregistré.');
+            $request->getSession()->getFlashbag()->add('success', 'Le nouvel article a été enregistré.');
 
-            return $this->redirectToRoute('view_article', array('slug' => $Article->getSlug()));
+            return $this->redirectToRoute('view_article', array('slug' => $article->getSlug()));
         }
 
         return $this->render(
@@ -83,7 +83,6 @@ class AdminArticleController extends Controller
 
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
-
             $entityManager->flush();
             $this->addFlash('success', 'Article modifié avec succès');
             return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
@@ -98,6 +97,60 @@ class AdminArticleController extends Controller
             ]
         );
     }
+
+    /**
+     * Displays a form to edit an existing Article entity.
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"GET", "POST"})
+     * @Route("/actualites/{slug}/imageEdit", name="imageEdit")
+     */
+    public function imageEditAction(Article $article, Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        $entityManager = $this->getDoctrine()->getManager();
+        $formImageEdit = $this->createForm(ImageEditType::class, $article);
+        $formImageEdit->handleRequest($request);
+
+        if ($formImageEdit->isSubmitted() && $formImageEdit->isValid()) {
+
+            if($article->getImage()){
+                $file = $article->getImage();
+                $fileName = $this->get('app.image_uploader')->upload($file);
+                $article->setImage('uploads/images/' . $fileName);
+            }
+
+            $entityManager->flush();
+            $this->addFlash('success', 'Image modifiée avec succès');
+            return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
+
+        }
+
+        return $this->render(
+            'Actualites/imageEdit.html.twig',
+            [
+                'article' => $article,
+                'formImageEdit' => $formImageEdit->createView(),
+            ]
+        );
+    }
+
+    /**
+     * Displays a form to edit an existing Article entity.
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"GET", "POST"})
+     * @Route("/actualites/{slug}/imageDelete", name="imageDelete")
+     */
+    public function imageDeleteAction(Article $article, Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        $entityManager = $this->getDoctrine()->getManager();
+        $article->setImage(null);
+        $entityManager->flush();
+        $this->addFlash('success', 'Image supprimée');
+        return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
+
+    }
+
 
 
     /**

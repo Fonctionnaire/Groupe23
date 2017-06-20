@@ -70,7 +70,22 @@
                 {{ form_errors(form.birthDate) }}
             </div>
 
-            {{ form_rest(form) }}
+        <div class="form-group"> <!-- Téléphone -->
+            <!-- Génération du label. -->
+            {{ form_label(form.phone, 'Téléphone (portable de préférence) :') }}
+            <!-- Affichage des erreurs pour ce champ précis. -->
+            {{ form_errors(form.phone) }}
+            <!-- Génération de l'input. -->
+            <br><input type="tel" name="UserBundle_RegistrationType[phone]"
+                   placeholder="Votre téléphone" class="form-control"/>
+            <!-- {{ form_widget(form.phone, { 'attr': {'placeholder': 'Votre téléphone', 'class': 'form-control'} }) }} -->
+        </div>
+
+
+
+
+
+        {{ form_rest(form) }}
             <div class="form-group">
                 <input class="btn" type="submit" value="{{ 'Enregistrer' }}">
             </div>

@@ -15,6 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 class TaxrefHabitat
 {
 
+    public function __toString()
+    {
+        return $this->description;
+    }
+
 
     /**
      * @var int

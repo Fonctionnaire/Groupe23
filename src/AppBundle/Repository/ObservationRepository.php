@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class ObservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function myfindAll()
+    {
+        $query = $this->_em->createQuery('SELECT o FROM AppBundle:Observation o ORDER BY o.waiting DESC, o.date DESC');
+
+        $results = $query->getResult();
+        return $results;
+    }
 }
