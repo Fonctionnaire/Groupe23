@@ -22,8 +22,17 @@
 <div class="contenumail" style="margin-left: 30px; margin-top: 30px; margin-right: 30px;">
 
     <h2 style="color:darkgreen; padding-top: 50px;">Bonjour {{ observation.user.username }}</h2>
-    <p>Félicitation ! Votre observation enregistrée le  {{ observation.date|date('d/m/Y') }}! a été validée.</p>
-    <p>Votre observation est désormais publiée.</p>
+    <p>Votre observation enregistrée le  {{ observation.date|date('d/m/Y') }}! a été traitée par l'équipe de naturalistes.</p><br>
+
+    {% if observation.valided == true %}
+    <h3>Félicitation ! Votre observation est désormais publiée.</h3>
+        <p><strong>Commentaire du naturaliste :</strong></p>
+        <p>{{ observation.adminComment }}</p>
+    {% else %}
+    <h3>Malheureusement votre observation n'a pas été validée par le naturaliste.</h3>
+        <p><strong>Commentaire du naturaliste :</strong></p>
+        <p>{{ observation.adminComment }}</p>
+    {% endif %}
 
     <h2>Détail de votre observation</h2>
     <p>date d'observation :  {{ observation.dateObservation|date('d/m/Y') }}.</p>
