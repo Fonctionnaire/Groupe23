@@ -80,7 +80,6 @@ class AdminObservationController extends Controller
     public function validationObservationAction(Observation $observation, Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        dump($observation);
         $form = $this->createForm(ObservationValidationType::class, $observation);
         $form->handleRequest($request);
 
