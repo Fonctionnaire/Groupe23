@@ -66,7 +66,7 @@ class AdminObservationController extends Controller
         $em->persist($observation);
         $em->flush();
         $this->get('app.notification')->sendMailValidationObservation($observation);
-        $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été validé');
+        $request->getSession()->getFlashbag()->add('success', 'L\'observation est validée');
         return $this->redirect($referer);}
 
     /**

@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <h1>{{ article.title }}</h1>
-                    <h5>le {{ article.date|date('d/m/Y') }}</h5>
+                    <h5>le {{ article.date|date('d/m/Y à H:i') }}</h5>
                 </div>
                 {% if article.enableComments == true  %}
                 <div class="col-md-1">
@@ -42,19 +42,37 @@
                         <i class="glyphicon glyphicon-edit"></i>
                         Modifier l'article
                     </a>
+                    {% if article.image is not null %}
+                        <a href="{{ path('imageEdit', {'slug': article.slug}) }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Modifier l'image
+                        </a>
+                        <a href="{{ path('imageDelete', {'slug': article.slug}) }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Supprimer l'image
+                        </a>
+
+                    {% else %}
+                        <a href="{{ path('imageEdit', {'slug': article.slug}) }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Ajouter une image
+                        </a>
+                    {% endif %}
+
                 {% endif %}
+
                 {% if article.enableComments == true  %}
-                {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
-                       class="btn btn-default openmodal">
-                        <i class="fa fa-comment"></i>
-                        Commenter
-                    </a>
-                {% endif %}
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
+                           class="btn btn-default openmodal">
+                            <i class="fa fa-comment"></i>
+                            Commenter
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% if article.enableComments == true  %}
-            {{ macro.afficherCommentaires(comments) }}
+                {{ macro.afficherCommentaires(comments) }}
             {% endif %}
         </div>
     {% endblock %}

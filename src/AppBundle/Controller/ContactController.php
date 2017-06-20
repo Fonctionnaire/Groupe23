@@ -52,7 +52,7 @@ class ContactController extends Controller
             $data = $form->getData();
             $this->get('app.send_contact_mail')->sendContactMail($data);
 
-            $this->addFlash('notice', "Votre message à bien été envoyé. Nous vous répondrons au plus vite");
+            $request->getSession()->getFlashbag()->add('success', 'Votre message à bien été envoyé. Nous vous répondrons au plus vite.');
             return $this->redirectToRoute('nous_contacter');
     }
         return $this->render(':Contact:contact.html.twig', array('form' => $form->createView()));
