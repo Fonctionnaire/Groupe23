@@ -13,39 +13,51 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('admin_listTaxrefs') }}">Espèces</a>
-                    {% elseif is_granted('ROLE_USER') %}
-                        <a href="{{ path('user_listTaxrefs') }}">Espèces</a>
-                    {% else %}
-                        <a href="{{ path('listTaxrefs') }}">Espèces</a>
-                    {% endif %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Observations<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('addObservation') }}">Nouvelle observation</a>
+                        </li>
+                        <li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('admin_listTaxrefs') }}">Visualisation Cartographique</a>
+                            {% elseif is_granted('ROLE_USER') %}
+                                <a href="{{ path('user_listTaxrefs') }}">Visualisation Cartographique</a>
+                            {% else %}
+                                <a href="{{ path('listTaxrefs') }}">Visualisation Cartographique</a>
+                            {% endif %}
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="{{ path('addObservation') }}">Observations</a>
-                </li>
+
+
+
                 <li>
                     <a href="{{ path('nous_contacter') }}">Contact</a>
                 </li>
-                <li>
-                    <a href="{{ path('filter') }}" class="openmodal">Export</a>
-                </li>
+
                 <li>
                     <a href="{{ path('actualites') }}">Actualités</a>
                 </li>
-
-                <!-- MENU DEROULANT MON COMPTE -->
-                {% if is_granted('ROLE_USER') %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog" aria-hidden="true"></i> Mon compte<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                <!-- MENU DEROULANT GESTION DE COMPTE -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle" aria-hidden="true"></i> Mes informations<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Déconnexion</a></li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Créer un compte</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
                             <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ path('dashboardObservations') }}">Mes observations</a></li>
+                        {% endif %}
 
-                        </ul>
-                    </li>
-                {% endif %}
+                    </ul>
+                </li>
 
 
                 <!-- MENU DEROULANT ADMIN -->
@@ -60,22 +72,14 @@
                         <li><a href="{{ path('adminActualites') }}">Gestion des Actualites</a></li>
                         <li><a href="{{ path('adminComments') }}">Gestion des Commentaires</a></li>
                         <li><a href="{{ path('add') }}">Ajout d'une Actualité</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="{{ path('filter') }}" class="openmodal">Exporter les données</a>
+                        </li>
 
                     </ul>
                     </li>
                 {% endif %}
-                <!-- MENU DEROULANT GESTION DE COMPTE -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Déconnexion</a></li>
-                        {% else %}
-                            <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
-                            <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Créer un compte</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
