@@ -14,7 +14,7 @@
     </div>
 
     <div>
-        {{ form_label(form.comment, "Commentaires") }}
+        {{ form_label(form.comment, "Commentaire") }}
         {{ form_errors(form.comment) }}
         {{ form_widget(form.comment) }}
     </div>
@@ -33,7 +33,7 @@
     </div>
 
     <div>
-        {{ form_label(form.taxref, "Choisissez un espèce") }}
+        {{ form_label(form.taxref, "Choisissez une espèce") }}
         {{ form_errors(form.taxref) }}
         {{ form_widget(form.taxref, {'attr': {'class': 'oiseaux'}}) }}
         <p class="text-identifier">Vous avez un doute sur l'espèce observée ? Vous pouvez l'indentifier à l'aide de <a href="http://www.oiseaux.net/identifier/" target="_blank">cette page</a></p>
