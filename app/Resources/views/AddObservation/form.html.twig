@@ -22,14 +22,14 @@
     <div>
         {{ form_label(form.latitude, "Latitude") }}
         {{ form_errors(form.latitude) }}
-        {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude'}}) }}
+        {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude', 'readonly': 'readonly'}}) }}
 
     </div>
 
     <div>
         {{ form_label(form.longitude, "Longitude") }}
         {{ form_errors(form.longitude) }}
-        {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude'}}) }}
+        {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude', 'readonly': 'readonly'}}) }}
     </div>
 
     <div>
