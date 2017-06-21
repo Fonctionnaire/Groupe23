@@ -24,6 +24,8 @@
     .cookie-message
     {
         font-size: 0.5em;
+        bottom: inherit;
+        top: 50px;
     }
 
     .cookie-message button
