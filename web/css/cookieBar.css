@@ -19,5 +19,16 @@
     right: 50px;
 }
 
+@media all and (max-width: 1024px)
+{
+    .cookie-message
+    {
+        font-size: 0.5em;
+    }
 
+    .cookie-message button
+    {
+        position: inherit;
+    }
+}
 
