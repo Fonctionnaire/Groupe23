@@ -6,9 +6,47 @@
 
         <h1>Mon compte</h1>
 
-        <p>Bienvenue {{ user.username }}.</p>
 
+        {% set obsValid = 0 %}
+        {% for obs in listObservations %}
+            {% if obs.valided %}
+                {% set obsValid = obsValid + obs.valided|length %}
+            {% endif %}
+        {% endfor %}
 
+        <div class="block-icone">
+            <h4 class="nom-user-icone">Bienvenue {{ user.username }}</h4>
+            {% if obsValid > 20 and obsValid < 50 %}
+                <div class="div-icone-user">
+                    <img class="icone-user" src="{{ asset('images/oiseau-dans-l-39-oeuf-casse_318-60195.jpg') }}" alt="oiseau sort de la coquille">
+                </div>
+                <p class="text-icone">Rang: Eclosion</p>
+            {% elseif obsValid >= 50 and obsValid < 100 %}
+                <div class="div-icone-user">
+                    <img class="icone-user" src="{{ asset('images/chant-d-39-oiseau-avec-des-notes-de-musique_318-60656.jpg') }}" alt="oiseau qui chante">
+                </div>
+                <p class="text-icone">Rang: Moineau</p>
+            {% elseif obsValid >= 100 and obsValid < 150 %}
+                <div class="div-icone-user">
+                    <img class="icone-user" src="{{ asset('images/colombe_318-107101.jpg') }}" alt="colombe">
+                </div>
+                <p class="text-icone">Rang: Colombe</p>
+            {% elseif obsValid >= 150 %}
+                <div class="div-icone-user">
+                    <img class="icone-user" src="{{ asset('images/forme-animale-faucon-oiseau_318-63047.jpg') }}" alt="faucon">
+                </div>
+                <p class="text-icone">Rang: Faucon</p>
+                {% else %}
+                <div class="div-icone-user">
+                    <img class="icone-user" src="{{ asset('images/oeuf-avec-une-fissure_318-60772.jpg') }}" alt="oeuf fermé">
+                </div>
+                <p class="text-icone">Rang: Oeuf</p>
+            {% endif %}
+
+            <p>Nombre d'observations validées:</p>
+            <p>{{ obsValid }}</p>
+
+        </div>
 
         <h2>Bilan de mes observations</h2>
 
