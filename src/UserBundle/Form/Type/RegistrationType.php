@@ -16,6 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class RegistrationType extends AbstractType
@@ -37,6 +38,11 @@ class RegistrationType extends AbstractType
             ->add('birthDate', BirthdayType::class, array(
                 'format' =>'ddMMyyyy'))
             ->add('phone', TextType::class, array('required' => false))
+            ->add('avatarFile', FileType::class, array('required' => false,
+                'label' => 'Avatar :',
+                'attr'=>array(
+                    'class'=>'custom-file')
+            ));
 
         ;
     }
