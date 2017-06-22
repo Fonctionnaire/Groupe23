@@ -30,8 +30,14 @@
     <footer>
         <label><input type="checkbox" tabindex="3" id="remember_me" name="_remember_me" value="on">Se souvenir de moi</label>
         <input type="submit" class="btn" value="Connexion" tabindex="4" id="_submit">
+        <p>
+            Pas encore de compte ?
+            <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+        </p>
     </footer>
 </form>
+
+
 
 {% endblock fos_user_content %}
 {% endblock%}
