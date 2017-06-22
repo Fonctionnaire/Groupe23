@@ -9,6 +9,7 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Observation;
 use AppBundle\Entity\Article;
 use AppBundle\Services\FileUploader\FileUploader;
+use UserBundle\Entity\User;
 
 class ImageUploadListener
 {
@@ -36,7 +37,7 @@ class ImageUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Observation || !$entity instanceof Article) {
+        if (!$entity instanceof Observation || !$entity instanceof Article || !$entity instanceof User) {
             return;
         }
 
@@ -55,7 +56,7 @@ class ImageUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Observation || !$entity instanceof Article) {
+        if (!$entity instanceof Observation || !$entity instanceof Article || !$entity instanceof User) {
             return;
         }
 

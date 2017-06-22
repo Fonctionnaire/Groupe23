@@ -9,6 +9,8 @@ imports:
 parameters:
     locale: fr
     images_directory: '%kernel.root_dir%/../web/uploads/images'
+    avatar_path: 'uploads/avatars/'
+
 
 framework:
     #esi: ~
@@ -39,6 +41,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        avatars_path: "%avatar_path%"
     form_themes:
         - bootstrap_3_layout.html.twig
 
@@ -111,4 +115,16 @@ stfalcon_tinymce:
             toolbar1: "undo redo | styleselect | bold italic underline | forecolor backcolor| alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link unlink"
             toolbar2: ""
             image_advtab: true
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        avatar_image:
+            uri_prefix: '/uploads/avatars'
+            upload_destination: '%kernel.root_dir%/../web/uploads/avatars'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
 

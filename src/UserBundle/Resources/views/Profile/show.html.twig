@@ -2,12 +2,25 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
-
+<div class="container">
 <br/>
 <div class="fos_user_user_show">
 
     <h1> Mon profil</h1>
     <br />
+    <div class="row">
+        <div class="col-md-2">
+            {% if user.avatarName %}
+                <img src="{{ asset(avatars_path ~ user.avatarName) }}" class="img-responsive" alt="{{ user.username }}"/>
+            {% endif %}
+
+
+
+        </div>
+
+
+    </div>
+
     <p>Date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
     <h2>Coordonnées</h2>
     <p>Prénom : {{ user.firstName }}</p>
@@ -48,7 +61,7 @@
     <br />
     <p> <a class="btn btn-primary pull-left" id="fos_user_change_password" href="{{ path('fos_user_change_password') }}" role="button">Modifier mon mot de passe</a></p>
 </div>
-
+</div>
 
 {% endblock content %}
 
