@@ -29,7 +29,11 @@ class ProfileType extends AbstractType
             ->add('birthDate', BirthdayType::class, array(
                 'format' =>'ddMMyyyy'))
             ->add('phone', TextType::class, array('required' => false))
-            ->add('avatarFile', FileType::class, array('data_class' => null, 'required' => false))
+            ->add('avatarFile', FileType::class, array('required' => false,
+                'label' => 'Avatar :',
+                'attr'=>array(
+                    'class'=>'custom-file')
+            ))
             ->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
                 'label' => 'Mot de passe actuel*',
                 'translation_domain' => 'FOSUserBundle',

@@ -67,6 +67,11 @@
                 {{ form_widget(form.phone) }}
                 {{ form_errors(form.phone) }}
             </div>
+             <div class="form-group">
+                    {{ form_label(form.avatarFile) }}
+                    {{ form_widget(form.avatarFile, {'attr': {'class': 'filestyle','data-placeholder': 'Votre Avatar', 'data-buttonName': 'btn-primary', 'data-buttonText': 'Parcourir'}}) }}
+                    {{ form_errors(form.avatarFile) }}
+             </div>
 <hr />
             <p>Renseignez votre mot de passe actuel pour pouvoir modifier votre profil.</p>
 
@@ -76,8 +81,8 @@
                 <a class="btn btn-default pull-left" id="Retour" href="{{ path('fos_user_profile_show') }}" role="button">Retour</a>
                 <input class="btn" type="submit" value="{{ 'Enregistrer les modifications' }}">
             </div>
-        {{ form_end(form) }}
-    </div>
+                {{ form_end(form) }}
+            </div>
 
 
 {% endblock content %}
