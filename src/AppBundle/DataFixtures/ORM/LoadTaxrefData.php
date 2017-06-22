@@ -90,6 +90,7 @@ class TaxrefData extends AbstractFixture implements OrderedFixtureInterface
 
 
                 $manager->persist($taxref);
+                $this->addReference('taxref'.$column[5], $taxref);
                 $i++;
                 if($i % 25 == 0){
                     $manager->flush();

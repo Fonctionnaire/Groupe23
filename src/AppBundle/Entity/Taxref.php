@@ -60,6 +60,8 @@ class Taxref
      * @var int
      * @ORM\id
      * @ORM\Column(name="CD_NOM", type="integer", unique=true, options={"comment":"Identifiant unique du nom scientifique"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TaxrefProtege")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="cdnom")
      */
     private $cdnom;
 
