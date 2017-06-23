@@ -1,0 +1,14 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{# On étend notre layout #}
+{% extends 'layout.html.twig' %}
+
+
+
+{% block content %}
+<p>
+    Un e-mail vous a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+
+
+    Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+</p>
+{% endblock %}
