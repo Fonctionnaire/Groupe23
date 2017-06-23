@@ -45,14 +45,14 @@
                 {% endif %}
                 <p>Commentaire : {{ observation.comment }}</p>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude }}</span></p>
+                    <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude}}</span></p>
                     <p>Longitude: <span id="view-obs-longitude">{{ observation.longitude }}</span></p>
                     {% if observation.waiting == true %}
                         <a href="{{ path('validation', {'id': observation.id}) }}" class="btn btn-default navbar-btn openmodal"><i class="fa fa-check"></i> Traiter l'observation</a>
                     {% endif %}
                 {% else %}
-                    <p class="latLng-hide">Latitude: <span id="view-obs-latitude">{{ observation.latitude }}</span></p>
-                    <p class="latLng-hide">Longitude: <span id="view-obs-longitude">{{ observation.longitude }}</span></p>
+                    <p class="latLng-hide">Latitude: <span id="view-obs-latitude">{{ observation.latitude|number_format(3)  }}</span></p>
+                    <p class="latLng-hide">Longitude: <span id="view-obs-longitude">{{ observation.longitude|number_format(3) }}</span></p>
                 {% endif %}
             </div>
             <div class="col-md-4">
