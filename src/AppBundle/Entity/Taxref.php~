@@ -15,6 +15,13 @@ class Taxref
 {
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="taxref")
+     */
+    private $observations;
+
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Regne", type="string", length=255, options={"comment":"Règne auquel le taxon appartient"})
@@ -53,6 +60,8 @@ class Taxref
      * @var int
      * @ORM\id
      * @ORM\Column(name="CD_NOM", type="integer", unique=true, options={"comment":"Identifiant unique du nom scientifique"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TaxrefProtege")
+     * @ORM\JoinColumn(nullable=true, referencedColumnName="cdnom")
      */
     private $cdnom;
 
@@ -113,12 +122,33 @@ class Taxref
      */
     private $nonvern;
 
+
+    public function __toString()
+    {
+        return $this->lbnom . "->" . $this->nonvern;
+    }
+
     /**
      * @var string
      *
      * @ORM\Column(name="NOM_VERN_ENG", type="string", length=255, nullable=true, options={"comment":"Nom(s) vernaculaire(s) du taxon en Anglais"})
      */
     private $nomverneng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=255, nullable=true, options={"comment": "Liens vers les fiches d'information"})
+     *
+     */
+    private $link;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="protected", type="boolean", length=255, nullable=false, options={"comment": "Especes protégées"})
+     */
+    private $protected;
 
     /**
      *
@@ -230,10 +260,6 @@ class Taxref
      */
     private $cli_statut;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="Taxref")
-     */
-    private $observations;
 
 
     /**
@@ -1027,4 +1053,71 @@ class Taxref
     {
         return $this->cli_statut;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->observations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add observation
+     *
+     * @param \AppBundle\Entity\Observation $observation
+     *
+     * @return Taxref
+     */
+    public function addObservation(\AppBundle\Entity\Observation $observation)
+    {
+        $this->observations[] = $observation;
+        $observation->setTaxref($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove observation
+     *
+     * @param \AppBundle\Entity\Observation $observation
+     */
+    public function removeObservation(\AppBundle\Entity\Observation $observation)
+    {
+        $this->observations->removeElement($observation);
+    }
+
+    /**
+     * Get observations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObservations()
+    {
+        return $this->observations;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     *
+     * @return Taxref
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
 }

@@ -15,23 +15,34 @@
 {% endblock %}
 {% block content %}
     <div class="container">
+
         <div class="row">
             <h1>Observation</h1>
             <div id="view-obs-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</div>
             {% if observation.image is not null %}
                 <img style="height:150px; float:right; margin-right: 100px" src="{{ asset(observation.image) }}"/>
             {% endif %}
-
-            <p>Date d'enregistrement : le {{ observation.date|date('d/m/Y à H:i') }}</p>
-            <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
-            <p>Auteur : {{ observation.user.username }} </p>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            {% if observation.taxref.protected == true %}
+                <div class="alert alert-danger col-md-6">
+                    <strong>Attention !</strong> Ceci est une espèce protégée !.
+                </div>
+            {% endif %}
+        </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <p>Date d'enregistrement : le {{ observation.date|date('d/m/Y à H:i') }}</p>
+                <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
+                <p>Auteur : {{ observation.user.username }} </p>
                 <p>Espèce : {{ observation.taxref }}</p>
                 <p>Famille : {{ observation.taxref.famille }} </p>
                 <p>Habitat : {{ observation.taxref.habitat }}</p>
+                {% if observation.taxref.link is not null %}
+                <a href="{{ observation.taxref.link }}"><button type="button" class="btn btn-primary btn-sm">Fiche d'information</button>
+                </a>
+                {% endif %}
                 <p>Commentaire : {{ observation.comment }}</p>
                 {% if is_granted('ROLE_ADMIN') %}
                     <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude }}</span></p>
