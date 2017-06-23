@@ -91,9 +91,9 @@ class Observation
     /**
      * @var bool
      *
-     * @ORM\Column(name="valided", type="boolean")
+     * @ORM\Column(name="valided", type="boolean", nullable=true)
      */
-    private $valided=false;
+    private $valided;
 
     /**
      * @var bool
@@ -101,6 +101,13 @@ class Observation
      * @ORM\Column(name="waiting", type="boolean")
      */
     private $waiting=true;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_visible", type="boolean", nullable=false)
+     */
+    private $isVisible;
 
 
     /**
@@ -382,5 +389,29 @@ class Observation
     public function getWaiting()
     {
         return $this->waiting;
+    }
+
+    /**
+     * Set adminComment
+     *
+     * @param string $adminComment
+     *
+     * @return Observation
+     */
+    public function setAdminComment($adminComment)
+    {
+        $this->adminComment = $adminComment;
+
+        return $this;
+    }
+
+    /**
+     * Get adminComment
+     *
+     * @return string
+     */
+    public function getAdminComment()
+    {
+        return $this->adminComment;
     }
 }
