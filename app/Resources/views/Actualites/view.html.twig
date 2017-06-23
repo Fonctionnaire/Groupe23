@@ -23,8 +23,9 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    {% if article.image is not null %}
-                        <img style="width:200px; float: right; margin-bottom: 20px;" src="{{ asset(article.image) }}"/>
+                    {% if article.imageName is not null %}
+
+                        <img style="width:200px; float: right; margin-bottom: 20px;" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                     {% endif %}
                     {{ article.content|rawdescr }}
                 </div>
@@ -42,23 +43,6 @@
                         <i class="glyphicon glyphicon-edit"></i>
                         Modifier l'article
                     </a>
-                    {% if article.image is not null %}
-                        <a href="{{ path('imageEdit', {'slug': article.slug}) }}" class="btn btn-default">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            Modifier l'image
-                        </a>
-                        <a href="{{ path('imageDelete', {'slug': article.slug}) }}" class="btn btn-default">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            Supprimer l'image
-                        </a>
-
-                    {% else %}
-                        <a href="{{ path('imageEdit', {'slug': article.slug}) }}" class="btn btn-default">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            Ajouter une image
-                        </a>
-                    {% endif %}
-
                 {% endif %}
 
                 {% if article.enableComments == true  %}

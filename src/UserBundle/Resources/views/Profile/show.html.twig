@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-2">
             {% if user.avatarName %}
-                <img src="{{ asset(avatars_path ~ user.avatarName) }}" class="img-responsive" alt="{{ user.username }}"/>
+                <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="img-responsive" alt="{{ user.username }}"/>
             {% endif %}
 
 
