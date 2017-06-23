@@ -136,6 +136,21 @@ class Taxref
     private $nomverneng;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=255, nullable=true, options={"comment": "Liens vers les fiches d'information"})
+     *
+     */
+    private $link;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="protected", type="boolean", length=255, nullable=false, options={"comment": "Especes protégées"})
+     */
+    private $protected=false;
+
+    /**
      *
      * Plusieurs espèces peuvent avoir le même habitat
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaxrefHabitat")
@@ -1079,5 +1094,54 @@ class Taxref
     public function getObservations()
     {
         return $this->observations;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     *
+     * @return Taxref
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+
+    /**
+     * Set protected
+     *
+     * @param boolean $protected
+     *
+     * @return Taxref
+     */
+    public function setProtected($protected)
+    {
+        $this->protected = $protected;
+
+        return $this;
+    }
+
+    /**
+     * Get protected
+     *
+     * @return boolean
+     */
+    public function getProtected()
+    {
+        return $this->protected;
     }
 }

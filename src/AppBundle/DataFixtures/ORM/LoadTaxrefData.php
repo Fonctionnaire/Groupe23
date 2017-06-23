@@ -16,7 +16,7 @@ class TaxrefData extends AbstractFixture implements OrderedFixtureInterface
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
 
         //Attention, il faut retirer la première ligne (titre des colonnes) avant de lancer l'import
-        if (($file = fopen(dirname(__FILE__) . '/Resources/TAXREF10.0_ALL__185961_20_03_2017.csv', 'r')) !== FALSE) {
+        if (($file = fopen(dirname(__FILE__) . '/Resources/taxrefdata.csv', 'r')) !== FALSE) {
 
             $i = 0;
 
@@ -37,6 +37,7 @@ class TaxrefData extends AbstractFixture implements OrderedFixtureInterface
                 $taxref->setNomvalide($column[12]);
                 $taxref->setNonvern($column[13]);
                 $taxref->setNomverneng($column[14]);
+
                 $taxref->setHabitat($this->getReference('habitat' . $column[15]));
 
                 if (!empty($column[16])) {
@@ -86,6 +87,15 @@ class TaxrefData extends AbstractFixture implements OrderedFixtureInterface
                 }
                 if (!empty($column[31])) {
                     $taxref->setCliStatut($this->getReference('statut' . $column[31]));
+                }
+                if (!empty($column[33])) {
+
+                    $taxref->setLink($column[33]);
+                }
+
+                if (!empty($column[34])) {
+
+                    $taxref->setProtected($column[34]);
                 }
 
 
