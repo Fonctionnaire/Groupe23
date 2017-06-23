@@ -10,6 +10,8 @@ parameters:
     locale: fr
     images_directory: '%kernel.root_dir%/../web/uploads/images'
     avatar_path: 'uploads/avatars/'
+    imageobservation_path: 'upload/observations/'
+    imagearticle_path: 'upload/articles/'
 
 
 framework:
@@ -120,8 +122,24 @@ vich_uploader:
     db_driver: orm
     mappings:
         avatar_image:
-            uri_prefix: '/uploads/avatars'
+            uri_prefix: '../../uploads/avatars'
             upload_destination: '%kernel.root_dir%/../web/uploads/avatars'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
+        observation_image:
+            uri_prefix: '../../uploads/observations'
+            upload_destination: '%kernel.root_dir%/../web/uploads/observations'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+            namer:
+                service: vich_uploader.namer_uniqid
+        article_image:
+            uri_prefix: '../../uploads/articles'
+            upload_destination: '%kernel.root_dir%/../web/uploads/articles'
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true

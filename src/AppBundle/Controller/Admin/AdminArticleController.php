@@ -4,8 +4,6 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
-use AppBundle\Form\ArticleEditType;
-use AppBundle\Form\ImageEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -43,11 +41,6 @@ class AdminArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($article->getImage()){
-                $file = $article->getImage();
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $article->setImage('uploads/images/' . $fileName);
-            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -71,7 +64,7 @@ class AdminArticleController extends Controller
     {
         $referer = $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
-        $formEdit = $this->createForm(ArticleEditType::class, $article);
+        $formEdit = $this->createForm(ArticleType::class, $article);
         $formEdit->handleRequest($request);
 
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
@@ -84,64 +77,10 @@ class AdminArticleController extends Controller
         return $this->render(
             'Actualites/edit.html.twig', [
                 'article' => $article,
-                'formEdit' => $formEdit->createView(),
+                'form' => $formEdit->createView(),
             ]
         );
     }
-
-    /**
-     * Displays a form to edit an existing Article entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/actualites/{slug}/imageEdit", name="imageEdit")
-     */
-    public function imageEditAction(Article $article, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $entityManager = $this->getDoctrine()->getManager();
-        $formImageEdit = $this->createForm(ImageEditType::class, $article);
-        $formImageEdit->handleRequest($request);
-
-        if ($formImageEdit->isSubmitted() && $formImageEdit->isValid()) {
-
-            if($article->getImage()){
-                $file = $article->getImage();
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $article->setImage('uploads/images/' . $fileName);
-            }
-
-            $entityManager->flush();
-            $this->addFlash('success', 'Image modifiée avec succès');
-            return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
-
-        }
-        return $this->render(
-            'Actualites/imageEdit.html.twig', [
-                'article' => $article,
-                'formImageEdit' => $formImageEdit->createView(),
-            ]
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing Article entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/actualites/{slug}/imageDelete", name="imageDelete")
-     */
-    public function imageDeleteAction(Article $article, Request $request)
-    {
-        $referer = $request->headers->get('referer');
-        $entityManager = $this->getDoctrine()->getManager();
-        $article->setImage(null);
-        $entityManager->flush();
-        $this->addFlash('success', 'Image supprimée');
-        return $this->redirect($this->generateUrl('view_article', array(
-            'slug' => $article->getSlug())));
-
-    }
-
-
 
     /**
      * Delete Article

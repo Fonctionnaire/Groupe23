@@ -32,16 +32,7 @@ class ObservationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            if($observation->getImage()){
-                $file = $observation->getImage();
-                // Générer un nom unique
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $observation->setImage('uploads/images/' . $fileName);
-            }
-
-
-            // On récupère l'EntityManager
+             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
             $em->persist($observation);
             $em->flush();
