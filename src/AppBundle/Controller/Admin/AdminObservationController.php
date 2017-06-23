@@ -61,10 +61,8 @@ class AdminObservationController extends Controller
             $this->addFlash('success', 'Observation modifiée avec succès');
             return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
         }
-
         return $this->render(
-            'Admin/observationEdit.html.twig',
-            [
+            'Admin/observationEdit.html.twig', [
                 'observation' => $observation,
                 'form' => $form->createView(),
             ]

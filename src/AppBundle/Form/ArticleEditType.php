@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\Type\DatePickerType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use AppBundle\Form\Type\TinyMCEType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 

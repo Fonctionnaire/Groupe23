@@ -21,11 +21,8 @@ class ArticleController extends Controller
             throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
         }
 
-
         // On récupère notre objet Paginator
-        $listArticles = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Article')
+        $listArticles = $this->getDoctrine()->getManager()->getRepository('AppBundle:Article')
             ->getArticlesPaginated($page);
 
         // Si il n'y a pas d'articles on renvoit vers le formulaire d'ajout
@@ -42,9 +39,7 @@ class ArticleController extends Controller
         }
 
         // On donne toutes les informations nécessaires à la vue
-        return $this->render(
-            'Actualites/actualites.html.twig',
-            array(
+        return $this->render('Actualites/actualites.html.twig', array(
                 'listArticles' => $listArticles,
                 'nbPages' => $nbPages,
                 'page' => $page,
@@ -63,14 +58,9 @@ class ArticleController extends Controller
             array('article' => $article, 'level' => 1)
         );
 
-
-        return $this->render(
-            ':Actualites:view.html.twig',
-            array(
+        return $this->render(':Actualites:view.html.twig', array(
                 'comments' => $listeComments,
                 'article' => $article,
-
-
             )
         );
     }

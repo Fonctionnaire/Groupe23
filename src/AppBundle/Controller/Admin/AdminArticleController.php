@@ -43,27 +43,20 @@ class AdminArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if($article->getImage()){
                 $file = $article->getImage();
                 $fileName = $this->get('app.image_uploader')->upload($file);
                 $article->setImage('uploads/images/' . $fileName);
             }
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
 
             $request->getSession()->getFlashbag()->add('success', 'Le nouvel article a été enregistré.');
-
             return $this->redirectToRoute('view_article', array('slug' => $article->getSlug()));
         }
-
         return $this->render(
-            'Actualites/add.html.twig',
-            array(
-                'form' => $form->createView(),
+            'Actualites/add.html.twig', array('form' => $form->createView(),
             )
         );
     }
@@ -88,10 +81,8 @@ class AdminArticleController extends Controller
             return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
 
         }
-
         return $this->render(
-            'Actualites/edit.html.twig',
-            [
+            'Actualites/edit.html.twig', [
                 'article' => $article,
                 'formEdit' => $formEdit->createView(),
             ]
@@ -124,10 +115,8 @@ class AdminArticleController extends Controller
             return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
 
         }
-
         return $this->render(
-            'Actualites/imageEdit.html.twig',
-            [
+            'Actualites/imageEdit.html.twig', [
                 'article' => $article,
                 'formImageEdit' => $formImageEdit->createView(),
             ]
@@ -147,7 +136,8 @@ class AdminArticleController extends Controller
         $article->setImage(null);
         $entityManager->flush();
         $this->addFlash('success', 'Image supprimée');
-        return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
+        return $this->redirect($this->generateUrl('view_article', array(
+            'slug' => $article->getSlug())));
 
     }
 
@@ -161,14 +151,12 @@ class AdminArticleController extends Controller
      *
      */
     public function deleteAction(Article $article, Request $request)
-
     {
         $referer = $request->headers->get('referer');
 
         if ($this->getDoctrine()->getRepository("AppBundle:Article")->countAll() > 1) {
 
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->remove($article);
             $entityManager->flush();
 
@@ -179,17 +167,10 @@ class AdminArticleController extends Controller
             } else {
                 return $this->redirect($referer);
             }
-
-
         } else {
             $this->addFlash('alert', 'Vous ne pouvez pas supprimer le dernier article !');
 
             return $this->redirect($referer);
-
         }
-
-
     }
-
-
 }
