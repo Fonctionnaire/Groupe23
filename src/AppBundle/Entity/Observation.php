@@ -102,6 +102,13 @@ class Observation
      */
     private $waiting=true;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_visible", type="boolean", nullable=true)
+     */
+    private $isVisible;
+
 
     /**
      * @var float
@@ -406,5 +413,29 @@ class Observation
     public function getAdminComment()
     {
         return $this->adminComment;
+    }
+
+    /**
+     * Set isVisible
+     *
+     * @param boolean $isVisible
+     *
+     * @return Observation
+     */
+    public function setIsVisible($isVisible)
+    {
+        $this->isVisible = $isVisible;
+
+        return $this;
+    }
+
+    /**
+     * Get isVisible
+     *
+     * @return boolean
+     */
+    public function getIsVisible()
+    {
+        return $this->isVisible;
     }
 }

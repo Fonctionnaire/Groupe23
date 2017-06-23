@@ -21,6 +21,14 @@
                 {{ form_widget(form.valided) }}
             </div>
         </div>
+
+        <div>
+            {{ form_label(form.valided, "Rendre cette observation publique ?") }}
+            {{ form_errors(form.isVisible) }}
+            <div>
+                {{ form_widget(form.isVisible) }}
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
 
