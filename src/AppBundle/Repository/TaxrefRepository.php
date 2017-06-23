@@ -14,10 +14,10 @@ class TaxrefRepository extends \Doctrine\ORM\EntityRepository
     public function getBirdsWithObservation()
     {
         return $this->createQueryBuilder('tax')
-            ->leftJoin('tax.observations', 'to')
             ->addSelect('to')
+            ->leftJoin('tax.observations', 'to')
             ->where('to.valided = true')
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
     }
 }

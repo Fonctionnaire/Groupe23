@@ -32,8 +32,16 @@
                         <tr>
                             <td>{{ taxref.lbnom }}</td>
                             <td>{{ taxref.nonvern }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                {% if taxref.habitat != null %}
+                                    {{ taxref.habitat }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if taxref.frStatut != null %}
+                                    {{ taxref.frStatut.description }}
+                                {% endif %}
+                            </td>
                             <td class="latitude" hidden>
 
                                 {% for obstest in taxref.observations %}
@@ -60,9 +68,6 @@
                                 {% endfor %}
                             </td>
                             <td class="filtre-td"><button type="button" class="filtrer">Filtrer</button></td>
-                            {# <td>{{ taxref.habitat.description }}</td>#}
-
-                            {#<td> {% if taxref.frStatut != null %}{{ taxref.frStatut.description }}{% endif %}</td>#}
                         </tr>
                     {% endfor %}
                     </tbody>
