@@ -27,18 +27,13 @@ class ExportController extends Controller
     {
         $form = $this->createForm(ObservationFilterType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-
-
-
             $query = $this->getDoctrine()
                 ->getRepository('AppBundle:Observation')
                 ->createQueryBuilder('o')
                 ->where('o.dateObservation > :debut')
                 ->andWhere('o.dateObservation < :fin');
-
             if ($data['especeFilter']) {
                 $query->andWhere('o.taxref IN (:taxref)')
                     ->setParameters(array(
@@ -52,15 +47,9 @@ class ExportController extends Controller
                     'fin' => $data['fin'],
                 ));
             }
-
-
             $observations = $query->getQuery()->getResult();
-
-
             return $this->exportObservationsAction($observations);
-
         };
-
         return $this->render('ExportForm/exportForm.html.twig', array(
             'form' => $form->createView(),
         ));

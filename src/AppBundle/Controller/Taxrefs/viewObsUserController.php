@@ -24,7 +24,6 @@ class viewObsUserController extends Controller
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservation();
 
-
         return $this->render('Especes/especesUser.html.twig', array('listTaxrefs' => $listtaxrefs));
     }
 }

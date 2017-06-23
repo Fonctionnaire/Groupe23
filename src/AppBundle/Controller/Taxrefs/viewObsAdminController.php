@@ -24,7 +24,6 @@ class viewObsAdminController extends Controller
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservation();
 
-
         return $this->render('Especes/especesAdmin.html.twig', array('listTaxrefs' => $listtaxrefs));
     }
 }

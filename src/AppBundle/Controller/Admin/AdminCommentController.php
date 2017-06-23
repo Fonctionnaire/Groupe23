@@ -55,7 +55,6 @@ class AdminCommentController extends Controller
         $em->persist($comment);
         $em->flush();
         $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été validé');
-        return $this->redirect($referer);}
-
-
+        return $this->redirect($referer);
+    }
 }
