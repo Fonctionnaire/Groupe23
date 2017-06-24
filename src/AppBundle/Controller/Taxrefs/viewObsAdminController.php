@@ -18,12 +18,12 @@ class viewObsAdminController extends Controller
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/admin/listTaxrefs", name="admin_listTaxrefs")
+     * @Route("/admin/observations_validées", name="admin_listTaxrefs")
      */
     public function adminListTaxrefsAction()
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservation();
 
-        return $this->render('Especes/especesAdmin.html.twig', array('listTaxrefs' => $listtaxrefs));
+        return $this->render('ViewAllObsValided/especesAdmin.html.twig', array('listTaxrefs' => $listtaxrefs));
     }
 }
