@@ -17,7 +17,7 @@ class ObservationController extends BaseController
 
 
     /**
-     * @Route("/addObservation", name="addObservation")
+     * @Route("/nouvelle_observation", name="addObservation")
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
      */
@@ -32,16 +32,7 @@ class ObservationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            if($observation->getImage()){
-                $file = $observation->getImage();
-                // Générer un nom unique
-                $fileName = $this->get('app.image_uploader')->upload($file);
-                $observation->setImage('uploads/images/' . $fileName);
-            }
-
-
-            // On récupère l'EntityManager
+             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
             $em->persist($observation);
             $em->flush();
@@ -67,7 +58,7 @@ class ObservationController extends BaseController
     }
 
     /**
-     * @Route("/viewObservation/{id}", options={"expose"=true} , name="viewObservation")
+     * @Route("/voir_observation/{id}", options={"expose"=true} , name="viewObservation")
      * @Method({"GET", "POST"})
      */
     public function viewObservationAction($id)
@@ -82,7 +73,7 @@ class ObservationController extends BaseController
         }
 
 
-        return $this->render(':ViewObersavtion:viewObservation.html.twig', array(
+        return $this->render('ViewUniqueObs/viewObservation.html.twig', array(
             'observation' => $observation,
         ));
     }

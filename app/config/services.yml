@@ -14,17 +14,6 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.image_uploader:
-        class: AppBundle\Services\FileUploader\FileUploader
-        arguments: ['%images_directory%']
-
-    app.doctrine_image_listener:
-        class: AppBundle\EventListener\ImageUploadListener
-        arguments: ['@app.image_uploader']
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-
     app.notification:
         class: AppBundle\Services\Notification\Notification
         arguments:

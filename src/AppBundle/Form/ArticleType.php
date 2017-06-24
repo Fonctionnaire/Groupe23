@@ -21,8 +21,11 @@ class ArticleType extends AbstractType
     {
         $builder->add('date', DatePickerType::class)
             ->add('title')
-            ->add('image',FileType::class, array(
-                'required' => false))
+            ->add('imageFile', FileType::class, array('required' => false,
+                'label' => 'Photo d\'illustration :',
+                'attr'=>array(
+                    'class'=>'custom-file')
+            ))
             ->add('content', TinyMCEType::class)
         ->add('enableComments', CheckboxType::class, array(
             'label'    => 'Autoriser les commentaire ?',

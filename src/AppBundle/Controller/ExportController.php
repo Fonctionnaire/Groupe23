@@ -29,25 +29,10 @@ class ExportController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $query = $this->getDoctrine()
-                ->getRepository('AppBundle:Observation')
-                ->createQueryBuilder('o')
-                ->where('o.dateObservation > :debut')
-                ->andWhere('o.dateObservation < :fin');
-            if ($data['especeFilter']) {
-                $query->andWhere('o.taxref IN (:taxref)')
-                    ->setParameters(array(
-                        'debut' => $data['debut'],
-                        'fin' => $data['fin'],
-                        'taxref' => $data['taxref']
-                    ));
-            } else {
-                $query->setParameters(array(
-                    'debut' => $data['debut'],
-                    'fin' => $data['fin'],
-                ));
-            }
-            $observations = $query->getQuery()->getResult();
+
+            $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
+                ->getFiltrer($data);
+
             return $this->exportObservationsAction($observations);
         };
         return $this->render('ExportForm/exportForm.html.twig', array(

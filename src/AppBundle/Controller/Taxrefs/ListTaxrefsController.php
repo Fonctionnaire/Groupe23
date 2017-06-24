@@ -12,13 +12,12 @@ class ListTaxrefsController extends BaseController
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/listTaxrefs", name="listTaxrefs")
+     * @Route("/observations_validées", name="listTaxrefs")
      */
     public function listTaxrefsAction()
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservationPublic();
 
-
-        return $this->render('Especes/especes.html.twig', array('listTaxrefs' => $listtaxrefs));
+        return $this->render('ViewAllObsValided/especes.html.twig', array('listTaxrefs' => $listtaxrefs));
     }
 }
