@@ -19,9 +19,11 @@
         <div class="row">
             <h1>Observation</h1>
             <div id="view-obs-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</div>
-            {% if observation.image is not null %}
-                <img style="height:150px;" src="{{ asset(observation.image) }}"/>
-            {% endif %}
+            <div>
+                {% if observation.imageName %}
+                    <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="col-md-2" alt="{{ observation.taxref }}" />
+                {% endif %}
+            </div>
         </div>
         <div class="row">
             {% if observation.taxref.protected == true %}
@@ -35,31 +37,31 @@
             <div class="col-md-6">
 
                 {% if observation.waiting == true %}
-                Observation en attente de validation
+                    Observation en attente de validation
 
                 {% elseif observation.waiting == false %}
-                {# si commentaire invalidé #}
+                    {# si commentaire invalidé #}
                     {% if observation.valided == false %}
                         <p style="color:red">Observation invalidée</p>
                         <p style="color:red">Commentaire administrateur :
-                        {% if observation.adminComment is null %}
-                            sans commentaire
-                        {% else %}
-                            {{ observation.adminComment }}
-                        {% endif %}
-                        </p>
-
-
-                {# si commentaire validé et non publié #}
-                    {% elseif observation.valided == true %}
-                        {% if observation.isVisible == false %}
-                            <p style="color:green">Observation validée et non publiée</p>
-                            <p style="color:green">Commentaire administrateur :
                             {% if observation.adminComment is null %}
                                 sans commentaire
                             {% else %}
                                 {{ observation.adminComment }}
                             {% endif %}
+                        </p>
+
+
+                        {# si commentaire validé et non publié #}
+                    {% elseif observation.valided == true %}
+                        {% if observation.isVisible == false %}
+                            <p style="color:green">Observation validée et non publiée</p>
+                            <p style="color:green">Commentaire administrateur :
+                                {% if observation.adminComment is null %}
+                                    sans commentaire
+                                {% else %}
+                                    {{ observation.adminComment }}
+                                {% endif %}
                             </p>
                         {% endif %}
                     {% endif %}
@@ -72,8 +74,8 @@
                 <p>Famille : {{ observation.taxref.famille }} </p>
                 <p>Habitat : {{ observation.taxref.habitat }}</p>
                 {% if observation.taxref.link is not null %}
-                <a href="{{ observation.taxref.link }}"><button type="button" class="btn btn-primary btn-sm">Fiche d'information</button>
-                </a>
+                    <a href="{{ observation.taxref.link }}"><button type="button" class="btn btn-primary btn-sm">Fiche d'information</button>
+                    </a>
                 {% endif %}
                 <p>Commentaire : {{ observation.comment }}</p>
                 {% if is_granted('ROLE_ADMIN') %}
