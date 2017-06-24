@@ -18,12 +18,12 @@ class viewObsUserController extends Controller
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/user/listTaxrefs", name="user_listTaxrefs")
+     * @Route("/user/observations_validées", name="user_listTaxrefs")
      */
     public function userListTaxrefsAction()
     {
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservation();
 
-        return $this->render('Especes/especesUser.html.twig', array('listTaxrefs' => $listtaxrefs));
+        return $this->render('ViewAllObsValided/especesUser.html.twig', array('listTaxrefs' => $listtaxrefs));
     }
 }
