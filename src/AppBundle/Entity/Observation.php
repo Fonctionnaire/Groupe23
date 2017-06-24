@@ -105,9 +105,9 @@ class Observation
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_visible", type="boolean", nullable=true)
+     * @ORM\Column(name="is_visible", type="boolean")
      */
-    private $isVisible;
+    private $isVisible = true;
 
 
     /**

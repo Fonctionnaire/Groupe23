@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ObservationValidationType extends AbstractType
+class ObservationStatutType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,7 +15,6 @@ class ObservationValidationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('adminComment')
         ->add('valided',ChoiceType::class, array(
         'choices' => array('Oui' => true, 'Non' => false)))
         ->add('isVisible',ChoiceType::class, array(

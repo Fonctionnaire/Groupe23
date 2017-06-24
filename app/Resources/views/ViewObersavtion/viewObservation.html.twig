@@ -20,19 +20,51 @@
             <h1>Observation</h1>
             <div id="view-obs-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</div>
             {% if observation.image is not null %}
-                <img style="height:150px; float:right; margin-right: 100px" src="{{ asset(observation.image) }}"/>
+                <img style="height:150px;" src="{{ asset(observation.image) }}"/>
             {% endif %}
         </div>
         <div class="row">
             {% if observation.taxref.protected == true %}
                 <div class="alert alert-danger col-md-6">
-                    <strong>Attention !</strong> Ceci est une espèce protégée !.
+                    <strong>Espèce protégée</strong>
                 </div>
             {% endif %}
         </div>
 
         <div class="row">
             <div class="col-md-6">
+
+                {% if observation.waiting == true %}
+                Observation en attente de validation
+
+                {% elseif observation.waiting == false %}
+                {# si commentaire invalidé #}
+                    {% if observation.valided == false %}
+                        <p style="color:red">Observation invalidée</p>
+                        <p style="color:red">Commentaire administrateur :
+                        {% if observation.adminComment is null %}
+                            sans commentaire
+                        {% else %}
+                            {{ observation.adminComment }}
+                        {% endif %}
+                        </p>
+
+
+                {# si commentaire validé et non publié #}
+                    {% elseif observation.valided == true %}
+                        {% if observation.isVisible == false %}
+                            <p style="color:green">Observation validée et non publiée</p>
+                            <p style="color:green">Commentaire administrateur :
+                            {% if observation.adminComment is null %}
+                                sans commentaire
+                            {% else %}
+                                {{ observation.adminComment }}
+                            {% endif %}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                <hr />
                 <p>Date d'enregistrement : le {{ observation.date|date('d/m/Y à H:i') }}</p>
                 <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
                 <p>Auteur : {{ observation.user.username }} </p>
@@ -59,7 +91,7 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Térritoire</th>
+                        <th>Territoire</th>
                         <th>Statut</th>
                     </tr>
                     </thead>

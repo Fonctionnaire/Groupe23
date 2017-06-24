@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ObservationEditType extends AbstractType
 {
@@ -14,16 +15,9 @@ class ObservationEditType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateObservation', DateType::class, array(
-            'widget' => 'single_text',
-            'html5' => true,
-            'attr' => array('class' => 'datepicker', 'max' => date('Y-m-d')),
-            'format' => 'yyyy-MM-dd',
-        ))
-            ->add('comment')
-            ->add('longitude')
-            ->add('latitude')
-            ->add('taxref');
+        $builder
+            ->add('taxref')
+            ->add('comment');
     }
 
     /**
