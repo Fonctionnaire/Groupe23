@@ -19,9 +19,15 @@
         <div class="row">
             <h1>Observation</h1>
             <div id="view-obs-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</div>
-            {% if observation.image is not null %}
-                <img style="height:150px;" src="{{ asset(observation.image) }}"/>
-            {% endif %}
+        </div>		                <img style="height:150px;" src="{{ asset(observation.image) }}"/>
+	        <div class="row">		            {% endif %}
+	            <div>		
+	                {% if observation.imageName %}		
+			
+	                    <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="col-md-2" alt="{{ observation.taxref }}" />		
+			
+	                {% endif %}		
+	            </div>
         </div>
         <div class="row">
             {% if observation.taxref.protected == true %}
