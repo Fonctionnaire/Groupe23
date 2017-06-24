@@ -16,10 +16,8 @@
                 <table class="table table-hover" id="myTable">
                     <thead>
                     <tr>
-                        <th>Nom scientifique</th>
+                        <th>Nom</th>
                         <th>Nom Vern</th>
-                        <th>Espèce protégée</th>
-
                         <th>Habitat</th>
                         <th>Statut</th>
                         <th hidden>Latitude</th>
@@ -34,11 +32,6 @@
                         <tr>
                             <td>{{ taxref.lbnom }}</td>
                             <td>{{ taxref.nonvern }}</td>
-                            <td>
-                                {% if taxref.protected == true %}
-                                X
-                                {% endif %}
-                            </td>
                             <td></td>
                             <td></td>
                             <td class="latitude" hidden>
