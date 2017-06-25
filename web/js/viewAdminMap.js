@@ -105,7 +105,6 @@ var markers;
 
             for (i = 0; i < latitudes.length && i < longitudes.length; i++)
             {
-                console.log(latitudes[i].textContent);
                 markers = new google.maps.Marker({
                     animation: google.maps.Animation.DROP,
                     position: {lat: parseFloat(latitudes[i].textContent),
