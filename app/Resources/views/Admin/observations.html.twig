@@ -8,9 +8,11 @@
                 <th>Validation</th>
                 <th>Date</th>
                 <th>Taxref</th>
-                <th>Utilisateur</th>
+                <th>Auteur</th>
                 <th>Publication</th>
+                <th>Administrateur</th>
                 <th>Action</th>
+
             </tr>
             </thead>
             <tbody>
@@ -37,13 +39,18 @@
                             {% if observation.valided == false %}
                                 NP
                             {% else%}
-                                {% if observation.isVisible == 1 %}
+                                {% if observation.isVisible == true %}
                                     <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
                                 {% else %}NP
                                 {% endif %}
                             {% endif %}
                         {% endif %}
                     </td>
+                    <td>{{ observation.adminUsername }} <br />
+                        {% if observation.adminComment is not null %}
+                        Commentaire :
+                        {{ observation.adminComment }}</td>
+                    {% endif %}
                     <td>
                         <a href="{{ path('viewObservation', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
 

@@ -53,6 +53,7 @@ class AdminObservationController extends Controller
      */
     public function editObservationAction(Observation $observation, Request $request)
     {
+        $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
         $entityManager = $this->getDoctrine()->getManager();
         $form = $this->createForm(ObservationEditType::class, $observation);
         $form->handleRequest($request);
@@ -84,8 +85,9 @@ class AdminObservationController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $observation->setWaiting(false);
+            $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $entityManager->flush();
-            $this->get('app.notification')->sendMailValidationObservation($observation);
+            // $this->get('app.notification')->sendMailValidationObservation($observation);
             $this->addFlash('success', 'Observation traitée avec succès');
             return $this->redirect($this->generateUrl('adminObservations'));
         }
@@ -113,7 +115,7 @@ class AdminObservationController extends Controller
                 $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
                 return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
             }
-
+            $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $entityManager->flush();
             $this->addFlash('success', 'Statut modifié avec succès' );
             return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));

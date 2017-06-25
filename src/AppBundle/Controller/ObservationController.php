@@ -38,14 +38,13 @@ class ObservationController extends BaseController
             $em->flush();
 
             //Envoi d'un mail à l'observateur
-            $this->get('app.notification')->sendMailPostObservation($observation);
+            //$this->get('app.notification')->sendMailPostObservation($observation);
 
             //Notification d'une nouvelle observation aux admin
 
             $listAdmins = $em->getRepository('UserBundle:User')->findByRole("ROLE_SUPER_ADMIN");
             foreach ($listAdmins as $user)
             {
-
                 $this->get('app.notification')->sendMailNewObservation($observation, $user);
             }
 

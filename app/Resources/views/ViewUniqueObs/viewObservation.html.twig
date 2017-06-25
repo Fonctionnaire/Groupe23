@@ -43,6 +43,7 @@
                     {# si commentaire invalidé #}
                     {% if observation.valided == false %}
                         <p style="color:red">Observation invalidée</p>
+                        <p style="color:red"> Administrateur : {{ observation.adminUserName }}</p>
                         <p style="color:red">Commentaire administrateur :
                             {% if observation.adminComment is null %}
                                 sans commentaire
@@ -51,11 +52,11 @@
                             {% endif %}
                         </p>
 
-
-                        {# si commentaire validé et non publié #}
+                        {# si observation validée et non publiée #}
                     {% elseif observation.valided == true %}
                         {% if observation.isVisible == false %}
-                            <p style="color:green">Observation validée et non publiée</p>
+                            <p style="color:green">Observation validée et non publique</p>
+                            <p style="color:green"> Administrateur : {{ observation.adminUserName }}</p>
                             <p style="color:green">Commentaire administrateur :
                                 {% if observation.adminComment is null %}
                                     sans commentaire
@@ -199,7 +200,6 @@
                     </tbody>
                 </table>
             </div>
-
 
         </div>
     </div>

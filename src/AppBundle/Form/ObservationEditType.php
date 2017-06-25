@@ -17,7 +17,7 @@ class ObservationEditType extends AbstractType
     {
         $builder
             ->add('taxref')
-            ->add('comment');
+            ->add('adminComment');
     }
 
     /**

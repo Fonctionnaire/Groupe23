@@ -12,6 +12,7 @@
         <h1>Modifier une observation</h1>
 
         <div class="well">
+
             {{ form_start(form) }}
             {{ form_errors(form) }}
 
@@ -25,50 +26,54 @@
                     {{  observation.comment }}
                 {% endif %}
             </p>
-            {% if observation.image is not null %}
-                <img style="height:150px;" src="{{ asset(observation.image) }}"/>
-            {% endif %}
-
-            {# Champ Taxref #}
-            <div>
-                {{ form_label(form.taxref, "Choisissez une espèce") }}
-                {{ form_errors(form.taxref) }}
-                {{ form_widget(form.taxref, {'attr': {'class': 'oiseaux'}}) }}
-                <p class="text-identifier">Vous avez un doute sur l'espèce observée ? Vous pouvez l'indentifier à l'aide de <a href="http://www.oiseaux.net/identifier/" target="_blank">cette page</a></p>
-            </div>
-
-            {% if observation.taxref.protected == true %}
-                    <strong>Espèce protégée</strong>
-            {% endif %}
-
-            {# Champ commentaires #}
-            <div>
-                {{ form_label(form.comment, "Modifier le commentaire") }}
-                {{ form_errors(form.comment) }}
-                {{ form_widget(form.comment) }}
+            <div class="row">
+                {% if observation.imageName %}
+                   <p> <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="col-md-2" alt="{{ observation.taxref }}" /></p>
+                {% endif %}
             </div>
 
             <div>
 
                 {% if observation.waiting == true %}
-                Observation en attente de validation
+                    Observation en attente de validation
                 {% else %}
-                    <p>Actuellement, l'observation est
-                    {% if observation.valided == true %}
-                        validée
-                    {% else %}
-                        invalidée
-                    {% endif %}
-                    et
-                    {% if observation.isVisible == true %}
-                        publique.
-                    {% else %}
-                        non publique.
-                    {% endif %}
+                    <p>
+                        Statut : Observation
+                        {% if observation.valided == true %}
+                            validée
+                        {% else %}
+                            invalidée
+                        {% endif %}
+                        et
+                        {% if observation.isVisible == true %}
+                            publique.
+                        {% else %}
+                            non publique.
+                        {% endif %}
                     </p>
-                    <a href="{{ path('statut', {'id': observation.id}) }}" class="btn btn-default navbar-btn openmodal">Modifier le statut de l'observation</a>
+                    <a href="{{ path('statut', {'id': observation.id}) }}" class="btn btn-default navbar-btn openmodal">Modifier le statut</a>
                 {% endif %}
 
+            </div>
+
+
+            {# Champ Taxref #}
+            <div>
+                {{ form_label(form.taxref, "Modifier l'espèce") }}
+                {{ form_errors(form.taxref) }}
+                {{ form_widget(form.taxref, {'attr': {'class': 'oiseaux'}}) }}
+                <p class="text-identifier">Vous avez un doute sur l'espèce observée ? Vous pouvez l'indentifier sur le site <a href="http://www.oiseaux.net/identifier/" target="_blank">oiseaux.net</a></p>
+            </div>
+
+            {% if observation.taxref.protected == true %}
+                <strong>Espèce protégée</strong>
+            {% endif %}
+
+            {# Champ commentaires #}
+            <div>
+                {{ form_label(form.adminComment, "Votre commentaire") }}
+                {{ form_errors(form.adminComment) }}
+                {{ form_widget(form.adminComment) }}
             </div>
 
             <div>
@@ -76,8 +81,8 @@
                 <input type="submit" value="Valider" class="btn btn-default pull-right"/>
             </div>
 
-
             {{ form_end(form) }}
+
         </div>
 
     </div>

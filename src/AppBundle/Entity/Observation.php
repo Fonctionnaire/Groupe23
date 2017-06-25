@@ -78,6 +78,13 @@ class Observation
     private $adminComment;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="adminUsername", type="text", nullable=true)
+     */
+    private $adminusername;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="observation_image", fileNameProperty="imageName", size="imageSize")
@@ -411,6 +418,30 @@ class Observation
     public function getAdminComment()
     {
         return $this->adminComment;
+    }
+
+    /**
+     * Set adminUsername
+     *
+     * @param string $adminUserName
+     *
+     * @return Observation
+     */
+    public function setAdminUsername($adminUsername)
+    {
+        $this->adminusername = $adminUsername;
+
+        return $this;
+    }
+
+    /**
+     * Get adminUserName
+     *
+     * @return string
+     */
+    public function getAdminUserName()
+    {
+        return $this->adminusername;
     }
 
     /**
