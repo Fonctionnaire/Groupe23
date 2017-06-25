@@ -2,66 +2,78 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
-<div class="container">
-<br/>
-<div class="fos_user_user_show">
+    <div class="container">
+        <br/>
+        <div class="fos_user_user_show">
 
-    <h1> Mon profil</h1>
-    <br />
-    <div class="row">
-        <div class="col-md-2">
-            {% if user.avatarName %}
-                <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="img-responsive" alt="{{ user.username }}"/>
-            {% endif %}
+            <div class="profil col m10 blue-grey lighten-5 offset-s1 left-align">
+                <div class="row">
+                    <div class="col m10">
+                        <h1 class="lime-text text-darken-2"> Mon profil</h1>
+                        <p class="lime-text text-darken-2 police32">Date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
+                    </div>
+                    <div class="col m2">
+                        {% if user.avatarName %}
+                            <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="circle responsive-img"
+                                 alt="{{ user.username }}"/>
+                        {% endif %}
+                    </div>
 
+                </div>
 
-
+                <div class="row">
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.firstName }}" id="first_name" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="first_name">Prénom</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.lastName }}" id="last_name" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="first_name">Nom</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{% if user.birthDate|date('d/m/Y') == '01/01/1897' %}Non précisée{% else %}{{ user.birthDate|date('d/m/Y') }}{% endif %}" id="birthdate" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="birthdate">Date de naissance</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.codePostal }}" id="postal-code" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="postal-code">Code Postal</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.town }}" id="town" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="town">Ville</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{% if user.phone is null %}non renseigné{% else %}{{ user.phone }}{% endif %}" id="phone" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="phone">Téléphone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.email }}" id="email" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="email">E-mail</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{{ user.username }}" id="username" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="username">Ville</label>
+                    </div>
+                    <div class="input-field col m4">
+                        <input disabled value="{% if is_granted('ROLE_SUPER_ADMIN') %}Super administateur{% elseif is_granted('ROLE_ADMIN') %}Administrateur naturaliste{% else %}Observateur{% endif %}" id="role" type="text" class="validate blue-grey-text text-darken-3 police32">
+                        <label class="lime-text text-darken-2 police32" for="role">Rôle</label>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <div class="col m6"><a class="btn-large waves-effect waves-light deep-orange darken-4" id="editprofile"
+                                           href="{{ path('fos_user_profile_edit') }}" role="button">Modifier mon
+                            profil</a></div>
+                    <div class="col m6"><a class="btn-large waves-effect waves-light deep-orange darken-4"
+                                           id="fos_user_change_password" href="{{ path('fos_user_change_password') }}"
+                                           role="button">Modifier mon mot de passe</a></div>
+                </div>
+            </div>
         </div>
-
-
     </div>
-
-    <p>Date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
-    <h2>Coordonnées</h2>
-    <p>Prénom : {{ user.firstName }}</p>
-    <p>Nom : {{ user.lastName }}</p>
-    <p>Pseudo : {{ user.username }}</p>
-    <p>Code postal : {{ user.codePostal }}</p>
-    <p>Ville : {{ user.town }}</p>
-    <p>Email : {{ user.email }}</p>
-    <p>
-        Date de naissance :
-        {% if user.birthDate|date('d/m/Y') == '01/01/1897' %}
-            Non précisée
-        {% else %}
-            {{ user.birthDate|date('d/m/Y') }}
-    </p>
-        {% endif %}
-    <p>
-        Téléphone :
-        {% if user.phone is null %}
-           non renseigné
-        {% else %}
-            {{ user.phone }}
-        {% endif %}
-    </p>
-    <p>
-        Rôle :
-        {% if is_granted('ROLE_SUPER_ADMIN') %}
-            Super administateur
-        {% elseif is_granted('ROLE_ADMIN') %}
-            Administrateur naturaliste
-        {% else %}
-            Observateur
-        {% endif %}
-    </p>
-    <br />
-    <p><a class="btn btn-primary pull-left" id="editprofile" href="{{ path('fos_user_profile_edit') }}" role="button">Modifier mon profil</a></p>
-    <br />
-    <br />
-    <p> <a class="btn btn-primary pull-left" id="fos_user_change_password" href="{{ path('fos_user_change_password') }}" role="button">Modifier mon mot de passe</a></p>
-</div>
-</div>
 
 {% endblock content %}
 
