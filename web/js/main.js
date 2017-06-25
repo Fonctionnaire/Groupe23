@@ -13,6 +13,7 @@ $(function () {
 
 //script for datatables
 $(document).ready(function () {
+    $(".button-collapse").sideNav();
     $('#myTable').dataTable({
         "order": [[0, "asc"]],
         "language": {
