@@ -12,8 +12,8 @@
                     <h5><span class="metadata"><i class="fa fa-calendar"></i>{{ article.date|date('d/m/Y à  à H:i') }}</span>
                     </h5>
                     <p>
-                        {% if article.image is not null %}
-                            <img style="width:150px; float: right; margin-bottom: 20px;" src="{{ asset(article.image) }}"/>
+                        {% if article.imageName is not null %}
+                            <img style="width:200px; float: right; margin-bottom: 20px;" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                         {% endif %}
                         {{ article.content | resume(constant('NUM_WORDS', article)) }}...
 

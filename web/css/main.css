@@ -1,3 +1,30 @@
+html{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.police32{
+    font-size: 20px !important;
+}
+
+.brand-logo img {
+    width: 266px
+}
+
+.profil{
+padding: 10px;
+}
+
+nav li:hover {
+    background-color: #cddc39;
+}
+.dropdown-content li:hover {
+    background-color: #cddc39;
+}
+
+
+h1{
+    font-size: 50px !important;
+}
 
 .bootstrap-datetimepicker-widget
 {
