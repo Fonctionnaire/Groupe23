@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Form\ObservationEditType;
 use AppBundle\Entity\Observation;
+use AppBundle\Form\ObservationStatutType;
 use AppBundle\Form\ObservationValidationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -52,6 +53,7 @@ class AdminObservationController extends Controller
      */
     public function editObservationAction(Observation $observation, Request $request)
     {
+        $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
         $entityManager = $this->getDoctrine()->getManager();
         $form = $this->createForm(ObservationEditType::class, $observation);
         $form->handleRequest($request);
@@ -83,8 +85,9 @@ class AdminObservationController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $observation->setWaiting(false);
+            $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $entityManager->flush();
-            $this->get('app.notification')->sendMailValidationObservation($observation);
+            // $this->get('app.notification')->sendMailValidationObservation($observation);
             $this->addFlash('success', 'Observation traitée avec succès');
             return $this->redirect($this->generateUrl('adminObservations'));
         }
@@ -95,4 +98,33 @@ class AdminObservationController extends Controller
         ));
     }
 
+    /**
+     * Affiche un formulaire pour modifier le statut de l'observation
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"GET", "POST"})
+     * @Route("/{id}/statut", name="statut")
+     */
+    public function observationStatutAction(Observation $observation, Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(ObservationStatutType::class, $observation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($observation->getValided() === false AND $observation->getIsVisible() === true) {
+                $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
+                return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
+            }
+            $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
+            $entityManager->flush();
+            $this->addFlash('success', 'Statut modifié avec succès' );
+            return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
+
+        }
+
+        return $this->render('Admin/ObservationStatutForm.html.twig', array(
+            'form' => $form->createView(),
+            'observation' => $observation,
+        ));
+    }
 }

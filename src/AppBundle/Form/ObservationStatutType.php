@@ -5,10 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ObservationEditType extends AbstractType
+class ObservationStatutType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,8 +15,16 @@ class ObservationEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('taxref')
-            ->add('adminComment');
+        ->add('valided',ChoiceType::class, array(
+        'choices' => array('Oui' => true, 'Non' => false)))
+        ->add('isVisible',ChoiceType::class, array(
+            'choices' => array (
+                'Publier' => true,
+                'Ne pas publier' => false,
+            ),
+            'expanded' => true,
+            'multiple' => false,
+            ));
     }
 
     /**

@@ -20,4 +20,15 @@ class TaxrefRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getBirdsWithObservationPublic()
+    {
+        return $this->createQueryBuilder('tax')
+            ->leftJoin('tax.observations', 'to')
+            ->addSelect('to')
+            ->where('to.isVisible = true')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
 }

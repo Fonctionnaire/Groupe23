@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ObservationValidationType extends AbstractType
 {
@@ -19,9 +18,14 @@ class ObservationValidationType extends AbstractType
         ->add('adminComment')
         ->add('valided',ChoiceType::class, array(
         'choices' => array('Oui' => true, 'Non' => false)))
-        ->add('isVisible',CheckboxType::class, array(
-            'label'    => 'Rendre cette observation Visible ?',
-            'required' => false,));
+        ->add('isVisible',ChoiceType::class, array(
+            'choices' => array (
+                'Publier' => true,
+                'Ne pas publier' => false,
+            ),
+            'expanded' => true,
+            'multiple' => false,
+            ));
     }
 
     /**

@@ -1,16 +1,25 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
-<form method="post" action="{{ path('validation', {'id': observation.id}) }}">
+<form method="post" action="{{ path('statut', {'id': observation.id}) }}">
     <div class="modal-header">
-        <h1>Traitement de l'observation</h1>
+        <h1>Modifier le statut de l'observation</h1>
     </div>
+    <p>
+    Actuellement, l'observation est
+        {% if observation.valided == true %}
+            validée
+        {% else %}
+            invalidée
+        {% endif %}
+        et
+        {% if observation.isVisible == true %}
+            publique.
+        {% else %}
+            non publique.
+        {% endif %}
+    </p>
+
     <div class="modal-body">
         {{ form_errors(form) }}
-
-        <div>
-            {{ form_label(form.adminComment, "Votre commentaire") }}
-            {{ form_errors(form.adminComment) }}
-            {{ form_widget(form.adminComment) }}
-        </div>
 
         <div>
             {{ form_label(form.valided, "Validation") }}
@@ -18,19 +27,14 @@
             {{ form_widget(form.valided) }}
         </div>
 
-        {% if observation.taxref.protected == true %}
-            <p><strong>Rappel : Espèce protégée.</strong></p>
-        {% endif %}
-
         <div>
-            {{ form_label(form.valided, "Publication") }}
+            {{ form_label(form.isVisible, "Publication") }}
             {{ form_errors(form.isVisible) }}
             {{ form_widget(form.isVisible) }}
         </div>
 
     </div>
     <div class="modal-footer">
-
         {{ form_rest(form) }}
         <div class="form-group">
             <input type="submit" value="Valider" class="btn btn-default pull-right"/>
