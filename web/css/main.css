@@ -20,6 +20,9 @@ nav li:hover {
 .dropdown-content li:hover {
     background-color: #cddc39;
 }
+.waves-effect.waves-rednao .waves-ripple {
+    background-color: #bf360c;
+}
 
 
 h1{

@@ -14,6 +14,7 @@ $(function () {
 //script for datatables
 $(document).ready(function () {
     $(".button-collapse").sideNav();
+    $('.collapsible').collapsible();
     $('#myTable').dataTable({
         "order": [[0, "asc"]],
         "language": {
