@@ -3,66 +3,90 @@
 {% block title %}
     Lecture d'un Article - {{ parent() }}
 {% endblock %}
+{% block content %}
 
-    {% block content %}
+    {#page entiere#}
+    <div class="containertemplate">
 
-        <div class="container">
+        {#cadre bleu gris#}
+        <div class="article col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
 
+            {#titre h1#}
             <div class="row">
-                <div class="col-md-10">
-                    <h1>{{ article.title }}</h1>
-                    <h5>le {{ article.date|date('d/m/Y à H:i') }}</h5>
+                <div class="col m10 offset-m1 left-align">
+                    <h1 class="lime-text text-darken-2"> article</h1>
+                </div>
+            </div>
+
+            {#titre h2#}
+            <div class="row">
+                <div class="col m10 offset-m1 left-align">
+                    <h2 class="blue-grey-text-text text-blue-grey darken-3"> {{ article.title }}</h2>
+                </div>
+            </div>
+
+            {#date et nombre de commentaires#}
+            <div class="row">
+                <div class="col m10 offset-m1 left-align">
+                    <p>le {{ article.date|date('d/m/Y à H:i') }}</p>
                 </div>
                 {% if article.enableComments == true  %}
-                <div class="col-md-1">
-                    <h3> {{ article.comments|length }}</h3>
-                    <span>commentaire(s)</span>
-                </div>
+                    <div class="col m2">
+                        <h3> {{ article.comments|length }}</h3>
+                        <span>commentaire(s)</span>
+                    </div>
                 {% endif %}
             </div>
 
+            {#image#}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col m10 offset-m1">
                     {% if article.imageName is not null %}
-
-                        <img style="width:200px; float: right; margin-bottom: 20px;" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
+                        <img class="imagearticle z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                     {% endif %}
                     {{ article.content|rawdescr }}
                 </div>
             </div>
 
+            {#boutons#}
+            <div class="row ">
+                <div class="col s10 offset-s1 center-align">
 
-            <div>
-                <a href="{{ path('actualites') }}" class="btn btn-default">
-                    <i class="glyphicon glyphicon-chevron-left"></i>
-                    Retour à la liste
-                </a>
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn btn-default">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Modifier l'article
-                    </a>
-                {% endif %}
-
-                {% if article.enableComments == true  %}
-                    {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
-                           class="btn btn-default openmodal">
-                            <i class="fa fa-comment"></i>
-                            Commenter
+                    {#bouton retour#}
+                    <p>
+                        <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="articleretour" href="{{ path('actualites') }}">
+                            Retour
                         </a>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
-                            <i class="fa fa-comment"></i>
-                            Commenter
-                        </a>
-                    {% endif %}
 
-                {% endif %}
+                        {#bouton commenter quand commentaires activés#}
+                        {% if article.enableComments == true  %}
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommnenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
+                                    Commenter
+                                </a>
+                            {% else %}
+                                <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="articlecommenter" href="{{ path('fos_user_security_login') }}">
+                                    Commenter
+                                </a>
+                            {% endif %}
+                        {% endif %}
+
+                        {#bouton super admin modifier#}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="editarticle" href="{{ path('editArticle', {'slug': article.slug}) }}">
+                                Modifier
+                            </a>
+                        {% endif %}
+                    </p>
+
+                </div>
             </div>
-            {% if article.enableComments == true  %}
-                {{ macro.afficherCommentaires(comments) }}
-            {% endif %}
         </div>
-    {% endblock %}
+
+        {% if article.enableComments == true  %}
+            {{ macro.afficherCommentaires(comments) }}
+        {% endif %}
+
+    </div>
+
+{% endblock %}

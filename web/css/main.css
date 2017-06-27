@@ -20,8 +20,96 @@ main {
     width: 266px
 }
 
+.containertemplate {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-large{
+    text-transform : lowercase;
+}
+
 .profil{
 padding: 10px;
+}
+
+.actualite{
+    padding : 10px;
+}
+.article{
+    padding : 10px;
+}
+
+/* page actualités" */
+
+.titrearticles{
+    padding-bottom: 50px;
+}
+
+.datearticles{
+    display: inline-block;
+}
+.listarticle{
+    margin-bottom: 60px;
+}
+
+.lirearticle{
+    float : right;
+}
+
+.imagearticles{
+    width: 215px;
+    float: left;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+
+.imagearticlesmobile{
+    display: none;
+}
+
+/* page article */
+
+.imagearticle {
+    border-radius: 2px;
+    width: 215px;
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/* boutons de la page article */
+
+.articlebtn{
+    width: 150px;
+    text-align: center;
+}
+
+#editarticle{
+    float: right;
+}
+
+#articleretour{
+    float: left;
+}
+
+#articlecommenter{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#articleusercommnenter{
+
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 nav li:hover {
@@ -34,9 +122,14 @@ nav li:hover {
     background-color: #bf360c;
 }
 
-
 h1{
     font-size: 50px !important;
+}
+
+h2{
+    font-size: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .bootstrap-datetimepicker-widget
@@ -470,8 +563,8 @@ h1{
         display: none;
     }
 
-
 }
+
 @media all and (max-width: 1024px)
 {
     /* PAGE D'ACCUEIL */
@@ -566,8 +659,8 @@ h1{
     {
         display: none;
     }
-
-    .block_middle
+  
+   .block_middle
     {
         margin: initial;
     }
@@ -583,7 +676,110 @@ h1{
         margin: initial;
         padding-top: 15px;
     }
-
-    /* ================================== */
 }
+
+@media all and (max-width: 768px) {
+
+   .containertemplate{
+       width: 100%;
+       margin: 0;
+   }
+
+    .imagearticle {
+        width: 60%;
+        margin-right: auto;
+        margin-left: 20%;
+        float: none;
+        margin-top: 0;
+    }
+
+    .imagearticles{
+       display: none;
+    }
+
+    .imagearticlesmobile{
+        width: 60%;
+        margin-left: 20%;
+        margin-right: auto;
+        float: none;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    .article {
+        margin: 0;
+    }
+}
+
+@media all and (max-width: 600px) {
+
+    .articlebtn {
+        width: 60%;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    #articleretour{
+        float: none;
+    }
+  
+    #editarticle{
+         float: none;
+     }
+  
+    .datearticles{
+        display: block;
+        float: none;
+        margin-top: 15px;
+    }
+
+    .imagearticles{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: auto;
+        float: none;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+}
+
+@media all and (max-width: 400px){
+
+    .imagearticle{
+        width : 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        margin-top : 0;
+    }
+
+    .imagearticles{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .imagearticlesmobile{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        display: inline-block;
+    }
+}
+    /* ================================== */
+
+
+
+
+
+
+
+
 
