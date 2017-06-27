@@ -23,11 +23,11 @@ class Article
     /**
      * Nombres d'articles par pages
      */
-    const NUM_ITEMS = 2;
+    const NUM_ITEMS = 5;
     /**
      * Nombre de Mots pour le résumé
      */
-    const NUM_WORDS = 150;
+    const NUM_WORDS = 40;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="article", cascade={"remove","persist"})

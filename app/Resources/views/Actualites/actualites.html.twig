@@ -1,49 +1,75 @@
 {% extends "layout.html.twig" %}
 {% block content %}
 
-    <div class="row">
-        <ul>
-            {% for article in listArticles %}
-                <div class="col-md-10">
-                    <h1>
-                        <a href="{{ path('view_article', {'slug': article.slug}) }}">
-                            {{ article.title }}
-                        </a></h1>
-                    <h5><span class="metadata"><i class="fa fa-calendar"></i>{{ article.date|date('d/m/Y à  à H:i') }}</span>
-                    </h5>
-                    <p>
+<div class="containertemplate">
+
+    <div class="actualite col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
+
+        <div class="row">
+            <div class="col m10 offset-m1 left-align">
+                <h1 class="lime-text text-darken-2"> actualités</h1>
+            </div>
+        </div>
+
+        {% for article in listArticles %}
+
+            <div class="row listarticle">
+
+                <div class="col m10 offset-m1">
+
+                    {% if article.imageName is not null %}
+                       <img class="imagearticles z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
+                    {% else %}
+                       <img class="imagearticles z-depth-1" src="{{ asset('images/V10-Logo.svg') }}" />
+                    {% endif %}
+                    <h2 class="blue-grey-text-text text-blue-grey darken-3 titrearticles"> {{ article.title }}</h2>
+                    <div class="metadata datearticles">{{ article.date|date('d/m/Y') }}</div>
+
+                    {#sur mobile#}
+                    <div>
+
                         {% if article.imageName is not null %}
-                            <img style="width:200px; float: right; margin-bottom: 20px;" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
+                            <img class="imagearticlesmobile z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
+                        {% else %}
+                            <img class="imagearticlesmobile z-depth-1" src="{{ asset('images/V10-Logo.svg') }}" />
                         {% endif %}
-                        {{ article.content | resume(constant('NUM_WORDS', article)) }}...
+                    </div>
 
-                    </p>
-                    <p><a class="btn btn-default pull-left" id="lire" href="{{ path('view_article', {'slug': article.slug})}}" role="button">Lire l'article</a></p>
+                    <p>{{ article.content | resume(constant('NUM_WORDS', article)) }}...</p>
+
+                    <div class="right-align lirearticle"><a class="btn-large waves-effect waves-light deep-orange darken-4" id="lirearticle"
+                                           href="{{ path('view_article', {'slug': article.slug}) }}" role="button">Lire l'article</a>
+                    </div>
+
                 </div>
-            {% else %}
-                <li>Pas (encore !) d'articles</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="row text-center">
 
-        <ul class="pagination">
+            </div>
 
-            <li><a href="{% if page > 1 %}{{ path('actualites_paginated', {'page': page - 1}) }}{% endif %}"> &lang; </a>
-            </li>
-            {% for p in range(1, nbPages) %}
-                <li{% if p == page %} class="active"{% endif %}>
-                    <a href="{{ path('actualites_paginated', {'page': p}) }}">{{ p }}</a>
+        {% else %}
+            Pas (encore !) d'articles
+        {% endfor %}
+
+        {#pagination#}
+        <div class="row">
+
+            <ul class="col m11 pagination center-align">
+
+                <li>
+                    <a href="{% if page > 1 %}{{ path('actualites_paginated', {'page': page - 1}) }}{% endif %}"> &lang; </a>
                 </li>
-            {% endfor %}
-            <li>
-                <a href="{% if page < nbPages %}{{ path('actualites_paginated', {'page': page + 1}) }}{% endif %}">
-                    &rang; </a>
-            </li>
+                {% for p in range(1, nbPages) %}
+                    <li{% if p == page %} class="active"{% endif %}>
+                        <a href="{{ path('actualites_paginated', {'page': p}) }}">{{ p }}</a>
+                    </li>
+                {% endfor %}
+                <li>
+                    <a href="{% if page < nbPages %}{{ path('actualites_paginated', {'page': page + 1}) }}{% endif %}">
+                &rang; </a>
+                </li>
 
-
-        </ul>
+            </ul>
+        </div>
     </div>
-
+</div>
 
 {% endblock %}
