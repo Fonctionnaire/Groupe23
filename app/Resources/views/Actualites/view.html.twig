@@ -48,7 +48,7 @@
                 {% if article.enableComments == true  %}
                     {% if is_granted('ROLE_USER') %}
                         <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
-                           class="btn btn-default openmodal">
+                           class="btn btn-default modal-trigger" data-target="modal1">
                             <i class="fa fa-comment"></i>
                             Commenter
                         </a>

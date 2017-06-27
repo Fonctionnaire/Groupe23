@@ -4,7 +4,10 @@
 <nav class="transparent">
     <div class="nav-wrapper lime darken-2">
         <a href="{{ path('index') }}" class="brand-logo"><img src="{{ asset('images/logo-menu.png') }}" class="logo" /></a>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a id="menu" href="#" data-activates="nav-mobile" class="btn btn-floating btn-large lime darken-2 blue-grey-text text-lighten-5 button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+
         <ul id="desktop" class="right hide-on-med-and-down">
             <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="navobs">Observations<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="waves-effect waves-rednao police32" href="{{ path('nous_contacter') }}">Contact</a></li>
@@ -30,6 +33,7 @@
 </ul>
 
 <!-- MENU DEROULANT Admin -->
+{% if is_granted('ROLE_ADMIN') %}
 <ul id="admin" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
     <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminUsers') }}">Gestion des utilisateurs</a></li>
     <li role="separator" class="divider"></li>
@@ -41,6 +45,7 @@
     <li role="separator" class="divider"></li>
     <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 openmodal" href="{{ path('filter') }}">Exporter les données</a></li>
 </ul>
+{% endif %}
 
 <!-- MENU DEROULANT Observations -->
 <ul id="navobs" class="dropdown-content lime darken-2">
@@ -134,6 +139,8 @@
     {% endif %}
 
 </ul> <!-- Fin Menu Mobile -->
+
+
 
 
 
