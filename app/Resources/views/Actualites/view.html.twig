@@ -59,17 +59,17 @@
                         </a>
 
                         {#bouton commenter quand commentaires activés#}
-                        {#{% if article.enableComments == true  %}#}
-                        {% if is_granted('ROLE_USER') %}
-                            <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommnenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
-                                Commenter
-                            </a>
-                        {% else %}
-                            <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="articlecommenter" href="{{ path('fos_user_security_login') }}">
-                                Commenter
-                            </a>
+                        {% if article.enableComments == true  %}
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommnenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
+                                    Commenter
+                                </a>
+                            {% else %}
+                                <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="articlecommenter" href="{{ path('fos_user_security_login') }}">
+                                    Commenter
+                                </a>
+                            {% endif %}
                         {% endif %}
-                        {# {% endif %}#}
 
                         {#bouton super admin modifier#}
                         {% if is_granted('ROLE_ADMIN') %}
