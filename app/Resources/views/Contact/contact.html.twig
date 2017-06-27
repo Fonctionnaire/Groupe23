@@ -1,39 +1,41 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-<div class="container">
+<div class="container container_contact blue-grey lighten-5 z-depth-1">
+
+    <h1 class="titre_nous_contacter lime-text text-darken-1">Nous contacter</h1>
+
     {{ form_start(form) }}
 
         {{ form_errors(form) }}
 
+    <div class="input-field">
         {{ form_label(form.name, "Votre nom") }}
         {{ form_errors(form.name) }}
-        {{ form_widget(form.name) }}
-
+        {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
+    </div>
+    <div class="input-field">
         {{ form_label(form.firstName, "Votre prénom") }}
         {{ form_errors(form.firstName) }}
-        {{ form_widget(form.firstName) }}
-
+        {{ form_widget(form.firstName, {'attr': {'class': 'validate'}}) }}
+    </div>
+    <div class="input-field">
         {{ form_label(form.mail, "Votre E-mail") }}
         {{ form_errors(form.mail) }}
-        {{ form_widget(form.mail) }}
-
+        {{ form_widget(form.mail, {'attr': {'class': 'validate'}}) }}
+    </div>
+    <div class="input-field">
         {{ form_label(form.subject, "Sujet") }}
         {{ form_errors(form.subject) }}
-        {{ form_widget(form.subject) }}
-
+        {{ form_widget(form.subject, {'attr': {'class': 'validate'}}) }}
+    </div>
+    <div class="input-field">
         {{ form_label(form.message, "Votre message") }}
         {{ form_errors(form.message) }}
-        {{ form_widget(form.message) }}
+        {{ form_widget(form.message, {'attr': {'class': 'materialize-textarea validate'}}) }}
+    </div>
 
+        {{ form_widget(form.envoyer, {'attr': {'class': 'valider_contact z-depth-1 deep-orange darken-4'}})}}
     {{ form_end(form) }}
 
-
-        <div id="flashMsg">
-        {% for flash_message in app.session.flashBag.get('notice') %}
-            <div class="flashMsg">
-                {{ flash_message }}
-            </div>
-        {% endfor %}
-        </div>
 </div>
 {% endblock %}

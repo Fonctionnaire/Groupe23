@@ -1,4 +1,10 @@
 {% extends "layout.html.twig" %}
+{% block scrollspy %}
+    <script>
+        $('.scrollspy').scrollSpy();
+    </script>
+    <script src="{{ asset('js/depth.js') }}"></script>
+{% endblock %}
 {% block content %}
 
     <div class="main-wrapper">
@@ -8,15 +14,131 @@
             <source src="{{ asset('videos/Oiseaux-test-1.ogg') }}" type="video/ogg">
             Votre navigateur ne prend pas en charge cette vidéo.
         </video>
-
+        <img src="{{ asset('images/bird-2179663.jpg') }}" alt="oiseau bleu" class="image_petit_ecran">
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
-            <div class="text-video">
-                <a href="{{ path('addObservation') }}"><p>Je participe !</p></a>
-            </div>
+                <a href="{{ path('addObservation') }}" class="text-video waves-effect waves-light btn deep-orange darken-4 center-align z-depth-5">Je participe</a>
         {% else %}
-            <div class="text-video">
-                <a href="{{ path('fos_user_security_login') }}"><p>Je participe !</p></a>
-            </div>
+                <a href="{{ path('fos_user_security_login') }}" class="text-video waves-effect waves-light btn deep-orange darken-4 z-depth-5" >Je participe</a>
         {% endif %}
+
+        <a href="#ancre_scroll"><img src="{{ asset('images/ic_keyboard_arrow_down_black_48px.svg') }}" alt="chevron" class="chevron-down"></a>
+
+    </div>
+
+    <div class="container blue-grey lighten-5 container_accueil z-depth-2">
+        <div class="row">
+            <a href="{{ path('listTaxrefs') }}">
+                <div class="lime darken-1 col s3 encart_accueil z-depth-2">
+                    <div>
+                        <img src="{{ asset('images/map_interactive.jpg') }}" alt="carte interactive" class="carte_interactive">
+
+                    </div>
+                    <div>
+                        <p>Carte interactive</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ path('addObservation') }}">
+                <div class="lime darken-1 col s3 encart_accueil offset-s6 z-depth-2">
+                    <div>
+                    <img src="{{ asset('images/bird-2370015.jpg') }}" alt="oiseau rouge" class="oiseau_encart_deux">
+                    </div>
+                    <div>
+                        <p>Ajouter une observation</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <hr class="hr_encart">
+        <h1 class="center-align lime-text text-darken-1 titre_nao">NAO</h1>
+        <div class="block_central">
+            <div class="text_gauche">
+                <p>
+                Nous sommes des passionnés d’ornithologie, naturalistes professionnels ou amateurs engagés pour la protection de l’environnement.
+                    <br>
+                    <br>
+                    La plupart de nos bénévoles exercent en tant que professionnels dans le milieu de l’environnement, du développement durable, de l’ornithologie, ou encore de l’agriculture.
+                    <br>
+                    <br>
+                Notre association  intervient régulièrement dans toute la France, pour alerter et sensibiliser les habitants à la fragilité de l’écosystème et par extension celle de nos compères ailés.
+                    <br>
+                    <br>
+                Outre ces campagnes d’initiation à la préservation du patrimoine naturel, nous menons depuis des années des recherches sur le comportement, le
+                </p>
+            </div>
+            <div id="ancre_scroll" class="image_centrale scrollspy">
+                <img src="{{ asset('images/animal-1866847_1920.jpg') }}" alt="peroquet" class="accueil_peroquet z-depth-1">
+            </div>
+            <div class="text_droite">
+                <p>
+                    rôle et l’évolution des populations d’oiseaux sur le territoire français.
+                    <br>
+                    <br>
+                    A nos yeux, la protection de l’environnement est l’affaire de tous, c’est pourquoi nous avons créé ce programme participatif de récolte d’observations citoyennes.
+                    <br>
+                    <br>
+                    Pour étudier le plus finement possible les effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité, les chercheurs ont besoin de recevoir de nombreuses données, et cela nécessite un important réseau d'observateurs pour assurer localement les relevés et inventaires sur le terrain.
+                    <br>
+                    <br>
+                    La mise en commun de ces données permet de réaliser des analyses au niveau national et européen.
+                </p>
+                <hr>
+            </div>
+        </div>
+        <div class="accueil_block_deux">
+            <h4 class="center-align lime-text text-darken-1">Nos amis les oiseaux</h4>
+            <h4 class="center-align lime-text text-darken-1">Mieux les connaitre pour mieux les protéger</h4>
+        </div>
+        <div class="accueil_last_text">
+            <p>
+                Créez votre compte Observateur, et participez dès maintenant au programme !
+                Soumettez vos observations en indiquant l’espèce rencontrée, la date et le lieu de l’observation. Que vous soyez sur smartphone ou sur ordinateur, notre carte de géolocalisation vous aide à indiquer facilement les coordonnées GPS.
+                <br>
+                N’hésitez pas à prendre en photo vos découvertes !
+            </p>
+            <p>
+                Toutes les fiches d’observation sont vérifiées par nos naturalistes avant d’être publiées. En tant qu’Observateur, vous avez accès à toutes les observations publiées grâce à la carte interactive. Par souci de protection des espèces en danger ou en couvaison, certaines observations peuvent ne pas être publiées.
+            </p>
+        </div>
+
+        <hr class="hr_encart">
+
+        <div class="row last_block">
+            <a href="{{ path('nous_contacter') }}">
+                <div class="lime darken-1 col s3 encart_accueil z-depth-2">
+                    <div>
+                        <img src="{{ asset('images/cedar-964605_1920.jpg') }}" alt="oiseau posé" class="devenir_naturaliste">
+
+                    </div>
+                    <div>
+                        <p>nous contacter</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="lime darken-1 col s3 encart_accueil facebook z-depth-2">
+                    <div>
+                        <img src="{{ asset('images/bird-386725_1280.jpg') }}" alt="facebook" class="devenir_naturaliste">
+
+                    </div>
+                    <div>
+                        <p class="encart_facebook">facebook</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#mailmunch-pop-507196">
+                <div class="lime darken-1 col s3 encart_accueil z-depth-2">
+                    <div>
+                        <img src="{{ asset('images/ave-2103100_1920.jpg') }}" alt="newsletter" class="devenir_naturaliste">
+
+                    </div>
+                    <div>
+                        <p>inscription newsletter</p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 {% endblock %}
