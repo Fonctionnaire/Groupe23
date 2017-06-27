@@ -1,39 +1,27 @@
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
-<form method="post" action="{{ path('validation', {'id': observation.id}) }}">
-    <div class="modal-header">
-        <h1>Traitement de l'observation</h1>
-    </div>
-    <div class="modal-body">
-        {{ form_errors(form) }}
+{% block titre %}
+    <h4>Traitement de l'observation</h4>
+{% endblock %}
+    {% if observation.taxref.protected == true %}
+        <p><strong>Rappel : Espèce protégée.</strong></p>
+    {% endif %}
 
-        <div>
-            {{ form_label(form.adminComment, "Votre commentaire") }}
-            {{ form_errors(form.adminComment) }}
-            {{ form_widget(form.adminComment) }}
-        </div>
+{% block comment %}
+                    {{ form_label(form.adminComment, "Votre commentaire") }}
+                    {{ form_errors(form.adminComment) }}
+                    {{ form_widget(form.adminComment) }}
+{% endblock %}
 
-        <div>
-            {{ form_label(form.valided, "Validation") }}
-            {{ form_errors(form.valided) }}
-            {{ form_widget(form.valided) }}
-        </div>
-
-        {% if observation.taxref.protected == true %}
-            <p><strong>Rappel : Espèce protégée.</strong></p>
-        {% endif %}
-
-        <div>
-            {{ form_label(form.valided, "Publication") }}
-            {{ form_errors(form.isVisible) }}
-            {{ form_widget(form.isVisible) }}
-        </div>
-
-    </div>
-    <div class="modal-footer">
-
-        {{ form_rest(form) }}
-        <div class="form-group">
-            <input type="submit" value="Valider" class="btn btn-default pull-right"/>
-        </div>
-    </div>
-</form>
+{% block valided %}
+                    {{ form_label(form.valided, "Validation") }}
+                    {{ form_errors(form.valided) }}
+                    {{ form_widget(form.valided) }}
+{% endblock %}
+{% block visible %}
+                    {{ form_label(form.valided, "Publication") }}
+                    {{ form_errors(form.isVisible) }}
+                    {{ form_widget(form.isVisible) }}
+{% endblock %}
+{% block modalfooter %}
+    {{ form_rest(form) }}
+    <input type="submit" value="Valider" class="waves-effect waves-green btn-flat"/>
+{% endblock %}

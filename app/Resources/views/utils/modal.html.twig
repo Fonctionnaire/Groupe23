@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -7,6 +7,46 @@
 
             </script>
 
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </div><!-- /.modal -->
+
+<!-- Modal Structure -->
+<!-- Modal Trigger -->
+
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        {% block titre %}
+
+        {% endblock %}
+        <div class="row">
+            <form class="col s12" method="post" action="{{ path('validation', {'id': observation.id}) }}">
+                <div class="row modal-form-row">
+                    <div class="input-field col s12">
+                        {% block comment %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {% block valided %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {% block visible %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        {% block modalfooter %}
+
+        {% endblock %}
+
+    </div>
+</div>

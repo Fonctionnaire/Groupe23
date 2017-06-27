@@ -1,67 +1,77 @@
 {% extends "layout.html.twig" %}
 {% block content %}
 <div class="container">
-    <div id="observationtab" class="table-responsive">
-        <table class="table table-hover" id="myTable">
-            <thead>
-            <tr>
-                <th>Validation</th>
-                <th>Date</th>
-                <th>Taxref</th>
-                <th>Auteur</th>
-                <th>Publication</th>
-                <th>Administrateur</th>
-                <th>Action</th>
+    <div class="row">
+        <div id="admin" class="col s12">
+            <div class="card material-table">
+                <div class="table-header">
+                    <span class="table-title">gestion des observations</span>
+                    <div class="actions">
+                        <a href="#" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                    </div>
+                </div>
+                <table id="datatable">
+                    <thead>
+                    <tr>
+                        <th>validation</th>
+                        <th>date</th>
+                        <th>taxref</th>
+                        <th>auteur</th>
+                        <th>publication</th>
+                        <th>administrateur</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for observation in listObservations %}
+                        <tr {% if observation.waiting == true %}
+                            class="danger"
+                                {% endif %}>
 
-            </tr>
-            </thead>
-            <tbody>
-            {% for observation in listObservations %}
-                <tr {% if observation.waiting == true %}
-                        class="danger"
-                    {% endif %}>
-
-                    <td>
-                        {% if observation.waiting == true %}
-                            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: red;"></i>
-                        {% else %}
-                            {% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
-                            {% else %}<i class="fa fa-times" aria-hidden="true"></i>
-                            {% endif %}
-                        {% endif %}
-
-                    </td>
-                    <td>{{ observation.date|date("d-m-Y H:i:s") }}</td>
-                    <td>{{ observation.taxref.lbnom }}</td>
-                    <td>{{ observation.user.username }}</td>
-                    <td>
-                        {% if observation.waiting == false %}
-                            {% if observation.valided == false %}
-                                NP
-                            {% else%}
-                                {% if observation.isVisible == true %}
-                                    <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
-                                {% else %}NP
+                            <td>
+                                {% if observation.waiting == true %}
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: red;"></i>
+                                {% else %}
+                                    {% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+                                    {% else %}<i class="fa fa-times" aria-hidden="true"></i>
+                                    {% endif %}
                                 {% endif %}
+
+                            </td>
+                            <td>{{ observation.date|date("d-m-Y H:i:s") }}</td>
+                            <td>{{ observation.taxref.lbnom }}</td>
+                            <td>{{ observation.user.username }}</td>
+                            <td>
+                                {% if observation.waiting == false %}
+                                    {% if observation.valided == false %}
+                                        NP
+                                    {% else%}
+                                        {% if observation.isVisible == true %}
+                                            <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+                                        {% else %}NP
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>{{ observation.adminUsername }} <br />
+                                {% if observation.adminComment is not null %}
+                                Commentaire :
+                                {{ observation.adminComment }}</td>
                             {% endif %}
-                        {% endif %}
-                    </td>
-                    <td>{{ observation.adminUsername }} <br />
-                        {% if observation.adminComment is not null %}
-                        Commentaire :
-                        {{ observation.adminComment }}</td>
-                    {% endif %}
-                    <td>
-                        <a href="{{ path('viewObservation', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
+                            <td>
+                                <a href="{{ path('viewObservation', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
 
-                        <a href="{{ path('edit', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="{{ path('edit', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-edit"></i></a>
 
-                        <a href="{{ path('deleteObservation', {'id': observation.id}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer cette observation ?"><i class="glyphicon glyphicon-trash"></i></a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                                <a href="{{ path('deleteObservation', {'id': observation.id}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer cette observation ?"><i class="glyphicon glyphicon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
