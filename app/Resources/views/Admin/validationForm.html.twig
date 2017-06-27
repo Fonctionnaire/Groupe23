@@ -1,37 +1,42 @@
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
 <form method="post" action="{{ path('validation', {'id': observation.id}) }}">
     <div class="modal-header">
         <h1>Traitement de l'observation</h1>
     </div>
-    <div class="modal-body">
+    <div class="modal-content">
         {{ form_errors(form) }}
 
         <div>
-            {{ form_label(form.adminComment, "Votre commentaire") }}
-            {{ form_errors(form.adminComment) }}
-            {{ form_widget(form.adminComment) }}
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="commentaire" type="text" name="appbundle_observation[adminComment]" class="materialize-textarea"></textarea>
+                    <label for="commentaire">Commentaire</label>
+                </div>
+            </div>
+
+
         </div>
 
         <div>
-            {{ form_label(form.valided, "Validation") }}
-            {{ form_errors(form.valided) }}
-            {{ form_widget(form.valided) }}
+            <p>
+                <input type="checkbox" id="appbundle_observation_valided" name="appbundle_observation[valided]" />
+                <label for="appbundle_observation_valided">Validé</label>
+            </p>
+
         </div>
 
         {% if observation.taxref.protected == true %}
             <p><strong>Rappel : Espèce protégée.</strong></p>
         {% endif %}
 
-        <div>
-            {{ form_label(form.valided, "Publication") }}
-            {{ form_errors(form.isVisible) }}
-            {{ form_widget(form.isVisible) }}
-        </div>
+        <p>
+            <input type="checkbox" id="appbundle_observation_isVisible" name="appbundle_observation[isVisible]" />
+            <label for="appbundle_observation_isVisible">Visible du public</label>
+        </p>
 
     </div>
     <div class="modal-footer">
 
-        {{ form_rest(form) }}
+        {{ form_widget(form._token) }}
         <div class="form-group">
             <input type="submit" value="Valider" class="btn btn-default pull-right"/>
         </div>

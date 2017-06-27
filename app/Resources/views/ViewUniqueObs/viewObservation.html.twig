@@ -88,7 +88,7 @@
                     <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude}}</span></p>
                     <p>Longitude: <span id="view-obs-longitude">{{ observation.longitude }}</span></p>
                     {% if observation.waiting == true %}
-                        <a href="{{ path('validation', {'id': observation.id}) }}" class="btn btn-default navbar-btn openmodal"><i class="fa fa-check"></i> Traiter l'observation</a>
+                        <a data-target="modal1" href="{{ path('validation', {'id': observation.id}) }}" class="modal-trigger btn btn-default navbar-btn"><i class="fa fa-check"></i> Traiter l'observation</a>
                     {% endif %}
                 {% else %}
                     <p class="latLng-hide">Latitude: <span id="view-obs-latitude">{{ observation.latitude|number_format(3)  }}</span></p>
@@ -208,4 +208,6 @@
 
         </div>
     </div>
+
+
 {% endblock %}

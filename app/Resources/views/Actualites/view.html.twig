@@ -64,6 +64,21 @@
                             {% endif %}
                         {% endif %}
 
+
+                {% if article.enableComments == true  %}
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
+                           class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" data-target="modal1">
+                            <i class="fa fa-comment"></i>
+                            Commenter
+                        </a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
+                            <i class="material-icons">question_answer</i>
+                            Commenter
+                        </a>
+                    {% endif %}
+
                         {#bouton super admin modifier#}
                         {% if is_granted('ROLE_ADMIN') %}
                             <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="editarticle" href="{{ path('editArticle', {'slug': article.slug}) }}">
@@ -71,6 +86,7 @@
                             </a>
                         {% endif %}
                     </p>
+
 
                 </div>
             </div>

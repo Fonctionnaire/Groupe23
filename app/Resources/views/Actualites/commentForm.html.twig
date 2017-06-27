@@ -1,9 +1,9 @@
- {% form_theme form 'bootstrap_3_layout.html.twig' %}
+ {% form_theme form 'utils/materialize_layout.html.twig' %}
     {{ form_start(form) }}
 <div class="modal-header">
     <h1>Ajout d'un commentaire</h1>
 </div>
-<div class="modal-body">
+<div class="modal-content">
     {# Les erreurs générales du formulaire. #}
     {{ form_errors(form) }}
     {# Génération du label + error + widget pour un champ. #}
