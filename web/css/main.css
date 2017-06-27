@@ -2,12 +2,22 @@ html{
     font-family: 'Quicksand', sans-serif;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 .police32{
     font-size: 20px !important;
 }
 
 .brand-logo img {
-    width: 266px;
+    width: 266px
 }
 
 .containertemplate {
@@ -23,7 +33,7 @@ html{
 }
 
 .profil{
-padding: 10px;
+    padding: 10px;
 }
 
 .actualite{
@@ -41,8 +51,6 @@ padding: 10px;
 
 .datearticles{
     display: inline-block;
-
-
 }
 .listarticle{
     margin-bottom: 60px;
@@ -51,7 +59,6 @@ padding: 10px;
 .lirearticle{
     float : right;
 }
-
 
 .imagearticles{
     width: 215px;
@@ -78,7 +85,6 @@ padding: 10px;
 }
 
 /* boutons de la page article */
-
 
 .articlebtn{
     width: 150px;
@@ -116,7 +122,6 @@ nav li:hover {
     background-color: #bf360c;
 }
 
-
 h1{
     font-size: 50px !important;
 }
@@ -144,7 +149,224 @@ h3{
     margin-bottom: 0 !important;
 }
 
+.container_accueil
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px !important;
+    border-radius: 3px;
+    min-width: 85% !important;
+}
 
+.container_accueil .row
+{
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.encart_accueil
+{
+    height: 150px;
+    padding: 0 !important;
+    display: flex;
+}
+
+.encart_accueil > div
+{
+    width: 50%;
+
+}
+
+.encart_accueil p
+{
+    margin: 0;
+    padding-top: 17%;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.carte_interactive
+{
+    width: 100%;
+    height: 150px;
+}
+
+.oiseau_encart_deux
+{
+    width: 100%;
+    height: 150px;
+}
+
+.hr_encart
+{
+    border-color: #afb42b;
+}
+
+.titre_nao
+{
+    font-size: 100px;
+}
+
+.block_central
+{
+    display: flex;
+    font-size: 16px;
+}
+
+.text_gauche
+{
+    max-width: 30%;
+    text-align: justify;
+    padding-right: 15px;
+}
+
+.text_droite
+{
+    max-width: 30%;
+    text-align: justify;
+    padding-left: 15px;
+}
+
+.image_centrale
+{
+    margin: auto;
+}
+
+.accueil_peroquet
+{
+    width: 480px;
+    height:310px;
+}
+
+.accueil_block_deux h4
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.accueil_last_text p
+{
+    font-size: 16px;
+    text-align: justify;
+}
+
+.last_block
+{
+    margin-top: 25px;
+}
+
+.devenir_naturaliste
+{
+    width: 100%;
+    height: 150px;
+}
+
+.facebook
+{
+    margin-left: 12.5% !important;
+    margin-right: 12.5% !important;
+}
+
+.logo_facebook
+{
+    width: 120px;
+    height: 150px;
+}
+
+.facebook p
+{
+    margin-left: -90px !important;
+    padding-top: 50% !important;
+}
+
+.footer
+{
+
+    display: flex;
+    min-height: 10%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#logo_et_nom
+{
+    display: inherit;
+}
+
+.logo_footer
+{
+    height: 200px;
+    width: 200px;
+
+}
+
+.nom_footer
+{
+    height: 100px;
+    width: 250px;
+}
+
+.nom_footer p
+{
+    font-size: 20px;
+    color: white;
+}
+
+.list_footer
+{
+    color: white;
+}
+
+.list_footer span
+{
+    padding-bottom: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.list_footer a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.newsletter_facebook
+{
+    display: flex;
+}
+
+.block_middle
+{
+    padding-left: 10%;
+    margin: auto;
+}
+
+.block_right
+{
+    padding-left: 10%;
+    margin: auto;
+}
+
+.block_right a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.newsletter_facebook img
+{
+    width: 55px;
+    height: 55px;
+}
+
+.newsletter_facebook p
+{
+    font-size: 20px;
+    color: white;
+    margin: auto;
+}
 
 /* PAGE AJOUT OBSERVATION */
 
@@ -166,6 +388,7 @@ h3{
 {
     text-align: center;
 }
+
 
 /* PAGE VIEW D'OBSERVATIONS */
 
@@ -221,29 +444,53 @@ h3{
 
 /* CONTACT FORM */
 
-#comments
+.container_contact
 {
-    height: 260px !important;
-    resize: none;
-    overflow: auto;
+    border-radius: 3px;
+    margin-top: 25px;
+    margin-bottom: 125px;
+    padding: 25px;
 }
 
-#flashMsg
-{
-    margin-top: 35px;
+.input-field label {
+    color: #c0ca33;
+    font-size: 20px;
 }
 
-.flashMsg
-{
-    width: 60%;
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: rgba(42, 245, 48, 0.7);
-    font-size: 1.2em;
-    font-weight: bold;
+.input-field input[type=text] {
+
+    border-bottom: 2px solid #c0ca33;
 }
+
+.input-field input[type=email] {
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field input[type=text].valid
+{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field input[type=email].valid
+{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field textarea{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field textarea.valid
+{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.valider_contact
+{
+    display: block;
+    margin-left: auto;
+}
+
 
 .formbirthday .form-control{
     width: 75px;
@@ -317,52 +564,163 @@ h3{
 
     .text-video
     {
+
         position: absolute;
-        color: black;
-        width: 20%;
-        top: 80%;
-        left: 38%;
-        text-align: center;
+        bottom: 20%;
+
+        left: 0;
+        right: 0;
+        margin-right: auto;
+        margin-left: auto;
+        width: 170px;
+        font-size: 20px;
+        text-transform: lowercase;
         transition: 1s;
     }
 
     .text-video:hover
     {
-        transform: scale(1.2);
+        transform: scale(1.3);
     }
 
-    .text-video p
+    .chevron-down
     {
-        background-color: rgba(255, 255, 255, 0.70);
-        border-radius: 5px;
-        padding: 10px;
-        margin: auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-right: auto;
+        margin-left: auto;
+        width: 50px;
+        height: 100px;
     }
 
-    .text-video a
+    .image_petit_ecran
     {
-        color: black;
-        text-decoration: none;
+        display: none;
     }
 
 }
 
-@media all and (max-width: 1024px) {
-    #video-oiseaux {
+@media all and (max-width: 1024px)
+{
+    /* PAGE D'ACCUEIL */
+
+    #video-oiseaux
+    {
         display: none;
     }
 
-    .text-video {
+    .image_petit_ecran
+    {
+        display: inherit;
+        object-fit: initial;
+        width: 100%;
+        height: 95vh;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .text-video
+    {
+
+        position: absolute;
+        bottom: 20%;
+        left: 0;
+        right: 0;
+        width: 170px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+        text-transform: lowercase;
+    }
+
+
+    .chevron-down
+    {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50px;
+        height: 100px;
+    }
+
+    .encart_accueil
+    {
         display: none;
+    }
+
+    .container_accueil
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .block_central
+    {
+        display: initial;
+    }
+
+    .text_gauche
+    {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .text_droite
+    {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .accueil_peroquet
+    {
+        width: 100%;
+    }
+
+    .footer
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo_footer
+    {
+        margin: auto;
+    }
+
+    .nom_footer
+    {
+        display: none;
+    }
+
+    .block_middle
+    {
+        margin: initial;
+    }
+
+    .block_right
+    {
+        margin: initial;
+        margin-bottom: 25px;
+    }
+
+    .block_right p
+    {
+        margin: initial;
+        padding-top: 15px;
     }
 }
 
 @media all and (max-width: 768px) {
 
-   .containertemplate{
-       width: 100%;
-       margin: 0;
-   }
+    .containertemplate{
+        width: 100%;
+        margin: 0;
+    }
 
     .imagearticle {
         width: 60%;
@@ -373,11 +731,10 @@ h3{
     }
 
     .imagearticles{
-       display: none;
+        display: none;
     }
 
     .imagearticlesmobile{
-
         width: 60%;
         margin-left: 20%;
         margin-right: auto;
@@ -403,9 +760,11 @@ h3{
     #articleretour{
         float: none;
     }
+
     #editarticle{
-         float: none;
-     }
+        float: none;
+    }
+
     .datearticles{
         display: block;
         float: none;
@@ -442,7 +801,6 @@ h3{
     }
 
     .imagearticlesmobile{
-
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -451,8 +809,8 @@ h3{
         margin-top: 20px;
         display: inline-block;
     }
-
 }
+/* ================================== */
 
 
 
