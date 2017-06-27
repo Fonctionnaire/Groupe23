@@ -178,8 +178,8 @@ h1{
 
 .facebook p
 {
-    margin-left: -90px !important;
-    padding-top: 50% !important;
+
+    padding-top: 28% !important;
 }
 
 .footer
@@ -345,11 +345,16 @@ h1{
 
 /* CONTACT FORM */
 
+.titre_nous_contacter
+{
+    margin-bottom: 50px;
+}
+
 .container_contact
 {
     border-radius: 3px;
     margin-top: 25px;
-    margin-bottom: 125px;
+    margin-bottom: 25px;
     padding: 25px;
 }
 
