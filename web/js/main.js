@@ -20,6 +20,10 @@ $(document).ready(function () {
     //select
     $('select').material_select();
 
+    $(window).on('resize', function () {
+        $('.card').toggleClass('horizontal', $(window).width() < 768);
+    });
+
 
     //dataTable
     $('#myTable').dataTable({

@@ -12,6 +12,8 @@ main {
     flex: 1 0 auto;
 }
 
+
+
 .police32{
     font-size: 20px !important;
 }
@@ -845,12 +847,16 @@ h3{
     }
 }
     /* ================================== */
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+}
 
 
-
-
-
-
+.obs-modal-img{
+    overflow: hidden;
+}
 
 
 

@@ -76,4 +76,25 @@ class ObservationController extends BaseController
             'observation' => $observation,
         ));
     }
+
+    /**
+     * @Route("/observationModale/{id}", options={"expose"=true} , name="observationModale")
+     * @Method({"GET", "POST"})
+     */
+    public function observationModaleAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $observation = $em->getRepository('AppBundle:Observation')->find($id);
+
+
+        if (null === $observation) {
+            throw new NotFoundHttpException("L'observation d'id " . $id . " n'existe pas.");
+        }
+
+
+        return $this->render(':Admin:observationModale.html.twig', array(
+            'observation' => $observation,
+        ));
+    }
 }
