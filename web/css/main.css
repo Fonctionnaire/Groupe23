@@ -847,16 +847,4 @@ h3{
     }
 }
     /* ================================== */
-.clear {
-    clear: both;
-    height: 0;
-    line-height: 0;
-}
-
-
-.obs-modal-img{
-    overflow: hidden;
-}
-
-
 
