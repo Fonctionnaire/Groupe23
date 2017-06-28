@@ -22,12 +22,15 @@
                     {% else %}
                        <img class="imagearticles z-depth-1" src="{{ asset('images/V10-Logo.svg') }}" />
                     {% endif %}
-                    <h2 class="blue-grey-text-text text-blue-grey darken-3 titrearticles"> {{ article.title }}</h2>
+
+                    <h2 class="blue-grey-text-text text-blue-grey darken-3 titrearticles">
+                        <a href="{{ path('view_article', {'slug': article.slug}) }}" role="button">{{ article.title }}</a>
+                    </h2>
+
                     <div class="metadata datearticles">{{ article.date|date('d/m/Y') }}</div>
 
                     {#sur mobile#}
                     <div>
-
                         {% if article.imageName is not null %}
                             <img class="imagearticlesmobile z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                         {% else %}

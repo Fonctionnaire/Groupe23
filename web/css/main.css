@@ -30,6 +30,10 @@ main {
 
 .btn-large{
     text-transform : lowercase;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: center;
+    font-size: 20px;
 }
 
 .profil{
@@ -43,7 +47,20 @@ main {
     padding : 10px;
 }
 
+.addactualite{
+    padding: 10px;
+}
+
 /* page actualités" */
+
+h2 a{
+    color: #37474f;
+}
+
+.pagination li.active{
+    background-color: #c0ca33;
+}
+
 
 .titrearticles{
     padding-bottom: 50px;
@@ -84,15 +101,20 @@ main {
     margin-left: 20px;
 }
 
+#nbcomment{
+    display: inline-block;
+    float: right;
+}
+
 /* boutons de la page article */
 
 .articlebtn{
-    width: 150px;
+    width: 154px;
     text-align: center;
 }
 
 #editarticle{
-    float: right;
+    text-align: center;
 }
 
 #articleretour{
@@ -100,14 +122,14 @@ main {
 }
 
 #articlecommenter{
-    text-align: center;
+    float: right;
     margin-left: 10%;
     margin-right: 10%;
 }
 
-#articleusercommnenter{
+#articleusercommenter{
 
-    text-align: center;
+    float: right;
     margin-left: auto;
     margin-right: auto;
 }
@@ -442,6 +464,86 @@ h3{
     font-style: italic;
 }
 
+/* ADD ARTICLE FORM */
+/***********************************/
+
+
+.checkbox label{
+display: none;
+}
+
+
+#appbundle_article_enableComments{
+
+}
+
+.control-label{
+    color: #c0ca33;
+    font-size: 20px !important;
+}
+
+.materialize-textarea{
+    margin-top: 50px;
+    margin-bottom: 15px;
+
+}
+
+.file-field .btn, .file-field .btn-large{
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+    width: 160px;
+}
+
+.enregistrerarticle{
+    width: 160px;
+    height : 36px;
+    line-height: 36px;
+    float:right;
+
+}
+
+/* custom textarea tinymce */
+
+#mceu_37{
+    display: none;
+
+}
+
+.mce-container *, .mce-widget span{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.mce-container, .mce-container *{
+    background-color: #c0ca33 !important;
+
+}
+
+#mceu_24 :hover{
+    background-color: #c0ca33 !important;
+}
+
+.mce-menu-item:hover{
+    background-color: #c0ca33 !important;
+}
+
+.mce-menu-item.mce-selected{
+    background-color: #c0ca33 !important;
+    background-image: linear-gradient(to bottom, #c0ca33, #c0ca33) !important;
+}
+
+.mce-menu-item{
+    background-color: #c0ca33 !important;
+    background-image: linear-gradient(to bottom, #c0ca33, #c0ca33) !important;
+}
+
+.mce-menu-has-icons i{
+
+    background-color: #c0ca33 !important;
+}
+
+
+
 /* CONTACT FORM */
 
 .container_contact
@@ -450,6 +552,10 @@ h3{
     margin-top: 25px;
     margin-bottom: 125px;
     padding: 25px;
+}
+
+.mce-panel{
+    border : 1px solid #c0ca33 !important;
 }
 
 .input-field label {
@@ -747,12 +853,20 @@ h3{
     .article {
         margin: 0;
     }
+
+    .addactualite{
+        margin: 0;
+    }
+
+    #articleh1mobile{
+        font-size: 40px !important;
+    }
 }
 
 @media all and (max-width: 600px) {
 
     .articlebtn {
-        width: 60%;
+        width: 65%;
         margin-bottom: 20px;
         padding: 0;
     }
@@ -762,6 +876,14 @@ h3{
     }
 
     #editarticle{
+        float: none;
+    }
+
+    #articleusercommenter{
+        float: none;
+    }
+
+    #articlecommenter{
         float: none;
     }
 
@@ -778,6 +900,10 @@ h3{
         float: none;
         margin-bottom: 10px;
         margin-top: 20px;
+    }
+
+    #articleh1mobile{
+        font-size: 35px !important;
     }
 }
 

@@ -1,55 +1,70 @@
+{{ tinymce_init() }}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{{ form_start(form) }}
+{{ form_errors(form) }}
 
-<div class="well">
-
-
-    {{ tinymce_init() }}
-    {% form_theme form 'bootstrap_3_layout.html.twig' %}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    {% if form.date is defined %}
-        {{ form_label(form.date, "Date de publication") }}
-        {{ form_errors(form.date) }}
-        {{ form_widget(form.date) }}
-    {% endif %}
-
-
-    <div>
-        {{ form_label(form.title, "Titre")}}
-        {{ form_errors(form.title) }}
-        {{ form_widget(form.title) }}
+    <div class="row">
+        <div class="col m6 s12">
+            <div class="input-field">
+                {% if form.date is defined %}
+                    {{ form_label(form.date, "Date de publication") }}
+                    {{ form_errors(form.date) }}
+                    {{ form_widget(form.date) }}
+                {% endif %}
+            </div>
+         </div>
     </div>
 
-    <div>
-        {{ form_label(form.imageFile) }}
-        {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'Photo d\'illustration', 'data-buttonName': 'btn-primary', 'data-buttonText': 'Parcourir'}}) }}
-        {{ form_errors(form.imageFile) }}
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field">
+                {{ form_label(form.title, "Titre")}}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+        </div>
     </div>
 
-
-
-    <div>
-        {{ form_label(form.content, "Contenu") }}
-        {{ form_errors(form.content) }}
-        {{ form_widget(form.content) }}
+    <div class="row">
+        <div class="col m6 s12">
+            <div class="file-field input-file valided">
+                {{ form_label(form.imageFile) }}
+                {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'aucune image sélectionnée', 'data-buttonName': 'btn-large waves-effect waves-light deep-orange darken-4 btnparcourir','data-buttonText': 'Parcourir'}}) }}
+                {{ form_errors(form.imageFile) }}
+            </div>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field materialize-textarea z-depth-1">
+                {{ form_label(form.content, "Contenu") }}
+                {{ form_errors(form.content) }}
+                {{ form_widget(form.content) }}
+            </div>
+        </div>
+    </div>
 
-
-    {% if form.published is defined %}
-        {{ form_row(form.published) }}
-    {% endif %}
+    <div class="row">
+        <div class="col s12">
+            <p>
+                <input type="checkbox" id="appbundle_article_enableComments" name="appbundle_article[enableComments]" />
+                <label for="appbundle_article_enableComments">Autoriser les commentaires</label>
+            </p>
+        </div>
+    </div>
 
     {{ form_rest(form) }}
 
     <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-floppy-disk"></i>
-                Enregistrer
-            </button>
-
+        <div class="col-md-6 ">
+            <p>
+                <button class="btn-large waves-effect waves-light deep-orange darken-4 enregistrerarticle" type="submit">
+                    Enregistrer
+                </button>
+            </p>
         </div>
     </div>
 
-    {{ form_end(form) }}
-</div>
+{{ form_end(form) }}
+
