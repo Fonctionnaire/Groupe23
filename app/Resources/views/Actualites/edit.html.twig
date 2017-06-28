@@ -1,12 +1,30 @@
 {% extends "layout.html.twig" %}
 {% block content %}
-    <div class="container">
-    <h1>Modification d'un article</h1>
-    <hr>
 
-    {% block app_body %}
-        {{ include("Actualites/form.html.twig") }}
-    {% endblock %}
+<div class="containertemplate">
+
+    <div class="editactualite col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
+
+        <div class="row">
+            <div class="col m10 offset-m1 left-align">
+                <h1 class="lime-text text-darken-2"> Modifier un article</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col m10 offset-m1 left-align">
+
+                {# On définit un nouveau bloc, que les vues de l'application pourront remplir #}
+                {% block app_body %}
+                    {{ include("Actualites/form.html.twig") }}
+                {% endblock %}
+            </div>
+        </div>
+
     </div>
+
+</div>
+
 {% endblock %}
 
