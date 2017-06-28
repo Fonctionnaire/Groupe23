@@ -533,31 +533,31 @@ display: none;
 }
 
 .mce-container, .mce-container *{
-    background-color: #c0ca33 !important;
+    background-color: #afb42b !important;
 
 }
 
 #mceu_24 :hover{
-    background-color: #c0ca33 !important;
+    background-color: #afb42b !important;
 }
 
 .mce-menu-item:hover{
-    background-color: #c0ca33 !important;
+    background-color: #afb42b !important;
 }
 
 .mce-menu-item.mce-selected{
-    background-color: #c0ca33 !important;
-    background-image: linear-gradient(to bottom, #c0ca33, #c0ca33) !important;
+    background-color: #afb42b !important;
+    background-image: linear-gradient(to bottom, #afb42b, #afb42b) !important;
 }
 
 .mce-menu-item{
-    background-color: #c0ca33 !important;
-    background-image: linear-gradient(to bottom, #c0ca33, #c0ca33) !important;
+    background-color: #afb42b !important;
+    background-image: linear-gradient(to bottom, #afb42b, #afb42b) !important;
 }
 
 .mce-menu-has-icons i{
 
-    background-color: #c0ca33 !important;
+    background-color: #afb42b !important;
 }
 
 
