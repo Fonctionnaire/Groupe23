@@ -693,6 +693,26 @@ display: none;
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
+    /* Admin des Observations  */
+
+    .col-action{
+        width: 10%;
+    }
+    .col-auteur{
+        width: 20%;
+    }
+    .col-validation{
+        width: 5%;
+    }
+    .col-date{
+        width: 10%;
+    }
+    .col-publication{
+        width: 10%;
+    }
+    .container-table{
+        width: 95%;
+    }
 
     /* VIDEO PAGE ACCUEIL */
     #video-oiseaux
@@ -759,6 +779,29 @@ display: none;
 
 @media all and (max-width: 1024px)
 {
+    /* Admin des Observations  */
+
+    .col-administrateur, .col-publication{
+        display: none;
+    }
+    .col-action{
+        width: 15%;
+    }
+    .col-auteur{
+        width: 20%;
+    }
+    .col-validation{
+        width: 5%;
+    }
+    .col-date{
+        width: 22%;
+    }
+    .col-publication{
+        width: 10%;
+    }
+    .container-table{
+        width: 95%;
+    }
     /* PAGE D'ACCUEIL */
 
     #video-oiseaux
@@ -870,7 +913,24 @@ display: none;
     }
 }
 
+
+
 @media all and (max-width: 768px) {
+
+
+    .col-date, .col-administrateur, .col-publication{
+        display: none;
+    }
+    .col-action{
+        width: 15%;
+    }
+    .col-auteur{
+        width: 30%;
+    }
+    .col-validation{
+        width: 15%;
+    }
+
 
     .containertemplate{
         width: 100%;
@@ -913,6 +973,24 @@ display: none;
 }
 
 @media all and (max-width: 600px) {
+
+    .col-validation, .col-date, .col-administrateur, .col-publication{
+        display: none;
+    }
+    .col-action{
+        width: 20%;
+    }
+    .col-auteur{
+        width: 30%;
+    }
+
+    .imagearticle{
+        width : 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        margin-top : 0;
+    }
 
     .articlebtn {
         width: 65%;
@@ -957,6 +1035,13 @@ display: none;
 }
 
 @media all and (max-width: 400px){
+
+    .col-validation, .col-date, .col-administrateur, .col-publication, .col-auteur{
+        display: none;
+    }
+    .col-action{
+        width: 20%;
+    }
 
     .imagearticle{
         width : 100%;
