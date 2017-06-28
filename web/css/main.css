@@ -713,7 +713,7 @@ display: none;
         margin-right: auto;
         margin-left: auto;
         width: 170px;
-        font-size: 20px;
+        font-size: 1.2em;
         text-transform: lowercase;
         transition: 1s;
     }
@@ -740,6 +740,19 @@ display: none;
         display: none;
     }
 
+}
+
+@media all and (max-width: 1380px) {
+    .encart_accueil p
+    {
+        padding-top: 40%;
+        font-size: 1.4em;
+    }
+
+    .facebook p
+    {
+        padding-top: 50% !important;
+    }
 }
 
 @media all and (max-width: 1024px)
@@ -771,7 +784,7 @@ display: none;
         width: 170px;
         margin-left: auto;
         margin-right: auto;
-        font-size: 20px;
+        font-size: 1.2em;
         text-transform: lowercase;
     }
 
