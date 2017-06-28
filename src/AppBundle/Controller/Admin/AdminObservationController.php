@@ -25,7 +25,7 @@ class AdminObservationController extends Controller
     public function viewObservationsAction()
     {
         $listobservations = $this->getDoctrine()->getRepository("AppBundle:Observation")->myfindAll();
-        return $this->render('Admin/observations.html.twig', array('listObservations' => $listobservations,));
+        return $this->render(':Admin:observations.html.twig', array('listObservations' => $listobservations,));
     }
 
     /**

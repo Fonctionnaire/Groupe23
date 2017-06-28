@@ -2,25 +2,35 @@
 
 //script for modals
 $(function () {
-    $("a.openmodal").click(function (e) {
+    $(".modal-trigger").click(function (e) {
         e.preventDefault();
-
-        $("#modal .modal-content").load(this.href, function () {
-            $("#modal").modal();
+        $(".modal").modal();
+        $(".modal .modal-content").load(this.href, function () {
+            $(".modal-trigger").modal();
         })
     })
 });
 
-//script for datatables
+//script document ready
 $(document).ready(function () {
+    //Menu de navigation
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
+
+    //select
+    $('select').material_select();
+
+
+    //dataTable
     $('#myTable').dataTable({
+        "responsive": true,
         "order": [[0, "asc"]],
         "language": {
             "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/French.json"
         }
     });
+    $('#some-div > img').wrap('<div class="new-parent"></div>');
+
 });
 
 //FONCTION PUR LE FORMULAIRE D'EXPORT
