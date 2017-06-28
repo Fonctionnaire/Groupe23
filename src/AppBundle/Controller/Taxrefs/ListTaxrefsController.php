@@ -12,7 +12,7 @@ class ListTaxrefsController extends BaseController
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/observations_validées", name="listTaxrefs")
+     * @Route("/observations_validées", name="listTaxrefs", options={"utf8": true})
      */
     public function listTaxrefsAction()
     {

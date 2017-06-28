@@ -18,7 +18,7 @@ class viewObsUserController extends Controller
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/user/observations_validées", name="user_listTaxrefs")
+     * @Route("/user/observations_validées", name="user_listTaxrefs", options={"utf8": true})
      */
     public function userListTaxrefsAction()
     {

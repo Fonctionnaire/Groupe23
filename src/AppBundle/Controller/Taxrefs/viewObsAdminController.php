@@ -18,7 +18,7 @@ class viewObsAdminController extends Controller
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/admin/observations_validées", name="admin_listTaxrefs")
+     * @Route("/admin/observations_validées", name="admin_listTaxrefs", options={"utf8": true})
      */
     public function adminListTaxrefsAction()
     {

@@ -57,7 +57,7 @@ class ObservationController extends BaseController
     }
 
     /**
-     * @Route("/voir_observation/{id}", options={"expose"=true} , name="viewObservation")
+     * @Route("/voir_observation/{id}", options={"expose"=true, "utf8": true} , name="viewObservation")
      * @Method({"GET", "POST"})
      */
     public function viewObservationAction($id)
