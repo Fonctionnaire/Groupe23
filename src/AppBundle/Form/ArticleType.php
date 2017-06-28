@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,6 +11,7 @@ use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use AppBundle\Form\Type\TinyMCEType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class ArticleType extends AbstractType
@@ -20,16 +22,16 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('date', DatePickerType::class)
-            ->add('title')
+            ->add('title', TextType::class)
             ->add('imageFile', FileType::class, array('required' => false,
-                'label' => 'Photo d\'illustration :',
+                'label' => 'Ajouter / Changer d\'image',
                 'attr'=>array(
                     'class'=>'custom-file')
             ))
             ->add('content', TinyMCEType::class)
-        ->add('enableComments', CheckboxType::class, array(
-            'label'    => 'Autoriser les commentaire ?',
-            'required' => false,));
+            ->add('enableComments', CheckboxType::class, array(
+                'label'    => 'Autoriser les commentaire ?',
+                'required' => false));
     }
 
     /**

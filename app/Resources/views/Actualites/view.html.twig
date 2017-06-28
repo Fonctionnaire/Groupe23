@@ -14,22 +14,20 @@
             {#titre h1#}
             <div class="row">
                 <div class="col m10 offset-m1 left-align">
-                    <h1 class="lime-text text-darken-2"> {{ article.title }}</h1>
+                    <h1 class="lime-text text-darken-2" id="articleh1mobile"> {{ article.title }}</h1>
                 </div>
             </div>
 
             {#date et nombre de commentaires#}
             <div class="row">
                 <div class="col m10 offset-m1 left-align">
-                    <p>le {{ article.date|date('d/m/Y à H:i') }}</p>
+                    <p>le {{ article.date|date('d/m/Y à H:i') }}
+                        {% if article.enableComments == true  %}
+                    <span id="nbcomment">{{ article.comments|length }} commentaire(s)</span></p>
+                    {% endif %}
                 </div>
-                {% if article.enableComments == true  %}
-                    <div class="col m2">
-                        <h3> {{ article.comments|length }}</h3>
-                        <span>commentaire(s)</span>
-                    </div>
-                {% endif %}
             </div>
+
 
             {#image#}
             <div class="row">
@@ -51,10 +49,17 @@
                             Retour
                         </a>
 
+                        {#bouton super admin modifier#}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="editarticle" href="{{ path('editArticle', {'slug': article.slug}) }}">
+                                Modifier
+                            </a>
+                        {% endif %}
+
                         {#bouton commenter quand commentaires activés#}
                         {% if article.enableComments == true  %}
                             {% if is_granted('ROLE_USER') %}
-                                <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommnenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
+                                <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
                                     Commenter
                                 </a>
                             {% else %}
@@ -63,32 +68,7 @@
                                 </a>
                             {% endif %}
                         {% endif %}
-
-
-                {% if article.enableComments == true  %}
-                    {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank"
-                           class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" data-target="modal1">
-                            <i class="fa fa-comment"></i>
-                            Commenter
-                        </a>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
-                            <i class="material-icons">question_answer</i>
-                            Commenter
-                        </a>
-                    {% endif %}
-                        {% endif %}
-
-                        {#bouton super admin modifier#}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a class="btn-large waves-effect waves-light deep-orange darken-4 articlebtn" id="editarticle" href="{{ path('editArticle', {'slug': article.slug}) }}">
-                                Modifier
-                            </a>
-                        {% endif %}
                     </p>
-
-
                 </div>
             </div>
         </div>
