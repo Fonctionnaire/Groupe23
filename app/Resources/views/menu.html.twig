@@ -1,3 +1,23 @@
+<!--###########################################################
+#--------------------- MENU DESKTOP --------------------------#
+###########################################################-->
+<nav class="transparent">
+    <div class="nav-wrapper lime darken-2">
+        <a href="{{ path('index') }}" class="brand-logo"><img src="{{ asset('images/logo-menu.png') }}" class="logo" /></a>
+        <div class="fixed-action-btn" style="bottom: 15px; right: 15px;">
+            <a id="menu" href="#" data-activates="nav-mobile" class="btn btn-floating btn-large lime darken-2 blue-grey-text text-lighten-5 button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+
+        <ul id="desktop" class="right hide-on-med-and-down">
+            <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="navobs">Observations<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="waves-effect waves-rednao police32" href="{{ path('nous_contacter') }}">Contact</a></li>
+            <li><a class="waves-effect waves-rednao police32" href="{{ path('actualites') }}">Actualités</a></li>
+            <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="compte">Mes informations<i class="material-icons right">arrow_drop_down</i></a></li>
+            {% if is_granted('ROLE_ADMIN') %}<li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="admin">Admin<i class="material-icons right">arrow_drop_down</i></a></li>{% endif %}
+        </ul>
+    </div>
+</nav>
+
 <!-- MENU DEROULANT GESTION DE COMPTE -->
 <ul id="compte" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -13,6 +33,7 @@
 </ul>
 
 <!-- MENU DEROULANT Admin -->
+{% if is_granted('ROLE_ADMIN') %}
 <ul id="admin" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
     <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminUsers') }}">Gestion des utilisateurs</a></li>
     <li role="separator" class="divider"></li>
@@ -24,6 +45,7 @@
     <li role="separator" class="divider"></li>
     <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 openmodal" href="{{ path('filter') }}">Exporter les données</a></li>
 </ul>
+{% endif %}
 
 <!-- MENU DEROULANT Observations -->
 <ul id="navobs" class="dropdown-content lime darken-2">
@@ -40,7 +62,9 @@
 </ul>
 
 
-<!-- MENU MOBILE -->
+<!--###########################################################
+#--------------------- MENU MOBILE --------------------------#
+###########################################################-->
 
 <ul id="nav-mobile" class="side-nav lime darken-2">
     <!--Observations -->
@@ -106,7 +130,7 @@
                         <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminComments') }}">Gestion des Commentaires</a></li>
                         <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('add') }}">Ajout d'une Actualité</a></li>
 
-                        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1 openmodal" href="{{ path('filter') }}">Exporter les données</a></li>
+                        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1 modal-trigger" data-target="modal1" href="{{ path('filter') }}">Exporter les données</a></li>
                     </ul>
                 </div>
             </li>
@@ -116,24 +140,7 @@
 
 </ul> <!-- Fin Menu Mobile -->
 
-<nav class="transparent">
-    <div class="nav-wrapper lime darken-2">
-        <a href="{{ path('index') }}" class="brand-logo"><img src="{{ asset('images/logo-menu.png') }}" class="logo" /></a>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul id="desktop" class="right hide-on-med-and-down">
-            <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="navobs">Observations<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="waves-effect waves-rednao police32" href="{{ path('nous_contacter') }}">Contact</a></li>
-            <li><a class="waves-effect waves-rednao police32" href="{{ path('actualites') }}">Actualités</a></li>
-            <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="compte">Mes informations<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button police32" href="#" data-constrainwidth="false" data-activates="admin">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
 
-        </ul>
-
-
-
-
-    </div>
-</nav>
 
 
 
