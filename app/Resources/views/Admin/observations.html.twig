@@ -24,8 +24,8 @@
                     </thead>
                     <tbody>
                     {% for observation in listObservations %}
-                        <tr {% if observation.waiting == true %}
-                            class="danger"
+                  <tr {% if observation.waiting == true %}
+                            class="deep-orange lighten-3"
                                 {% endif %}>
 
                             <td>
@@ -59,13 +59,10 @@
                                 {{ observation.adminComment }}</td>
                             {% endif %}
                             <td>
-                                <a href="{{ path('viewObservation', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
-
-                                <a href="{{ path('edit', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-edit"></i></a>
-
-                                <a href="{{ path('deleteObservation', {'id': observation.id}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer cette observation ?"><i class="glyphicon glyphicon-trash"></i></a>
+                                <a data-target="modal2" class="modal-trigger waves-effect waves-light btn deep-orange darken-4" href="{{ path('observationModale', {'id': observation.id}) }}">Infos</a>
                             </td>
-                        </tr>
+                            </tr>
+
                     {% endfor %}
                     </tbody>
                 </table>
@@ -73,4 +70,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
