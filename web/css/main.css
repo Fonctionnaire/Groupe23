@@ -12,6 +12,10 @@ main {
     flex: 1 0 auto;
 }
 
+.container
+    {
+        min-height: 700px;
+    }
 
 .police32{
     font-size: 20px !important;
@@ -692,10 +696,6 @@ display: none;
 
 @media all and (min-width: 1025px) {
 
-    .container
-    {
-        min-height: 700px;
-    }
 
     /* Admin des Observations  */
 
@@ -922,7 +922,7 @@ display: none;
 @media all and (max-width: 768px) {
 
 
-    .col-date, .col-administrateur, .col-publication{
+    .col-date, .col-administrateur, .col-publication, .search-toggle{
         display: none;
     }
     .col-action{
@@ -978,7 +978,7 @@ display: none;
 
 @media all and (max-width: 600px) {
 
-    .col-validation, .col-date, .col-administrateur, .col-publication{
+    .col-validation, .col-date, .col-administrateur, .col-publication, .modobs-photo{
         display: none;
     }
     .col-action{
