@@ -1,19 +1,26 @@
 <div id="modal1" class="modal">
+
     <div class="modal-content">
 
     </div>
 
     <div class="modal-footer">
 
-
     </div>
 </div>
 
 <!-- Modal Structure -->
 <div id="modal2" class="modal">
-    <div class="modal-content">
+    {% block collapsible %}
 
+    {% endblock %}
+
+    <div class="modal-content">
+        {% block modalcontent %}
+
+        {% endblock %}
     </div>
+
 
 
 </div>

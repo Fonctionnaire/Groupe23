@@ -693,6 +693,8 @@ display: none;
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
+
+
     /* Admin des Observations  */
 
     .col-action{
@@ -918,7 +920,7 @@ display: none;
 @media all and (max-width: 768px) {
 
 
-    .col-date, .col-administrateur, .col-publication{
+    .col-date, .col-administrateur, .col-publication, .search-toggle{
         display: none;
     }
     .col-action{
@@ -974,7 +976,7 @@ display: none;
 
 @media all and (max-width: 600px) {
 
-    .col-validation, .col-date, .col-administrateur, .col-publication{
+    .col-validation, .col-date, .col-administrateur, .col-publication, .modobs-photo{
         display: none;
     }
     .col-action{
