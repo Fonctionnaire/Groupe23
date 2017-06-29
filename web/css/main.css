@@ -835,6 +835,28 @@ display: none;
 
 @media all and (min-width: 1025px) {
 
+
+    /* Admin des Observations  */
+
+    .col-action{
+        width: 10%;
+    }
+    .col-auteur{
+        width: 20%;
+    }
+    .col-validation{
+        width: 5%;
+    }
+    .col-date{
+        width: 10%;
+    }
+    .col-publication{
+        width: 10%;
+    }
+    .container-table{
+        width: 95%;
+    }
+
     /* VIDEO PAGE ACCUEIL */
     #video-oiseaux
     {
@@ -955,6 +977,29 @@ display: none;
 
 @media all and (max-width: 1024px)
 {
+    /* Admin des Observations  */
+
+    .col-administrateur, .col-publication{
+        display: none;
+    }
+    .col-action{
+        width: 15%;
+    }
+    .col-auteur{
+        width: 20%;
+    }
+    .col-validation{
+        width: 5%;
+    }
+    .col-date{
+        width: 22%;
+    }
+    .col-publication{
+        width: 10%;
+    }
+    .container-table{
+        width: 95%;
+    }
     /* PAGE D'ACCUEIL */
 
 
@@ -1071,20 +1116,21 @@ display: none;
     }
 
 
-.coverimage {
-    margin:0;
-    padding:0;
-    background: url(../images/imagemobile.jpg) no-repeat center fixed;
-    -webkit-background-size: cover; /* pour Chrome et Safari */
-    -moz-background-size: cover; /* pour Firefox */
-    -o-background-size: cover; /* pour Opera */
-    background-size: cover; /* version standardisée */
-}
+   .coverimage {
+        margin:0;
+        padding:0;
+        background: url(../images/imagemobile.jpg) no-repeat center fixed;
+        -webkit-background-size: cover; /* pour Chrome et Safari */
+        -moz-background-size: cover; /* pour Firefox */
+        -o-background-size: cover; /* pour Opera */
+        background-size: cover; /* version standardisée */
+    }
 
-.containerblanc{
-    margin: 0;
-    background-color: white;
-}
+
+    .containerblanc{
+        margin: 0;
+        background-color: white;
+    }
     .image_petit_ecran
     {
         visibility: hidden;
@@ -1097,8 +1143,22 @@ display: none;
     }
 }
 
-
 @media all and (max-width: 768px) {
+
+
+    .col-date, .col-administrateur, .col-publication, .search-toggle{
+        display: none;
+    }
+    .col-action{
+        width: 15%;
+    }
+    .col-auteur{
+        width: 30%;
+    }
+    .col-validation{
+        width: 15%;
+    }
+
 
 
     .containertemplate{
@@ -1158,6 +1218,24 @@ display: none;
 
 @media all and (max-width: 600px) {
 
+    .col-validation, .col-date, .col-administrateur, .col-publication, .modobs-photo{
+        display: none;
+    }
+    .col-action{
+        width: 20%;
+    }
+    .col-auteur{
+        width: 30%;
+    }
+
+    .imagearticle{
+        width : 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        margin-top : 0;
+    }
+
     .articlebtn {
         width: 65%;
         margin-bottom: 20px;
@@ -1214,6 +1292,13 @@ display: none;
 }
 
 @media all and (max-width: 400px){
+
+    .col-validation, .col-date, .col-administrateur, .col-publication, .col-auteur{
+        display: none;
+    }
+    .col-action{
+        width: 20%;
+    }
 
     .imagearticle{
         width : 100%;

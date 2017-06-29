@@ -12,7 +12,7 @@ class IndexController extends BaseController
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/", name="index")
+     * @Route("/", name="index", options = { "utf8": true })
      */
     public function accueilAction()
     {
