@@ -12,7 +12,10 @@ main {
     flex: 1 0 auto;
 }
 
-
+.container
+    {
+        min-height: 700px;
+    }
 
 .police32{
     font-size: 20px !important;
@@ -325,7 +328,6 @@ h3{
 
 .footer
 {
-
     display: flex;
     min-height: 10%;
     width: 100%;
