@@ -1,67 +1,82 @@
-<div class="modal-content">
-    <div class="row">
-        <div class="col s12">
-            <h4>{{ observation.taxref.lbnom }}</h4>
-            <span>
-                Actuellement, l'observation est
-                {% if observation.valided == true %}
-                    validée
-                {% else %}
-                    invalidée
-                {% endif %}
-                et
-                {% if observation.isVisible == true %}
-                    publique.
-                {% else %}
-                    non publique.
-                {% endif %}
-            </span>
+{% block collapsible %}
+    <script>
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
 
-        </div>
-    </div>
+        });
+        $('.collapsible').collapsible();
+    </script>
+{% endblock %}
+{% block modalcontent %}
     <div class="row">
-        <div class="obs-modal-img col s12 m6">
+        <div class="modobs-photo col m4"><!-- debut photo de l'observation -->
             {% if observation.imageName %}
-                <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="responsive-img" style="max-width: 100%; max-height: 300px;" alt="{{ observation.taxref }}"/>
+                <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="responsive-img"
+                     style="max-width: 100%; max-height: 300px;" alt="{{ observation.taxref }}"/>
             {% endif %}
-            <div class="clear">
-            </div>
-        </div>
-        <div class="col s12 m6">
-            <div class="col s6">
-                {{ observation.date|date("d-m-Y") }}
-            </div>
-            <div class="col s6">
-                {% if observation.user.avatarName %}
-                    <div class="chip">
-                        <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="col-md-2"
-                             alt="{{ observation.user.username }}"/>
-                        {{ observation.user.username }}
-                    </div>
+        </div><!-- Fin photo de l'observation -->
+        <div class="modobs-title lime-text text-darken-2 col s10 m6"><!-- debut titre de l'observation -->
+            <h4>{{ observation.taxref.lbnom }}</h4><br>
+            {{ observation.date|date("d-m-Y") }}
+        </div><!-- Fin titre de l'observation -->
+        <div class="modobs-avatar lime-text text-darken-2 center-align col s2"><!-- debut avatar autheur -->
+            <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="responsive-img circle"
+                 alt="{{ observation.user.username }}"/><br>
+            {{ observation.user.username }}
+        </div><!-- Fin avatar autheur -->
+    </div>
+
+    <div class="row">
+
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">photo</i>état</div>
+                <div class="collapsible-body"><span>
+                {% if observation.waiting == true %}
+                <span><i class="material-icons lime-text text-darken-2">watch_later</i>en attente...</span>
+                {% elseif observation.valided == true %}
+                <span><i class="material-icons lime-text text-darken-2">check_circle</i>validée.</span>
                 {% else %}
-                    <h5>{{ observation.user.username }}</h5>
+                <span><i class="material-icons lime-text text-darken-2">cancel</i>non validée.</span>
                 {% endif %}
-            </div>
-            <div class="col s12">
-                {{ observation.comment }}
-                {{  observation.adminUsername }} <br />
-                {% if observation.adminComment is not null %}
-                Commentaire Naturaliste:
-                {{ observation.adminComment }}
-                {% endif %}
-            </div>
+                    </span>
+                </div>
 
-        </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">comment</i>commentaire</div>
+                <div class="collapsible-body"><span>{{ observation.comment }}</span></div>
+            </li>
+            {% if observation.adminComment is not null %}
+            <li>
+                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">assignement</i>avis
+                    de {{ observation.adminusername }}</div>
+                <div class="collapsible-body">
+                    <span>{{ observation.adminComment }}</span>
+                </div>
+            </li>{% endif %}
+            {% if observation.imageName %}
+            <li>
+                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">photo</i>photo</div>
+                <div class="collapsible-body"><span><img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="responsive-img"
+                                                         style="max-width: 100%; max-height: 300px;" alt="{{ observation.taxref }}"/></span></div>
+            </li>
+            {% endif %}
+        </ul>
     </div>
-</div>
-
-<div class="modal-footer center-align">
-
-            <a class="btn-large waves-effect waves-light deep-orange darken-4 center-align" href="{{ path('viewObservation', {'id': observation.id}) }}">Plus d'infos</a>
-            <a href="{{ path('deleteObservation', {'id': observation.id}) }}" class="btn-large waves-effect waves-light deep-orange darken-4 center-align" role="button">Supprimer</a>
-            <a href="{{ path('edit', {'id': observation.id}) }}" class="btn-large waves-effect waves-light deep-orange darken-4 center-align" role="button">Modifer</a>
 
 
-    </div>
+
+    <!-- Bouton "plus d'infos" -->
+    <a class="btn waves-effect waves-light deep-orange darken-4 center-align"
+       href="{{ path('viewObservation', {'id': observation.id}) }}">Plus d'infos</a>
+
+
+
+
+{% endblock %}
+
+
+
 
 

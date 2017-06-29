@@ -4,25 +4,41 @@
 $(function () {
     $(".modal-trigger").click(function (e) {
         e.preventDefault();
-        $(".modal").modal();
+
+
+        $('.modal').modal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '4', // Ending top style attribute
+                ready: function() { // Callback for Modal open. Modal and trigger parameters available.
+                    $('.collapsible').collapsible();
+                },
+            complete: function() { $('.collapsible').collapsible(); } // Callback for Modal close
+            }
+        );
+
         $(".modal .modal-content").load(this.href, function () {
-            $(".modal-trigger").modal();
+
         })
     })
 });
-
+$('#modal2').focus(function() {
+    $('.collapsible').collapsible();
+});
 //script document ready
 $(document).ready(function () {
     //Menu de navigation
     $(".button-collapse").sideNav();
+
     $('.collapsible').collapsible();
 
     //select
     $('select').material_select();
 
-    $(window).on('resize', function () {
-        $('.card').toggleClass('horizontal', $(window).width() < 768);
-    });
+
 
 
     //dataTable
