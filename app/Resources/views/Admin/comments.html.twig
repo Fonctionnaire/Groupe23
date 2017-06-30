@@ -1,36 +1,47 @@
 {% extends "layout.html.twig" %}
 {% block content %}
-    <div class="container">
-    <div id="commenttab" class="table-responsive">
-        <table class="table table-hover" id="myTable">
-            <thead>
-            <tr>
-                <th>Signalements</th>
-                <th>Date</th>
-                <th>Article</th>
-                <th>Utilisateur</th>
-                <th>Commentaire</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for comment in listComments %}
-                <tr {% if comment.signaled == true %}class="danger" {% endif %}>
-                    <td>{% if comment.signaled == true %}<i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: red;"></i> {{ comment.signaled }}{% else %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> {{ comment.signaled }}{% endif %}
+    <div class="container container-table">
+        <div class="row">
+            <div id="admin" class="col s12">
+                <div class="card material-table">
+                    <div class="table-header">
+                        <span class="table-title">Modération des Commentaires</span>
+                        <div class="actions">
+                            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                    <table id="datatable">
+                        <thead>
+                        <tr>
+                            <th class="col-comDate">date</th>
+                            <th class="col-comArticle">Article</th>
+                            <th class="col-comAuteur">auteur</th>
+                            <th class="col-comCom">Commentaire</th>
+                            <th class="col-action"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for comment in listComments %}
+                            <tr {% if comment.signaled == true %}
+                                class="deep-orange lighten-3"
+                                    {% endif %}>
+                                <td class="col-comDate left-align">{{ comment.date|ago }}</td>
+                                <td class="col-comArticle left-align">{{ comment.article.title }}</td>
+                                <td class="col-comAuteur left-align">{{ comment.author.username }}</td>
+                                <td class="col-comCom left-align">{{ comment.content }}</td>
+                                <td class="comAction right-align">
+                                    <a data-target="modal3" class="modal-trigger commodal waves-effect waves-light" href="{{ path('commentModale', {'id': comment.id}) }}"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a>
+                                    <a href="{{ path('unsignalComment', {'id': comment.id}) }}" class="comunsignal waves-effect waves-light" role="button" data-confirm="Etes-vous certain de vouloir valider ce commentaire ?"><i class="large material-icons lime-text text-darken-2">done</i></a>
+                                    <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="comdelete waves-effect waves-light" role="button" data-confirm="Etes-vous certain de vouloir supprimer ce commentaire ?"><i class="large material-icons deep-orange-text text-darken-4">delete</i></a>
+                                </td>
+                            </tr>
 
-                    </td>
-                    <td>{{ comment.date|date("d-m-Y H:i:s") }}</td>
-                    <td>{{ comment.article.title }}</td>
-                    <td>{{ comment.author.username }}</td>
-                    <td>{{ comment.content }}</td>
-                    <td>
-                        <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer ce commentaire ?"><i class="glyphicon glyphicon-trash"></i></a>
-                        <a href="{{ path('unsignalComment', {'id': comment.id}) }}" class="btn btn-success" role="button" data-confirm="Etes-vous certain de vouloir valider ce commentaire ?"><i class="glyphicon glyphicon-ok"></i></a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+
 {% endblock %}

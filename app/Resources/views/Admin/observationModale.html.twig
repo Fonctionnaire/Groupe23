@@ -47,10 +47,9 @@
                 <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">comment</i>commentaire</div>
                 <div class="collapsible-body"><span>{{ observation.comment }}</span></div>
             </li>
-            {% if observation.adminComment is not null %}
+            {% if observation.adminComment %}
             <li>
-                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">assignement</i>avis
-                    de {{ observation.adminusername }}</div>
+                <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">message</i>avis du naturaliste</div>
                 <div class="collapsible-body">
                     <span>{{ observation.adminComment }}</span>
                 </div>
@@ -68,8 +67,12 @@
 
 
     <!-- Bouton "plus d'infos" -->
-    <a class="btn waves-effect waves-light deep-orange darken-4 center-align"
-       href="{{ path('viewObservation', {'id': observation.id}) }}">Plus d'infos</a>
+
+    <div class="plusinfo col s12">
+        <a class="plusinfobtn btn waves-effect waves-light deep-orange darken-4 center-align"
+           href="{{ path('viewObservation', {'id': observation.id}) }}">Plus d'infos</a>
+    </div>
+
 
 
 

@@ -1,25 +1,17 @@
- {% form_theme form 'utils/materialize_layout.html.twig' %}
-    {{ form_start(form) }}
-<div class="modal-header">
+
+{% block modalcontent %}
+<form method="post" action="{{ path('addComment', {'slug': article.slug}) }}">
     <h1>Ajout d'un commentaire</h1>
-</div>
-<div class="modal-content">
-    {# Les erreurs générales du formulaire. #}
-    {{ form_errors(form) }}
-    {# Génération du label + error + widget pour un champ. #}
-    {% if form.date is defined %}
-        {{ form_row(form.date) }}
-    {% endif %}
-    {# Génération manuelle et éclatée : #}
     <div>
-        {{ form_label(form.content, "Contenu") }}
-        {{ form_errors(form.content) }}
-        <div>
-            {{ form_widget(form.content) }}
+        <div class="row">
+            <div class="input-field col s6">
+                <textarea id="appbundle_comment_content" type="text" name="appbundle_comment[content]" class="materialize-textarea"></textarea>
+                <label for="appbundle_comment_content">votre commentaire</label>
+            </div>
         </div>
+
+
     </div>
-</div>
-<div class="modal-footer">
 
     <div class="row">
         <div class="col-md-6">
@@ -28,6 +20,7 @@
             </button>
         </div>
     </div>
-    {{ form_rest(form) }}
-</div>
-{{ form_end(form) }}
+    {{ form_widget(form._token) }}
+
+</form>
+{% endblock %}

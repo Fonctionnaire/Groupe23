@@ -1,0 +1,18 @@
+{% block modal3content %}
+
+    <h4>{{ comment.author.username }}</h4>
+    <p>{{ comment.date|date("d-m-Y H:i:s") }}</p>
+<p>{{ comment.content }}</p>
+
+<div class="modal-fix-footer">
+
+    <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="modal-action modal-close waves-effect waves-light deep-orange-text text-darken-4" role="button" data-confirm="Etes-vous certain de vouloir supprimer ce commentaire ?">Supprimer</a>
+    <a href="{{ path('unsignalComment', {'id': comment.id}) }}" class="modal-action modal-close waves-effect waves-light deep-orange-text text-darken-4" role="button" data-confirm="Etes-vous certain de vouloir valider ce commentaire ?">Valider</a>
+
+
+
+</div>
+
+
+
+{% endblock %}
