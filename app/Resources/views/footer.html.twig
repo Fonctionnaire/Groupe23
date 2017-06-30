@@ -1,34 +1,36 @@
-<footer class="footer lime darken-2">
-<div id="logo_et_nom">
-        <div class="logo_footer">
-            <a href="{{ path('index') }}">
-                <img src="{{ asset('images/V10-Logo.svg') }}" alt="logo">
-            </a>
-        </div>
-        <div class="nom_footer">
-            <img src="{{ asset('images/V10-NAO-NOM.svg') }}" alt="NAO">
-            <div>
-                <p>nao@gmail.com</p>
-                <p>01.01.01.01.01</p>
+<div class="div-footer">
+    <footer class="footer lime darken-2">
+    <div id="logo_et_nom">
+            <div class="logo_footer">
+                <a href="{{ path('index') }}">
+                    <img src="{{ asset('images/V10-Logo.svg') }}" alt="logo">
+                </a>
             </div>
-        </div>
-</div>
-        <div class="block_middle">
-            <ul class="list_footer">
-                <li><i class=" tiny material-icons ">power_settings_new </i> <a href="{{ path('fos_user_security_login') }}"><span>login</span></a></li>
-                <li><i class="tiny material-icons">email</i><a href="{{ path('nous_contacter') }}"><span>contact</span></a></li>
-                <li><i class="tiny material-icons">description</i><a href="{{ path('legales') }}"> <span>mentions légales</span></a></li>
-            </ul>
-        </div>
-        <div class="block_right">
-            <div class="newsletter_facebook">
-                <img src="{{ asset('images/news_letter_48px.svg') }}" class="mini_newsletter">
-                <p><a href="#mailmunch-pop-507196">newsletter</a></p>
+            <div class="nom_footer">
+                <img src="{{ asset('images/V10-NAO-NOM.svg') }}" alt="NAO">
+                <div>
+                    <p>nao@gmail.com</p>
+                    <p>01.01.01.01.01</p>
+                </div>
             </div>
-            <div class="newsletter_facebook">
-                <img src="{{ asset('images/V7-Face.svg') }}" class="mini_facebook">
-                <p><a href="#">suivez-nous</a></p>
+    </div>
+            <div class="block_middle">
+                <ul class="list_footer">
+                    <li><i class=" tiny material-icons ">power_settings_new </i> <a href="{{ path('fos_user_security_login') }}"><span>login</span></a></li>
+                    <li><i class="tiny material-icons">email</i><a href="{{ path('nous_contacter') }}"><span>contact</span></a></li>
+                    <li><i class="tiny material-icons">description</i><a href="{{ path('legales') }}"> <span>mentions légales</span></a></li>
+                </ul>
             </div>
-        </div>
+            <div class="block_right">
+                <div class="newsletter_facebook">
+                    <img src="{{ asset('images/news_letter_48px.svg') }}" class="mini_newsletter">
+                    <p><a href="#mailmunch-pop-507196">newsletter</a></p>
+                </div>
+                <div class="newsletter_facebook">
+                    <img src="{{ asset('images/V7-Face.svg') }}" class="mini_facebook">
+                    <p><a href="#">suivez-nous</a></p>
+                </div>
+            </div>
 
-</footer>
+    </footer>
+</div>

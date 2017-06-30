@@ -27,7 +27,7 @@ class TaxrefRepository extends \Doctrine\ORM\EntityRepository
             ->addSelect('to')
             ->where('to.isVisible = true')
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
     }
 
 }
