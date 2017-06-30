@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
 {% block googleMapScript %}
     {% if is_granted('ROLE_ADMIN') %}
+        <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
         </script>
@@ -10,7 +11,7 @@
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
         </script>
-        <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
+
     {% endif %}
 {% endblock %}
 {% block content %}

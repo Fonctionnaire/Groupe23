@@ -974,20 +974,6 @@ display: none;
 
 }
 
-@media all and (max-width: 1380px) {
-
-    .encart_accueil p
-    {
-        padding-top: 40%;
-        font-size: 1.4em;
-    }
-
-    .facebook p
-    {
-        padding-top: 50% !important;
-    }
-}
-
 @media all and (max-width: 1200px) {
 
 
