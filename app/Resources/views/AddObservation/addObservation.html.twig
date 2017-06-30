@@ -1,10 +1,10 @@
 {% extends "layout.html.twig" %}
 {% block googleMapScript %}
+    <script src="{{ asset('js/addObservationMap.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script src="{{ asset('js/addObservationMap.js') }}"></script>
     <script src="{{ asset('js/addObsCompletion.js') }}"></script>
 
 {% endblock %}
