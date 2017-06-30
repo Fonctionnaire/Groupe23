@@ -3,7 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Article;
-use AppBundle\Form\ArticleType;
+use AppBundle\Form\Type\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -62,7 +62,7 @@ class AdminArticleController extends Controller
      */
     public function editAction(Article $article, Request $request)
     {
-        $referer = $request->headers->get('referer');
+        $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
         $formEdit = $this->createForm(ArticleType::class, $article);
         $formEdit->handleRequest($request);

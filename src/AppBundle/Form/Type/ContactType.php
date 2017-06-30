@@ -6,7 +6,7 @@
  * Time: 12:38
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
