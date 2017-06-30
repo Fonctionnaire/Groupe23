@@ -678,18 +678,29 @@ display: none;
     font-family: 'Quicksand', sans-serif;
 }
 
-.mce-container, .mce-container *{
+.mce-container, .mce-container * {
     background-color: #afb42b !important;
+}
+.mce-container-body {
+    border: 1px solid #afb42b !important;
+}
 
+.mce-btn.mce-disabled button{
+    opacity: 1 !important;
 }
 
 #mceu_24 :hover{
     background-color: #afb42b !important;
 }
 
-.mce-menu-item:hover{
+.mce-menu-item :hover{
     background-color: #afb42b !important;
 }
+
+.mce-menu-shortcut{
+    color: #fff !important;
+}
+
 
 .mce-menu-item.mce-selected{
     background-color: #afb42b !important;
@@ -700,10 +711,49 @@ display: none;
     background-color: #afb42b !important;
     background-image: linear-gradient(to bottom, #afb42b, #afb42b) !important;
 }
+.mce-menu-item :hover{
+    color: #bf360c !important;
+}
 
 .mce-menu-has-icons i{
 
     background-color: #afb42b !important;
+}
+
+.mce-btn button span{
+    color: #fff !important;
+}
+
+.mce-ico{
+    color: #fff !important;
+}
+
+.mce-btn i{
+    text-shadow: none !important;
+}
+
+.mce-text{
+    color: #fff !important;
+}
+
+.mce-menubar .mce-caret{
+    border-top: 4px solid #fff !important;
+}
+
+.mce-menu-item .mce-caret{
+    border-left: 4px solid #fff !important;
+}
+
+.mce-btn .mce-caret{
+    border-top: 4px solid #fff !important;
+}
+
+.mce-last{
+    color: #fff !important;
+}
+
+.mce-panel{
+    border : 1px solid #fff !important;
 }
 
 
@@ -723,9 +773,6 @@ display: none;
     padding: 25px;
 }
 
-.mce-panel{
-    border : 1px solid #c0ca33 !important;
-}
 
 .input-field label {
     color: #c0ca33;
