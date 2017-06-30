@@ -132,9 +132,9 @@ class Observation
     /**
      * @var bool
      *
-     * @ORM\Column(name="visible_ok", type="boolean")
+     * @ORM\Column(name="is_visible", type="boolean")
      */
-    private $visibleOk = true;
+    private $isVisible = true;
 
 
     /**
@@ -447,25 +447,23 @@ class Observation
     /**
      * Set isVisible
      *
-     * @param boolean $visibleOk
+     * @param boolean $isVisible
      *
      * @return Observation
      */
-    public function setVisibleOk($visibleOk)
+    public function setIsVisible($isVisible)
     {
-        $this->visibleOk = $visibleOk;
-
+        $this->isVisible = $isVisible;
         return $this;
     }
-
     /**
-     * Get visibleOk
+     * Get isVisible
      *
      * @return boolean
      */
-    public function getVisibleOk()
+    public function getIsVisible()
     {
-        return $this->visibleOk;
+        return $this->isVisible;
     }
 
     /**

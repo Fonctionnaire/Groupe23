@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Form\Type\ObservationFilterType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use AppBundle\Entity\Observation;
 use AppBundle\Form\Type\ObservationType;
@@ -30,7 +30,7 @@ class ObservationController extends BaseController
 
         $observation->setUser($this->get('security.token_storage')->getToken()->getUser());
 
-        $form = $this->createForm(ObservationFilterType::class, $observation);
+        $form = $this->createForm(ObservationType::class, $observation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
