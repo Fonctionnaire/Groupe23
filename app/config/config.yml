@@ -48,7 +48,6 @@ twig:
         avatars_path: "%avatar_path%"
     form_themes:
         - bootstrap_3_layout.html.twig
-        - 'utils/materialize_layout.html.twig'
 
 
 

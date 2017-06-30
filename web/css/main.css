@@ -12,6 +12,148 @@ main {
     flex: 1 0 auto;
 }
 
+
+/*encarts er cover mobile*/
+
+#cartecarte{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    float:left;
+}
+
+.textecarte{
+    display:inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: #c0ca33;
+    text-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    color: white;
+    float: left;
+}
+
+
+#oiseauimage{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    float:right;
+}
+
+.texteoiseau{
+    display:inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: #c0ca33;
+    text-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    color: white;
+    float: right;
+}
+
+#oiseaucontact{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    float:left;
+}
+
+.textecontact{
+    display:inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: #c0ca33;
+    text-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    color: white;
+    float: left;
+    padding-left: 3px;
+}
+
+#oiseaufacebook{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    float: right;
+    margin-right: -12px;
+}
+
+.textefacebook{
+    display:inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: #c0ca33;
+    float: left;
+    vertical-align: center;
+    font-size: 20px;
+    padding-top: 35px;
+    color: white;
+    margin-left: -13px;
+}
+
+#oiseaunewsletter{
+    display: inline-block;
+    width: 140px;
+    height: auto;
+    float:right;
+}
+
+.textenewsletter{
+    display:inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: #c0ca33;
+    text-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    color: white;
+    float: right;
+}
+
+#dernier_texte{
+    text-align: justify;
+}
+
+/* bloc presentation accueil*/
+
+.imagecentre{
+    width: 100%;
+    margin: auto;
+    height: auto;
+    overflow: hidden;
+    vertical-align: center;
+}
+
+#imagecentre{
+    width: 100%;
+    margin-top: 30px;
+    height: auto;
+    overflow: hidden;
+}
+
+#textegauche{
+    float: left;
+    display:inline-block;
+    vertical-align: center;
+}
+
+#textedroit{
+    float: right;
+    display:inline-block;
+    vertical-align: center;
+    text-align: right;
+}
+
+/*/////////////*/
+
 .container
     {
         min-height: 700px;
@@ -48,6 +190,7 @@ main {
 .actualite{
     padding : 10px;
 }
+
 .article{
     padding : 10px;
 }
@@ -529,25 +672,35 @@ display: none;
 
 #mceu_37{
     display: none;
-
 }
 
 .mce-container *, .mce-widget span{
     font-family: 'Quicksand', sans-serif;
 }
 
-.mce-container, .mce-container *{
+.mce-container, .mce-container * {
     background-color: #afb42b !important;
+}
+.mce-container-body {
+    border: 1px solid #afb42b !important;
+}
 
+.mce-btn.mce-disabled button{
+    opacity: 1 !important;
 }
 
 #mceu_24 :hover{
     background-color: #afb42b !important;
 }
 
-.mce-menu-item:hover{
+.mce-menu-item :hover{
     background-color: #afb42b !important;
 }
+
+.mce-menu-shortcut{
+    color: #fff !important;
+}
+
 
 .mce-menu-item.mce-selected{
     background-color: #afb42b !important;
@@ -558,10 +711,49 @@ display: none;
     background-color: #afb42b !important;
     background-image: linear-gradient(to bottom, #afb42b, #afb42b) !important;
 }
+.mce-menu-item :hover{
+    color: #bf360c !important;
+}
 
 .mce-menu-has-icons i{
 
     background-color: #afb42b !important;
+}
+
+.mce-btn button span{
+    color: #fff !important;
+}
+
+.mce-ico{
+    color: #fff !important;
+}
+
+.mce-btn i{
+    text-shadow: none !important;
+}
+
+.mce-text{
+    color: #fff !important;
+}
+
+.mce-menubar .mce-caret{
+    border-top: 4px solid #fff !important;
+}
+
+.mce-menu-item .mce-caret{
+    border-left: 4px solid #fff !important;
+}
+
+.mce-btn .mce-caret{
+    border-top: 4px solid #fff !important;
+}
+
+.mce-last{
+    color: #fff !important;
+}
+
+.mce-panel{
+    border : 1px solid #fff !important;
 }
 
 
@@ -581,9 +773,6 @@ display: none;
     padding: 25px;
 }
 
-.mce-panel{
-    border : 1px solid #c0ca33 !important;
-}
 
 .input-field label {
     color: #c0ca33;
@@ -696,6 +885,23 @@ display: none;
 
 @media all and (min-width: 1025px) {
 
+    /* Datatables */
+    #admin{
+        margin-top: 30px;
+    }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 10%;
+        padding-left: 0;
+    }
+    .col-comArticle{
+        width: 15%;
+        padding-left: 0;
+    }
+
 
     /* Admin des Observations  */
 
@@ -769,6 +975,7 @@ display: none;
 }
 
 @media all and (max-width: 1380px) {
+
     .encart_accueil p
     {
         padding-top: 40%;
@@ -781,13 +988,90 @@ display: none;
     }
 }
 
-@media all and (max-width: 1024px)
-{
-    /* Admin des Observations  */
+@media all and (max-width: 1200px) {
 
-    .col-administrateur, .col-publication{
+
+    .imagecentre{
+        width: 60%;
+        margin: auto;
+        height: auto;
+        overflow: hidden;
+        vertical-align: center;
+    }
+
+
+    #imagecentre
+    {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    #textegauche{
+        float: left;
+        display:inline-block;
+        vertical-align: center;
+        text-align: justify;
+
+    }
+
+    #textedroit {
+        float: right;
+        display: inline-block;
+        vertical-align: center;
+        text-align: justify;
+    }
+
+}
+
+
+/*masquage des encarts*/
+@media all and (max-width: 1120px) {
+
+
+    .encart_bas{
+        display:none;
+    }
+
+    .encart_haut{
         display: none;
     }
+}
+
+
+
+@media all and (max-width: 1024px)
+{
+    /* adaptation des colonnes datatables responsive  */
+
+    .col-administrateur,
+    .col-publication,
+    .col-comSignalisation,
+    .comunsignal,
+    .comdelete{
+        display: none;
+    }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 25%;
+        padding-left: 0;
+    }
+
+    div.material-table table tr td {
+        padding: 0 0 0 15px;
+    }
+
+    /* Gestion des commentaires*/
+    .col-comDate{
+        width: 15%;
+        padding-left: 0;
+    }
+
+    /* Gestion des observations */
     .col-action{
         width: 15%;
     }
@@ -808,6 +1092,10 @@ display: none;
     }
     /* PAGE D'ACCUEIL */
 
+
+
+
+
     #video-oiseaux
     {
         display: none;
@@ -815,6 +1103,7 @@ display: none;
 
     .image_petit_ecran
     {
+        visibility: inherit;
         display: inherit;
         object-fit: initial;
         width: 100%;
@@ -915,16 +1204,64 @@ display: none;
         margin: initial;
         padding-top: 15px;
     }
+
+
+   .coverimage {
+        margin:0;
+        padding:0;
+        background: url(../images/imagemobile.jpg) no-repeat center fixed;
+        -webkit-background-size: cover; /* pour Chrome et Safari */
+        -moz-background-size: cover; /* pour Firefox */
+        -o-background-size: cover; /* pour Opera */
+        background-size: cover; /* version standardisée */
+    }
+
+
+    .containerblanc{
+        margin: 0;
+        background-color: white;
+    }
+    .image_petit_ecran
+    {
+        visibility: hidden;
+        display: inherit;
+        object-fit: initial;
+        width: 100%;
+        height: 95vh;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
-
-
 @media all and (max-width: 768px) {
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
 
-
-    .col-date, .col-administrateur, .col-publication, .search-toggle{
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .search-toggle,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 25%;
+        padding-left: 0;
+    }
+
+
+
+
     .col-action{
         width: 15%;
     }
@@ -934,6 +1271,7 @@ display: none;
     .col-validation{
         width: 15%;
     }
+
 
 
     .containertemplate{
@@ -974,13 +1312,50 @@ display: none;
     #articleh1mobile{
         font-size: 40px !important;
     }
+
+
+    #imagecentre{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imagecentre{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
 }
 
 @media all and (max-width: 600px) {
 
-    .col-validation, .col-date, .col-administrateur, .col-publication, .modobs-photo{
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
+
+    .col-validation,
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .modobs-photo,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comArticle,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
+    /* Gestion des commentaires*/
+    .col-comDate{
+        width: 30%;
+        padding-left: 0;
+    }
+
+    /* Gestion des oblservations*/
     .col-action{
         width: 20%;
     }
@@ -1036,11 +1411,54 @@ display: none;
     #articleh1mobile{
         font-size: 35px !important;
     }
+
+    #imagecentre{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imagecentre{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }
 
 @media all and (max-width: 400px){
 
-    .col-validation, .col-date, .col-administrateur, .col-publication, .col-auteur{
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
+    .modal .modal-content{
+        padding: 0px;
+
+    }
+
+    .plusinfo{
+        text-align:center;
+    }
+    .plusinfo a{
+        display:inline-block;
+        margin:0;
+        float:none;
+    }
+
+
+    .col-validation,
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .col-auteur,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comDate,
+    .col-comArticle,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
     .col-action{
@@ -1073,4 +1491,17 @@ display: none;
         margin-top: 20px;
         display: inline-block;
     }
+
+    #imagecentre{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .imagecentre{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
 }

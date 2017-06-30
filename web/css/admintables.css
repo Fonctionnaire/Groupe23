@@ -81,7 +81,7 @@ div.material-table .table-footer label {
     color: rgba(0, 0, 0, 0.54);
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row
+    -webkit-flex-direction: row;
     /* works with row or column */
 
     flex-direction: row;
@@ -94,7 +94,7 @@ div.material-table .table-footer label {
 div.material-table .table-footer .select-wrapper {
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-direction: row
+    -webkit-flex-direction: row;
     /* works with row or column */
 
     flex-direction: row;
@@ -149,7 +149,7 @@ div.material-table .table-title {
 }
 
 div.material-table table tr td {
-    padding: 0 0 0 56px;
+    padding: 0 0 0 15px;
     height: 48px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
@@ -180,7 +180,7 @@ div.material-table table th {
     white-space: nowrap;
     padding: 0;
     height: 56px;
-    padding-left: 56px;
+    padding-left: 15px;
     vertical-align: middle;
     outline: none !important;
 }
