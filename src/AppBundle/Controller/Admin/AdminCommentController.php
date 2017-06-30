@@ -57,4 +57,26 @@ class AdminCommentController extends Controller
         $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été validé');
         return $this->redirect($referer);
     }
+
+    /**
+     * @Route("/commentModale/{id}", options={"expose"=true} , name="commentModale")
+     * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function commentModaleAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $comment = $em->getRepository('AppBundle:Comment')->find($id);
+
+
+        if (null === $comment) {
+            throw new NotFoundHttpException("Le Commentaire d'id " . $id . " n'existe pas.");
+        }
+
+
+        return $this->render(':Admin:commentModale.html.twig', array(
+            'comment' => $comment,
+        ));
+    }
 }

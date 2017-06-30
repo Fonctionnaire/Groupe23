@@ -16,7 +16,7 @@ $(function () {
                 ready: function() { // Callback for Modal open. Modal and trigger parameters available.
                     $('.collapsible').collapsible();
                 },
-            complete: function() { $('.collapsible').collapsible(); } // Callback for Modal close
+                complete: function() { $('.collapsible').collapsible(); } // Callback for Modal close
             }
         );
 
@@ -89,5 +89,4 @@ jQuery.datetimepicker.setLocale('fr');
 jQuery('.datetimepicker').datetimepicker({
     format: 'd/m/Y H:i'
 });
-
 

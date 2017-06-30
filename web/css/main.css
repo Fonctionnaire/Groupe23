@@ -885,6 +885,23 @@ display: none;
 
 @media all and (min-width: 1025px) {
 
+    /* Datatables */
+    #admin{
+        margin-top: 30px;
+    }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 10%;
+        padding-left: 0;
+    }
+    .col-comArticle{
+        width: 15%;
+        padding-left: 0;
+    }
+
 
     /* Admin des Observations  */
 
@@ -959,7 +976,6 @@ display: none;
 
 @media all and (max-width: 1380px) {
 
-
     .encart_accueil p
     {
         padding-top: 40%;
@@ -1027,11 +1043,35 @@ display: none;
 
 @media all and (max-width: 1024px)
 {
-    /* Admin des Observations  */
+    /* adaptation des colonnes datatables responsive  */
 
-    .col-administrateur, .col-publication{
+    .col-administrateur,
+    .col-publication,
+    .col-comSignalisation,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 25%;
+        padding-left: 0;
+    }
+
+    div.material-table table tr td {
+        padding: 0 0 0 15px;
+    }
+
+    /* Gestion des commentaires*/
+    .col-comDate{
+        width: 15%;
+        padding-left: 0;
+    }
+
+    /* Gestion des observations */
     .col-action{
         width: 15%;
     }
@@ -1194,11 +1234,34 @@ display: none;
 }
 
 @media all and (max-width: 768px) {
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
 
-
-    .col-date, .col-administrateur, .col-publication, .search-toggle{
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .search-toggle,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
+    .col-comAuteur{
+        width: 15%;
+        padding-left: 0;
+    }
+    .col-comDate{
+        width: 25%;
+        padding-left: 0;
+    }
+
+
+
+
     .col-action{
         width: 15%;
     }
@@ -1268,9 +1331,31 @@ display: none;
 
 @media all and (max-width: 600px) {
 
-    .col-validation, .col-date, .col-administrateur, .col-publication, .modobs-photo{
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
+
+    .col-validation,
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .modobs-photo,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comArticle,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
+    /* Gestion des commentaires*/
+    .col-comDate{
+        width: 30%;
+        padding-left: 0;
+    }
+
+    /* Gestion des oblservations*/
     .col-action{
         width: 20%;
     }
@@ -1343,7 +1428,37 @@ display: none;
 
 @media all and (max-width: 400px){
 
-    .col-validation, .col-date, .col-administrateur, .col-publication, .col-auteur{
+    .modal{
+        min-height: 85%;
+        min-width: 95%;
+    }
+    .modal .modal-content{
+        padding: 0px;
+
+    }
+
+    .plusinfo{
+        text-align:center;
+    }
+    .plusinfo a{
+        display:inline-block;
+        margin:0;
+        float:none;
+    }
+
+
+    .col-validation,
+    .col-date,
+    .col-administrateur,
+    .col-publication,
+    .col-auteur,
+    .modobs-avatar,
+    .col-comSignalisation,
+    .col-comDate,
+    .col-comArticle,
+    .col-comCom,
+    .comunsignal,
+    .comdelete{
         display: none;
     }
     .col-action{

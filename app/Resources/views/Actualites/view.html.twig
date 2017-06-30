@@ -59,7 +59,7 @@
                         {#bouton commenter quand commentaires activés#}
                         {% if article.enableComments == true  %}
                             {% if is_granted('ROLE_USER') %}
-                                <a class="btn-large waves-effect waves-light deep-orange darken-4 openmodal articlebtn" id="articleusercommenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
+                                <a data-target="modal2" class="btn-large waves-effect waves-light deep-orange darken-4 modal-trigger articlebtn" id="articleusercommenter" href="{{ path('addComment', {'slug': article.slug}) }}" target="_blank">
                                     Commenter
                                 </a>
                             {% else %}
