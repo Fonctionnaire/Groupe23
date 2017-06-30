@@ -454,10 +454,8 @@ class Observation
     public function setIsVisible($isVisible)
     {
         $this->isVisible = $isVisible;
-
         return $this;
     }
-
     /**
      * Get isVisible
      *

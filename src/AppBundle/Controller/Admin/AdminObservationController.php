@@ -3,10 +3,10 @@
 namespace AppBundle\Controller\Admin;
 
 
-use AppBundle\Form\ObservationEditType;
+use AppBundle\Form\Type\ObservationEditType;
 use AppBundle\Entity\Observation;
-use AppBundle\Form\ObservationStatutType;
-use AppBundle\Form\ObservationValidationType;
+use AppBundle\Form\Type\ObservationStatutType;
+use AppBundle\Form\Type\ObservationValidationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -87,7 +87,6 @@ class AdminObservationController extends Controller
             $observation->setWaiting(false);
             $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $entityManager->flush();
-            // $this->get('app.notification')->sendMailValidationObservation($observation);
             $this->addFlash('success', 'Observation traitée avec succès');
             return $this->redirect($this->generateUrl('adminObservations'));
         }
@@ -111,7 +110,7 @@ class AdminObservationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($observation->getValided() === false AND $observation->getIsVisible() === true) {
+            if ($observation->getValided() === false && $observation->getIsVisible() === true) {
                 $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
                 return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
             }

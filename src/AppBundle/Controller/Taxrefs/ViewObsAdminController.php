@@ -13,12 +13,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class viewObsAdminController extends Controller
+class ViewObsAdminController extends Controller
 {
     /**
      * @return Response
      * @Method("GET")
-     * @Route("/admin/observations_validées", name="admin_listTaxrefs", options={"utf8": true})
+     * @Route("/admin/observations-validees", name="admin_listTaxrefs")
      */
     public function adminListTaxrefsAction()
     {

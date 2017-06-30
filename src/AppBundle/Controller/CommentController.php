@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Comment;
-use AppBundle\Form\CommentType;
+use AppBundle\Form\Type\CommentType;
 use AppBundle\Entity\Article;
 
 class CommentController extends Controller
@@ -22,7 +22,7 @@ class CommentController extends Controller
      */
     public function addCommentAction(Article $article, Request $request)
     {
-        if ($article->getEnableComments() == false)
+        if ($article->getEnableComments() === false)
         {
             return $this->redirectToRoute('view_article', array('slug' => $article->getSlug()));
 
@@ -67,7 +67,7 @@ class CommentController extends Controller
      */
     public function replyCommentAction(Comment $parent, Request $request)
     {
-    if ($parent->getArticle()->getEnableComments() == false) {
+    if ($parent->getArticle()->getEnableComments() === false) {
         return $this->redirectToRoute('view_article', array('slug' => $parent->getArticle()->getSlug()));
     }
         // on vérifie que les commentaires sont activés
