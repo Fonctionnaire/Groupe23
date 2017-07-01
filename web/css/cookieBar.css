@@ -1,36 +1,49 @@
 .cookie-message {
     position: fixed;
     bottom: 0;left:0;right:0;
-    background:#fff;
     z-index: 1000;
-    height: 70px;
+    min-height: 70px;
     font-size: 1.1em;
-    padding-top: 25px;
-
+    background-color: #bf360c;
+    color: white;
+    display: flex;
+    justify-content: space-around;
 }
 
 .cookie-message p{
-    text-align: center;
+
+    padding-top: 10px;
 }
 
 .cookie-message button
 {
-    position: absolute;
-    right: 50px;
+    margin-left: 25%;
+    background-color: #c0ca33;
+    border-color: #c0ca33;
 }
 
 @media all and (max-width: 1024px)
 {
     .cookie-message
     {
-        font-size: 0.5em;
+        font-size: 0.9em;
         bottom: inherit;
-        top: 50px;
+        top: 63px;
     }
 
     .cookie-message button
     {
-        position: inherit;
+        margin-left: 5%;
+    }
+}
+
+@media all and (max-width: 600px)
+{
+    .cookie-message
+    {
+        font-size: 0.9em;
+        bottom: inherit;
+        top: 58px;
     }
 }
 
