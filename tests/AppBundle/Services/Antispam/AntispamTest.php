@@ -6,7 +6,6 @@ namespace Tests\AppBundle\Services\Antispam;
 
 
 use AppBundle\Entity\Article;
-use AppBundle\Entity\Comment;
 use AppBundle\Services\Antispam\Antispam;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
