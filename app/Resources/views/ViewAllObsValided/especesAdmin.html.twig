@@ -9,24 +9,32 @@
 {% endblock %}
 {% block content %}
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="container">
+    <div class="container container-viewAllObs z-depth-2 blue-grey lighten-5">
 
-        <div id="map-view"><p class="text-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</p></div>
+        <h1 class="center-align lime-text text-darken-1">Carte interactive d'observations</h1>
+        <div id="map-view" class="col s12"><p class="text-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</p></div>
 
         <div class="row">
-            <div id="commenttab" class="table-responsive">
-                <table class="table table-hover" id="myTable">
+            <div class="col s12">
+                <div class="material-table">
+                    <div class="table-header">
+                        <span class="table-title">visualisation des observations validées</span>
+                        <div class="actions">
+                            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                    <table id="datatable">
                     <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Nom Vern</th>
-                        <th>Habitat</th>
-                        <th>Statut</th>
+                        <th>nom</th>
+                        <th>nom Vern</th>
+                        <th class="champ-responsive-hidden">habitat</th>
+                        <th class="champ-responsive-hidden">statut</th>
                         <th hidden>Latitude</th>
                         <th hidden>Longitude</th>
                         <th hidden>id</th>
-                        <th hidden>Date observation</th>
-                        <th>Filtre</th>
+                        <th hidden>date observation</th>
+                        <th>Voir sur la carte</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,12 +42,12 @@
                         <tr>
                             <td>{{ taxref.lbnom }}</td>
                             <td>{{ taxref.nonvern }}</td>
-                            <td>
+                            <td class="champ-responsive-hidden">
                                 {% if taxref.habitat != null %}
                                     {{ taxref.habitat }}
                                 {% endif %}
                             </td>
-                            <td>
+                            <td class="champ-responsive-hidden">
                                 {% if taxref.frStatut != null %}
                                     {{ taxref.frStatut.description }}
                                 {% endif %}
@@ -69,13 +77,13 @@
                                     <p>{{ obsDate.dateObservation|date('d/m/Y') }}</p>
                                 {% endfor %}
                             </td>
-                            <td class="filtre-td"><button type="button" class="filtrer">Filtrer</button></td>
+                            <td class="filtre-td right-align"><a class="filtrer waves-effect waves-light"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
-
+            </div>
         </div>
     </div>
     {% endif %}
