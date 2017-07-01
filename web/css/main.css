@@ -579,6 +579,13 @@ h3{
 
 /* PAGE VIEW D'OBSERVATIONS */
 
+.container-viewAllObs
+{
+    min-width: 85%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .text-map
 {
     text-align: center;
@@ -628,6 +635,7 @@ h3{
     margin-top: 10px;
     font-style: italic;
 }
+
 
 /* ADD ARTICLE FORM */
 /***********************************/
@@ -873,6 +881,7 @@ display: none;
 
 .container_ml
 {
+    min-width: 85%;
     border-radius: 3px;
     margin-top: 25px;
     margin-bottom: 25px;
@@ -1216,6 +1225,13 @@ display: none;
         height: 95vh;
         margin: 0 !important;
         padding: 0 !important;
+    }
+
+    /* PAGE VIEW ALL OBS */
+
+    .champ-responsive-hidden
+    {
+        display: none;
     }
 }
 
