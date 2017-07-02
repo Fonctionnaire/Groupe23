@@ -775,7 +775,14 @@ display: none;
 
 .titre_nous_contacter
 {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
+}
+
+.contact-obligatoire
+{
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 30px;
 }
 
 .container_contact
@@ -826,11 +833,26 @@ display: none;
     margin-left: auto;
 }
 
+.block-count-chars
+{
+    margin-top: -20px;
+    margin-bottom: 25px;
+}
+
+.block-count-chars p
+{
+    font-weight: bold;
+}
 
 .formbirthday .form-control{
     width: 75px;
     font-size: 1.0em;
     display: inline-block;
+}
+
+.list-unstyled > li
+{
+    color: red;
 }
 
 /* PAGE fos */

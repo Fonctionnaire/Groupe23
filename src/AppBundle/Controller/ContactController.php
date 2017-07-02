@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ContactController extends Controller
 {
     /**
-     * @Route("/nous_contacter", name="nous_contacter")
+     * @Route("/nous-contacter", name="nous_contacter")
      * @Method({"GET","POST"})
      */
     public function contactAction(Request $request)
@@ -22,7 +22,7 @@ class ContactController extends Controller
         if ($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
             $this->get('app.send_contact_mail')->sendContactMail($data);
-
+            $this->get('app.send_contact_mail')->sendContactMailToSender($data);
             $this->addFlash('success', 'Votre message à bien été envoyé. Nous vous répondrons au plus vite.');
             return $this->redirectToRoute('nous_contacter');
     }

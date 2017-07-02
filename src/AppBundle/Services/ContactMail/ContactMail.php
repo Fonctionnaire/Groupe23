@@ -8,7 +8,7 @@
 
 namespace AppBundle\Services\ContactMail;
 
-use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class ContactMail extends \Twig_Extension
@@ -25,11 +25,33 @@ class ContactMail extends \Twig_Extension
 
     public function sendContactMail($data)
     {
+        $reply = $data['mail'];
         $message = \Swift_Message::newInstance()->setSubject('Contact')
             ->setFrom('gruffy.thibaut@gmail.com')
-            ->setTo('thibaut.gruffy@gmail.com')
+            ->setTo(['thibaut.gruffy@gmail.com', $reply])
             ->setBody($this->twig->render(
                 ':Emails:contactMail.html.twig',
+                array(
+                    'name' => $data['name'],
+                    'firstName' => $data['firstName'],
+                    'mail' => $data['mail'],
+                    'subject' => $data['subject'],
+                    'message' => $data['message']
+                )
+            ),
+                'text/html'
+            );
+        $this->mailer->send($message);
+    }
+
+    public function sendContactMailToSender($data)
+    {
+        $reply = $data['mail'];
+        $message = \Swift_Message::newInstance()->setSubject('Contact')
+            ->setFrom('gruffy.thibaut@gmail.com')
+            ->setTo($reply)
+            ->setBody($this->twig->render(
+                ':Emails:contactMailForSender.html.twig',
                 array(
                     'name' => $data['name'],
                     'firstName' => $data['firstName'],

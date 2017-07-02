@@ -1,27 +1,42 @@
 {% extends 'layout.html.twig' %}
+{% block contactScript %}
+    <script src="{{ asset('js/contactCountChars.js') }}"></script>
+{% endblock %}
 {% block content %}
 <div class="container container_contact blue-grey lighten-5 z-depth-1">
 
     <h1 class="titre_nous_contacter lime-text text-darken-1">Nous contacter</h1>
-
+        <p class="lime-text text-darken-1 contact-obligatoire">Tous les champs sont obligatoires</p>
     {{ form_start(form) }}
 
         {{ form_errors(form) }}
-
     <div class="input-field">
         {{ form_label(form.name, "Votre nom") }}
         {{ form_errors(form.name) }}
-        {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_widget(form.name, {'attr': {'class': 'validate', 'value': app.user.lastName}}) }}
+            {% else %}
+                {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
+        {% endif %}
     </div>
     <div class="input-field">
         {{ form_label(form.firstName, "Votre prénom") }}
         {{ form_errors(form.firstName) }}
-        {{ form_widget(form.firstName, {'attr': {'class': 'validate'}}) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_widget(form.firstName, {'attr': {'class': 'validate', 'value': app.user.firstName}}) }}
+            {% else %}
+                {{ form_widget(form.firstName, {'attr': {'class': 'validate'}}) }}
+        {% endif %}
     </div>
+
     <div class="input-field">
         {{ form_label(form.mail, "Votre E-mail") }}
         {{ form_errors(form.mail) }}
-        {{ form_widget(form.mail, {'attr': {'class': 'validate'}}) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_widget(form.mail, {'attr': {'class': 'validate', 'value': app.user.email}}) }}
+            {% else %}
+                {{ form_widget(form.mail, {'attr': {'class': 'validate'}}) }}
+        {% endif %}
     </div>
     <div class="input-field">
         {{ form_label(form.subject, "Sujet") }}
@@ -31,11 +46,16 @@
     <div class="input-field">
         {{ form_label(form.message, "Votre message") }}
         {{ form_errors(form.message) }}
-        {{ form_widget(form.message, {'attr': {'class': 'materialize-textarea validate'}}) }}
+        {{ form_widget(form.message, {'attr': {'class': 'materialize-textarea validate textarea-contact'}}) }}
+        <div class="block-count-chars" >
+            <p class="right-align lime-text text-darken-1"><span class="count-chars">0</span> / 1200 </p>
+        </div>
     </div>
 
         {{ form_widget(form.envoyer, {'attr': {'class': 'valider_contact z-depth-1 deep-orange darken-4'}})}}
     {{ form_end(form) }}
+
+
 
 </div>
 {% endblock %}
