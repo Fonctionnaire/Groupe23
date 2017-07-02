@@ -33,8 +33,15 @@ class ObservationController extends BaseController
         $form = $this->createForm(ObservationType::class, $observation);
         $form->handleRequest($request);
 
+        $role = $this->get('security.token_storage')->getToken()->getUser()->getRoles();
+        dump($role);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if($role[0] == "ROLE_ADMIN" || $role[0] == "ROLE_SUPER_ADMIN")
+            {
+                $observation->setValided(true);
+                $observation->setWaiting(false);
+            }
             $em->persist($observation);
             $em->flush();
 
