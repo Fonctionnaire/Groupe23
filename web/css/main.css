@@ -828,11 +828,26 @@ display: none;
     margin-left: auto;
 }
 
+.block-count-chars
+{
+    margin-top: -20px;
+    margin-bottom: 25px;
+}
+
+.block-count-chars p
+{
+    font-weight: bold;
+}
 
 .formbirthday .form-control{
     width: 75px;
     font-size: 1.0em;
     display: inline-block;
+}
+
+.list-unstyled > li
+{
+    color: red;
 }
 
 /* PAGE fos */

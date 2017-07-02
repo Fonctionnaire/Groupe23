@@ -30,11 +30,21 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'constraints' => array(new NotBlank(),
-                    new Length(array('min' => 2)),
+                    new Length(array(
+                        'min' => 2,
+                        'max' => 40,
+                        'minMessage' => 'Nom invalide',
+                        'maxMessage' => 'Le nom ne peut dépasser 40 caractères'
+                    )),
                 )))
             ->add('firstName', TextType::class, array(
                 'constraints' => array( new NotBlank(),
-                    new Length(array('min' => 2)),
+                    new Length(array(
+                        'min' => 2,
+                        'max' => 40,
+                        'minMessage' => 'Prénom invalide',
+                        'maxMessage' => 'Le prénom ne peut dépasser 40 caractères'
+                    )),
                 )))
             ->add('mail', EmailType::class, array(
                 'constraints' => array( new Email(),
@@ -42,11 +52,21 @@ class ContactType extends AbstractType
                 )))
             ->add('subject', TextType::class, array(
                 'constraints' => array( new NotBlank(),
-                    new Length(array('min' => 2)),
+                    new Length(array(
+                        'min' => 2,
+                        'max' => 40,
+                        'minMessage' => 'Le sujet de votre message doit comporter au moins 2 caractères',
+                        'maxMessage' => 'Le sujet de votre demande ne peut dépasser 40 caractères'
+                    )),
                 )))
             ->add('message', TextareaType::class, array(
                 'constraints' => array( new NotBlank(),
-                    new Length(array('min' => 2)),
+                    new Length(array(
+                        'min' => 2,
+                        'max' => 1205,
+                        'minMessage' => 'Votre message doit comporter au moins 2 caractères',
+                        'maxMessage' => 'Votre message ne peut dépasser 1200 caractères'
+                    )),
                 )))
             ->add('envoyer', SubmitType::class)
             ->getForm();
