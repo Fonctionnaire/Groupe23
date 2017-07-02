@@ -56,7 +56,7 @@
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{{ user.username }}" id="username" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="username">Ville</label>
+                        <label class="lime-text text-darken-2 police32" for="username">nom d'utilisateur</label>
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{% if is_granted('ROLE_SUPER_ADMIN') %}Super administateur{% elseif is_granted('ROLE_ADMIN') %}Administrateur naturaliste{% else %}Observateur{% endif %}" id="role" type="text" class="validate blue-grey-text text-darken-3 police32">

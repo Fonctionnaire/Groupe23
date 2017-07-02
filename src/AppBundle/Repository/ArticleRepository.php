@@ -18,7 +18,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 
     public function getArticlesPaginated($page)
     {
-        $qb = $this->createQueryBuilder('a')->where('a.date <= :now')->setParameter(':now', new \DateTime());
+        $qb = $this->createQueryBuilder('a')->where('a.date <= :now')->orderBy('a.date', 'DESC')->setParameter(':now', new \DateTime());
         $query = $qb->getQuery();
         $query
             // On définit l'article à partir duquel commencer la liste
@@ -29,9 +29,9 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         return new Paginator($query, true);
     }
 
-    public function findAllAsc()
+    public function findAllDsc()
     {
-        return $this->findBy(array(), array('date' => 'ASC'));
+        return $this->findBy(array(), array('date' => 'DESC'));
     }
 
     public function countAll()
