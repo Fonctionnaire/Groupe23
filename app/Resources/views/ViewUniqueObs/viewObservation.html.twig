@@ -29,11 +29,11 @@
     <div class="containertemplate">
         <div class="observation col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
             <div class="row">
-                <div class="modobs-title lime-text text-darken-2 col s12 m11"><!-- debut titre de l'observation -->
+                <div class="modobs-title lime-text text-darken-2 col s12 m10"><!-- debut titre de l'observation -->
                     <h4>{{ observation.taxref.lbnom }}</h4>observation du {{ observation.date|date("d-m-Y") }}<br>
 
                 </div><!-- Fin titre de l'observation -->
-                <div class="modobs-avatar lime-text text-darken-2 center-align col s12 m1"><!-- debut avatar autheur -->
+                <div class="modobs-avatar lime-text text-darken-2 center-align col s12 m2"><!-- debut avatar autheur -->
                     <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="responsive-img circle"
                          alt="{{ observation.user.username }}"/><br>
                     {{ observation.user.username }}

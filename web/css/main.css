@@ -18,6 +18,18 @@ blockquote {
 }
 
 
+div.obsimage {
+    width: 250px;
+    height: 250px;
+    overflow:hidden;
+}
+div.obsimage img {
+
+    position: relative;
+
+}
+
+
 /*encarts er cover mobile*/
 
 #cartecarte{
