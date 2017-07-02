@@ -770,7 +770,14 @@ display: none;
 
 .titre_nous_contacter
 {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
+}
+
+.contact-obligatoire
+{
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 30px;
 }
 
 .container_contact
