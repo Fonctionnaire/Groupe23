@@ -25,8 +25,15 @@ $(function () {
         })
     })
 });
+
 $('#modal2').focus(function() {
     $('.collapsible').collapsible();
+});
+
+// script for Alerts
+$('#alert_close').click(function(){
+    $( "#alert_box" ).fadeOut( "slow", function() {
+    });
 });
 //script document ready
 $(document).ready(function () {
@@ -37,6 +44,7 @@ $(document).ready(function () {
 
     //select
     $('select').material_select();
+    $('.parallax').parallax();
 
 
 

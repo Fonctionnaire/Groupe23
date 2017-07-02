@@ -1,10 +1,29 @@
 {% for type, messages in app.session.flashbag.all() %}
     {% for message in messages %}
-        <div class="alert alert-{{ type }} alert-dismissible fade in text-center" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span
-                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            {{ message | rawdescr }}
+{% if type == 'danger' %}
+    {% set bgcolor ='deep-orange lighten-3' %}
+    {% set fontcolor ='deep-orange-text text-darken-4' %}
+{% else %}
+    {% set bgcolor ='lime lighten-4' %}
+    {% set fontcolor ='lime-text text-darken-2' %}
+{% endif %}
 
+
+<div class="row" id="alert_box">
+    <div class="col s12 m12">
+        <div class="card {{ bgcolor }}">
+            <div class="row">
+                <div class="col s12 m10">
+                    <div class="card-content {{ fontcolor }}">
+                        {{ message | rawdescr }}
+                    </div>
+                </div>
+                <div class="col s12 m2 {{ fontcolor }}">
+                    <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
+                </div>
+            </div>
         </div>
-    {% endfor %}
+    </div>
+</div>
+{% endfor %}
 {% endfor %}

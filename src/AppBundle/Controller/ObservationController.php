@@ -56,11 +56,15 @@ class ObservationController extends BaseController
      * @Route("/voir-observation/{id}", name="viewObservation", options={"expose"=true})
      * @Method({"GET"})
      */
-    public function viewObservationAction($id)
+    public function viewObservationAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $observation = $em->getRepository('AppBundle:Observation')->find($id);
+        if($observation->getTaxref()->getProtected())
+        {
+            $request->getSession()->getFlashbag()->add('danger', 'Cette espèce est protégée !');
+        }
 
 
         if (null === $observation) {

@@ -1,0 +1,222 @@
+{% extends "layout.html.twig" %}
+{% block googleMapScript %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+        </script>
+        <script src="{{ asset('js/viewObsMapAdmin.js') }}"></script>
+
+    {% else %}
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
+        </script>
+
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="actualite col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
+
+            <div class="row">
+
+                <div class="col m10 offset-m1 left-align">
+                    <h1 class="lime-text text-darken-2"> {{ observation.taxref.nonvern }}</h1>
+                </div>
+
+            </div>
+
+        <div class="row">
+
+            <div id="view-obs-map"><p class="text-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</p></div>
+
+        </div>
+        <div class="row">
+
+            <div>
+                {% if observation.imageName %}
+                    <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="col-md-2" alt="{{ observation.taxref }}" />
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {% if observation.taxref.protected == true %}
+                <div class="alert alert-danger col-md-6">
+                    <strong>Espèce protégée</strong>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                {% if observation.waiting == true %}
+                    Observation en attente de validation
+
+                {% elseif observation.waiting == false %}
+                    {# si commentaire invalidé #}
+                    {% if observation.valided == false %}
+                        <p style="color:red">Observation invalidée</p>
+                        <p style="color:red"> Administrateur : {{ observation.adminUserName }}</p>
+                        <p style="color:red">Commentaire administrateur :
+                            {% if observation.adminComment is null %}
+                                sans commentaire
+                            {% else %}
+                                {{ observation.adminComment }}
+                            {% endif %}
+                        </p>
+
+                        {# si observation validée et non publiée #}
+                    {% elseif observation.valided == true %}
+                        {% if observation.isVisible == false %}
+                            <p style="color:green">Observation validée et non publique</p>
+                            <p style="color:green"> Administrateur : {{ observation.adminUserName }}</p>
+                            <p style="color:green">Commentaire administrateur :
+                                {% if observation.adminComment is null %}
+                                    sans commentaire
+                                {% else %}
+                                    {{ observation.adminComment }}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                <hr />
+                <p>Date d'enregistrement : le {{ observation.date|date('d/m/Y à H:i') }}</p>
+                <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
+                <p>Auteur : {{ observation.user.username }} </p>
+                <p>Espèce : {{ observation.taxref }}</p>
+                <p>Famille : {{ observation.taxref.famille }} </p>
+                <p>Habitat : {{ observation.taxref.habitat }}</p>
+                {% if observation.taxref.link is not null %}
+                    <a href="{{ observation.taxref.link }}"><button type="button" class="btn btn-primary btn-sm">Fiche d'information</button>
+                    </a>
+                {% endif %}
+                <p>Commentaire : {{ observation.comment }}</p>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude}}</span></p>
+                    <p>Longitude: <span id="view-obs-longitude">{{ observation.longitude }}</span></p>
+                    {% if observation.waiting == true %}
+                        <a data-target="modal1" href="{{ path('validation', {'id': observation.id}) }}" class="modal-trigger btn btn-default navbar-btn"><i class="fa fa-check"></i> Traiter l'observation</a>
+                    {% endif %}
+                {% else %}
+                    <p class="latLng-hide">Latitude: <span id="view-obs-latitude">{{ observation.latitude|number_format(3)  }}</span></p>
+                    <p class="latLng-hide">Longitude: <span id="view-obs-longitude">{{ observation.longitude|number_format(3) }}</span></p>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Territoire</th>
+                        <th>Statut</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if observation.taxref.frStatut is not null %}
+                        <tr>
+                            <td>France Métropolitaine</td>
+                            <td>{{ observation.taxref.frStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.gfStatut is not null %}
+                        <tr>
+                            <td>Guyane</td>
+                            <td>{{ observation.taxref.gfStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+
+                    {% if observation.taxref.marStatut is not null %}
+                        <tr>
+                            <td>Martinique</td>
+                            <td>{{ observation.taxref.marStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+
+                    {% if observation.taxref.guaStatut is not null %}
+                        <tr>
+                            <td>Guadeloupe</td>
+                            <td>{{ observation.taxref.guaStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.smStatut is not null %}
+                        <tr>
+                            <td>Saint Martin</td>
+                            <td>{{ observation.taxref.smStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.sbStatut is not null %}
+                        <tr>
+                            <td>Saint Barthelemy</td>
+                            <td>{{ observation.taxref.sbStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.spmStatut is not null %}
+                        <tr>
+                            <td>Saint Pierre et Miquelon</td>
+                            <td>{{ observation.taxref.spmStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.mayStatut is not null %}
+                        <tr>
+                            <td>Mayotte</td>
+                            <td>{{ observation.taxref.mayStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.epaStatut is not null %}
+                        <tr>
+                            <td>îles Eparses</td>
+                            <td>{{ observation.taxref.epaStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.reuStatut is not null %}
+                        <tr>
+                            <td>Réunion</td>
+                            <td>{{ observation.taxref.reuStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.taStatut is not null %}
+                        <tr>
+                            <td>Terre Adélie</td>
+                            <td>{{ observation.taxref.taStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.taafStatut is not null %}
+                        <tr>
+                            <td>Terres Australes et Antarctiques Françaises</td>
+                            <td>{{ observation.taxref.taafStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.ncStatut is not null %}
+                        <tr>
+                            <td>Nouvelle Calédonie</td>
+                            <td>{{ observation.taxref.ncStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.wfStatut is not null %}
+                        <tr>
+                            <td>Wallis et Futuna</td>
+                            <td>{{ observation.taxref.wfStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.pfStatut is not null %}
+                        <tr>
+                            <td>Polynésie Française</td>
+                            <td>{{ observation.taxref.pfStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if observation.taxref.cliStatut is not null %}
+                        <tr>
+                            <td>Clipperton</td>
+                            <td>{{ observation.taxref.cliStatut.description }}</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+{% endblock %}
