@@ -1,214 +1,211 @@
 {% extends "layout.html.twig" %}
 {% block googleMapScript %}
     {% if is_granted('ROLE_ADMIN') %}
-        <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
+        <script src="{{ asset('js/viewObsMapAdmin.js') }}"></script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
         </script>
-        <script src="{{ asset('js/viewObsMapAdmin.js') }}"></script>
+
+
 
     {% else %}
+        <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
         </script>
 
     {% endif %}
 {% endblock %}
+
 {% block content %}
-    <div class="container">
+    <script>
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
 
-        <div class="row">
-            <h1>Observation</h1>
+        });
+        $('.collapsible').collapsible();
+    </script>
 
-            <div id="view-obs-map"><p class="text-map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</p></div>
+    <div class="containertemplate">
+        <div class="observation col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
+            <div class="row">
+                <div class="modobs-title lime-text text-darken-2 col s12 m11"><!-- debut titre de l'observation -->
+                    <h4>{{ observation.taxref.lbnom }}</h4>observation du {{ observation.date|date("d-m-Y") }}<br>
 
-        </div>
-        <div class="row">
-
-            <div>
-                {% if observation.imageName %}
-                    <img src="{{ vich_uploader_asset(observation, 'imageFile') }}" class="col-md-2" alt="{{ observation.taxref }}" />
-                {% endif %}
+                </div><!-- Fin titre de l'observation -->
+                <div class="modobs-avatar lime-text text-darken-2 center-align col s12 m1"><!-- debut avatar autheur -->
+                    <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="responsive-img circle"
+                         alt="{{ observation.user.username }}"/><br>
+                    {{ observation.user.username }}
+                </div><!-- Fin avatar autheur -->
             </div>
-        </div>
-        <div class="row">
-            {% if observation.taxref.protected == true %}
-                <div class="alert alert-danger col-md-6">
-                    <strong>Espèce protégée</strong>
-                </div>
-            {% endif %}
-        </div>
+            <div class="row">
+                <div class="obsimage col s12 m6 l4 center-align"><!-- debut photo de l'observation -->
+                    {% if observation.imageName %}
+                        <img src="{{ vich_uploader_asset(observation, 'imageFile') }}"
+                             class="z-depth-2 responsive-img materialboxed "
+                             data-caption="{{ observation.taxref.lbnom }} observé(e) le  {{ observation.date|date("d-m-Y") }}"
+                             alt="{{ observation.taxref }}"/>
+                        {% else %}
+                        <img class="responsive-img" style="max-height: 250px;" src="{{ asset('images/placeholder.jpg') }}">
+                    {% endif %}
 
-        <div class="row">
-            <div class="col-md-6">
+                </div><!-- Fin photo de l'observation -->
 
-                {% if observation.waiting == true %}
-                    Observation en attente de validation
-
-                {% elseif observation.waiting == false %}
-                    {# si commentaire invalidé #}
-                    {% if observation.valided == false %}
-                        <p style="color:red">Observation invalidée</p>
-                        <p style="color:red"> Administrateur : {{ observation.adminUserName }}</p>
-                        <p style="color:red">Commentaire administrateur :
-                            {% if observation.adminComment is null %}
-                                sans commentaire
-                            {% else %}
-                                {{ observation.adminComment }}
+                <div class="col s12 offset-l2 l6 m6">
+                    <div class="card white">
+                        <div class="card-content blue-grey-text text-darken-3">
+                            <div class="chip card-title lime darken-2 blue-grey-text text-lighten-5">
+                                <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}"
+                                     class="responsive-img circle" alt="{{ observation.user.username }}"/>
+                                commentaire de {{ observation.user.username }}
+                            </div>
+                            <blockquote>
+                                {{ observation.comment }}
+                            </blockquote>
+                        </div>
+                        <div class="card-action">
+                            {% if is_granted('ROLE_ADMIN') %}
+                            {% if observation.waiting == true %}
+                                <a data-target="modal1" href="{{ path('validation', {'id': observation.id}) }}"
+                                   class="modal-trigger">Traiter l'observation</a>
                             {% endif %}
-                        </p>
+                                <a href="{{ path('adminObservations') }}">liste des observations</a>
+                            {% endif %}
+                            <a href="{{ path('user_listTaxrefs') }}">Carte</a>
+                        </div>
+                    </div>
 
-                        {# si observation validée et non publiée #}
-                    {% elseif observation.valided == true %}
-                        {% if observation.isVisible == false %}
-                            <p style="color:green">Observation validée et non publique</p>
-                            <p style="color:green"> Administrateur : {{ observation.adminUserName }}</p>
-                            <p style="color:green">Commentaire administrateur :
-                                {% if observation.adminComment is null %}
-                                    sans commentaire
-                                {% else %}
-                                    {{ observation.adminComment }}
-                                {% endif %}
-                            </p>
-                        {% endif %}
-                    {% endif %}
-                {% endif %}
-                <hr />
-                <p>Date d'enregistrement : le {{ observation.date|date('d/m/Y à H:i') }}</p>
-                <p>Date de l'observation : le {{ observation.dateObservation|date('d/m/Y') }}</p>
-                <p>Auteur : {{ observation.user.username }} </p>
-                <p>Espèce : {{ observation.taxref }}</p>
-                <p>Famille : {{ observation.taxref.famille }} </p>
-                <p>Habitat : {{ observation.taxref.habitat }}</p>
-                {% if observation.taxref.link is not null %}
-                    <a href="{{ observation.taxref.link }}"><button type="button" class="btn btn-primary btn-sm">Fiche d'information</button>
-                    </a>
-                {% endif %}
-                <p>Commentaire : {{ observation.comment }}</p>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <p>Latitude: <span id="view-obs-latitude">{{ observation.latitude}}</span></p>
-                    <p>Longitude: <span id="view-obs-longitude">{{ observation.longitude }}</span></p>
-                    {% if observation.waiting == true %}
-                        <a data-target="modal1" href="{{ path('validation', {'id': observation.id}) }}" class="modal-trigger btn btn-default navbar-btn"><i class="fa fa-check"></i> Traiter l'observation</a>
-                    {% endif %}
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">photo</i>état
+                            </div>
+                            <div class="collapsible-body"><span>
+                {% if observation.waiting == true %}
+                    <span><i class="material-icons lime-text text-darken-2">watch_later</i>en attente...</span>
+                {% elseif observation.valided == true %}
+                    <span><i class="material-icons lime-text text-darken-2">check_circle</i>validée.</span>
                 {% else %}
-                    <p class="latLng-hide">Latitude: <span id="view-obs-latitude">{{ observation.latitude|number_format(3)  }}</span></p>
-                    <p class="latLng-hide">Longitude: <span id="view-obs-longitude">{{ observation.longitude|number_format(3) }}</span></p>
+                    <span><i class="material-icons lime-text text-darken-2">cancel</i>non validée.</span>
                 {% endif %}
+                    </span>
+                            </div>
+
+                        </li>
+                        {% if observation.adminComment %}
+                            <li>
+                            <div class="collapsible-header"><i
+                                        class="material-icons lime-text text-darken-2">message</i>avis du
+                                naturaliste
+                            </div>
+                            <div class="collapsible-body">
+                                <span>{{ observation.adminComment }}</span>
+                            </div>
+                            </li>{% endif %}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons lime-text text-darken-2">photo</i>Détails
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="row">
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.date|date('d/m/Y à H:i') }}" id="date"
+                                               type="text" class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="date">date
+                                            d'enregistrement</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.dateObservation|date('d/m/Y') }}"
+                                               id="obsdate" type="text"
+                                               class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="first_name">date de
+                                            l'observation</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.user.username }}" id="obsauthor"
+                                               type="text" class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="obsauthor">auteur</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.taxref }}" id="taxref" type="text"
+                                               class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="taxref">espèce</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.taxref.famille }}" id="famille"
+                                               type="text" class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="famille">famille</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled value="{{ observation.taxref.habitat }}" id="habitat"
+                                               type="text" class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="habitat">habitat</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col m4">
+                                        <input disabled
+                                               value="{% if is_granted('ROLE_ADMIN') %}{{ observation.latitude }}{% else %}{{ observation.latitude|number_format(3) }}{% endif %}"
+                                               id="latitude" type="text"
+                                               class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="latitude">latitude</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled
+                                               value="{% if is_granted('ROLE_ADMIN') %}{{ observation.longitude }}{% else %}{{ observation.longitude|number_format(3) }}{% endif %}"
+                                               id="username" type="text"
+                                               class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="username">Ville</label>
+                                    </div>
+                                    <div class="input-field col m4">
+                                        <input disabled
+                                               value="{% if is_granted('ROLE_SUPER_ADMIN') %}Super administateur{% elseif is_granted('ROLE_ADMIN') %}Administrateur naturaliste{% else %}Observateur{% endif %}"
+                                               id="role" type="text"
+                                               class="validate blue-grey-text text-darken-3 police32">
+                                        <label class="lime-text text-darken-2 police32" for="role">Rôle</label>
+                                    </div>
+                                </div>
+                                {% if observation.taxref.link is not null %}
+                                    <div class="row center-align">
+                                        <div class="col m6"><a
+                                                    class="btn-large waves-effect waves-light deep-orange darken-4"
+                                                    id="editprofile"
+                                                    href="{{ observation.taxref.link }}" role="button">Fiche
+                                                d'information</a></div>
+
+                                    </div>
+                                {% endif %}
+
+
+                                <!-- -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-4">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Territoire</th>
-                        <th>Statut</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if observation.taxref.frStatut is not null %}
-                        <tr>
-                            <td>France Métropolitaine</td>
-                            <td>{{ observation.taxref.frStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.gfStatut is not null %}
-                        <tr>
-                            <td>Guyane</td>
-                            <td>{{ observation.taxref.gfStatut.description }}</td>
-                        </tr>
-                    {% endif %}
+            <div class="row">
 
-                    {% if observation.taxref.marStatut is not null %}
-                        <tr>
-                            <td>Martinique</td>
-                            <td>{{ observation.taxref.marStatut.description }}</td>
-                        </tr>
-                    {% endif %}
+                <div id="view-obs-map"><p class="text-map materialboxed">Si la carte ne s'affiche pas, essayez
+                        d'actualiser la page.</p></div>
 
-                    {% if observation.taxref.guaStatut is not null %}
-                        <tr>
-                            <td>Guadeloupe</td>
-                            <td>{{ observation.taxref.guaStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.smStatut is not null %}
-                        <tr>
-                            <td>Saint Martin</td>
-                            <td>{{ observation.taxref.smStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.sbStatut is not null %}
-                        <tr>
-                            <td>Saint Barthelemy</td>
-                            <td>{{ observation.taxref.sbStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.spmStatut is not null %}
-                        <tr>
-                            <td>Saint Pierre et Miquelon</td>
-                            <td>{{ observation.taxref.spmStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.mayStatut is not null %}
-                        <tr>
-                            <td>Mayotte</td>
-                            <td>{{ observation.taxref.mayStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.epaStatut is not null %}
-                        <tr>
-                            <td>îles Eparses</td>
-                            <td>{{ observation.taxref.epaStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.reuStatut is not null %}
-                        <tr>
-                            <td>Réunion</td>
-                            <td>{{ observation.taxref.reuStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.taStatut is not null %}
-                        <tr>
-                            <td>Terre Adélie</td>
-                            <td>{{ observation.taxref.taStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.taafStatut is not null %}
-                        <tr>
-                            <td>Terres Australes et Antarctiques Françaises</td>
-                            <td>{{ observation.taxref.taafStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.ncStatut is not null %}
-                        <tr>
-                            <td>Nouvelle Calédonie</td>
-                            <td>{{ observation.taxref.ncStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.wfStatut is not null %}
-                        <tr>
-                            <td>Wallis et Futuna</td>
-                            <td>{{ observation.taxref.wfStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.pfStatut is not null %}
-                        <tr>
-                            <td>Polynésie Française</td>
-                            <td>{{ observation.taxref.pfStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    {% if observation.taxref.cliStatut is not null %}
-                        <tr>
-                            <td>Clipperton</td>
-                            <td>{{ observation.taxref.cliStatut.description }}</td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                </table>
             </div>
-
         </div>
     </div>
-
-
+    <div class="hide">
+        {% if is_granted('ROLE_ADMIN') %}
+            <span id="view-obs-latitude">{{ observation.latitude }}</span><span
+                id="view-obs-longitude">{{ observation.longitude }}</span>
+        {% else %}
+            <span id="view-obs-latitude">{{ observation.latitude|number_format(3) }}</span><span
+                id="view-obs-longitude">{{ observation.longitude|number_format(3) }}</span>
+        {% endif %}
+    </div>
 {% endblock %}
