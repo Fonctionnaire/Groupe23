@@ -11,6 +11,8 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 
 /**
  * User
@@ -131,6 +133,10 @@ class User extends BaseUser
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="avatar_image", fileNameProperty="avatarName", size="avatarSize")
+     * @Assert\Image(
+     *     minRatio="0.75",
+     *     maxSize="512k"
+     * )
      *
      * @var File
      */
@@ -507,4 +513,24 @@ class User extends BaseUser
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // do your own validation
+        if (! in_array($this->avatarFile->getMimeType(), array(
+            'image/jpeg',
+            'image/gif',
+            'image/png'
+        ))) {
+            $context
+                ->buildViolation('Fichier incorrect (seuls les jpg,gif,png autorisés)')
+                ->atPath('avatarFile')
+                ->addViolation();
+        }
+    }
+
 }

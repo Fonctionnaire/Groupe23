@@ -47,6 +47,7 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 
@@ -65,7 +66,7 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="comment", type="text", nullable=true)
-     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(max=50, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
      */
     private $comment;
 
@@ -73,7 +74,7 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="adminComment", type="text", nullable=true)
-     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(max=50, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
      */
     private $adminComment;
 
@@ -88,7 +89,10 @@ class Observation
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="observation_image", fileNameProperty="imageName", size="imageSize")
-     *
+     * @Assert\Image(
+     *     minRatio="0.56",
+     *     maxSize="2M"
+     * )
      * @var File
      */
     private $imageFile;
@@ -152,6 +156,12 @@ class Observation
      * @ORM\Column(name="latitude", type="float")
      * @Assert\NotBlank(message = "Veuillez renseigner ce champ")
      * @Assert\Type(type="float", message="coordonnee invalide")
+     * @Assert\Range(
+     *      min = -90.0,
+     *      max = 90.0,
+     *      minMessage = "La latitude ne peut être inférieure à -90°",
+     *      maxMessage = "La latitude ne peu être supérieure à 90°"
+     * )
      * )
      */
     private $latitude;

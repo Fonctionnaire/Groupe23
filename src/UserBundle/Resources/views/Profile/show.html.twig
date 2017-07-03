@@ -8,15 +8,15 @@
 
             <div class="profil col m10 blue-grey lighten-5 offset-s1 left-align">
                 <div class="row">
-                    <div class="col m10">
-                        <h1 class="lime-text text-darken-2"> Mon profil</h1>
-                        <p class="lime-text text-darken-2 police32">Date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
+                    <div class="center-align col s12 m10">
+                        <h1 class="lime-text text-darken-2"> mon profil</h1>
+                        <p class="lime-text text-darken-2 police32">date d'inscription : {{ user.dateRegister|date('d/m/Y') }}</p>
                     </div>
-                    <div class="col m2">
-                        {% if user.avatarName %}
-                            <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="circle responsive-img"
+                    <div class="profile-frame-round">
+                        <div class="profile-crop center-align center">
+                            <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="profilimgcrop"
                                  alt="{{ user.username }}"/>
-                        {% endif %}
+                        </div>
                     </div>
 
                 </div>
@@ -24,21 +24,21 @@
                 <div class="row">
                     <div class="input-field col m4">
                         <input disabled value="{{ user.firstName }}" id="first_name" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="first_name">Prénom</label>
+                        <label class="lime-text text-darken-2 police32" for="first_name">prénom</label>
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{{ user.lastName }}" id="last_name" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="first_name">Nom</label>
+                        <label class="lime-text text-darken-2 police32" for="first_name">nom</label>
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{% if user.birthDate|date('d/m/Y') == '01/01/1897' %}Non précisée{% else %}{{ user.birthDate|date('d/m/Y') }}{% endif %}" id="birthdate" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="birthdate">Date de naissance</label>
+                        <label class="lime-text text-darken-2 police32" for="birthdate">date de naissance</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col m4">
                         <input disabled value="{{ user.codePostal }}" id="postal-code" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="postal-code">Code Postal</label>
+                        <label class="lime-text text-darken-2 police32" for="postal-code">code Postal</label>
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{{ user.town }}" id="town" type="text" class="validate blue-grey-text text-darken-3 police32">
@@ -46,13 +46,13 @@
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{% if user.phone is null %}non renseigné{% else %}{{ user.phone }}{% endif %}" id="phone" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="phone">Téléphone</label>
+                        <label class="lime-text text-darken-2 police32" for="phone">téléphone</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col m4">
                         <input disabled value="{{ user.email }}" id="email" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="email">E-mail</label>
+                        <label class="lime-text text-darken-2 police32" for="email">e-mail</label>
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{{ user.username }}" id="username" type="text" class="validate blue-grey-text text-darken-3 police32">
@@ -60,16 +60,16 @@
                     </div>
                     <div class="input-field col m4">
                         <input disabled value="{% if is_granted('ROLE_SUPER_ADMIN') %}Super administateur{% elseif is_granted('ROLE_ADMIN') %}Administrateur naturaliste{% else %}Observateur{% endif %}" id="role" type="text" class="validate blue-grey-text text-darken-3 police32">
-                        <label class="lime-text text-darken-2 police32" for="role">Rôle</label>
+                        <label class="lime-text text-darken-2 police32" for="role">rôle</label>
                     </div>
                 </div>
-                <div class="row center-align">
-                    <div class="col m6"><a class="btn-large waves-effect waves-light deep-orange darken-4" id="editprofile"
-                                           href="{{ path('fos_user_profile_edit') }}" role="button">Modifier mon
+                <div class="profilaction row center center-align">
+                    <div class="col m6"><a class="flow-text deep-orange-text text-darken-4" id="editprofile"
+                                           href="{{ path('fos_user_profile_edit') }}" role="button">modifier mon
                             profil</a></div>
-                    <div class="col m6"><a class="btn-large waves-effect waves-light deep-orange darken-4"
+                    <div class="col m6"><a class="flow-text deep-orange-text text-darken-4"
                                            id="fos_user_change_password" href="{{ path('fos_user_change_password') }}"
-                                           role="button">Modifier mon mot de passe</a></div>
+                                           role="button">changer de mot de passe</a></div>
                 </div>
             </div>
         </div>
