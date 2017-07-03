@@ -59,6 +59,7 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 
@@ -80,8 +81,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank()
-     * @Assert\Length(min="2", max="255", minMessage="Votre commentaire doit contenir au moins 2 caractères", maxMessage="Votre commentaire ne peut dépasser les 255 caractères")
+     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
      */
     private $content;
 

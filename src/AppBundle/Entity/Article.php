@@ -47,6 +47,7 @@ class Article
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank(message = "Veuillez indiquer la date de publication")
      */
     private $date;
 
@@ -54,6 +55,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\Length(max=100, maxMessage="Votre titre ne peut dépasser {{ limit }} caractères.")
      */
     private $title;
 
@@ -62,6 +64,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Length(min=200, maxMessage="Votre article doit au moins contenir {{ limit }} caractères.")
      */
     private $content;
 
@@ -88,7 +91,10 @@ class Article
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageName", size="imageSize")
-     *
+     * @Assert\Image(
+     *     minRatio="0.56",
+     *     maxSize="2M"
+     * )
      * @var File
      */
     private $imageFile;
