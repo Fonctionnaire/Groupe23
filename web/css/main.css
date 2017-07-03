@@ -574,9 +574,21 @@ h3{
 
 /* PAGE AJOUT OBSERVATION */
 
+.container_add_obs
+{
+    min-width: 85%;
+    max-width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
 #obs-title
 {
-    text-align: center;
     margin-bottom: 25px;
 }
 
@@ -653,6 +665,25 @@ h3{
     font-style: italic;
 }
 
+.date-observation input
+{
+    border-bottom: 2px solid #c0ca33 !important;
+}
+
+.add-obs-photo
+{
+    margin-top: 20px;
+}
+
+.add-obs-photo .btn
+{
+    background-color: #bf360c;
+}
+
+.select2-container
+{
+    max-width: 100%;
+}
 
 /* ADD ARTICLE FORM */
 /***********************************/

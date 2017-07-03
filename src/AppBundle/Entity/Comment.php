@@ -80,6 +80,8 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min="2", max="255", minMessage="Votre commentaire doit contenir au moins 2 caractères", maxMessage="Votre commentaire ne peut dépasser les 255 caractères")
      */
     private $content;
 
