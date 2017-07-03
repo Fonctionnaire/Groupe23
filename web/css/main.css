@@ -1035,6 +1035,14 @@ display: none;
 
 
 
+/* PAGE D'ERREUR */
+
+.erreur_perso
+{
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
