@@ -1,57 +1,56 @@
 {# Conteneur Google map #}
 <div id="map">Si la carte ne s'affiche pas, essayez d'actualiser la page.</div>
 <div id="map-text"><p>Cliquez sur la carte pour obtenir les coordonées du lieu de l'observation</p></div>
-
-<div class="well">
+<p class="lime-text text-darken-1">Les champs marqués d'un * sont obligatoires</p>
+<div class="well test-addobs">
 
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     {{ form_errors(form) }}
 
-    <div>
-        {{ form_label(form.dateObservation, "Date d'observation") }}
+    <div class="date-observation">
+        {{ form_label(form.dateObservation, "Date d'observation *") }}
         {{ form_errors(form.dateObservation) }}
-        {{ form_widget(form.dateObservation, {'attr':{'placeholder':'Sélectionner une date'}}) }}
+        {{ form_widget(form.dateObservation, {'attr':{'placeholder':'Sélectionner une date', 'class': 'validate'}}) }}
     </div>
 
-    <div>
+    <div class="input-field">
         {{ form_label(form.comment, "Commentaire") }}
         {{ form_errors(form.comment) }}
         {{ form_widget(form.comment) }}
     </div>
 
-    <div>
-        {{ form_label(form.latitude, "Latitude") }}
+    <div class="input-field">
+        {{ form_label(form.latitude, "Latitude *") }}
         {{ form_errors(form.latitude) }}
         {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude', 'readonly': 'readonly'}}) }}
 
     </div>
 
-    <div>
-        {{ form_label(form.longitude, "Longitude") }}
+    <div class="input-field">
+        {{ form_label(form.longitude, "Longitude *") }}
         {{ form_errors(form.longitude) }}
         {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude', 'readonly': 'readonly'}}) }}
     </div>
 
     <div>
-        {{ form_label(form.taxref, "Choisissez une espèce") }}
+        {{ form_label(form.taxref, "Choisissez une espèce *") }}
         {{ form_errors(form.taxref) }}
         {{ form_widget(form.taxref, {'attr': {'class': 'oiseaux'}}) }}
         <p class="text-identifier">Vous avez un doute sur l'espèce observée ? Vous pouvez l'indentifier à l'aide de <a href="http://www.oiseaux.net/identifier/" target="_blank">cette page</a></p>
     </div>
 
-    <div>
+    <div class="add-obs-photo ">
         {{ form_label(form.imageFile) }}
-        {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'Photo de l\'observation', 'data-buttonName': 'btn-primary', 'data-buttonText': 'Parcourir'}}) }}
+        {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'Photo de l\'observation', 'data-buttonName': 'waves-effect waves-light btn', 'data-buttonText': 'Parcourir'}}) }}
         {{ form_errors(form.imageFile) }}
     </div>
-
     {{ form_rest(form) }}
 
     <br />
 
     <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-default" type="submit">Valider</button>
+        <div class="col-md-6 right-align">
+            <button class="waves-effect waves-light btn deep-orange darken-4" type="submit">Valider</button>
 
         </div>
     </div>

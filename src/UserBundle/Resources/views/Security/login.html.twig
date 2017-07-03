@@ -30,6 +30,7 @@
 
     <footer>
         <label><input type="checkbox" tabindex="3" id="remember_me" name="_remember_me" value="on">Se souvenir de moi</label>
+        <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
         <input type="submit" class="btn waves-effect waves-light deep-orange darken-4" value="Connexion" id="_submit">
         <p>
             Pas encore de compte ?
