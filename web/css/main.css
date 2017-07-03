@@ -211,6 +211,7 @@ div.profilaction div a {
     height: auto;
     overflow: hidden;
     vertical-align: center;
+
 }
 
 #imagecentre{
@@ -218,6 +219,7 @@ div.profilaction div a {
     margin-top: 30px;
     height: auto;
     overflow: hidden;
+    border-radius: 2px;
 }
 
 #textegauche{
@@ -261,7 +263,7 @@ div.profilaction div a {
     height: 36px;
     line-height: 36px;
     vertical-align: center;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .profil{
@@ -284,6 +286,14 @@ div.profilaction div a {
 
 h2 a{
     color: #37474f;
+}
+
+#articleh1{
+    font-size: 40px !important;
+}
+
+#articleh2{
+    font-size: 24px !important;
 }
 
 .pagination li.active{
@@ -335,6 +345,7 @@ h2 a{
     float: right;
 }
 
+
 /* boutons de la page article */
 
 .articlebtn{
@@ -362,6 +373,67 @@ h2 a{
     margin-left: auto;
     margin-right: auto;
 }
+
+/* affichage commentaires */
+
+#commentauthor{
+    color: #afb42b;
+}
+
+#commentsignaled{
+    color: grey;
+    font-style: italic;
+    font-size: 12px;
+}
+
+#commentcontent{
+    color: #37474f;
+}
+#commentdate{
+    color: #37474f;
+}
+
+.iconescommentaires{
+    color: grey;
+    display: inline-block;
+    margin-top : -10px
+}
+
+.hoveric{
+    width: 100px;
+}
+
+
+
+.hovericone span{
+    position:absolute;
+    margin:0;
+    left: 20px;
+    right:0;
+    bottom:0;
+    opacity:0;
+    height:100%;
+    text-align:center;
+    font-family: Roboto, Times, serif;
+    transition:all .7s;
+    color: #eceff1;
+}
+
+.hovericone a:hover span{
+     bottom: 0;
+     opacity:1;
+     color: #afb42b;
+}
+
+.couleuricone{
+    color: #afb42b;
+}
+
+/* Formulaire commentaire*/
+.h1comment{
+    font-size: 36px !important;
+}
+
 
 
 nav li:hover {
@@ -396,13 +468,13 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 h2{
-    font-size: 36px !important;
+    font-size: 26px !important;
     margin: 0 !important;
     padding: 0 !important;
 }
 
 h3{
-    font-size: 25px !important;
+    font-size: 20px !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -1464,8 +1536,8 @@ display: none;
         margin: 0;
     }
 
-    #articleh1mobile{
-        font-size: 40px !important;
+    #articleh1{
+        font-size: 35px !important;
     }
 
 
@@ -1563,8 +1635,8 @@ display: none;
         margin-top: 20px;
     }
 
-    #articleh1mobile{
-        font-size: 35px !important;
+    #articleh1{
+        font-size: 30px !important;
     }
 
     #imagecentre{
