@@ -37,7 +37,7 @@ class AdminCommentController extends Controller
 
         $entityManager->remove($comment);
         $entityManager->flush();
-        $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été Supprimé');
+        $request->getSession()->getFlashbag()->add('success', 'Le commentaire a été supprimé');
         return $this->redirect($referer);
     }
 

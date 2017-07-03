@@ -5,39 +5,48 @@
 
         <div class="row">
 
-            <div class="col-md-offset-{{ decalage }} col-md-2">
+            <div class="col-m8">
                 <div>
-                    <p><strong>{{ comment.author }}</strong></p>
-                    <p>{{ comment.date|date("d-m-Y H:i:s") }}</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-7">
-                <p>{{ comment.content|nl2br }}</p>
-                <div class="btn btn-group">
-
-                    {% if comment.level < constant('\\AppBundle\\Entity\\Comment::NUM_LEVELS') %}<a href="{{ path('replyComment', {'slug': comment.article.slug, 'id': comment.id}) }}" class="btn btn-default openmodal"><i class="fa fa-reply" aria-hidden="true"></i> Répondre
-                        </a>
+                    <p id="commentauthor">
+                        <strong>{{ comment.author }}</strong>
+                        <br />
+                        <span id="commentdate">{{ comment.date|date("d-m-Y à H:i:s") }}</span>
+                        <br />
+                        <span id="commentcontent"> {{ comment.content|nl2br }}</span>
+                        <br />
+                    {% if comment.signaled > 0 %}
+                        <span id="commentsignaled"> (Ce commentaire a été signalé au modérateur)</span>
                     {% endif %}
-                    <a href="{{ path('signalComment', {'slug': comment.article.slug, 'id': comment.id}) }}" class="btn btn-default"><i class="fa fa-flag" aria-hidden="true"></i> Signaler</a>
+                    </p>
+
+
+
+
+                <div class="iconescommentaires">
+
+                    {% if comment.level < constant('\\AppBundle\\Entity\\Comment::NUM_LEVELS') %}
+                      <icone class="hovericone" > <a data-target="modal2" class="modal-trigger waves-effect waves-light hoveric " href="{{ path('replyComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone">reply</i><span>Répondre</span>
+                        </a></icone>
+                    {% endif %}
+                    <icone class="hovericone" ><a class="waves-effect waves-light hoveric" href="{{ path('signalComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone">report</i><span>Signaler</span>
+                    </a></icone>
 
                     {% if is_granted('ROLE_ADMIN') %}
-
-
-                        <form action="{{ url('deleteComment', {'id': comment.id}) }}" method="post" data-confirmation="true" id="delete-form">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
-                            <button type="submit" class="btn  btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                Supprimer
-                            </button>
-                        </form>
-
+                    <icone class="hovericone" > <a class=" waves-effect waves-light hoveric" href="{{ path('deleteComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone ">delete</i><span>Supprimer</span>
+                        </a></icone>
                     {% endif %}
-                </div>
+
+                </div></div>
             </div>
-            <div class="clearfix"></div>
-            {{ self.afficherCommentaires(comment.childs) }}
+
         </div>
+<div class="row">
+
+    <div class="col-m-10 offset-m2" style="margin-left: 40px">
+
+            {{ self.afficherCommentaires(comment.childs) }}
+    </div>
+</div>
 
     {% endfor %}
 {% endmacro %}
