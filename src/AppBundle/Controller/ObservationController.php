@@ -34,7 +34,6 @@ class ObservationController extends BaseController
         $form->handleRequest($request);
 
         $role = $this->get('security.token_storage')->getToken()->getUser()->getRoles();
-        dump($role);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if($role[0] == "ROLE_ADMIN" || $role[0] == "ROLE_SUPER_ADMIN")
