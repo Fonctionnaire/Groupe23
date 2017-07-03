@@ -25,10 +25,6 @@ class ArticleController extends Controller
         $listArticles = $this->getDoctrine()->getManager()->getRepository('AppBundle:Article')
             ->getArticlesPaginated($page);
 
-        // Si il n'y a pas d'articles on renvoit vers le formulaire d'ajout
-        if (count($listArticles) < 1) {
-            return $this->redirectToRoute('add');
-        }
 
         // On calcule le nombre total de pages grâce au count($listArticles) qui retourne le nombre total d'articles
         $nbPages = ceil(count($listArticles) / Article::NUM_ITEMS);
