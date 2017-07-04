@@ -3,6 +3,9 @@
 {% block title %}
     Lecture d'un Article - {{ parent() }}
 {% endblock %}
+{% block facebookScript %}
+    <script src="{{ asset('js/facebookLink.js') }}"></script>
+{% endblock %}
 {% block content %}
 
     {#page entiere#}
@@ -31,7 +34,7 @@
 
             {#image#}
             <div class="row">
-                <div class="col m10 offset-m1">
+                <div class="col m10 offset-m1 flow-text">
                     {% if article.imageName is not null %}
                         <img class="imagearticle z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                     {% endif %}
@@ -68,13 +71,21 @@
                                 </a>
                             {% endif %}
                         {% endif %}
+
+
+                        <button class="button share_facebook blue accent-3 white-text waves-effect waves-light btn offset-s2" data-url="">partager sur facebook</button>
+
+
                     </p>
                 </div>
             </div>
 
           <br />
+            <div class="divider"></div>
+
 
         {% if article.enableComments == true  %}
+            <div class="section">
 
             <div class="row">
                 <div class="col m10 offset-m1 left-align">
@@ -85,6 +96,7 @@
                         {{ macro.afficherCommentaires(comments) }}
                     {% endif %}
                 </div>
+            </div>
             </div>
 
         {% endif %}

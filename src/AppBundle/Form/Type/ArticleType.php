@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\Type\DatePickerType;
@@ -28,7 +29,10 @@ class ArticleType extends AbstractType
                 'attr'=>array(
                     'class'=>'custom-file')
             ))
-            ->add('content', TinyMCEType::class)
+            ->add('content', TextareaType::class, array(
+                'attr' => array(
+                    'class' => 'tinymce'
+                )))
             ->add('enableComments', CheckboxType::class, array(
                 'label'    => 'Autoriser les commentaire ?',
                 'required' => false));
