@@ -10,8 +10,10 @@ use AppBundle\Form\Type\ObservationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 
 class ObservationController extends BaseController
@@ -76,6 +78,10 @@ class ObservationController extends BaseController
         if (null === $observation) {
             throw new NotFoundHttpException("L'observation d'id " . $id . " n'existe pas.");
         }
+        if (!$observation->getValided() === true && !$observation->getIsVisible() === true && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') && $this->getUser() !== $observation->getUser()){
+            throw new AccessDeniedException("La visualisation de l'observation d'id ". $id . " est interdite");
+        }
+
 
 
         return $this->render('ViewUniqueObs/viewObservation.html.twig', array(

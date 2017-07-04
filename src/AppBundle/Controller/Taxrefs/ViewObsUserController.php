@@ -12,12 +12,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class ViewObsUserController extends Controller
 {
     /**
      * @return Response
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      * @Route("/user/observations-validees", name="user_listTaxrefs")
      */
     public function userListTaxrefsAction()

@@ -15,12 +15,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Form\Type\ObservationFilterType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class ExportController extends Controller
 {
     /**
      * @Route("/filter", name="filter")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      *
      */
     public function filterAction(Request $request)
