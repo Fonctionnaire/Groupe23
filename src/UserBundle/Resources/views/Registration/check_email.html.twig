@@ -3,17 +3,30 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
 
-        <br/>
-        <div class="alert alert-info">
-            <strong>Merci !</strong><br>
+    <div class="containertemplatemini">
+        <div class="inscription col m10 blue-grey lighten-5 offset-s1 left-align">
+            <div class="row">
 
-            <p>un Email de confirmation vous a été envoyé. Merci de suivre les instruction pour valider votre compte</p>
+                <div class="left-align col s10 offset-s1">
 
-            <a href="{{ path("index") }}" class="btnRegister">
-                <i class="fa fa-home"></i>
-                Retour à l'Acceuil
-            </a>
+                    <h1 class="lime-text text-darken-2 h1form">Félicitations !</h1>
+                    <br />
+                    <p>Votre compte a été créé avec succès.</p>
+                    <p>Un Email de confirmation vient de vous êtes adressé.<p>
+                    <p> Merci de suivre les instructions décrites dans ce mail afin d'activer votre compte.</p>
+<br />
+                </div>
 
+                <div class="col s10 offset-s1 center-align">
+
+                    <p>
+                        <a class="btn-large waves-effect waves-light deep-orange darken-4 btncheck" href="{{ path('index') }}" role="button">Retour accueil</a>
+                    </p>
+
+                </div>
+            </div>
         </div>
+    </div>
+
 
 {% endblock content %}

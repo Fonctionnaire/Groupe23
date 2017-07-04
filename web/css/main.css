@@ -246,6 +246,10 @@ div.profilaction div a {
     font-size: 15px !important;
 }
 
+.h1form{
+    font-size: 36px !important;
+}
+
 .brand-logo img {
     width: 266px
 }
@@ -255,15 +259,24 @@ div.profilaction div a {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
+.containertemplatemini {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
 
 .btn-large{
     text-transform : lowercase;
     height: 36px;
     line-height: 36px;
     vertical-align: center;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .profil{
@@ -280,6 +293,16 @@ div.profilaction div a {
 
 .addactualite{
     padding: 10px;
+}
+
+.connexion{
+    padding-bottom: 50px;
+}
+
+.inscription{
+    padding: 10px;
+
+
 }
 
 /* page actualités" */
@@ -439,6 +462,14 @@ h2 a{
 nav li:hover {
     background-color: #cddc39;
 }
+
+.dropdown-content li > a{
+    font-size: 15px !important;
+}
+
+
+
+
 .dropdown-content li:hover {
     background-color: #cddc39;
 }
@@ -836,7 +867,7 @@ display: none;
 
 .control-label{
     color: #c0ca33;
-    font-size: 20px !important;
+    font-size: 15px !important;
 }
 
 .materialize-textarea{
@@ -848,12 +879,12 @@ display: none;
 .file-field .btn, .file-field .btn-large{
     height: 36px;
     line-height: 36px;
-    font-size: 20px;
-    width: 160px;
+    font-size: 15px;
+    width: 140px;
 }
 
 .enregistrerarticle{
-    width: 160px;
+    width: 140px;
     height : 36px;
     line-height: 36px;
     float:right;
@@ -948,7 +979,88 @@ display: none;
     border : 1px solid #fff !important;
 }
 
+/* Login form */
 
+.input-field input[type=password] {
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field input[type=password].valid
+{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.mdpoublie{
+    font-size: 15px;
+    color: #bf360c;
+}
+
+[type="checkbox"] + label{
+    color: #37474f;
+}
+
+.creercompte{
+    color: #bf360c;
+}
+
+/* registration */
+
+.formbirthday .form-control {
+
+}
+
+#fos_user_registration_form_birthDate_year{
+    display: none;
+}#fos_user_registration_form_birthDate_day{
+    display: none;
+}#fos_user_registration_form_birthDate_month{
+    display: none;
+}#fos_user_registration_form_birthDate{
+}
+
+
+.select-wrapper input.select-dropdown{
+    text-align: center;
+    border-bottom: 2px solid #c0ca33;
+}
+
+.select-dropdown li span{
+    text-align: center !important;
+    font-size: 15px;
+    color: #37474f;
+    line-height: 17px;
+    padding: 5px;
+}
+
+.select-wrapper span.caret{
+    color: #c0ca33;
+}
+
+input[type="tel"]:not(.browser-default){
+    border-bottom: 2px solid #c0ca33;
+}
+
+/* confirmation registration */
+
+.btnconfirmaccueil{
+    float: left;
+    width: 225px;
+    margin-bottom: 20px;
+}
+.btnconfirmadd{
+    float: right;
+    width: 225px;
+    margin-bottom: 20px;
+}
+
+.btncheck{
+    float: left;
+    width: 225px;
+    margin-bottom: 20px;
+}
+.textjustify{
+    text-align: justify;
+}
 
 /* CONTACT FORM */
 
@@ -975,7 +1087,7 @@ display: none;
 
 .input-field label {
     color: #c0ca33;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .input-field input[type=text] {
@@ -987,12 +1099,21 @@ display: none;
     border-bottom: 2px solid #c0ca33;
 }
 
+.input-field input[type=password] {
+    border-bottom: 2px solid #c0ca33;
+}
+
 .input-field input[type=text].valid
 {
     border-bottom: 2px solid #c0ca33;
 }
 
 .input-field input[type=email].valid
+{
+    border-bottom: 2px solid #c0ca33;
+}
+
+.input-field input[type=password].valid
 {
     border-bottom: 2px solid #c0ca33;
 }
@@ -1027,6 +1148,7 @@ display: none;
     width: 75px;
     font-size: 1.0em;
     display: inline-block;
+
 }
 
 .list-unstyled > li
@@ -1053,6 +1175,11 @@ display: none;
     margin-right: 50px;
 }
 #fos_user_profile_form
+{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+#fos_user_registration_form
 {
     margin-left: 50px;
     margin-right: 50px;
@@ -1429,7 +1556,7 @@ display: none;
    .coverimage {
         margin:0;
         padding:0;
-        background: url(../images/imagemobile.jpg) no-repeat center fixed;
+        background: url(../images/imagemobile2.jpg) no-repeat center fixed;
         -webkit-background-size: cover; /* pour Chrome et Safari */
         -moz-background-size: cover; /* pour Firefox */
         -o-background-size: cover; /* pour Opera */
@@ -1505,6 +1632,10 @@ display: none;
         width: 100%;
         margin: 0;
     }
+    .containertemplatemini{
+        width: 100%;
+        margin: 0;
+    }
 
     .imagearticle {
         width: 60%;
@@ -1552,6 +1683,14 @@ display: none;
         margin-left: auto;
         margin-right: auto;
     }
+
+    /* page confirmation inscription */
+
+
+    .btncheck{
+        float: none
+    }
+
 
 
 }
@@ -1650,6 +1789,19 @@ display: none;
         margin-left: auto;
         margin-right: auto;
     }
+
+    .btnconfirmaccueil{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btnconfirmadd{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
 
 }
 

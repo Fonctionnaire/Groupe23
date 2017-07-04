@@ -2,45 +2,73 @@
 {# On étend notre layout #}
 {% extends 'layout.html.twig' %}
 {% block content %}
-    <div class="container">
+    <div class="containertemplatemini">
 
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-<form class="col-lg-4 form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+        <div class="connexion col m10 blue-grey lighten-5 offset-s1 left-align">
+
+            <div class="row">
+
+                <div class="left-align col s10 offset-s1">
+
+                    <h1 class="lime-text text-darken-2 h1form">Connexion</h1>
+
+                    <form class="col-lg-4 form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="input-field">
+                                    <label for="username" class="control-label police32">Nom d'utilisateur</label>
+                                    <input type="text" tabindex="1" id="username" name="_username" value="{{ last_username }}" class="form-control"  required="required">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="input-field">
+                                    <label for="password" class="control-label police32">Mot de passe</label>
+                                    <input type="password" tabindex="2" id="password" name="_password" class="form-control" required="required">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <p>
+                                    <label><input type="checkbox" tabindex="3" id="remember_me" name="_remember_me" value="on"></label>
+                                </p>
 
 
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <p>
+                            Mot de passe oublié ?
+                            <a class= "mdpoublie" href="{{ path('fos_user_resetting_request') }}">Réinitialiser mon mot de passe</a>
+                        </p>
+                        <p>
+                            Pas encore de compte ?
+                            <a class="creercompte" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+                        </p>
+                            </div>
+                        </div>
+                        <br />
 
-    <div class="form-group">
-        <label for="username" class="control-label">Nom d'utilisateur :</label>
-        <input type="text" tabindex="1" placeholder="Utilisateur" id="username" name="_username" value="{{ last_username }}" class="form-control"  required="required">
+                       <footer>
+                           <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                           <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 right" value="Connexion" id="_submit">
+
+
+                       </footer>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="password" class="control-label">Mot de passe :</label>
-        <input type="password" tabindex="2" id="password" name="_password" placeholder="Mot de passe" class="form-control" required="required">
-    </div>
-
-    <div class="form-group">
-        <label><a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a></label>
-    </div>
-
-
-    <footer>
-        <label><input type="checkbox" tabindex="3" id="remember_me" name="_remember_me" value="on">Se souvenir de moi</label>
-        <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
-        <input type="submit" class="btn waves-effect waves-light deep-orange darken-4" value="Connexion" id="_submit">
-        <p>
-            Pas encore de compte ?
-            <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
-        </p>
-    </footer>
-</form>
-
-    </div>
-
-
 
 {% endblock%}

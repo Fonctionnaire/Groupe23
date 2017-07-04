@@ -3,103 +3,151 @@
 
 {% block content %}
 
-    <h1>Formulaire d'inscription</h1>
+<div class="containertemplatemini">
+    <div class="inscription col m10 blue-grey lighten-5 offset-s1 left-align">
+        <div class="row">
 
-    <div id="fos_user_registration_form">
+            <div class="left-align col s10 offset-s1">
 
-        {{ form_start(form, { 'action': path('fos_user_registration_register'), 'attr': { 'class': 'fos_user_registration_register col-lg-4 form-horizontal' } }) }}
+                <h1 class="lime-text text-darken-2 h1form">Formulaire d'inscription</h1>
 
-            <p>Les champs marqués d'une * sont obligatoires.</p>
+                {{ form_start(form, { 'action': path('fos_user_registration_register'), 'attr': { 'class': 'fos_user_registration_register  form-horizontal' } }) }}
 
-            <div class="form-group">
-                <label for="fos_user_registration_form_email" class="control-label">Email* :</label>
-                {{ form_widget(form.email, { 'attr': {'placeholder': 'nom@domain.com', 'class': 'form-control'} }) }}
-                {{ form_errors(form.email) }}
+                    <p>Les champs marqués d'une * sont obligatoires.</p>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                <label for="fos_user_registration_form_email" class="control-label">Email*</label>
+                                {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                <label for="fos_user_registration_form_username" class="control-label">Nom d'utilisateur* </label>
+                                {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.username) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                <label for="fos_user_registration_form_plainPassword_first" class="control-label">Mot de passe*</label>
+                                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.plainPassword.first) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                <label for="fos_user_registration_form_plainPassword_second" class="control-label">Confirmation de mot de passe*</label>
+                                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.plainPassword.second) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                {{ form_label(form.lastName, "Nom*") }}
+                                {{ form_widget(form.lastName, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.lastName) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                {{ form_label(form.firstName, "Prénom*") }}
+                                {{ form_widget(form.firstName, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.firstName) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                {{ form_label(form.codePostal, "Code Postal*") }}
+                                {{ form_widget(form.codePostal, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.codePostal) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                {{ form_label(form.town, "Ville*") }}
+                                {{ form_widget(form.town, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_errors(form.town) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="formbirthday">
+                                 {{ form_label(form.birthDate, "Date de naissance") }}
+                                 {{ form_widget(form.birthDate) }}
+                                 {{ form_errors(form.birthDate) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                <!-- Téléphone -->
+                                <!-- Génération du label. -->
+                                {{ form_label(form.phone, 'Téléphone (portable de préférence)') }}
+                                <!-- Affichage des erreurs pour ce champ précis. -->
+                                {{ form_errors(form.phone) }}
+                                <!-- Génération de l'input. -->
+                                <br>
+                                <input type="tel" name="UserBundle_RegistrationType[phone]"
+                    class="input-field form-control"/>
+                                <!-- {{ form_widget(form.phone, { 'attr': {'class': 'form-control'} }) }} -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="">
+                                {{ form_label(form.avatarFile) }}
+                                {{ form_widget(form.avatarFile, {'attr': {'class': 'filestyle','data-placeholder': 'aucun avatar sélectionné', 'data-buttonName': 'btn-large waves-effect waves-light deep-orange darken-4 btnparcourir','data-buttonText': 'Parcourir'}})}}
+                                {{ form_errors(form.avatarFile) }}
+                            </div>
+                        </div>
+                    </div>
+
+                {{ form_rest(form) }}
+
+
+                <footer>
+                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                    <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 right" value={{ 'Enregistrer' }} id="_submit">
+                </footer>
+
+
+                {{ form_end(form) }}
+
+
             </div>
-
-            <div class="form-group">
-                <label for="fos_user_registration_form_username" class="control-label">Nom d'utilisateur* :</label>
-                {{ form_widget(form.username, { 'attr': {'placeholder': 'nom d\'utilisateur', 'class': 'form-control'} }) }}
-                {{ form_errors(form.username) }}
-            </div>
-
-            <div class="form-group">
-                <label for="fos_user_registration_form_plainPassword_first" class="control-label">Mot de passe* :</label>
-                {{ form_widget(form.plainPassword.first, { 'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'} }) }}
-                {{ form_errors(form.plainPassword.first) }}
-            </div>
-
-            <div class="form-group">
-                <label for="fos_user_registration_form_plainPassword_second" class="control-label">Confirmation de mot de passe* :</label>
-                {{ form_widget(form.plainPassword.second, { 'attr': {'placeholder': 'Confirmation du mot de passe', 'class': 'form-control'} }) }}
-                {{ form_errors(form.plainPassword.second) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.lastName, "Nom* :") }}
-
-                {{ form_widget(form.lastName, { 'attr': {'placeholder': 'Votre nom', 'class': 'form-control'} }) }}
-                {{ form_errors(form.lastName) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.firstName, "Prénom* :") }}
-
-                {{ form_widget(form.firstName, { 'attr': {'placeholder': 'Votre prénom', 'class': 'form-control'} }) }}
-                {{ form_errors(form.firstName) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.codePostal, "Code Postal* :") }}
-
-                {{ form_widget(form.codePostal, { 'attr': {'placeholder': 'Votre code postal', 'class': 'form-control'} }) }}
-                {{ form_errors(form.codePostal) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.town, "Ville* :") }}
-
-                {{ form_widget(form.town, { 'attr': {'placeholder': 'Votre ville', 'class': 'form-control'} }) }}
-                {{ form_errors(form.town) }}
-            </div>
-
-            <div class="form-group formbirthday">
-                {{ form_label(form.birthDate, "Date de naissance :") }}
-
-                {{ form_widget(form.birthDate) }}
-                {{ form_errors(form.birthDate) }}
-            </div>
-
-            <div class="form-group"> <!-- Téléphone -->
-                <!-- Génération du label. -->
-                {{ form_label(form.phone, 'Téléphone (portable de préférence) :') }}
-                <!-- Affichage des erreurs pour ce champ précis. -->
-                {{ form_errors(form.phone) }}
-                <!-- Génération de l'input. -->
-                <br><input type="tel" name="UserBundle_RegistrationType[phone]"
-                    placeholder="Votre téléphone" class="form-control"/>
-             <!-- {{ form_widget(form.phone, { 'attr': {'placeholder': 'Votre téléphone', 'class': 'form-control'} }) }} -->
-             </div>
-
-            <div class="form-group">
-                {{ form_label(form.avatarFile) }}
-                {{ form_widget(form.avatarFile, {'attr': {'class': 'filestyle','data-placeholder': 'Votre Avatar', 'data-buttonName': 'btn-primary', 'data-buttonText': 'Parcourir'}}) }}
-                {{ form_errors(form.avatarFile) }}
-            </div>
-
-
-
-
-
-
-
-        {{ form_rest(form) }}
-            <div class="form-group">
-                <input class="btn" type="submit" value="{{ 'Enregistrer' }}">
-            </div>
-
-        {{ form_end(form) }}
+        </div>
     </div>
+</div>
 
 {% endblock%}
 
