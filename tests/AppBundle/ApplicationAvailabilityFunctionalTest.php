@@ -21,8 +21,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     {
         return array(
             array('/'),
-            array('/user/observations_validées'),
-            array('/nous_contacter'),
+            array('/observations-validees'),
+            array('/nous-contacter'),
             array('/login'),
             array('/register/'),
 

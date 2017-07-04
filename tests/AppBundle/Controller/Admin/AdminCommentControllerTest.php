@@ -28,7 +28,7 @@ class AdminCommentControllerTest extends WebTestCase
         $this->logIn();
         $crawler = $this->client->request('GET', '/admin/comments');
 
-        $this->assertSame("Signalements",
+        $this->assertSame("date",
             $crawler->filter('th')->text()
         );
     }
