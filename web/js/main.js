@@ -40,6 +40,7 @@ $('#alert_close').click(function(){
 $(document).ready(function () {
     //Menu de navigation
     $(".button-collapse").sideNav();
+    $('.tooltipped').tooltip({delay: 50});
 
     $('.collapsible').collapsible();
 
