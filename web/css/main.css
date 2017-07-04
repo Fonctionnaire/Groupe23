@@ -349,6 +349,10 @@ h2 a{
     font-size: 10px;
 }
 
+.share_facebook
+{
+    text-transform: lowercase;
+}
 
 /* boutons de la page article */
 
@@ -1316,10 +1320,6 @@ display: none;
         width: 95%;
     }
     /* PAGE D'ACCUEIL */
-
-
-
-
 
     #video-oiseaux
     {
