@@ -44,19 +44,6 @@ class IndexControllerTest extends WebTestCase
         );
     }
 
-
-    public function testEncart()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/');
-
-        $this->assertCount(
-          5,
-          $crawler->filter('div.encart_accueil')
-        );
-    }
-
     public function testDivDepth()
     {
         $client = static::createClient();
