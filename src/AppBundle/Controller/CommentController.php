@@ -67,7 +67,6 @@ class CommentController extends Controller
     public function replyCommentAction(Comment $parent, Request $request)
     {
         $comment = new Comment();
-        dump($parent);
         $comment
             ->setLevel($parent->getLevel()+ 1)
             ->setArticle($parent->getArticle())
@@ -75,7 +74,7 @@ class CommentController extends Controller
             ->setAuthor($this
                 ->get('security.token_storage')
                 ->getToken()->getUser());
-        dump($comment);
+
 
 
         $form = $this->createForm(CommentType::class, $comment, array(
@@ -85,7 +84,6 @@ class CommentController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($comment);
             $checkAntispam = $this->get('app.antispam')->isSpam($comment->getContent());
             if ($checkAntispam['spam']) {
                 $request->getSession()->getFlashbag()->add('danger', $checkAntispam['message']);
@@ -94,7 +92,6 @@ class CommentController extends Controller
             } else {
 
                 $comment->setContent($checkAntispam['content']);
-                dump($comment);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
                 $em->flush();
