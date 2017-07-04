@@ -4,13 +4,34 @@
 
 {% block content %}
 
-    <h1>Inscription confirmée</h1>
-    <p>Félicitations {{ user.firstName }}.</p>
-    <p>Vous êtes désormais membre de l'association NAO.</p>
-    <br />
-    <p> <a class="btn btn-primary pull-left" href="{{ path('index') }}" role="button">Retour accueil</a></p>
-    <br />
-    <br />
-    <p> <a class="btn btn-primary pull-left" href="{{ path('addObservation') }}" role="button">Poster une observation</a></p>
+    <div class="containertemplatemini">
+        <div class="inscription col m10 blue-grey lighten-5 offset-s1 left-align">
+            <div class="row">
+
+                <div class="left-align col s10 offset-s1 textjustify">
+
+                    <h1 class="lime-text text-darken-2 h1form">Inscription confirmée</h1>
+                    <br />
+                    <p>Félicitations {{ user.firstName }} ! Votre compte est activé.</p>
+                    <p>Vous êtes désormais membre de l'association NAO.<p>
+                    <p>Vous pouvez dès à présent consulter toutes nos observations et en saisir vous-même.</p>
+                    <p>Toutes les observations sont vérifiées par nos naturalistes avant d’être publiées.</p>
+                    <p>Par souci de protection des espèces en danger ou en couvaison, certaines observations peuvent ne pas être publiées. </p>
+<br />
+
+                </div>
+
+                <div class="col m10 offset-m1 s12 center-align">
+<br />
+                    <p>
+                        <a class="btn-large waves-effect waves-light deep-orange darken-4 btnconfirmaccueil" href="{{ path('index') }}" role="button">Retour accueil</a>
+                        <a class="btn-large waves-effect waves-light deep-orange darken-4 btnconfirmadd" href="{{ path('addObservation') }}" role="button">Saisir une observation</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock content %}
