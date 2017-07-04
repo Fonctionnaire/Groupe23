@@ -2,51 +2,40 @@
     {% import _self as self %}
     {% for comment in commentaires %}
         {% set decalage = comment.level - 1 %}
-
         <div class="row">
 
-            <div class="col-m8">
-                <div>
-                    <p id="commentauthor">
-                        <strong>{{ comment.author }}</strong>
-                        <br />
-                        <span id="commentdate">{{ comment.date|date("d-m-Y à H:i:s") }}</span>
-                        <br />
-                        <span id="commentcontent"> {{ comment.content|nl2br }}</span>
-                        <br />
-                    {% if comment.signaled > 0 %}
-                        <span id="commentsignaled"> (Ce commentaire a été signalé au modérateur)</span>
-                    {% endif %}
-                    </p>
+            <div class="articleComments col offset-m{{ decalage }} offset-s{{ decalage }} s9">
 
+                <div class="blue-grey-text text-darken-3">
+                    <div class="chip commenttitle col s12 lime darken-2 blue-grey-text text-lighten-5">
+                        <img src="{{ vich_uploader_asset(comment.author, 'avatarFile') }}"
+                             class="responsive-img circle" alt="{{ comment.author }}"/>
+                        {{ comment.author }} - {{ comment.date|ago }}
+                    </div>
 
+                    {{ comment.content|nl2br }}
 
-
-                <div class="iconescommentaires">
-
+                </div>
+                <div class="col s12 iconescommentaires card-action">
                     {% if comment.level < constant('\\AppBundle\\Entity\\Comment::NUM_LEVELS') %}
-                      <icone class="hovericone" > <a data-target="modal2" class="modal-trigger waves-effect waves-light hoveric " href="{{ path('replyComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone">reply</i><span>Répondre</span>
-                        </a></icone>
+                        <a data-tooltip="répondre" data-target="modal2" class="tooltipped modal-trigger waves-effect waves-light hoveric "
+                           href="{{ path('replyComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i
+                                    class="material-icons couleuricone">reply</i></a>
                     {% endif %}
-                    <icone class="hovericone" ><a class="waves-effect waves-light hoveric" href="{{ path('signalComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone">report</i><span>Signaler</span>
-                    </a></icone>
-
+                    <a data-tooltip="signaler" class="tooltipped waves-effect waves-light hoveric"
+                       href="{{ path('signalComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i
+                                class="material-icons couleuricone">report</i></a>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <icone class="hovericone" > <a class=" waves-effect waves-light hoveric" href="{{ path('deleteComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i class="material-icons couleuricone ">delete</i><span>Supprimer</span>
-                        </a></icone>
+                        <a data-tooltip="supprimer" class="tooltipped waves-effect waves-light hoveric"
+                           href="{{ path('deleteComment', {'slug': comment.article.slug, 'id': comment.id}) }}"><i
+                                    class="material-icons couleuricone ">delete</i></a>
                     {% endif %}
-
-                </div></div>
+                </div>
             </div>
-
-        </div>
-<div class="row">
-
-    <div class="col-m-10 offset-m2" style="margin-left: 40px">
-
             {{ self.afficherCommentaires(comment.childs) }}
-    </div>
-</div>
+        </div>
+
+
 
     {% endfor %}
 {% endmacro %}

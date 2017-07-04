@@ -345,6 +345,10 @@ h2 a{
     float: right;
 }
 
+.commenttitle{
+    font-size: 10px;
+}
+
 
 /* boutons de la page article */
 
@@ -396,7 +400,7 @@ h2 a{
 .iconescommentaires{
     color: grey;
     display: inline-block;
-    margin-top : -10px
+    margin-top : 15px
 }
 
 .hoveric{
@@ -429,6 +433,9 @@ h2 a{
     color: #afb42b;
 }
 
+.articleComments{
+    margin-top: 20px;
+}
 /* Formulaire commentaire*/
 .h1comment{
     font-size: 36px !important;

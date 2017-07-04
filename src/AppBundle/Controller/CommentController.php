@@ -22,8 +22,7 @@ class CommentController extends Controller
      */
     public function addCommentAction(Article $article, Request $request)
     {
-        if ($article->getEnableComments() === false)
-        {
+        if ($article->getEnableComments() === false) {
             return $this->redirectToRoute('view_article', array('slug' => $article->getSlug()));
 
         }
@@ -67,13 +66,17 @@ class CommentController extends Controller
      */
     public function replyCommentAction(Comment $parent, Request $request)
     {
-    if ($parent->getArticle()->getEnableComments() === false) {
-        return $this->redirectToRoute('view_article', array('slug' => $parent->getArticle()->getSlug()));
-    }
-        // on vérifie que les commentaires sont activés
         $comment = new Comment();
-        $comment->setParent($parent)
-            ->setAuthor($this->get('security.token_storage')->getToken()->getUser());
+        dump($parent);
+        $comment
+            ->setLevel($parent->getLevel()+ 1)
+            ->setArticle($parent->getArticle())
+            ->setParent($parent)
+            ->setAuthor($this
+                ->get('security.token_storage')
+                ->getToken()->getUser());
+        dump($comment);
+
 
         $form = $this->createForm(CommentType::class, $comment, array(
             'action' => $this->generateUrl('replyComment', array(
@@ -82,26 +85,31 @@ class CommentController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($comment);
             $checkAntispam = $this->get('app.antispam')->isSpam($comment->getContent());
             if ($checkAntispam['spam']) {
                 $request->getSession()->getFlashbag()->add('danger', $checkAntispam['message']);
                 return $this->redirectToRoute('view_article', array('slug' => $comment->getArticle()->getSlug()));
 
-            }
-            $comment->setContent($checkAntispam['content']);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-            $request->getSession()->getFlashbag()->add('success', 'Le commentaire a bien été enregistré');
-            return $this->redirectToRoute('view_article', array('slug' => $comment->getArticle()->getSlug()));
+            } else {
 
+                $comment->setContent($checkAntispam['content']);
+                dump($comment);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+                $request->getSession()->getFlashbag()->add('success', 'Le commentaire a bien été enregistré');
+                return $this->redirectToRoute('view_article', array('slug' => $comment->getArticle()->getSlug()));
+            }
         }
-        return $this->render('Actualites/commentForm.html.twig', [
-            'article' => $comment->getArticle(),
-            'form' => $form->createView(),
+        return $this->render('Actualites/commentReplyForm.html.twig', [
+                'article' => $comment->getArticle(),
+                'comment' => $comment,
+                'form' => $form->createView(),
             ]
         );
     }
+
 
     /**
      * Signal a Admin
