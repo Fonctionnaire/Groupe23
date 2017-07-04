@@ -31,4 +31,6 @@ services:
     app.antispam:
         class: AppBundle\Services\Antispam\Antispam
 
+    app.export_obs:
+        class: AppBundle\Services\ExportObservations\ExportObservation
 
