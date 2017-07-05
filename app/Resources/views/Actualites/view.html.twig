@@ -4,8 +4,23 @@
 {% block title %}
     Lecture d'un Article - {{ parent() }}
 {% endblock %}
+{% block facebookMeta %}
+    <!-- Meta Facebook -->
+    <meta property="og:url"           content="{{ path('view_article', {'slug': article.slug}) }}"/>
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="NAO - Nos amis les oiseaux" />
+    <meta property="og:description"   content="Etude du comportement des oiseaux" />
+    <meta property="og:image"         content="{{ vich_uploader_asset(article, 'imageFile') }}" />
+{% endblock %}
 {% block facebookScript %}
-    <script src="{{ asset('js/facebookLink.js') }}"></script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.9";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 {% endblock %}
 {% block content %}
 
@@ -14,7 +29,6 @@
 
         {#cadre bleu gris#}
         <div class="article col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">
-
             {#titre h1#}
             <div class="row">
                 <div class="col m10 offset-m1 left-align">
@@ -29,9 +43,10 @@
                         {% if article.enableComments == true  %}
                     <span id="nbcomment">{{ article.comments|length }} commentaire(s)</span></p>
                     {% endif %}
+                    {# Bouton partage Facebook#}
+                    <div class="fb-share-button" data-href="{{ path('view_article', {'slug': article.slug}) }}" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2FGroupe23%2Fweb%2Fapp_dev.php%2Factualites%2Ftest-3&amp;src=sdkpreparse">partager</a></div>
                 </div>
             </div>
-
 
             {#image#}
             <div class="row">
@@ -74,7 +89,7 @@
                         {% endif %}
 
 
-                        <button class="button share_facebook blue accent-3 white-text waves-effect waves-light btn offset-s2" data-url="">partager sur facebook</button>
+
 
 
                     </p>
@@ -82,6 +97,7 @@
             </div>
 
           <br />
+
             <div class="divider"></div>
 
 
