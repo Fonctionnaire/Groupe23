@@ -47,6 +47,41 @@ class UserController extends Controller
     }
 
     /**
+     * Disable User
+     *
+     * @Route("/admin/users/{username}/disable", name="disableUser")
+     * @Method("POST")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function disableUserAction(User $user)
+    {
+        if (!$user->isSuperAdmin()) // On ne désactive pas le superadmin
+        {
+            $entityManager = $this->getDoctrine()->getManager();
+            $user->setEnabled(false);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('adminUsers');
+
+    }
+
+    /**
+     * Disable User
+     *
+     * @Route("/admin/users/{username}/enable", name="enableUser")
+     * @Method("POST")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function enableUserAction(User $user)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user->setEnabled(true);
+        $entityManager->flush();
+        return $this->redirectToRoute('adminUsers');
+    }
+
+    /**
      * Promote User
      * Méthode pour promouvoir un user
      * @Route("/admin/users/{username}/promote", name="promoteUser")

@@ -1,4 +1,5 @@
 {% extends "layout.html.twig" %}
+{% block titre %}observation{% endblock %}
 {% block googleMapScript %}
     {% if is_granted('ROLE_ADMIN') %}
         <script src="{{ asset('js/viewObsMapAdmin.js') }}"></script>

@@ -1609,7 +1609,8 @@ input[type="tel"]:not(.browser-default){
     .col-comSignalisation,
     .col-comCom,
     .comunsignal,
-    .comdelete{
+    .comdelete,
+    .coluser-mail{
         display: none;
     }
     .col-comAuteur{
@@ -1720,7 +1721,8 @@ input[type="tel"]:not(.browser-default){
     .col-comArticle,
     .col-comCom,
     .comunsignal,
-    .comdelete{
+    .comdelete,
+    .coluser-mail{
         display: none;
     }
     /* Gestion des commentaires*/
@@ -1845,8 +1847,14 @@ input[type="tel"]:not(.browser-default){
     .col-comArticle,
     .col-comCom,
     .comunsignal,
-    .comdelete{
+    .comdelete,
+    .coluser-mail,
+    .coluser-obs,
+    .coluser-role{
         display: none;
+    }
+    .coluser-action{
+        width: 35%;
     }
     .col-action{
         width: 20%;
