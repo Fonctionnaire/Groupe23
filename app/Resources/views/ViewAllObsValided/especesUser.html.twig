@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
+{% block titre %}carte intéractive{% endblock %}
 {% block googleMapScript %}
+
     <script src="{{ asset('js/viewUserMap.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">

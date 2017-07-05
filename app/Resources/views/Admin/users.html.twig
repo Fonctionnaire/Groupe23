@@ -1,65 +1,113 @@
 {% extends "layout.html.twig" %}
 {% block content %}
-<div class="container">
-    <div class="table-responsive display responsive nowrap">
-        <table class="table table-hover display responsive nowrap" id="myTable">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Observations</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in listUsers %}
-                <tr>
-                    <td><strong>{{ user.username }}</strong>
-                    </td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        <ul>
-                            {% for role in user.roles %}
-                                <li>{{ role }}</li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                    <td>{{ user.observations|length }}</td>
+    <div class="container container-table">
+        <div class="row">
+            <div id="admin" class="col s12">
+                <div class="card material-table">
+                    <div class="table-header">
+                        <span class="table-title">gestion des utilisateurs</span>
+                        <div class="actions">
+                            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                    <table id="datatable">
+                        <thead>
+                        <tr>
+                            <th class="coluser-username">Nom</th>
+                            <th class="coluser-mail">Email</th>
+                            <th class="coluser-role">Role</th>
+                            <th class="coluser-obs">Observations</th>
+                            <th class="coluser-action"></th>
+                        </thead>
+                        <tbody>
+                        {% for user in listUsers %}
+                            <tr>
+                                <td class="coluser-username">{{ user.username }}</td>
+                                <td class="coluser-mail">{{ user.email }}</td>
+                                <td class="coluser-role">
+                                    {% if ('ROLE_SUPER_ADMIN' in user.roles) %}
+                                        admin
+                                    {% elseif ('ROLE_ADMIN' in user.roles) %}
+                                        naturaliste
+                                    {% else %}
+                                        utilisateur
+                                    {% endif %}
+                                </td>
+                                <td class="coluser-obs">{{ user.observations|length }}</td>
+                                <td class="coluser-action">
 
-                    <td>
-                        {% if ('ROLE_ADMIN' not in user.roles) and ('ROLE_SUPER_ADMIN' not in user.roles) %}
-                            <form action="{{ url('promoteUser', {'username': user.username}) }}" method="post" data-confirmation="true" onsubmit="return confirm('Etes-vous certain de vouloir promouvoir cet utilisateur ?');">
-                                <input type="hidden" name="token" value="{{ csrf_token('promote') }}" class="{{ user.username }}" />
-                                <button type="submit" class="btn  btn-success ajaxpost">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        {% endif %}
 
-                        {% if 'ROLE_ADMIN' in user.roles %}
-                            <form action="{{ url('demoteUser', {'username': user.username}) }}" method="post" data-confirmation="true" onsubmit="return confirm('Cet administrateur redeviendra simple utilisateur. Etes vous sur ?');">
-                                <input type="hidden" name="token" value="{{ csrf_token('promote') }}"/>
-                                <button type="submit" class="btn  btn-success ajaxpost">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        {% endif %}
+                                    {% if ('ROLE_ADMIN' not in user.roles) and ('ROLE_SUPER_ADMIN' not in user.roles) %}
 
-                        {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
-                            <form action="{{ url('deleteUser', {'username': user.username}) }}" id="delete" method="post" data-confirmation="true" onsubmit="return confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?');">
-                                <input type="hidden" name="token" value="{{ csrf_token('delete') }}"/>
-                                <button type="submit" class="btn  btn-danger ajaxpost submitbtn">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        {% endif %}
+                                        <form action="{{ url('promoteUser', {'username': user.username}) }}"
+                                              method="post" data-confirmation="true" style="display: inline-block"
+                                              onsubmit="return confirm('Etes-vous certain de vouloir promouvoir cet utilisateur ?');">
+                                            <input type="hidden" name="token"
+                                                   value="{{ csrf_token('promote') }}"
+                                                   class="{{ user.username }}"/>
+                                            <button type="submit" class="btn-floating lime darken-2 right-align"
+                                                    style="margin: 5px; display: inline-block">
+                                                <i class="material-icons">publish</i>
+                                            </button>
+                                        </form>
 
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                                    {% endif %}
+                                    {% if 'ROLE_ADMIN' in user.roles %}
+
+                                        <form action="{{ url('demoteUser', {'username': user.username}) }}"
+                                              method="post" data-confirmation="true" style="display: inline-block"
+                                              onsubmit="return confirm('Cet administrateur redeviendra simple utilisateur. Etes vous sur ?');">
+                                            <input type="hidden" name="token"
+                                                   value="{{ csrf_token('promote') }}"/>
+                                            <button type="submit" class="btn-floating deep-orange darken-4 right-align"
+                                                    style="margin: 5px;">
+                                                <i class="material-icons">file_download</i>
+                                            </button>
+                                        </form>
+
+                                    {% endif %}
+
+                                    {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
+                                        {% if user.isEnabled %}
+
+                                            <form action="{{ url('disableUser', {'username': user.username}) }}"
+                                                  id="disable" method="post" data-confirmation="true"
+                                                  style="display: inline-block"
+                                                  onsubmit="return confirm('Etes-vous certain de vouloir désactiver cet utilisateur ?');">
+                                                <input type="hidden" name="token"
+                                                       value="{{ csrf_token('disable') }}"/>
+                                                <button type="submit"
+                                                        class="btn-floating lime darken-2 right-align" style="margin: 5px;">
+
+                                                    <i class="material-icons">lock_outline</i>
+                                                </button>
+                                            </form>
+
+                                        {% else %}
+
+                                            <form action="{{ url('enableUser', {'username': user.username}) }}"
+                                                  id="enable" method="post" data-confirmation="true"
+                                                  style="display: inline-block"
+                                                  onsubmit="return confirm('Etes-vous certain de vouloir activer cet utilisateur ?');">
+                                                <input type="hidden" name="token"
+                                                       value="{{ csrf_token('enable') }}"/>
+                                                <button type="submit"
+                                                        class="btn-floating deep-orange darken-4 right-align" style="margin: 5px;">
+                                                    <i class="material-icons">lock_open</i>
+                                                </button>
+                                            </form>
+
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
 {% endblock %}
