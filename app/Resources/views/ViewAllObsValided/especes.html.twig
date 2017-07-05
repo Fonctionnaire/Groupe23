@@ -55,7 +55,7 @@
                         <td class="latitude" hidden>
 
                             {% for obstest in taxref.observations %}
-                                <p class="latitude">{{ obstest.latitude }}</p>
+                                <p class="latitude">{{ obstest.latitude|number_format(2) }}</p>
                             {% endfor %}
 
                         </td>
@@ -63,7 +63,7 @@
                         <td class="longitude" hidden>
 
                             {% for obstestDeux in taxref.observations %}
-                                <p class="longitude">{{ obstestDeux.longitude }}</p>
+                                <p class="longitude">{{ obstestDeux.longitude|number_format(2) }}</p>
                             {% endfor %}
 
                         </td>
