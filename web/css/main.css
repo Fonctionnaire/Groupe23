@@ -1610,7 +1610,10 @@ input[type="tel"]:not(.browser-default){
     .col-comCom,
     .comunsignal,
     .comdelete,
-    .coluser-mail{
+    .coluser-mail,
+    .colactu-date,
+    .colactu-nbcoms,
+    .colactu-activcoms{
         display: none;
     }
     .col-comAuteur{
@@ -1620,6 +1623,9 @@ input[type="tel"]:not(.browser-default){
     .col-comDate{
         width: 25%;
         padding-left: 0;
+    }
+    .colactu-action{
+        width: 25%;
     }
 
 
@@ -1731,6 +1737,10 @@ input[type="tel"]:not(.browser-default){
         padding-left: 0;
     }
 
+    .colactu-action{
+        width: 35%;
+    }
+
     /* Gestion des oblservations*/
     .col-action{
         width: 20%;
@@ -1738,6 +1748,7 @@ input[type="tel"]:not(.browser-default){
     .col-auteur{
         width: 30%;
     }
+
 
     .imagearticle{
         width : 100%;
@@ -1855,6 +1866,9 @@ input[type="tel"]:not(.browser-default){
     }
     .coluser-action{
         width: 35%;
+    }
+    .colactu-action{
+        width: 45%;
     }
     .col-action{
         width: 20%;

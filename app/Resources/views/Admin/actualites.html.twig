@@ -1,43 +1,64 @@
 {% extends "layout.html.twig" %}
 {% block titre %}gestion des actualités{% endblock %}
 {% block content %}
-    <div class="container">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Date publication</th>
-            <th>Titre</th>
-            <th>Nb Comm's</th>
-            <th>Activ Comm's</th>
-            <th>Lire</th>
-            <th>Editer</th>
-            <th>Supprimer</th>
-        </tr>
-        </thead>
+    <div class="container container-table">
+        <div class="row">
+            <div id="admin" class="col s12">
+                <div class="card material-table">
+                    <div class="table-header">
+                        <span class="table-title">gestion des actualités</span>
+                        <div class="actions">
+                            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                        </div>
+                    </div>
+                    <table id="datatable">
+                        <thead>
+                        <tr>
+                            <th class="colactu-date">Date publication</th>
+                            <th class="colactu-title">Titre</th>
+                            <th class="colactu-nbcoms">Nb Comm's</th>
+                            <th class="colactu-activcoms">Activ Comm's</th>
+                            <th class="colactu-action"></th>
 
-        <tbody>
-        {% for article in listArticles %}
-            <tr>
-                <td>{{ article.date|date("d-m-Y H:i:s") }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.comments|length }}</td>
-                <td>{% if article.enableComments == false  %}<i class="fa fa-ban" aria-hidden="true"></i>{% else %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>{% endif %}</td>
-                <td>
-                    <a href="{{ path('view_article', {'slug': article.slug}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a>
-                </td>
-                <td>
-                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-edit"></i></a>
+                        </tr>
+                        </thead>
 
-                </td>
-                <td>
-                    <a href="{{ path('deleteArticle', {'slug': article.slug}) }}" class="btn btn-danger" role="button" data-confirm="Etes-vous certain de vouloir supprimer cet Article ?"><i class="glyphicon glyphicon-trash"></i></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
+                        <tbody>
+                        {% for article in listArticles %}
+                            <tr>
+                                <td class="colactu-date">{{ article.date|date("d-m-Y H:i:s") }}</td>
+                                <td class="colactu-title">{{ article.title }}</td>
+                                <td class="colactu-nbcoms">{{ article.comments|length }}</td>
+                                <td class="colactu-activcoms">{% if article.enableComments == false %}<i class="material-icons blue-grey-text text-darken-2">not_interested</i>{% else %}<i class="material-icons lime-text text-darken-2">done</i>{% endif %}
+                                </td>
+                                <td class="colactu-action">
+                                    <a href="{{ path('view_article', {'slug': article.slug}) }}" class="btn-floating lime darken-2 right-align"
+                                       role="button"><i class="material-icons blue-grey-text text-lighten-5">visibility</i></i></a>
+
+                                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn-floating lime darken-2 right-align"
+                                       role="button"> <i class="material-icons blue-grey-text text-lighten-5">edit</i></a>
+
+                                    <form action="{{ url('deleteArticle', {'slug': article.slug}) }}"
+                                          id="enable" method="post" data-confirmation="true"
+                                          style="display: inline-block"
+                                          onsubmit="return confirm('Etes-vous certain de vouloir supprimer cette actualité ?');">
+                                        <input type="hidden" name="token"
+                                               value="{{ csrf_token('enable') }}"/>
+                                        <button type="submit"
+                                                class="btn-floating deep-orange darken-4 right-align">
+                                            <i class="material-icons">delete_forever</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
 
 
-    </table>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
