@@ -87,6 +87,7 @@
 
                                             <form action="{{ url('enableUser', {'username': user.username}) }}"
                                                   id="enable" method="post" data-confirmation="true"
+                                                  style="display: inline-block"
                                                   onsubmit="return confirm('Etes-vous certain de vouloir activer cet utilisateur ?');">
                                                 <input type="hidden" name="token"
                                                        value="{{ csrf_token('enable') }}"/>
