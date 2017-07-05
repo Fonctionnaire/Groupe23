@@ -79,7 +79,7 @@
                                                 <button type="submit"
                                                         class="btn-floating lime darken-2 right-align" style="margin: 5px;">
 
-                                                    <i class="material-icons">lock_outline</i>
+                                                    <i class="material-icons">lock_open</i>
                                                 </button>
                                             </form>
 
@@ -87,13 +87,12 @@
 
                                             <form action="{{ url('enableUser', {'username': user.username}) }}"
                                                   id="enable" method="post" data-confirmation="true"
-                                                  style="display: inline-block"
                                                   onsubmit="return confirm('Etes-vous certain de vouloir activer cet utilisateur ?');">
                                                 <input type="hidden" name="token"
                                                        value="{{ csrf_token('enable') }}"/>
                                                 <button type="submit"
-                                                        class="btn-floating deep-orange darken-4 right-align" style="margin: 5px;">
-                                                    <i class="material-icons">lock_open</i>
+                                                        class="btn-floating deep-orange darken-4 right-align">
+                                                    <i class="material-icons">lock_outline</i>
                                                 </button>
                                             </form>
 
