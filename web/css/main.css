@@ -1631,7 +1631,7 @@ input[type="tel"]:not(.browser-default){
         width: 45px !important;
         height: 45px !important;
     }
-
+/*
    .coverimage {
         margin:0;
         padding:0;
@@ -1649,9 +1649,9 @@ input[type="tel"]:not(.browser-default){
     }
     .image_petit_ecran
     {
-        visibility: hidden;
+        /*visibility: hidden;*/
         display: inherit;
-        object-fit: initial;
+        object-fit: cover;
         width: 100%;
         height: 95vh;
         margin: 0 !important;
