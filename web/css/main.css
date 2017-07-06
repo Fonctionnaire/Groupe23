@@ -1631,17 +1631,6 @@ input[type="tel"]:not(.browser-default){
         width: 45px !important;
         height: 45px !important;
     }
-/*
-   .coverimage {
-        margin:0;
-        padding:0;
-        background: url(../images/imagemobile3.jpg) no-repeat center fixed;
-        -webkit-background-size: cover; /* pour Chrome et Safari */
-        -moz-background-size: cover; /* pour Firefox */
-        -o-background-size: cover; /* pour Opera */
-        background-size: cover; /* version standardisée */
-    }
-
 
     .containerblanc{
         margin: 0;
@@ -1817,8 +1806,6 @@ input[type="tel"]:not(.browser-default){
 
 
 
-}
-
 @media all and (max-width: 600px) {
 
     .modal{
@@ -1941,26 +1928,27 @@ input[type="tel"]:not(.browser-default){
 
 }
 
-@media all and (max-width: 400px){
+@media all and (max-width: 400px) {
 
-    .modal{
+    .modal {
         min-height: 85%;
         min-width: 95%;
     }
-    .modal .modal-content{
+
+    .modal .modal-content {
         padding: 0px;
 
     }
 
-    .plusinfo{
-        text-align:center;
-    }
-    .plusinfo a{
-        display:inline-block;
-        margin:0;
-        float:none;
+    .plusinfo {
+        text-align: center;
     }
 
+    .plusinfo a {
+        display: inline-block;
+        margin: 0;
+        float: none;
+    }
 
     .col-validation,
     .col-date,
@@ -1976,28 +1964,31 @@ input[type="tel"]:not(.browser-default){
     .comdelete,
     .coluser-mail,
     .coluser-obs,
-    .coluser-role{
+    .coluser-role {
         display: none;
     }
-    .coluser-action{
+
+    .coluser-action {
         width: 35%;
     }
-    .colactu-action{
+
+    .colactu-action {
         width: 45%;
     }
-    .col-action{
+
+    .col-action {
         width: 20%;
     }
 
-    .imagearticle{
-        width : 100%;
+    .imagearticle {
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
         float: none;
-        margin-top : 0;
+        margin-top: 0;
     }
 
-    .imagearticles{
+    .imagearticles {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -2006,7 +1997,7 @@ input[type="tel"]:not(.browser-default){
         margin-top: 20px;
     }
 
-    .imagearticlesmobile{
+    .imagearticlesmobile {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -2016,30 +2007,30 @@ input[type="tel"]:not(.browser-default){
         display: inline-block;
     }
 
-    #imagecentre{
+    #imagecentre {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
-    .imagecentre{
+
+    .imagecentre {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
 
     /* page edit profil */
-
-    .editprofilretour{
+    .editprofilretour {
         float: none;
         margin-bottom: 20px;
 
     }
 
-    .editprofilvalider{
+    .editprofilvalider {
         float: none;
 
     }
 
-
+}
 
 }
