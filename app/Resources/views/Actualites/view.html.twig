@@ -34,7 +34,7 @@
 
             {#image#}
             <div class="row">
-                <div class="col m10 offset-m1 flow-text">
+                <div class="col m10 offset-m1">
                     {% if article.imageName is not null %}
                         <img class="imagearticle z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                     {% endif %}

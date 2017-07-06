@@ -1015,19 +1015,36 @@ display: none;
     color: #bf360c;
 }
 
+.centerbtn{
+    float: right;
+    vertical-align: center;
+}
+
 /* registration */
 
-.formbirthday .form-control {
-
-}
 
 #fos_user_registration_form_birthDate_year{
     display: none;
-}#fos_user_registration_form_birthDate_day{
+}
+
+#fos_user_registration_form_birthDate_day{
     display: none;
-}#fos_user_registration_form_birthDate_month{
+}
+
+#fos_user_registration_form_birthDate_month{
     display: none;
-}#fos_user_registration_form_birthDate{
+}
+
+#fos_user_profile_form_birthDate_year{
+    display: none;
+}
+
+#fos_user_profile_form_birthDate_day{
+    display: none;
+}
+
+#fos_user_profile_form_birthDate_month{
+    display: none;
 }
 
 
@@ -1052,6 +1069,14 @@ input[type="tel"]:not(.browser-default){
     border-bottom: 2px solid #c0ca33;
 }
 
+/* page login */
+
+.cadreinscription{
+    padding-left: 5% !important;
+    padding-right : 5% !important;
+}
+
+
 /* confirmation registration */
 
 .btnconfirmaccueil{
@@ -1074,6 +1099,21 @@ input[type="tel"]:not(.browser-default){
     text-align: justify;
 }
 
+
+/* page edit profil */
+
+.editprofilretour{
+    float: left;
+    width: 140px;
+}
+
+.editprofilvalider{
+    float: right;
+    width: 140px;
+}
+
+
+
 /* CONTACT FORM */
 
 .titre_nous_contacter
@@ -1094,6 +1134,10 @@ input[type="tel"]:not(.browser-default){
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 25px;
+}
+
+.lowercasebtn{
+    text-transform: lowercase;
 }
 
 
@@ -1350,6 +1394,7 @@ input[type="tel"]:not(.browser-default){
 @media all and (max-width: 1200px) {
 
 
+
     .imagecentre{
         width: 60%;
         margin: auto;
@@ -1403,6 +1448,13 @@ input[type="tel"]:not(.browser-default){
 @media all and (max-width: 1024px)
 {
     /* adaptation des colonnes datatables responsive  */
+
+    .h1form{
+        font-size: 32px !important;
+    }
+
+
+
 
     .col-administrateur,
     .col-publication,
@@ -1593,9 +1645,27 @@ input[type="tel"]:not(.browser-default){
     {
         display: none;
     }
-}
+
+    /* page profil */
+
+    .fos_user_user_show
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+
+
 
 @media all and (max-width: 768px) {
+
+   .h1form{
+       font-size: 30px !important;
+   }
+
+
+
     .modal{
         min-height: 85%;
         min-width: 95%;
@@ -1692,12 +1762,32 @@ input[type="tel"]:not(.browser-default){
         margin-right: auto;
     }
 
+
+    /* page login */
+
+    .centerbtn{
+        float: none;
+        text-align: center;
+        vertical-align: center;
+    }
+
+
     /* page confirmation inscription */
 
 
     .btncheck{
         float: none
     }
+
+
+    /* page profil */
+    .fos_user_user_show {
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+
+}
 
 
 
@@ -1809,6 +1899,12 @@ input[type="tel"]:not(.browser-default){
         margin-right: auto;
     }
 
+    /* vue profil */
+
+    .profil{
+        padding-left: 10px;
+    }
+
 
 
 }
@@ -1889,6 +1985,20 @@ input[type="tel"]:not(.browser-default){
         margin-left: auto;
         margin-right: auto;
     }
+
+    /* page edit profil */
+
+    .editprofilretour{
+        float: none;
+        margin-bottom: 20px;
+
+    }
+
+    .editprofilvalider{
+        float: none;
+
+    }
+
 
 
 }
