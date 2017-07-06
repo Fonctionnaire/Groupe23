@@ -1595,15 +1595,17 @@ input[type="tel"]:not(.browser-default){
         display: none;
     }
 
+
     .block_middle
     {
-        margin: initial;
+        padding-left: inherit !important;
     }
 
     .block_right
     {
-        margin: initial;
-        margin-bottom: 25px;
+        display: inherit;
+        margin-bottom: 50px;
+        padding-left: inherit !important;
     }
 
     .block_right p
@@ -1612,6 +1614,22 @@ input[type="tel"]:not(.browser-default){
         padding-top: 15px;
     }
 
+    .block_right .mini_newsletter
+    {
+        padding-top: 15px;
+    }
+
+    .mini_facebook
+    {
+        height: 60px !important;
+        width: 60px !important;
+    }
+
+    .mini_newsletter
+    {
+        width: 45px !important;
+        height: 45px !important;
+    }
 
    .coverimage {
         margin:0;
