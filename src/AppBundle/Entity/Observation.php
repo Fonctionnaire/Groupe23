@@ -74,7 +74,7 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="adminComment", type="text", nullable=true)
-     * @Assert\Length(max=50, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
      */
     private $adminComment;
 
