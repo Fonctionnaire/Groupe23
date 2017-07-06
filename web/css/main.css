@@ -1564,7 +1564,7 @@ input[type="tel"]:not(.browser-default){
    .coverimage {
         margin:0;
         padding:0;
-        background: url(../images/imagemobile2.jpg) no-repeat center fixed;
+        background: url(../images/imagemobile3.jpg) no-repeat center fixed;
         -webkit-background-size: cover; /* pour Chrome et Safari */
         -moz-background-size: cover; /* pour Firefox */
         -o-background-size: cover; /* pour Opera */
