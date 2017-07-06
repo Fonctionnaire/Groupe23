@@ -8,8 +8,8 @@
     <!-- Meta Facebook -->
     <meta property="og:url"           content="{{ path('view_article', {'slug': article.slug}) }}"/>
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="NAO - Nos amis les oiseaux" />
-    <meta property="og:description"   content="Etude du comportement des oiseaux" />
+    <meta property="og:title"         content="NAO - {{ article.title }}" />
+    <meta property="og:description"   content="{{ article.content }}" />
     <meta property="og:image"         content="{{ vich_uploader_asset(article, 'imageFile') }}" />
 {% endblock %}
 {% block facebookScript %}

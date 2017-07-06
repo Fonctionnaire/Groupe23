@@ -68,7 +68,6 @@ class AdminArticleController extends Controller
         $formEdit->handleRequest($request);
 
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
-
             $entityManager->flush();
             $this->addFlash('success', 'Article modifié avec succès');
             return $this->redirect($this->generateUrl('view_article', array('slug' => $article->getSlug())));
