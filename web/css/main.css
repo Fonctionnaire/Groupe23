@@ -263,10 +263,11 @@ div.profilaction div a {
 }
 .containertemplatemini {
     width: 70%;
+    min-height: 635px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 
