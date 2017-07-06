@@ -20,10 +20,10 @@ Class Antispam
 
 
         // Longueur du commentaire
-        if (strlen($text) < 10)
+        if (strlen($text) < 5)
         {
             $spam = true;
-            $message = "Votre commentaire est trop court";
+            $message = "Votre commentaire doit comporter 5 caractères minimum";
         }
 
         // Présence d'URL

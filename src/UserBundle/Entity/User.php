@@ -514,23 +514,5 @@ class User extends BaseUser
         return $this->updatedAt;
     }
 
-    /**
-     * @Assert\Callback
-     * @param ExecutionContextInterface $context
-     */
-    public function validate(ExecutionContextInterface $context, $payload)
-    {
-        // do your own validation
-        if (! in_array($this->avatarFile->getMimeType(), array(
-            'image/jpeg',
-            'image/gif',
-            'image/png'
-        ))) {
-            $context
-                ->buildViolation('Fichier incorrect (seuls les jpg,gif,png autorisés)')
-                ->atPath('avatarFile')
-                ->addViolation();
-        }
-    }
 
 }

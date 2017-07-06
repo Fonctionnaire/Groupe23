@@ -82,6 +82,7 @@ class Comment
      *
      * @ORM\Column(name="content", type="text")
      * @Assert\Length(max=255, maxMessage="Votre commentaire ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="Votre commentaire doit comporter au moins 2 caractères.")
      */
     private $content;
 

@@ -56,6 +56,9 @@ class Article
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\Length(max=100, maxMessage="Votre titre ne peut dépasser {{ limit }} caractères.")
+     * @Assert\Length(min=2, minMessage="Votre titre doit comporter au moins 2 caractères.")
+     * @Assert\NotBlank(message = "Veuillez compléter  ce champ")
+     *
      */
     private $title;
 
@@ -64,7 +67,8 @@ class Article
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\Length(min=200, maxMessage="Votre article doit au moins contenir {{ limit }} caractères.")
+     * @Assert\NotBlank(message = "Veuillez compléter  ce champ")
+     *
      */
     private $content;
 
