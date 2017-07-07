@@ -243,7 +243,34 @@ div.profilaction div a {
     }
 
 .police32{
-    font-size: 15px !important;
+    font-size: 1.4em !important;
+}
+
+.police32-mobile
+{
+    font-size: 2em !important;
+}
+
+.side-nav
+{
+    margin-top: 64px;
+    opacity: 0.80;
+}
+
+.side-nav li>a
+{
+    padding: 0 20px !important;
+}
+
+.first-nav-block
+{
+    margin-left: 35%;
+}
+
+.dropdown-style-change
+{
+    top: 64px !important;
+    opacity: 0.80 !important;
 }
 
 .h1form{
@@ -1503,6 +1530,15 @@ input[type="tel"]:not(.browser-default){
         width: 95%;
     }
     /* PAGE D'ACCUEIL */
+
+    .divider {
+        height: 0.1px !important;
+
+    }
+    .first-nav-block
+    {
+        margin-left: 17%;
+    }
 
     #video-oiseaux
     {
