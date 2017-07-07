@@ -24,6 +24,7 @@ $(function () {
         $(".modal .modal-content").load(this.href, function () {
 
         })
+        $('select').material_select();
     })
 });
 
@@ -46,25 +47,12 @@ $(document).ready(function () {
 
     //select
     $('select').material_select();
-    $('.parallax').parallax();
-
-
-
-
-    //dataTable
-    $('#myTable').dataTable({
-        "responsive": true,
-        "order": [[0, "asc"]],
-        "language": {
-            "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/French.json"
-        }
-    });
-    $('#some-div > img').wrap('<div class="new-parent"></div>');
 
 });
 
 //FONCTION PUR LE FORMULAIRE D'EXPORT
 $('#modal').on('show.bs.modal', function (e) {
+    $('select').material_select();
     if
     (!navigator.userAgent.match(/(android|iphone|windows phone|ipad|edge|Chrome|CrOS|CriOS|Edge|Opera)/gi))
     {

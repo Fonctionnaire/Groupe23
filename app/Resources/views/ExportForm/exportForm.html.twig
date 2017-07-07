@@ -1,54 +1,50 @@
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
-<form method="post" action="{{ path('filter') }}">
-<div class="modal-header">
-    <h1>Exportation des données</h1>
+{% extends "layout.html.twig" %}
+    {% block content %}
+<div class="containertemplatemini">
+    <div class="profil col m10 blue-grey lighten-5 offset-s1 left-align">
+        <div class="row">
+        <div class="col m8 offset-m2">
+            <form method="post" action="{{ path('filter') }}">
+
+                <h1 class="lime-text text-darken-2 center-align">exportation des données</h1>
+
+
+                {# Les erreurs générales du formulaire. #}
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    {{ form_label(form.debut, "Date de Début") }}
+                    {{ form_errors(form.debut) }}
+                    {{ form_widget(form.debut) }}
+
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.fin, "Date de Fin") }}
+                    {{ form_errors(form.fin) }}
+                    {{ form_widget(form.fin) }}
+                </div>
+
+
+                <div class="form-group">
+                            {{ form_label(form.taxref, "Choix des espèces") }}
+                            {{ form_errors(form.taxref) }}
+                            {{ form_widget(form.taxref) }}
+                        </div>
+
+
+                <div class="form-control">
+                    <button class="btn btn-large waves-effect waves-light deep-orange darken-4 right" type="submit" name="submit-filter">
+                        exporter
+                    </button>
+                </div>
+
+                {{ form_rest(form) }}
+
+
+            </form>
+        </div>
 </div>
-<div class="modal-body">
-    {# Les erreurs générales du formulaire. #}
-    {{ form_errors(form) }}
-    {# Génération du label + error + widget pour un champ. #}
-    {# Génération manuelle et éclatée : #}
-    <div>
-        {{ form_label(form.debut, "Date de Début") }}
-        {{ form_errors(form.debut) }}
-        <div>
-            {{ form_widget(form.debut) }}
-        </div>
-    </div>
-
-    <div>
-        {{ form_label(form.fin, "Date de Fin") }}
-        {{ form_errors(form.fin) }}
-        <div>
-            {{ form_widget(form.fin) }}
-        </div>
-    </div>
-
-    <div>
-        {{ form_label(form.especeFilter, "Filtrer par espèce ?") }}
-        {{ form_errors(form.especeFilter) }}
-        <div>
-            {{ form_widget(form.especeFilter) }}
-        </div>
-    </div>
-
-    <div>
-        {{ form_label(form.taxref, "Choix des espèces") }}
-        {{ form_errors(form.taxref) }}
-        <div>
-            {{ form_widget(form.taxref) }}
-        </div>
-    </div>
 </div>
-<div class="modal-footer">
-
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-default" type="submit" name="submit-filter"><i class="glyphicon glyphicon-floppy-disk"></i>
-                Enregistrer
-            </button>
-        </div>
-    </div>
-    {{ form_rest(form) }}
 </div>
-</form>
+    {% endblock %}

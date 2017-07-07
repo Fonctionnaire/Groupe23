@@ -22,20 +22,27 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('o')
             ->where('o.dateObservation > :debut')
-            ->andWhere('o.dateObservation < :fin');
-        if ($data['especeFilter']) {
-            $query->andWhere('o.taxref IN (:taxref)')
+            ->andWhere('o.dateObservation < :fin')->andWhere('o.taxref IN (:taxref)')
                 ->setParameters(array(
                     'debut' => $data['debut'],
                     'fin' => $data['fin'],
                     'taxref' => $data['taxref']
                 ));
-        } else {
-            $query->setParameters(array(
+
+        $observations = $query->getQuery()->getResult();
+
+        return $observations;
+    }
+
+    public function getFilterWithoutTaxref($data)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.dateObservation > :debut')
+            ->andWhere('o.dateObservation < :fin')->setParameters(array(
                 'debut' => $data['debut'],
-                'fin' => $data['fin'],
+                'fin' => $data['fin']
             ));
-        }
+
         $observations = $query->getQuery()->getResult();
 
         return $observations;

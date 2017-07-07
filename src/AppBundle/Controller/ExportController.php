@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Form\Type\ObservationFilterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Doctrine\Common\Collections\Collection;
 
 
 class ExportController extends Controller
@@ -33,8 +34,19 @@ class ExportController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
-                ->getFiltrer($data);
+            dump($data);
+
+            if (!$data['taxref']->isEmpty())
+            {
+                dump($data);
+                $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
+                    ->getFiltrer($data);
+            }
+            else{
+                dump($data);
+                $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
+                    ->getFilterWithoutTaxref($data);
+            }
 
             return $this->exportObservationsAction($observations);
         };

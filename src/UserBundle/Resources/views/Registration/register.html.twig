@@ -99,7 +99,7 @@
                         <div class="col s12">
                             <div class="formbirthday">
                                  {{ form_label(form.birthDate, "Date de naissance") }}
-                                 {{ form_widget(form.birthDate) }}
+                                 {{ form_widget(form.birthDate, {'attr': {'class': 'multiple birthdate'}}) }}
                                  {{ form_errors(form.birthDate) }}
                             </div>
                         </div>
