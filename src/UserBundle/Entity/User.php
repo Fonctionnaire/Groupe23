@@ -56,7 +56,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le prénom doit comporter plus de 2 caractères.",
      *     maxMessage="Prénom trop long.",
      * )
@@ -69,7 +69,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le nom doit comporter plus de 2 caractères.",
      *     maxMessage="Nom trop long.",
      * )
@@ -93,7 +93,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre ville.")
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le nom de la ville doit comporter plus de 2 caractères.",
      *     maxMessage="Ce nom est trop long.",
      * )
