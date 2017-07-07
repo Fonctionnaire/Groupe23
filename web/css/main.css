@@ -1266,6 +1266,11 @@ input[type="tel"]:not(.browser-default){
 
 /* PAGE DASHBOARD */
 
+.container-my-obs
+{
+    min-height: 648px;
+}
+
 .block-icone
 {
     text-align: center;
