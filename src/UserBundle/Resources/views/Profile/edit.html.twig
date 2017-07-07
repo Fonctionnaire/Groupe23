@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col m6 s12">
+                        <div class="col s12">
                             <div class="input-field Phone">
                                 {{ form_label(form.phone, "Téléphone") }}
                                 {{ form_widget(form.phone) }}
@@ -99,10 +99,10 @@
                     </div>
 
                 <div class="row">
-                    <div class="col m6 s12">
+                    <div class="col s12">
                         <div class="file-field input-file valided">
                             {{ form_label(form.avatarFile) }}
-                            {{ form_widget(form.avatarFile, {'attr': {'class': 'filestyle','data-placeholder': 'aucune image sélectionnée', 'data-buttonName': 'btn-large waves-effect waves-light deep-orange darken-4 btnparcourir','data-buttonText': 'Parcourir'}}) }}
+                            {{ form_widget(form.avatarFile, {'attr': {'class': 'filestyle','data-placeholder': 'Veuillez sélectionner une image < 512 ko', 'data-buttonName': 'btn-large waves-effect waves-light deep-orange darken-4 btnparcourir','data-buttonText': 'Parcourir'}}) }}
                             {{ form_errors(form.avatarFile) }}
                         </div>
                     </div>

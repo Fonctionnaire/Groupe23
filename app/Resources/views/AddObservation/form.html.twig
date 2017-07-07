@@ -41,7 +41,7 @@
 
     <div class="add-obs-photo ">
         {{ form_label(form.imageFile) }}
-        {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'Photo de l\'observation', 'data-buttonName': 'waves-effect waves-light btn', 'data-buttonText': 'Parcourir'}}) }}
+        {{ form_widget(form.imageFile, {'attr': {'class': 'filestyle','data-placeholder': 'Sélectionnez une image carré < 2 Mo', 'data-buttonName': 'waves-effect waves-light btn', 'data-buttonText': 'Parcourir'}}) }}
         {{ form_errors(form.imageFile) }}
     </div>
     {{ form_rest(form) }}
