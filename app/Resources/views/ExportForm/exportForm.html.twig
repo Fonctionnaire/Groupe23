@@ -1,50 +1,51 @@
 {% extends "layout.html.twig" %}
     {% block content %}
-<div class="containertemplatemini">
-    <div class="profil col m10 blue-grey lighten-5 offset-s1 left-align">
-        <div class="row">
-        <div class="col m8 offset-m2">
-            <form method="post" action="{{ path('filter') }}">
+        <div class="containertemplatemini">
+            <div class="profil col m10 blue-grey lighten-5 offset-s1 left-align">
+                <div class="row">
+                    <div class="col m8 offset-m2">
+                        <form method="post" action="{{ path('filter') }}">
 
-                <h1 class="lime-text text-darken-2 center-align">exportation des données</h1>
+                            <h1 class="lime-text text-darken-2 center-align">exportation des données</h1>
 
 
-                {# Les erreurs générales du formulaire. #}
-                {{ form_errors(form) }}
+                            {# Les erreurs générales du formulaire. #}
+                            {{ form_errors(form) }}
 
-                <div class="form-group">
-                    {{ form_label(form.debut, "Date de Début") }}
-                    {{ form_errors(form.debut) }}
-                    {{ form_widget(form.debut) }}
+                            <div class="form-group">
+                                {{ form_label(form.debut, "Date de Début") }}
+                                {{ form_errors(form.debut) }}
+                                {{ form_widget(form.debut) }}
 
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.fin, "Date de Fin") }}
+                                {{ form_errors(form.fin) }}
+                                {{ form_widget(form.fin) }}
+                            </div>
+
+
+                            <div class="form-group">
+                                {{ form_label(form.taxref, "Choix des espèces") }}
+                                {{ form_errors(form.taxref) }}
+                                {{ form_widget(form.taxref) }}
+                            </div>
+
+
+                            <div class="form-control">
+                                <button class="btn btn-large waves-effect waves-light deep-orange darken-4 right"
+                                        type="submit" name="submit-filter">
+                                    exporter
+                                </button>
+                            </div>
+
+                            {{ form_rest(form) }}
+
+
+                        </form>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    {{ form_label(form.fin, "Date de Fin") }}
-                    {{ form_errors(form.fin) }}
-                    {{ form_widget(form.fin) }}
-                </div>
-
-
-                <div class="form-group">
-                            {{ form_label(form.taxref, "Choix des espèces") }}
-                            {{ form_errors(form.taxref) }}
-                            {{ form_widget(form.taxref) }}
-                        </div>
-
-
-                <div class="form-control">
-                    <button class="btn btn-large waves-effect waves-light deep-orange darken-4 right" type="submit" name="submit-filter">
-                        exporter
-                    </button>
-                </div>
-
-                {{ form_rest(form) }}
-
-
-            </form>
+            </div>
         </div>
-</div>
-</div>
-</div>
     {% endblock %}

@@ -23,11 +23,11 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('o')
             ->where('o.dateObservation > :debut')
             ->andWhere('o.dateObservation < :fin')->andWhere('o.taxref IN (:taxref)')
-                ->setParameters(array(
-                    'debut' => $data['debut'],
-                    'fin' => $data['fin'],
-                    'taxref' => $data['taxref']
-                ));
+            ->setParameters(array(
+                'debut' => $data['debut'],
+                'fin' => $data['fin'],
+                'taxref' => $data['taxref']
+            ));
 
         $observations = $query->getQuery()->getResult();
 
