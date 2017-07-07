@@ -46,7 +46,7 @@ class ObservationController extends BaseController
             $em->persist($observation);
             $em->flush();
 
-            $listAdmins = $em->getRepository('UserBundle:User')->findByRole("ROLE_SUPER_ADMIN");
+            $listAdmins = $em->getRepository('UserBundle:User')->findByRole("ROLE_ADMIN");
             foreach ($listAdmins as $user)
             {
                 $this->get('app.notification')->sendMailNewObservation($observation, $user);
