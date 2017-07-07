@@ -1,11 +1,11 @@
 {% extends "layout.html.twig" %}
 {% block titre %}dashboard{% endblock %}
 {% block content %}
-    <div class="container">
+    <div class="container container-my-obs">
 
 
 
-        <h1>Mon compte</h1>
+        <h1 class="lime-text text-darken-1">mon compte</h1>
 
 
         {% set obsValid = 0 %}
@@ -16,64 +16,72 @@
         {% endfor %}
 
         <div class="block-icone">
-            <h4 class="nom-user-icone">Bienvenue {{ user.username }}</h4>
+            <h4 class="nom-user-icone lime-text text-darken-1">bienvenue {{ user.username }}</h4>
             {% if obsValid > 20 and obsValid < 50 %}
                 <div class="div-icone-user">
                     <img class="icone-user" src="{{ asset('images/oiseau-dans-l-39-oeuf-casse_318-60195.jpg') }}" alt="oiseau sort de la coquille">
                 </div>
-                <p class="text-icone">Rang: Eclosion</p>
+                <p class="text-icone lime-text text-darken-1">rang: Eclosion</p>
             {% elseif obsValid >= 50 and obsValid < 100 %}
                 <div class="div-icone-user">
                     <img class="icone-user" src="{{ asset('images/chant-d-39-oiseau-avec-des-notes-de-musique_318-60656.jpg') }}" alt="oiseau qui chante">
                 </div>
-                <p class="text-icone">Rang: Moineau</p>
+                <p class="text-icone lime-text text-darken-1">rang: Moineau</p>
             {% elseif obsValid >= 100 and obsValid < 150 %}
                 <div class="div-icone-user">
                     <img class="icone-user" src="{{ asset('images/colombe_318-107101.jpg') }}" alt="colombe">
                 </div>
-                <p class="text-icone">Rang: Colombe</p>
+                <p class="text-icone lime-text text-darken-1">rang: Colombe</p>
             {% elseif obsValid >= 150 %}
                 <div class="div-icone-user">
                     <img class="icone-user" src="{{ asset('images/forme-animale-faucon-oiseau_318-63047.jpg') }}" alt="faucon">
                 </div>
-                <p class="text-icone">Rang: Faucon</p>
+                <p class="text-icone lime-text text-darken-1">rang: Faucon</p>
                 {% else %}
                 <div class="div-icone-user">
                     <img class="icone-user" src="{{ asset('images/oeuf-avec-une-fissure_318-60772.jpg') }}" alt="oeuf fermé">
                 </div>
-                <p class="text-icone">Rang: Oeuf</p>
+                <p class="text-icone lime-text text-darken-1">rang: Oeuf</p>
             {% endif %}
 
-            <p>Nombre d'observations validées:</p>
-            <p>{{ obsValid }}</p>
+            <p class="lime-text text-darken-1">nombre d'observations validées:</p>
+            <p class="lime-text text-darken-1">{{ obsValid }}</p>
 
         </div>
-
-        <h2>Bilan de mes observations</h2>
-
-        <div id="observationtab" class="table-responsive">
-            <table class="table table-hover" id="myTable">
+        <div class="row">
+        <div id="observationtab" class="col s12">
+            <div class="card material-table">
+                <div class="table-header">
+                    <span class="table-title">mes observations</span>
+                    <div class="actions">
+                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                    </div>
+                </div>
+            <table id="datatable">
                 <thead>
                 <tr>
-                    <th>Etat</th>
-                    <th>Date d'enregistrement</th>
-                    <th>Espèce</th>
-                    <th>Commentaire</th>
-                    <th>Voir détail</th>
+                    <th>etat</th>
+                    <th>date d'enregistrement</th>
+                    <th>espèce</th>
+                    <th>commentaire</th>
+                    <th class="right-align">voir détail</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for observation in listObservations %}
                     <tr {% if observation.valided == false %}class="info" {% endif %}>
-                        <td>{% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> Publiée{% else %} En attente de validation{% endif %}</td>
+                        <td>{% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> publiée{% else %} en attente de validation{% endif %}</td>
                         <td>{{ observation.date|date("d-m-Y H:i:s") }}</td>
                         <td>{{ observation.taxref.nonvern }}</td>
                         <td>{{ observation.comment }}</td>
-                        <td><a href="{{ path('viewObservation', {'id': observation.id}) }}" class="btn btn-default" role="button"><i class="glyphicon glyphicon-sunglasses"></i></a></td>
+                        <td class="right-align"><a href="{{ path('viewObservation', {'id': observation.id}) }}"  role="button"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
+        </div>
+        </div>
+    </div>
     </div>
 {% endblock %}
