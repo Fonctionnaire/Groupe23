@@ -13,8 +13,13 @@
                 </div>
                 <div class="profile-frame-round">
                     <div class="profile-crop center-align center">
-                        <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="profilimgcrop"
+
+                        {% if user.avatarName is null %}
+                            <img class="profilimgcrop" src="{{ asset('uploads/avatars/profile-icon-9.png') }}" alt="{{ user.username }}">
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="profilimgcrop"
                              alt="{{ user.username }}"/>
+                        {% endif %}
                     </div>
                 </div>
 
