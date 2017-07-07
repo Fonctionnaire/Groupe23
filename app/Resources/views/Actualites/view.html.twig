@@ -1,6 +1,10 @@
 {% extends "layout.html.twig" %}
 {% block titre %}{{ article.title }}{% endblock %}
 {% import "Actualites/showComments.html.twig" as macro %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Article.
+{% endblock %}
+
 {% block title %}
     Lecture d'un Article - {{ parent() }}
 {% endblock %}

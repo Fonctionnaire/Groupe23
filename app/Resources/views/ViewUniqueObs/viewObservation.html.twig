@@ -1,4 +1,7 @@
 {% extends "layout.html.twig" %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseau. Observation.
+{% endblock %}
 {% block titre %}observation{% endblock %}
 {% block googleMapScript %}
     {% if is_granted('ROLE_ADMIN') %}
