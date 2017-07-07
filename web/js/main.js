@@ -44,6 +44,8 @@ $(document).ready(function () {
 
     $('.collapsible').collapsible();
 
+    $('.dropdown-content').addClass('dropdown-style-change');
+
     //select
     $('select').material_select();
     $('.parallax').parallax();
