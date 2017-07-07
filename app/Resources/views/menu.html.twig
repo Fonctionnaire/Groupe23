@@ -8,14 +8,10 @@
         <div class="fixed-action-btn" style="bottom: 15px; right: 15px;">
             <a id="menu" href="#" data-activates="nav-mobile" class="btn btn-floating btn-large deep-orange darken-4 blue-grey-text text-lighten-5 button-collapse"><i class="material-icons">menu</i></a>
         </div>
-        <ul class="first-nav-block hide-on-med-and-down">
+        <ul id="desktop" class="right hide-on-med-and-down">
             <li><a href="{{ path('index') }}" class="police32">accueil</a></li>
             <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="nav-assoc">association<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="waves-effect waves-rednao police32" href="{{ path('actualites') }}">actualités</a></li>
-        </ul>
-
-        <ul id="desktop" class="right hide-on-med-and-down">
-
             <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="navobs">observation<i class="material-icons right">arrow_drop_down</i></a></li>
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_registration_register') }}" data-constrainwidth="false">inscription</a></li>
