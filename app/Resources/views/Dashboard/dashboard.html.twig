@@ -64,9 +64,9 @@
                 <thead>
                 <tr>
                     <th>etat</th>
-                    <th>date d'enregistrement</th>
+                    <th class="dashboard-dateObs">date d'enregistrement</th>
                     <th>espèce</th>
-                    <th>commentaire</th>
+                    <th class="dashboard-commentaire">commentaire</th>
                     <th class="right-align">voir détail</th>
                 </tr>
                 </thead>
@@ -74,9 +74,9 @@
                 {% for observation in listObservations %}
                     <tr {% if observation.valided == false %}class="info" {% endif %}>
                         <td>{% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> publiée{% else %} en attente de validation{% endif %}</td>
-                        <td>{{ observation.date|date("d-m-Y H:i:s") }}</td>
+                        <td class="dashboard-dateObs">{{ observation.date|date("d-m-Y H:i:s") }}</td>
                         <td>{{ observation.taxref.nonvern }}</td>
-                        <td>{{ observation.comment }}</td>
+                        <td class="dashboard-commentaire">{{ observation.comment }}</td>
                         <td class="right-align"><a href="{{ path('viewObservation', {'id': observation.id}) }}"  role="button"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a></td>
                     </tr>
                 {% endfor %}

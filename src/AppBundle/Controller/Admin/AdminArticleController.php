@@ -32,7 +32,7 @@ class AdminArticleController extends Controller
      * @param Request $request
      * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("/actualites/add", name="add")
+     * @Route("/actualites/ajouter", name="add")
      */
     public function addAction(Request $request)
     {
@@ -58,7 +58,7 @@ class AdminArticleController extends Controller
      * Displays a form to edit an existing Article entity.
      * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "POST"})
-     * @Route("/actualites/{slug}/edit", name="editArticle")
+     * @Route("/actualites/{slug}/editer", name="editArticle")
      */
     public function editAction(Article $article, Request $request)
     {
@@ -84,7 +84,7 @@ class AdminArticleController extends Controller
 
     /**
      * Delete Article
-     * @Route("/actualites/{slug}/delete", name="deleteArticle")
+     * @Route("/actualites/{slug}/supprimer", name="deleteArticle")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      *

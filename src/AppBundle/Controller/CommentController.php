@@ -17,7 +17,7 @@ class CommentController extends Controller
      * Display form to add a NEW comment
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
-     * @Route("/actualites/{slug}/comments/add", name="addComment")
+     * @Route("/actualites/{slug}/commentaire/ajouter", name="addComment")
      *
      */
     public function addCommentAction(Article $article, Request $request)
@@ -62,7 +62,7 @@ class CommentController extends Controller
      * Display Form to reply to a comment
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
-     * @Route("/actualites/{slug}/comment/{id}/reply", name="replyComment")
+     * @Route("/actualites/{slug}/commentaire/{id}/repondre", name="replyComment")
      */
     public function replyCommentAction(Comment $parent, Request $request)
     {
@@ -111,7 +111,7 @@ class CommentController extends Controller
     /**
      * Signal a Admin
      * @Method({"GET"})
-     * @Route("actualites/{slug}/comment/{id}/signal", name="signalComment")
+     * @Route("actualites/{slug}/commentaire/{id}/signaler", name="signalComment")
      * @Security("has_role('ROLE_USER')")
      */
     public function signalCommentAction(Comment $comment, Request $request)

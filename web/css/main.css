@@ -1717,6 +1717,15 @@ input[type="tel"]:not(.browser-default){
         margin-right: 0;
     }
 
+    .dashboard-commentaire
+    {
+        display: none;
+    }
+
+    .dashboard-dateObs
+    {
+        display: none;
+    }
 
 
 

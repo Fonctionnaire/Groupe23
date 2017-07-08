@@ -30,7 +30,7 @@ class AdminObservationController extends Controller
 
     /**
      * Supprime une observation
-     * @Route("/admin/{id}/delete", name="deleteObservation")
+     * @Route("/admin/observation/{id}/supprimer", name="deleteObservation")
      * @Method("GET")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -49,7 +49,7 @@ class AdminObservationController extends Controller
      * Affiche un formulaire pour modifier une observation
      * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "POST"})
-     * @Route("/{id}/edit", requirements={"id": "\d+"}, name="edit")
+     * @Route("/admin/observation/{id}/editer", requirements={"id": "\d+"}, name="edit")
      */
     public function editObservationAction(Observation $observation, Request $request)
     {
@@ -75,7 +75,7 @@ class AdminObservationController extends Controller
      * Affiche un formulaire pour valider une observation
      * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "POST"})
-     * @Route("/{id}/validation", name="validation")
+     * @Route("/admin/observation/{id}/validation", name="validation")
      */
     public function validationObservationAction(Observation $observation, Request $request)
     {
@@ -101,7 +101,7 @@ class AdminObservationController extends Controller
      * Affiche un formulaire pour modifier le statut de l'observation
      * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "POST"})
-     * @Route("/{id}/statut", name="statut")
+     * @Route("/admin/observation/{id}/statut", name="statut")
      */
     public function observationStatutAction(Observation $observation, Request $request)
     {
