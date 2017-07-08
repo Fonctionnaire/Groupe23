@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,14 +27,12 @@ class ObservationFilterType extends AbstractType
                 'attr' => array('class' => 'datepicker'),
                 'format' => 'yyyy-MM-dd',
             ))
-            ->add('especeFilter', CheckboxType::class, array(
-                'label'    => 'Filtrer par espèce ?',
-                'required' => false,
-                'attr' => array('id'=> 'check-espece'),
-                ))
             ->add('taxref', EntityType::class, array(
                 'class' => 'AppBundle:Taxref',
-                'choice_label' => 'lbnom',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('t')->where('t.observations is not empty')->orderBy('t.nomvalide', 'ASC');
+                },
+                'choice_label' => 'nomvalide',
                 'multiple' => true,
                 'required'   => false,
                 'attr' => array('id'=> 'select-espece'),
