@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     /**
      * Voir ses observations
-     * @Route("/Dashboard/observations", name="dashboardObservations")
+     * @Route("/tableau-de-bord/observations", name="dashboardObservations")
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
      */
@@ -37,7 +37,7 @@ class DashboardController extends Controller
      * Affiche un formulaire pour modifier une observation
      * @Security("has_role('ROLE_USER')")
      * @Method({"GET", "POST"})
-     * @Route("/Dashboard/observations/{id}/edit", requirements={"id": "\d+"}, name="edit")
+     * @Route("/tableau-de-bord/observations/{id}/editer", requirements={"id": "\d+"}, name="edit")
      */
     public function editObservationAction(Observation $observation, Request $request)
     {

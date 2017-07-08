@@ -9,9 +9,6 @@
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOrUDDkqQBXoHminEFVSDAAgF8jksDroU&callback=initMap">
         </script>
-
-
-
     {% else %}
         <script src="{{ asset('js/viewObsMapUser.js') }}"></script>
         <script async defer
@@ -19,9 +16,6 @@
         </script>
 
     {% endif %}
-{% endblock %}
-
-{% block content %}
     <script>
         $(document).ready(function () {
             $('.collapsible').collapsible();
@@ -29,6 +23,10 @@
         });
         $('.collapsible').collapsible();
     </script>
+{% endblock %}
+
+{% block content %}
+
 
     <div class="containertemplate">
         <div class="observation col m10 blue-grey lighten-5 offset-m1 left-align z-depth-2">

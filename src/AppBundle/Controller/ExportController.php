@@ -21,7 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class ExportController extends Controller
 {
     /**
-     * @Route("/filter", name="filter")
+     * @Route("/export-de-donnees", name="filter")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      *
@@ -33,14 +33,11 @@ class ExportController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            dump($data);
-
             if (!$data['taxref']->isEmpty()) {
                 dump($data);
                 $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
                     ->getFiltrer($data);
             } else {
-                dump($data);
                 $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
                     ->getFilterWithoutTaxref($data);
             }

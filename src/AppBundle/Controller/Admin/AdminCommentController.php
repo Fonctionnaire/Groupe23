@@ -14,7 +14,7 @@ class AdminCommentController extends Controller
 
     /**
      * View all Comments
-     * @Route("/admin/comments", name="adminComments")
+     * @Route("/admin/commentaires", name="adminComments")
      * @Method("GET")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -26,7 +26,7 @@ class AdminCommentController extends Controller
 
     /**
      * Delete Comments
-     * @Route("/admin/comment/{id}/delete", name="deleteComment")
+     * @Route("/admin/commentaire/{id}/supprimer", name="deleteComment")
      * @Method("GET")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -44,7 +44,7 @@ class AdminCommentController extends Controller
     /**
      * Unsignal
      * @Method({"GET"})
-     * @Route("/admin/comment/{id}/unsignal", name="unsignalComment")
+     * @Route("/admin/commentaire/{id}/enlever-le-signalement", name="unsignalComment")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function unsignalCommentAction(Comment $comment, Request $request)

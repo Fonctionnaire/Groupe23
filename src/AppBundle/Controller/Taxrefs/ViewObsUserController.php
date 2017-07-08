@@ -21,7 +21,7 @@ class ViewObsUserController extends Controller
      * @return Response
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
-     * @Route("/user/observations-validees", name="user_listTaxrefs")
+     * @Route("/utilisateur/observations-validees", name="user_listTaxrefs")
      */
     public function userListTaxrefsAction()
     {
