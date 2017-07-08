@@ -20,7 +20,7 @@ class ObservationValidationType extends AbstractType
         ->add('valided',CheckboxType::class, array(
             'label'    => 'Valider ?',
             'required' => false,))
-        ->add('isVisible',CheckboxType::class, array(
+        ->add('visible',CheckboxType::class, array(
             'label'    => 'Rendre cette observation publique ?',
             'required' => false,
             ));

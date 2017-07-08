@@ -25,7 +25,7 @@ class TaxrefRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('tax')
             ->leftJoin('tax.observations', 'to')
             ->addSelect('to')
-            ->where('to.isVisible = true')
+            ->where('to.visible = true')
             ->getQuery()
             ->getResult();
     }

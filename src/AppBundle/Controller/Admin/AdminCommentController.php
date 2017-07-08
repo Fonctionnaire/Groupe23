@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Comment;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminCommentController extends Controller
 {

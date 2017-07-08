@@ -17,7 +17,7 @@ class ObservationStatutType extends AbstractType
         $builder
         ->add('valided',ChoiceType::class, array(
         'choices' => array('Oui' => true, 'Non' => false)))
-        ->add('isVisible',ChoiceType::class, array(
+        ->add('visible',ChoiceType::class, array(
             'choices' => array (
                 'Publier' => true,
                 'Ne pas publier' => false,

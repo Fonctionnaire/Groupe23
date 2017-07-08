@@ -39,27 +39,27 @@ class DashboardController extends Controller
      * @Method({"GET", "POST"})
      * @Route("/tableau-de-bord/observations/{id}/editer", requirements={"id": "\d+"}, name="edit")
      */
-    public function editObservationAction(Observation $observation, Request $request)
+    public function editObservationAction(Observation $observation, Request $request, $id)
     {
         if ($observation->getValided() === true && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') && $this->getUser() !== $observation->getUser()) {
             throw new AccessDeniedException("La visualisation de l'observation d'id " . $id . " est interdite");
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $form = $this->createForm(ObservationType::class, $observation);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager->flush();
-                $this->addFlash('success', 'Observation modifiée avec succès');
-                return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
-            }
-            return $this->render(
-                'Admin/observationEdit.html.twig', [
-                    'observation' => $observation,
-                    'form' => $form->createView(),
-                ]
-            );
         }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(ObservationType::class, $observation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Observation modifiée avec succès');
+            return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
+        }
+        return $this->render(
+            'Admin/observationEdit.html.twig', [
+                'observation' => $observation,
+                'form' => $form->createView(),
+            ]
+        );
 
 
     }
