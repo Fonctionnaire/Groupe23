@@ -1,4 +1,7 @@
 {% extends "layout.html.twig" %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Représentation cartographique des observations faites par des naturalistes et des particuliers, dans le cadre d’un programme de recherche et d’étude des effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité.
+{% endblock %}
 {% block titre %}carte intéractive{% endblock %}
 {% block googleMapScript %}
     <script src="{{ asset('js/viewAdminMap.js') }}"></script>

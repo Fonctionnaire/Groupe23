@@ -56,7 +56,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le prénom doit comporter plus de 2 caractères.",
      *     maxMessage="Prénom trop long.",
      * )
@@ -69,7 +69,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le nom doit comporter plus de 2 caractères.",
      *     maxMessage="Nom trop long.",
      * )
@@ -93,7 +93,7 @@ class User extends BaseUser
      * @Assert\NotBlank(message="Veuillez renseigner votre ville.")
      * @Assert\Length(
      *     min=2,
-     *     max=255,
+     *     max=40,
      *     minMessage="Le nom de la ville doit comporter plus de 2 caractères.",
      *     maxMessage="Ce nom est trop long.",
      * )
@@ -514,23 +514,5 @@ class User extends BaseUser
         return $this->updatedAt;
     }
 
-    /**
-     * @Assert\Callback
-     * @param ExecutionContextInterface $context
-     */
-    public function validate(ExecutionContextInterface $context, $payload)
-    {
-        // do your own validation
-        if (! in_array($this->avatarFile->getMimeType(), array(
-            'image/jpeg',
-            'image/gif',
-            'image/png'
-        ))) {
-            $context
-                ->buildViolation('Fichier incorrect (seuls les jpg,gif,png autorisés)')
-                ->atPath('avatarFile')
-                ->addViolation();
-        }
-    }
 
 }

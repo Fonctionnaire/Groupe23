@@ -1,4 +1,7 @@
 {% extends "layout.html.twig" %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseau. Observation.
+{% endblock %}
 {% block titre %}observation{% endblock %}
 {% block googleMapScript %}
     {% if is_granted('ROLE_ADMIN') %}
@@ -37,8 +40,12 @@
 
                 <div class="frame-round">
                     <div class="crop">
-                        <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="imgcrop"
+                        {% if observation.user.avatarName is null %}
+                            <img class="profilimgcrop" src="{{ asset('uploads/avatars/profile-icon-9.png') }}" alt="{{ observation.user.username }}">
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}" class="imgcrop"
                              alt="{{ observation.user.username }}"/>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -60,8 +67,13 @@
                     <div class="card white">
                         <div class="card-content blue-grey-text text-darken-3">
                             <div class="chip flow-text card-title lime darken-2 blue-grey-text text-lighten-5">
+
+                                {% if observation.user.avatarName is null %}
+                                <img class="responsive-img circle" src="{{ asset('uploads/avatars/profile-icon-9.png') }}" alt="{{ observation.user.username }}">
+                                {% else %}
                                 <img src="{{ vich_uploader_asset(observation.user, 'avatarFile') }}"
                                      class="responsive-img circle" alt="{{ observation.user.username }}"/>
+                                {% endif %}
                                 commentaire
                             </div>
                             <blockquote>

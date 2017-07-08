@@ -1,6 +1,10 @@
 {% extends "layout.html.twig" %}
 {% block titre %}{{ article.title }}{% endblock %}
 {% import "Actualites/showComments.html.twig" as macro %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Article.
+{% endblock %}
+
 {% block title %}
     Lecture d'un Article - {{ parent() }}
 {% endblock %}
@@ -8,8 +12,8 @@
     <!-- Meta Facebook -->
     <meta property="og:url"           content="{{ path('view_article', {'slug': article.slug}) }}"/>
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="NAO - Nos amis les oiseaux" />
-    <meta property="og:description"   content="Etude du comportement des oiseaux" />
+    <meta property="og:title"         content="NAO - {{ article.title }}" />
+    <meta property="og:description"   content="{{ article.content }}" />
     <meta property="og:image"         content="{{ vich_uploader_asset(article, 'imageFile') }}" />
 {% endblock %}
 {% block facebookScript %}
@@ -50,7 +54,7 @@
 
             {#image#}
             <div class="row">
-                <div class="col m10 offset-m1 flow-text">
+                <div class="col m10 offset-m1">
                     {% if article.imageName is not null %}
                         <img class="imagearticle z-depth-1" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}"/>
                     {% endif %}

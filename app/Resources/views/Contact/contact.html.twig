@@ -1,12 +1,15 @@
 {% extends 'layout.html.twig' %}
-{% block titre %}Nous contacter{% endblock %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Nous contacter.
+{% endblock %}
+{% block titre %}nous contacter{% endblock %}
 {% block contactScript %}
     <script src="{{ asset('js/contactCountChars.js') }}"></script>
 {% endblock %}
 {% block content %}
 <div class="container container_contact blue-grey lighten-5 z-depth-1">
 
-    <h1 class="titre_nous_contacter lime-text text-darken-1">Nous contacter</h1>
+    <h1 class="titre_nous_contacter lime-text text-darken-1 h1form">Nous contacter</h1>
         <p class="lime-text text-darken-1 contact-obligatoire">Tous les champs sont obligatoires</p>
     {{ form_start(form) }}
 
@@ -53,7 +56,7 @@
         </div>
     </div>
 
-        {{ form_widget(form.envoyer, {'attr': {'class': 'valider_contact z-depth-1 deep-orange darken-4'}})}}
+        {{ form_widget(form.envoyer, {'attr': {'class': 'valider_contact z-depth-1 deep-orange darken-4 lowercasebtn'}})}}
     {{ form_end(form) }}
 
 

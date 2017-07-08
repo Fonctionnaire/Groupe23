@@ -1,6 +1,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {# On étend notre layout #}
 {% extends 'layout.html.twig' %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Se connecter.
+{% endblock %}
+{% block titre %}se connecter{% endblock %}
 {% block content %}
     <div class="containertemplatemini">
 
@@ -43,26 +47,26 @@
                                 <p>
                                     <label><input type="checkbox" tabindex="3" id="remember_me" name="_remember_me" value="on"></label>
                                 </p>
-
-
-                        <p>
-                            Mot de passe oublié ?
-                            <a class= "mdpoublie" href="{{ path('fos_user_resetting_request') }}">Réinitialiser mon mot de passe</a>
-                        </p>
-                        <p>
-                            Pas encore de compte ?
-                            <a class="creercompte" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
-                        </p>
+                                <p>
+                                    <a class= "mdpoublie" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+                                </p>
+                                <p>
+                                    <a class="creercompte" href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+                                </p>
                             </div>
                         </div>
+
                         <br />
 
-                       <footer>
-                           <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
-                           <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 right" value="Connexion" id="_submit">
+                        <div class="row">
+                            <div class ="col s12 center-align">
+                                <footer>
+                                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                                    <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 centerbtn" value="Connexion" id="btnconnexion">
+                                </footer>
+                            </div>
+                        </div>
 
-
-                       </footer>
                     </form>
 
                 </div>

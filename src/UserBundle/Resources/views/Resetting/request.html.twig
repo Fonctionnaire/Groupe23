@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
-
+{% block titre %}réinitialiser mon mot de passe{% endblock %}
 {% block content %}
 
 <div class="containertemplatemini">
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col s12">
                             <div class="input-field">
-                                <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                                <label for="username">Pseudo ou email</label>
                                 <input type="text" id="username" name="username" required="required" />
                             </div>
                         </div>
@@ -27,7 +27,12 @@
 
                     <br />
 
-                    <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 right" value="{{ 'resetting.request.submit'|trans }}" id="_submit">
+
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            <input type="submit" class="btn-large waves-effect waves-light deep-orange darken-4 centerbtn" value="Valider" id="_submit">
+                        </div>
+                    </div>
 
                 </form>
             </div>

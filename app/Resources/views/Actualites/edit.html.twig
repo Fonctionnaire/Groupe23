@@ -1,4 +1,16 @@
 {% extends "layout.html.twig" %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseaux. Modifier un article.
+{% endblock %}
+{% block titre %}Modifier un article{% endblock %}
+{% block addActuScript %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea'
+        });
+    </script>
+{% endblock %}
 {% block content %}
 
 <div class="containertemplate">
@@ -17,7 +29,7 @@
 
                 {# On définit un nouveau bloc, que les vues de l'application pourront remplir #}
                 {% block app_body %}
-                    {{ include("Actualites/form.html.twig") }}
+                    {{ include("Actualites/formEdit.html.twig") }}
                 {% endblock %}
             </div>
         </div>

@@ -248,6 +248,28 @@ div.profilaction div a {
     font-size: 15px !important;
 }
 
+.police32-mobile
+{
+    font-size: 15px !important;
+}
+
+.side-nav
+{
+    margin-top: 64px;
+    opacity: 0.80;
+}
+
+.side-nav li>a
+{
+    padding: 0 20px !important;
+}
+
+.dropdown-style-change
+{
+    top: 64px !important;
+    opacity: 0.80 !important;
+}
+
 .h1form{
     font-size: 36px !important;
 }
@@ -265,10 +287,11 @@ div.profilaction div a {
 }
 .containertemplatemini {
     width: 70%;
+    min-height: 635px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 
@@ -1022,19 +1045,36 @@ display: none;
     color: #bf360c;
 }
 
+.centerbtn{
+    float: right;
+    vertical-align: center;
+}
+
 /* registration */
 
-.formbirthday .form-control {
-
-}
 
 #fos_user_registration_form_birthDate_year{
     display: none;
-}#fos_user_registration_form_birthDate_day{
+}
+
+#fos_user_registration_form_birthDate_day{
     display: none;
-}#fos_user_registration_form_birthDate_month{
+}
+
+#fos_user_registration_form_birthDate_month{
     display: none;
-}#fos_user_registration_form_birthDate{
+}
+
+#fos_user_profile_form_birthDate_year{
+    display: none;
+}
+
+#fos_user_profile_form_birthDate_day{
+    display: none;
+}
+
+#fos_user_profile_form_birthDate_month{
+    display: none;
 }
 
 
@@ -1061,6 +1101,14 @@ input[type="tel"]:not(.browser-default){
     border-bottom: 2px solid #c0ca33;
 }
 
+/* page login */
+
+.cadreinscription{
+    padding-left: 5% !important;
+    padding-right : 5% !important;
+}
+
+
 /* confirmation registration */
 
 .btnconfirmaccueil{
@@ -1083,6 +1131,21 @@ input[type="tel"]:not(.browser-default){
     text-align: justify;
 }
 
+
+/* page edit profil */
+
+.editprofilretour{
+    float: left;
+    width: 140px;
+}
+
+.editprofilvalider{
+    float: right;
+    width: 140px;
+}
+
+
+
 /* CONTACT FORM */
 
 .titre_nous_contacter
@@ -1103,6 +1166,10 @@ input[type="tel"]:not(.browser-default){
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 25px;
+}
+
+.lowercasebtn{
+    text-transform: lowercase;
 }
 
 
@@ -1208,6 +1275,11 @@ input[type="tel"]:not(.browser-default){
 
 /* PAGE DASHBOARD */
 
+.container-my-obs
+{
+    min-height: 648px;
+}
+
 .block-icone
 {
     text-align: center;
@@ -1261,6 +1333,8 @@ input[type="tel"]:not(.browser-default){
 {
     margin-top: 150px;
     margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 /*PAge export*/
@@ -1367,6 +1441,7 @@ input[type="tel"]:not(.browser-default){
 @media all and (max-width: 1200px) {
 
 
+
     .imagecentre{
         width: 60%;
         margin: auto;
@@ -1421,6 +1496,13 @@ input[type="tel"]:not(.browser-default){
 {
     /* adaptation des colonnes datatables responsive  */
 
+    .h1form{
+        font-size: 32px !important;
+    }
+
+
+
+
     .col-administrateur,
     .col-publication,
     .col-comSignalisation,
@@ -1467,6 +1549,15 @@ input[type="tel"]:not(.browser-default){
         width: 95%;
     }
     /* PAGE D'ACCUEIL */
+
+    .divider {
+        height: 0.1px !important;
+
+    }
+    .first-nav-block
+    {
+        margin-left: 17%;
+    }
 
     #video-oiseaux
     {
@@ -1560,15 +1651,17 @@ input[type="tel"]:not(.browser-default){
         display: none;
     }
 
+
     .block_middle
     {
-        margin: initial;
+        padding-left: inherit !important;
     }
 
     .block_right
     {
-        margin: initial;
-        margin-bottom: 25px;
+        display: inherit;
+        margin-bottom: 50px;
+        padding-left: inherit !important;
     }
 
     .block_right p
@@ -1577,17 +1670,22 @@ input[type="tel"]:not(.browser-default){
         padding-top: 15px;
     }
 
-
-   .coverimage {
-        margin:0;
-        padding:0;
-        background: url(../images/imagemobile2.jpg) no-repeat center fixed;
-        -webkit-background-size: cover; /* pour Chrome et Safari */
-        -moz-background-size: cover; /* pour Firefox */
-        -o-background-size: cover; /* pour Opera */
-        background-size: cover; /* version standardisée */
+    .block_right .mini_newsletter
+    {
+        padding-top: 15px;
     }
 
+    .mini_facebook
+    {
+        height: 60px !important;
+        width: 60px !important;
+    }
+
+    .mini_newsletter
+    {
+        width: 45px !important;
+        height: 45px !important;
+    }
 
     .containerblanc{
         margin: 0;
@@ -1595,9 +1693,9 @@ input[type="tel"]:not(.browser-default){
     }
     .image_petit_ecran
     {
-        visibility: hidden;
+        /*visibility: hidden;*/
         display: inherit;
-        object-fit: initial;
+        object-fit: cover;
         width: 100%;
         height: 95vh;
         margin: 0 !important;
@@ -1610,9 +1708,27 @@ input[type="tel"]:not(.browser-default){
     {
         display: none;
     }
-}
+
+    /* page profil */
+
+    .fos_user_user_show
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+
+
 
 @media all and (max-width: 768px) {
+
+   .h1form{
+       font-size: 30px !important;
+   }
+
+
+
     .modal{
         min-height: 85%;
         min-width: 95%;
@@ -1716,6 +1832,16 @@ input[type="tel"]:not(.browser-default){
         margin-right: auto;
     }
 
+
+    /* page login */
+
+    .centerbtn{
+        float: none;
+        text-align: center;
+        vertical-align: center;
+    }
+
+
     /* page confirmation inscription */
 
 
@@ -1724,8 +1850,16 @@ input[type="tel"]:not(.browser-default){
     }
 
 
+    /* page profil */
+    .fos_user_user_show {
+        margin-left: 0;
+        margin-right: 0;
+
+    }
 
 }
+
+
 
 @media all and (max-width: 600px) {
 
@@ -1839,30 +1973,37 @@ input[type="tel"]:not(.browser-default){
         margin-right: auto;
     }
 
+    /* vue profil */
+
+    .profil{
+        padding-left: 10px;
+    }
+
 
 
 }
 
-@media all and (max-width: 400px){
+@media all and (max-width: 400px) {
 
-    .modal{
+    .modal {
         min-height: 85%;
         min-width: 95%;
     }
-    .modal .modal-content{
+
+    .modal .modal-content {
         padding: 0px;
 
     }
 
-    .plusinfo{
-        text-align:center;
-    }
-    .plusinfo a{
-        display:inline-block;
-        margin:0;
-        float:none;
+    .plusinfo {
+        text-align: center;
     }
 
+    .plusinfo a {
+        display: inline-block;
+        margin: 0;
+        float: none;
+    }
 
     .col-validation,
     .col-date,
@@ -1878,28 +2019,31 @@ input[type="tel"]:not(.browser-default){
     .comdelete,
     .coluser-mail,
     .coluser-obs,
-    .coluser-role{
+    .coluser-role {
         display: none;
     }
-    .coluser-action{
+
+    .coluser-action {
         width: 35%;
     }
-    .colactu-action{
+
+    .colactu-action {
         width: 45%;
     }
-    .col-action{
+
+    .col-action {
         width: 20%;
     }
 
-    .imagearticle{
-        width : 100%;
+    .imagearticle {
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
         float: none;
-        margin-top : 0;
+        margin-top: 0;
     }
 
-    .imagearticles{
+    .imagearticles {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -1908,7 +2052,7 @@ input[type="tel"]:not(.browser-default){
         margin-top: 20px;
     }
 
-    .imagearticlesmobile{
+    .imagearticlesmobile {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -1918,16 +2062,30 @@ input[type="tel"]:not(.browser-default){
         display: inline-block;
     }
 
-    #imagecentre{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .imagecentre{
+    #imagecentre {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
 
+    .imagecentre {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* page edit profil */
+    .editprofilretour {
+        float: none;
+        margin-bottom: 20px;
+
+    }
+
+    .editprofilvalider {
+        float: none;
+
+    }
+
+}
 
 }

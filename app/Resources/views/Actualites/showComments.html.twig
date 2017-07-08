@@ -8,8 +8,12 @@
 
                 <div class="blue-grey-text text-darken-3">
                     <div class="chip commenttitle col s12 lime darken-2 blue-grey-text text-lighten-5">
-                        <img src="{{ vich_uploader_asset(comment.author, 'avatarFile') }}"
+                        {% if comment.author.avatarName is null %}
+                            <img class="responsive-img circle" src="{{ asset('uploads/avatars/profile-icon-9.png') }}" alt="{{ comment.author }}">
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(comment.author, 'avatarFile') }}"
                              class="responsive-img circle" alt="{{ comment.author }}"/>
+                        {% endif %}
                         {{ comment.author }} - {{ comment.date|ago }}
                     </div>
 

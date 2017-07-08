@@ -35,6 +35,7 @@ class ArticleType extends AbstractType
                 )))
             ->add('enableComments', CheckboxType::class, array(
                 'label'    => 'Autoriser les commentaire ?',
+                'value' => null,
                 'required' => false));
     }
 
