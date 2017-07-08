@@ -110,7 +110,7 @@ class AdminObservationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($observation->getValided() === false && $observation->getIsVisible() === true) {
+            if ($observation->getValided() === false && $observation->getVisible() === true) {
                 $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
                 return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
             }

@@ -78,7 +78,7 @@ class ObservationController extends BaseController
         if (null === $observation) {
             throw new NotFoundHttpException("L'observation d'id " . $id . " n'existe pas.");
         }
-        if (!$observation->getValided() === true && !$observation->getIsVisible() === true && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') && $this->getUser() !== $observation->getUser()){
+        if (!$observation->getValided() === true && !$observation->getVisible() === true && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') && $this->getUser() !== $observation->getUser()){
             throw new AccessDeniedException("La visualisation de l'observation d'id ". $id . " est interdite");
         }
 

@@ -11,7 +11,7 @@
             invalidée
         {% endif %}
         et
-        {% if observation.isVisible == true %}
+        {% if observation.visible == true %}
             publique.
         {% else %}
             non publique.
@@ -28,9 +28,9 @@
         </div>
 
         <div>
-            {{ form_label(form.isVisible, "Publication") }}
-            {{ form_errors(form.isVisible) }}
-            {{ form_widget(form.isVisible) }}
+            {{ form_label(form.visible, "Publication") }}
+            {{ form_errors(form.visible) }}
+            {{ form_widget(form.visible) }}
         </div>
 
     </div>
