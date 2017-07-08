@@ -1,15 +1,36 @@
-<h3>Nous avons bien reçu votre message et nous vous répondrons au plus vite.</h3>
+<!DOCTYPE html>
 
-<p>Vous trouverez ci-dessous la copie des informations saisies dans le formulaire de contact.</p>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% endblock %}
+</head>
 
-<p>Merci et à bientôt sur notre <a href="https://nao.groupe23.ovh/" target="_blank">site internet.</a></p>
+<body>
+<div class="contenumail" style="margin-left: 30px; margin-top: 30px; margin-right: 30px;">
+    <h3>Nous avons bien reçu votre message et nous vous répondrons au plus vite.</h3>
 
+    <p>Vous trouverez ci-dessous la copie des informations saisies dans le formulaire de contact.</p>
+
+    <p>Merci et à bientôt sur notre <a href="https://nao.groupe23.ovh/" target="_blank">site internet.</a></p>
+</div>
 <hr>
 
-Demande envoyée le {{ "now"|date("m/d/Y") }} à {{ "now"|date("H:i") }}
+<p>Demande envoyée le <span style="font-weight: bold"> {{ "now"|date("m/d/Y") }}</span> à <span style="font-weight: bold"> {{ "now"|date("H:i") }}</span></p>
 
-Nom : {{ name }}
-Prenom : {{ firstName }}
-E-mail : {{ mail }}
-Sujet : {{ subject }}
-Demande : {{ message }}
+<div class="contenumail" style="margin-left: 30px; margin-top: 30px; margin-right: 30px;">
+    <p>Nom : {{ name }}</p>
+    <p>Prenom : {{ firstName }}</p>
+    <p>E-mail : {{ mail }}</p>
+    <br>
+    <p>Sujet : {{ subject }}</p>
+    <p>Demande : </p>
+    <p>{{ message }}</p>
+</div>
+
+</body>
+</html>
