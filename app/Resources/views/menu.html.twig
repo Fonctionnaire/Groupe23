@@ -4,44 +4,31 @@
 <div class="navbar-fixed">
     <nav class="transparent">
         <div class="nav-wrapper lime darken-2">
-            <a href="{{ path('index') }}" class="brand-logo"><img src="{{ asset('images/logo-menu.png') }}"
-                                                                  class="logo"/></a>
+            <a href="{{ path('index') }}" class="brand-logo"><img src="{{ asset('images/logo-menu.png') }}" class="logo" /></a>
             <div class="fixed-action-btn" style="bottom: 15px; right: 15px;">
-                <a id="menu" href="#" data-activates="nav-mobile"
-                   class="btn btn-floating btn-large deep-orange darken-4 blue-grey-text text-lighten-5 button-collapse"><i
-                            class="material-icons">menu</i></a>
+                <a id="menu" href="#" data-activates="nav-mobile" class="btn btn-floating btn-large deep-orange darken-4 blue-grey-text text-lighten-5 button-collapse"><i class="material-icons">menu</i></a>
             </div>
             <ul id="desktop" class="right hide-on-med-and-down">
                 <li><a href="{{ path('index') }}" class="police32">accueil</a></li>
-                <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="nav-assoc">association<i
-                                class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="nav-assoc">association<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a class="waves-effect waves-rednao police32" href="{{ path('actualites') }}">actualités</a></li>
-                <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="navobs">observation<i
-                                class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="navobs">observation<i class="material-icons right">arrow_drop_down</i></a></li>
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a class="waves-effect waves-rednao police32"
-                           href="{{ path('fos_user_registration_register') }}"
-                           data-constrainwidth="false">inscription</a></li>
+                    <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_registration_register') }}" data-constrainwidth="false">inscription</a></li>
                 {% endif %}
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_security_login') }}"
-                           data-constrainwidth="false">login</a></li>
+                    <li><a class="waves-effect waves-rednao police32" href="{{ path('fos_user_security_login') }}" data-constrainwidth="false">login</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true"
-                           data-activates="superadmin">mon compte<i class="material-icons right">arrow_drop_down</i></a>
-                    </li>
+                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="superadmin">mon compte<i class="material-icons right">arrow_drop_down</i></a></li>
                 {% elseif is_granted('ROLE_ADMIN') %}
-                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="admin">mon
-                            compte<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="admin">mon compte<i class="material-icons right">arrow_drop_down</i></a></li>
                 {% elseif is_granted('ROLE_USER') %}
-                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="compte">mon
-                            compte<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button police32" href="#" data-constrainwidth="true" data-activates="compte">mon compte<i class="material-icons right">arrow_drop_down</i></a></li>
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a class="dropdown-button police32" href="{{ path('fos_user_security_logout') }}">logout</a>
-                    </li>
+                    <li><a class="dropdown-button police32" href="{{ path('fos_user_security_logout') }}">logout</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -51,49 +38,35 @@
 <!-- MENU DEROULANT GESTION DE COMPTE -->
 <ul id="compte" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
 
-    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('fos_user_profile_show') }}">mon
-            profil</a></li>
-    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('dashboardObservations') }}">mes
-            observations</a></li>
+    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('dashboardObservations') }}">mes observations</a></li>
 </ul>
 
 <!-- MENU DEROULANT Admin -->
 {% if is_granted('ROLE_ADMIN') %}
     <ul id="admin" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5"
-               href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5"
-               href="{{ path('dashboardObservations') }}">mes observations</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('dashboardObservations') }}">mes observations</a></li>
         <li role="separator" class="divider"></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminObservations') }}">gestion
-                des Observations</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminObservations') }}">gestion des Observations</a></li>
         <li role="separator" class="divider"></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('filter') }}">exporter
-                les données</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 openmodal" href="{{ path('filter') }}">exporter les données</a></li>
     </ul>
 {% endif %}
 <!-- MENU DEROULANT SUPER ADMIN -->
 {% if is_granted('ROLE_SUPER_ADMIN') %}
     <ul id="superadmin" class="dropdown-content lime darken-2 blue-grey-text text-lighten-5">
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5"
-               href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5"
-               href="{{ path('dashboardObservations') }}">mes observations</a></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminUsers') }}">gestion
-                des utilisateurs</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('dashboardObservations') }}">mes observations</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminUsers') }}">gestion des utilisateurs</a></li>
         <li role="separator" class="divider"></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminObservations') }}">gestion
-                des Observations</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminObservations') }}">gestion des Observations</a></li>
         <li role="separator" class="divider"></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminActualites') }}">gestion
-                des Actualites</a></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminComments') }}">gestion
-                des Commentaires</a></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('add') }}">ajout d'une
-                Actualité</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminActualites') }}">gestion des Actualites</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('adminComments') }}">gestion des Commentaires</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('add') }}">ajout d'une Actualité</a></li>
         <li role="separator" class="divider"></li>
-        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('filter') }}">exporter
-                les données</a></li>
+        <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5" href="{{ path('filter') }}">exporter les données</a></li>
     </ul>
 {% endif %}
 <!-- MENU DEROULANT Observations -->
@@ -101,11 +74,9 @@
     <li><a class="blue-grey-text text-lighten-5" href="{{ path('addObservation') }}">nouvelle observation</a></li>
     <li>
         {% if is_granted('ROLE_ADMIN') %}
-            <a class="blue-grey-text text-lighten-5" href="{{ path('admin_listTaxrefs') }}">visualisation
-                cartographique</a>
+            <a class="blue-grey-text text-lighten-5" href="{{ path('admin_listTaxrefs') }}">visualisation cartographique</a>
         {% elseif is_granted('ROLE_USER') %}
-            <a class="blue-grey-text text-lighten-5" href="{{ path('user_listTaxrefs') }}">visualisation
-                cartographique</a>
+            <a class="blue-grey-text text-lighten-5" href="{{ path('user_listTaxrefs') }}">visualisation cartographique</a>
         {% else %}
             <a class="blue-grey-text text-lighten-5" href="{{ path('listTaxrefs') }}">visualisation cartographique</a>
         {% endif %}
@@ -128,66 +99,43 @@
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile"
-                       href="{{ path('fos_user_security_login') }}" data-constrainwidth="false">login</a></li>
+                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile" href="{{ path('fos_user_security_login') }}" data-constrainwidth="false">login</a></li>
             {% endif %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile"
-                       href="{{ path('fos_user_security_logout') }}">logout</a></li>
+                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile" href="{{ path('fos_user_security_logout') }}">logout</a></li>
             {% endif %}
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile"
-                       href="{{ path('fos_user_registration_register') }}" data-constrainwidth="false">inscription</a>
-                </li>
+                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile" href="{{ path('fos_user_registration_register') }}" data-constrainwidth="false">inscription</a></li>
             {% endif %}
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">mon
-                                compte<i class="material-icons right white-text">arrow_drop_down</i></a>
+                            <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">mon compte<i class="material-icons right white-text">arrow_drop_down</i></a>
                         {% endif %}
                         <div class="collapsible-body">
                             <ul>
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('dashboardObservations') }}">mes observations</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('dashboardObservations') }}">mes observations</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('add') }}">ajout d'une Actualité</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('adminActualites') }}">gestion des Actualites</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('adminComments') }}">gestion des Commentaires</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('add') }}">ajout d'une Actualité</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminActualites') }}">gestion des Actualites</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminComments') }}">gestion des Commentaires</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('adminUsers') }}">gestion des utilisateurs</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminUsers') }}">gestion des utilisateurs</a></li>
 
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('adminObservations') }}">gestion des Observations</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminObservations') }}">gestion des Observations</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('filter') }}">exporter les données</a>
-                                    </li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1 modal-trigger" data-target="modal1" href="{{ path('filter') }}">exporter les données</a></li>
                                 {% elseif is_granted('ROLE_ADMIN') %}
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('dashboardObservations') }}">mes observations</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('adminObservations') }}">gestion des Observations</a></li>
-                                    <li>
-                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('filter') }}">exporter les données</a>
-                                    </li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('dashboardObservations') }}">mes observations</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('adminObservations') }}">gestion des Observations</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('filter') }}">exporter les données</a></li>
                                 {% elseif is_granted('ROLE_USER') %}
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
-                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('dashboardObservations') }}">mes observations</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
+                                    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('dashboardObservations') }}">mes observations</a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -197,22 +145,17 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">observations<i
-                                    class="material-icons right white-text">arrow_drop_down</i></a>
+                        <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">observations<i class="material-icons right white-text">arrow_drop_down</i></a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                       href="{{ path('addObservation') }}">nouvelle observation</a></li>
+                                <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('addObservation') }}">nouvelle observation</a></li>
                                 <li>
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('admin_listTaxrefs') }}">visualisation Cartographique</a>
+                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('admin_listTaxrefs') }}">visualisation Cartographique</a>
                                     {% elseif is_granted('ROLE_USER') %}
-                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('user_listTaxrefs') }}">visualisation Cartographique</a>
+                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('user_listTaxrefs') }}">visualisation Cartographique</a>
                                     {% else %}
-                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                                           href="{{ path('listTaxrefs') }}">visualisation Cartographique</a>
+                                        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('listTaxrefs') }}">visualisation Cartographique</a>
                                     {% endif %}
                                 </li>
                             </ul>
@@ -226,29 +169,24 @@
     <li>
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">association<i
-                            class="material-icons right white-text">arrow_drop_down</i></a>
+                <a class="collapsible-header waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile">association<i class="material-icons right white-text">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                               href="{{ path('index') }}#ancre_other_page">a propos</a>
+                            <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('index') }}#ancre_other_page">a propos</a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1"
-                               href="{{ path('nous_contacter') }}">contact</a>
+                            <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-1" href="{{ path('nous_contacter') }}">contact</a>
                         </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </li>
-    <li><a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile"
-           href="{{ path('actualites') }}">actualités</a></li>
+    <li><a  class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile" href="{{ path('actualites') }}">actualités</a></li>
 
     <li>
-        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile"
-           href="{{ path('index') }}">accueil</a>
+        <a class="waves-effect waves-rednao blue-grey-text text-lighten-5 lime darken-2 police32-mobile" href="{{ path('index') }}">accueil</a>
     </li>
     <li class="no-padding">
 
