@@ -21,7 +21,7 @@
                             <th class="col-comArticle">Article</th>
                             <th class="col-comAuteur">auteur</th>
                             <th class="col-comCom">Commentaire</th>
-                            <th class="col-action"></th>
+                            <th class="col-comAction"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,10 +39,34 @@
                                         {{ comment.content }}
                                     {% endif %}
                                 </td>
-                                <td class="comAction right-align">
-                                    <a data-target="modal3" class="modal-trigger commodal waves-effect waves-light" href="{{ path('commentModale', {'id': comment.id}) }}"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a>
-                                    <a href="{{ path('unsignalComment', {'id': comment.id}) }}" class="comunsignal waves-effect waves-light" role="button" data-confirm="Etes-vous certain de vouloir valider ce commentaire ?"><i class="large material-icons lime-text text-darken-2">done</i></a>
-                                    <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="comdelete waves-effect waves-light" role="button" data-confirm="Etes-vous certain de vouloir supprimer ce commentaire ?"><i class="large material-icons deep-orange-text text-darken-4">delete</i></a>
+                                <td class="btn-container col-comAction center-align">
+                                    <form action="{{ url('unsignalComment', {'id': comment.id}) }}"
+                                          id="unsignal" method="post" data-confirmation="true"
+                                          style="display: inline-block"
+                                          onsubmit="return confirm('Etes-vous certain de vouloir valider ce commentaire ?');">
+                                        <input type="hidden" name="token"
+                                               value="{{ csrf_token('disable') }}"/>
+                                        <button type="submit" data-tooltip="enlever signalement"
+                                                class="tooltipped btn-floating btn-small lime darken-2 right-align-align" style="margin: 5px;">
+
+                                            <i class="material-icons">done</i>
+                                        </button>
+                                    </form>
+                                    <a data-target="modal3" data-tooltip="voir" class="tooltipped modal-trigger commodal btn-floating btn-small lime darken-2 right-align" href="{{ path('commentModale', {'id': comment.id}) }}"><i class="white-text material-icons">visibility</i></a>
+                                    <form action="{{ url('deleteComment', {'id': comment.id}) }}"
+                                          id="unsignal" method="post" data-confirmation="true"
+                                          style="display: inline-block"
+                                          onsubmit="return confirm('Etes-vous certain de vouloir supprimer ce commentaire ?');">
+                                        <input type="hidden" name="token"
+                                               value="{{ csrf_token('disable') }}"/>
+                                        <button type="submit" data-tooltip="supprimer"
+                                                class="tooltipped btn-floating btn-small deep-orange darken-4 right-align" style="margin: 5px;">
+
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </form>
+
+
                                 </td>
                             </tr>
 

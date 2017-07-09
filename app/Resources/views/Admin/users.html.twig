@@ -49,7 +49,7 @@
                                             <input type="hidden" name="token"
                                                    value="{{ csrf_token('promote') }}"
                                                    class="{{ user.username }}"/>
-                                            <button type="submit" class="btn-floating lime darken-2 right-align"
+                                            <button type="submit" data-tooltip="promouvoir" class="tooltipped btn-floating lime darken-2 right-align"
                                                     style="margin: 5px; display: inline-block">
                                                 <i class="material-icons">publish</i>
                                             </button>
@@ -63,7 +63,7 @@
                                               onsubmit="return confirm('Cet administrateur redeviendra simple utilisateur. Etes vous sur ?');">
                                             <input type="hidden" name="token"
                                                    value="{{ csrf_token('promote') }}"/>
-                                            <button type="submit" class="btn-floating deep-orange darken-4 right-align"
+                                            <button type="submit" data-tooltip="rétrograder" class="tooltipped btn-floating deep-orange darken-4 right-align"
                                                     style="margin: 5px;">
                                                 <i class="material-icons">file_download</i>
                                             </button>
@@ -80,8 +80,8 @@
                                                   onsubmit="return confirm('Etes-vous certain de vouloir désactiver cet utilisateur ?');">
                                                 <input type="hidden" name="token"
                                                        value="{{ csrf_token('disable') }}"/>
-                                                <button type="submit"
-                                                        class="btn-floating lime darken-2 right-align" style="margin: 5px;">
+                                                <button type="submit"  data-tooltip="désactiver"
+                                                        class="tooltipped btn-floating lime darken-2 right-align" style="margin: 5px;">
 
                                                     <i class="material-icons">lock_open</i>
                                                 </button>
@@ -95,8 +95,8 @@
                                                   onsubmit="return confirm('Etes-vous certain de vouloir activer cet utilisateur ?');">
                                                 <input type="hidden" name="token"
                                                        value="{{ csrf_token('enable') }}"/>
-                                                <button type="submit"
-                                                        class="btn-floating deep-orange darken-4 right-align">
+                                                <button type="submit" data-tooltip="activer"
+                                                        class="tooltipped btn-floating deep-orange darken-4 right-align">
                                                     <i class="material-icons">lock_outline</i>
                                                 </button>
                                             </form>
