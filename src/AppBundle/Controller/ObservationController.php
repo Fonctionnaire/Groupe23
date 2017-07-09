@@ -109,4 +109,30 @@ class ObservationController extends BaseController
             'observation' => $observation,
         ));
     }
+
+    /**
+     * Affiche un formulaire pour modifier une observation
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"GET", "POST"})
+     * @Route("/admin/observation/{id}/editer", requirements={"id": "\d+"}, name="edit")
+     */
+    public function editObservationAction(Observation $observation, Request $request)
+    {
+        $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
+        $entityManager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(ObservationEditType::class, $observation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Observation modifiée avec succès');
+            return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
+        }
+        return $this->render(
+            'Admin/observationEdit.html.twig', [
+                'observation' => $observation,
+                'form' => $form->createView(),
+            ]
+        );
+    }
 }

@@ -31,7 +31,7 @@ class AdminObservationController extends Controller
     /**
      * Supprime une observation
      * @Route("/admin/observation/{id}/supprimer", name="deleteObservation")
-     * @Method("GET")
+     * @Method("POST")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteObservationAction(Observation $observation, Request $request)
@@ -46,37 +46,67 @@ class AdminObservationController extends Controller
     }
 
     /**
-     * Affiche un formulaire pour modifier une observation
+     * validation rapide d'une observation
+     * @Route("/admin/observation/{id}/valider", name="valider")
+     * @Method("POST")
      * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/admin/observation/{id}/editer", requirements={"id": "\d+"}, name="edit")
      */
-    public function editObservationAction(Observation $observation, Request $request)
+    public function validerObservationAction(Observation $observation, Request $request)
     {
-        $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
+        $referer = $request->headers->get('referer');
         $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ObservationEditType::class, $observation);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $this->addFlash('success', 'Observation modifiée avec succès');
-            return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
+        if (!$observation->getValided()){ //si l'observation n'est pas déja validée
+            if ($observation->getWaiting()){ // si elle est en attente, je redirige sur la page de l'observation
+                return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
+            }
+            $observation->setValided(true);
+            $request->getSession()->getFlashbag()->add('success', 'L\'observation a été validée');
         }
-        return $this->render(
-            'Admin/observationEdit.html.twig', [
-                'observation' => $observation,
-                'form' => $form->createView(),
-            ]
-        );
+        else{
+            $observation->setValided(false)->setVisible(false);
+            $request->getSession()->getFlashbag()->add('success', 'L\'observation a été invalidée');
+        }
+        $entityManager->flush();
+        return $this->redirect($referer);
+    }
+    /**
+     * rendre une observation visible rapidement
+     * @Route("/admin/observation/{id}/visible", name="visible")
+     * @Method("POST")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function setVisibleObservationAction(Observation $observation, Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        $entityManager = $this->getDoctrine()->getManager();
+        if($observation->getVisible()){
+            $observation->setVisible(false);
+            $entityManager->flush();
+            $request->getSession()->getFlashbag()->add('success', 'L\'observation n\'est plus publique');
+            return $this->redirect($referer);
+        }
+        elseif (!$observation->getValided())
+        {
+            $request->getSession()->getFlashbag()->add('danger', 'Une observation no validée ne peut pas être visible !');
+            return $this->redirect($referer);
+        }
+        else{
+            $observation->setVisible(true);
+            $entityManager->flush();
+            $request->getSession()->getFlashbag()->add('success', 'L\'observation est publique');
+            return $this->redirect($referer);
+        }
+
+
     }
 
     /**
-     * Affiche un formulaire pour valider une observation
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/admin/observation/{id}/validation", name="validation")
-     */
+ * Affiche un formulaire pour valider une observation
+ * @Security("has_role('ROLE_ADMIN')")
+ * @Method({"GET", "POST"})
+ * @Route("/admin/observation/{id}/validation", name="validation")
+ */
     public function validationObservationAction(Observation $observation, Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -84,6 +114,10 @@ class AdminObservationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($observation->getValided() === false && $observation->getVisible() === true) {
+                $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
+                return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
+            }
             $observation->setWaiting(false);
             $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $entityManager->flush();
@@ -92,36 +126,6 @@ class AdminObservationController extends Controller
         }
 
         return $this->render('Admin/validationForm.html.twig', array(
-            'form' => $form->createView(),
-            'observation' => $observation,
-        ));
-    }
-
-    /**
-     * Affiche un formulaire pour modifier le statut de l'observation
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/admin/observation/{id}/statut", name="statut")
-     */
-    public function observationStatutAction(Observation $observation, Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ObservationStatutType::class, $observation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($observation->getValided() === false && $observation->getVisible() === true) {
-                $this->addFlash('warning', 'Vous ne pouvez publier une observation invalide');
-                return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
-            }
-            $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
-            $entityManager->flush();
-            $this->addFlash('success', 'Statut modifié avec succès' );
-            return $this->redirect($this->generateUrl('edit', array('id' => $observation->getId())));
-
-        }
-
-        return $this->render('Admin/ObservationStatutForm.html.twig', array(
             'form' => $form->createView(),
             'observation' => $observation,
         ));

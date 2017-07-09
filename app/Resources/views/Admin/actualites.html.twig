@@ -35,10 +35,10 @@
                                 <td class="colactu-activcoms">{% if article.enableComments == false %}<i class="material-icons blue-grey-text text-darken-2">not_interested</i>{% else %}<i class="material-icons lime-text text-darken-2">done</i>{% endif %}
                                 </td>
                                 <td class="colactu-action">
-                                    <a href="{{ path('view_article', {'slug': article.slug}) }}" class="btn-floating lime darken-2 right-align"
+                                    <a href="{{ path('view_article', {'slug': article.slug}) }}" data-tooltip="voir" class="tooltipped btn-floating lime darken-2 right-align"
                                        role="button"><i class="material-icons blue-grey-text text-lighten-5">visibility</i></i></a>
 
-                                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" class="btn-floating lime darken-2 right-align"
+                                    <a href="{{ path('editArticle', {'slug': article.slug}) }}" data-tooltip="éditer" class="tooltipped btn-floating lime darken-2 right-align"
                                        role="button"> <i class="material-icons blue-grey-text text-lighten-5">edit</i></a>
 
                                     <form action="{{ url('deleteArticle', {'slug': article.slug}) }}"
@@ -47,8 +47,8 @@
                                           onsubmit="return confirm('Etes-vous certain de vouloir supprimer cette actualité ?');">
                                         <input type="hidden" name="token"
                                                value="{{ csrf_token('enable') }}"/>
-                                        <button type="submit"
-                                                class="btn-floating deep-orange darken-4 right-align">
+                                        <button type="submit" data-tooltip="supprimer"
+                                                class="tooltipped btn-floating deep-orange darken-4 right-align">
                                             <i class="material-icons">delete_forever</i>
                                         </button>
                                     </form>

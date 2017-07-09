@@ -40,7 +40,6 @@
                                     {% else %}<i class="fa fa-times" aria-hidden="true"></i>
                                     {% endif %}
                                 {% endif %}
-
                             </td>
                             <td class="col-date left-align">{{ observation.date|date("d-m-Y") }}</td>
                             <td class="col-taxref left-align">{{ observation.taxref.lbnom }}</td>
@@ -63,10 +62,44 @@
                                 {{ observation.adminComment }}</td>
                             {% endif %}
                             <td class="col-action right-align">
-                                <a data-target="modal2" class="modal-trigger waves-effect waves-light" href="{{ path('observationModale', {'id': observation.id}) }}"><i class="large material-icons deep-orange-text text-darken-4">visibility</i></a>
+                                <form action="{{ url('valider', {'id': observation.id}) }}"
+                                      id="valid" method="post" data-confirmation="true"
+                                      style="display: inline-block"
+                                      onsubmit="return confirm('Etes-vous certain de vouloir modifier le statut de cette observation ?');">
+                                    <input type="hidden" name="token"
+                                           value="{{ csrf_token('disable') }}"/>
+                                    <button type="submit"
+                                            {% if observation.valided == true %}
+                                            class="tooltipped btn-floating btn-small deep-orange darken-4 right-align" data-tooltip="invalider" style="margin: 5px;">
+                                        <i class="material-icons">not_interested</i>
+                                        {% else %}
+                                        class="tooltipped btn-floating btn-small lime darken-2 right-align" data-tooltip="valider" style="margin: 5px;">
+                                        <i class="material-icons">check</i>
+                                        {% endif %}
+
+                                    </button>
+                                </form>
+
+                                <form action="{{ url('visible', {'id': observation.id}) }}"
+                                      id="valid" method="post" data-confirmation="true"
+                                      style="display: inline-block"
+                                      onsubmit="return confirm('Etes-vous certain de vouloir modifier le statut de cette observation ?');">
+                                    <input type="hidden" name="token"
+                                           value="{{ csrf_token('disable') }}"/>
+                                    <button type="submit"
+                                            {% if observation.visible == true %}
+                                            class="tooltipped btn-floating btn-small deep-orange darken-4 right-align" data-tooltip="rendre non publique" style="margin: 5px;">
+                                        <i class="material-icons">visibility_off</i>
+                                        {% else %}
+                                        class="tooltipped btn-floating btn-small lime darken-2 right-align" data-tooltip="rendre publique" style="margin: 5px;">
+                                        <i class="material-icons">visibility</i>
+                                        {% endif %}
+
+                                    </button>
+                                </form>
+                                <a data-target="modal2" data-tooltip="aperçu" class="tooltipped modal-trigger btn-floating btn-small blue-grey lighten-5 right-align" href="{{ path('observationModale', {'id': observation.id}) }}"><i class="large material-icons lime-text text-darken-2">info</i></a>
                             </td>
                             </tr>
-
                     {% endfor %}
                     </tbody>
                 </table>
