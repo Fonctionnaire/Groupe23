@@ -3,7 +3,6 @@
 namespace AppBundle\Services\Notification;
 
 
-use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\Observation;
 use UserBundle\Entity\User;
 
