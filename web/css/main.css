@@ -1342,6 +1342,7 @@ input[type="tel"]:not(.browser-default){
     padding: 50px;
 }
 
+
 /* MEDIA QUERIES */
 
 @media all and (min-width: 1025px) {
@@ -1362,12 +1363,17 @@ input[type="tel"]:not(.browser-default){
         width: 15%;
         padding-left: 0;
     }
+    .col-comAction{
+        width: 15%;
+        border: 1px;
+        border-color: red;
+    }
 
 
     /* Admin des Observations  */
 
     .col-action{
-        width: 10%;
+        width: 15%;
     }
     .col-auteur{
         width: 20%;
@@ -1531,7 +1537,7 @@ input[type="tel"]:not(.browser-default){
 
     /* Gestion des observations */
     .col-action{
-        width: 15%;
+        width: 20%;
     }
     .col-auteur{
         width: 20%;
@@ -1755,6 +1761,7 @@ input[type="tel"]:not(.browser-default){
     .coluser-mail,
     .colactu-date,
     .colactu-nbcoms,
+    .col-validation,
     .colactu-activcoms{
         display: none;
     }
@@ -1774,14 +1781,12 @@ input[type="tel"]:not(.browser-default){
 
 
     .col-action{
-        width: 15%;
+        width: 25%;
     }
     .col-auteur{
         width: 30%;
     }
-    .col-validation{
-        width: 15%;
-    }
+
 
 
 
@@ -1891,6 +1896,7 @@ input[type="tel"]:not(.browser-default){
     .coluser-mail{
         display: none;
     }
+
     /* Gestion des commentaires*/
     .col-comDate{
         width: 30%;
@@ -1903,7 +1909,7 @@ input[type="tel"]:not(.browser-default){
 
     /* Gestion des oblservations*/
     .col-action{
-        width: 20%;
+        width: 30%;
     }
     .col-auteur{
         width: 30%;
@@ -1994,6 +2000,10 @@ input[type="tel"]:not(.browser-default){
 
 @media all and (max-width: 400px) {
 
+    .container-table{
+        width: 100%;
+    }
+
     .modal {
         min-height: 85%;
         min-width: 95%;
@@ -2040,8 +2050,12 @@ input[type="tel"]:not(.browser-default){
         width: 45%;
     }
 
-    .col-action {
+    .col-comAction {
         width: 20%;
+    }
+    .col-action{
+        width: 50%;
+
     }
 
     .imagearticle {

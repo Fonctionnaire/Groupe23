@@ -23,6 +23,7 @@ class ObservationValidationType extends AbstractType
         ->add('visible',CheckboxType::class, array(
             'label'    => 'Rendre cette observation publique ?',
             'required' => false,
+
             ));
     }
 
