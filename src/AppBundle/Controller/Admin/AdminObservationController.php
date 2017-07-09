@@ -31,7 +31,7 @@ class AdminObservationController extends Controller
     /**
      * Supprime une observation
      * @Route("/admin/observation/{id}/supprimer", name="deleteObservation")
-     * @Method("POST")
+     * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteObservationAction(Observation $observation, Request $request)
