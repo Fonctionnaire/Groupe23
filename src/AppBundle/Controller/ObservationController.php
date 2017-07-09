@@ -91,7 +91,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/observationModale/{id}", options={"expose"=true} , name="observationModale")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function observationModaleAction($id)
     {

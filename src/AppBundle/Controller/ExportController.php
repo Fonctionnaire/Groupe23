@@ -22,7 +22,7 @@ class ExportController extends Controller
 {
     /**
      * @Route("/export-de-donnees", name="filter")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      * @Security("has_role('ROLE_ADMIN')")
      *
      */

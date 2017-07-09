@@ -28,7 +28,7 @@
         "doctrine/doctrine-fixtures-bundle": "~2.3",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
-        "friendsofsymfony/user-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-time-bundle": "^1.7",
         "liuggio/excelbundle": "^2.1",
