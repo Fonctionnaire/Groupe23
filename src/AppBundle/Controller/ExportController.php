@@ -32,9 +32,7 @@ class ExportController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-
             if (!$data['taxref']->isEmpty()) {
-                dump($data);
                 $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
                     ->getFiltrer($data);
             } else {
