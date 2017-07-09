@@ -26,7 +26,7 @@ class AdminCommentControllerTest extends WebTestCase
     public function testTabHeader()
     {
         $this->logIn();
-        $crawler = $this->client->request('GET', '/admin/comments');
+        $crawler = $this->client->request('GET', '/admin/commentaires');
 
         $this->assertSame("date",
             $crawler->filter('th')->text()

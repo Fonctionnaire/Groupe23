@@ -18,7 +18,7 @@ class ContactControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/nous_contacter');
+        $crawler = $client->request('GET', '/nous-contacter');
 
         $buttonCrawlerNode = $crawler->selectButton('Envoyer');
 
