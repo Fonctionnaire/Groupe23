@@ -22,8 +22,10 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('o')
             ->where('o.dateObservation > :debut')
+            ->andWhere('o.valided = :valided')
             ->andWhere('o.dateObservation < :fin')->andWhere('o.taxref IN (:taxref)')
             ->setParameters(array(
+                'valided' => true,
                 'debut' => $data['debut'],
                 'fin' => $data['fin'],
                 'taxref' => $data['taxref']
@@ -37,8 +39,10 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
     public function getFilterWithoutTaxref($data)
     {
         $query = $this->createQueryBuilder('o')
-            ->where('o.dateObservation > :debut')
+            ->where('o.valided = :valided')
+            ->andWhere('o.dateObservation > :debut')
             ->andWhere('o.dateObservation < :fin')->setParameters(array(
+                'valided' => true,
                 'debut' => $data['debut'],
                 'fin' => $data['fin']
             ));
