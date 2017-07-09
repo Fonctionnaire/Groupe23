@@ -19,7 +19,7 @@ class DashboardControllerTest extends WebTestCase
     public function testContainer()
     {
         $this->logIn();
-        $crawler = $this->client->request('GET', '/profile/');
+        $crawler = $this->client->request('GET', '/tableau-de-bord/');
 
         $this->assertGreaterThan(0,
             $crawler->filter('div.container')->count()
@@ -29,7 +29,7 @@ class DashboardControllerTest extends WebTestCase
     public function testTitreProfil()
     {
         $this->logIn();
-        $crawler = $this->client->request('GET', '/profile/');
+        $crawler = $this->client->request('GET', '/tableau-de-bord/');
 
 
         $this->assertGreaterThan(0,
@@ -39,7 +39,7 @@ class DashboardControllerTest extends WebTestCase
     public function testClickLinkModif()
     {
         $this->logIn();
-        $crawler = $this->client->request('GET', '/profile/');
+        $crawler = $this->client->request('GET', '/tableau-de-bord/');
 
         $link = $crawler
             ->filter('a')

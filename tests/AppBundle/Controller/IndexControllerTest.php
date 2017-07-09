@@ -63,7 +63,7 @@ class IndexControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $link = $crawler
-            ->filter('a:contains("Observations")')
+            ->filter('a:contains("observations")')
             ->eq(1)
             ->link()
         ;
