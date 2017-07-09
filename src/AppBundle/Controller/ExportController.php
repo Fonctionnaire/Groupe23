@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: thiba
- * Date: 14/06/2017
- * Time: 14:03
- */
 
 namespace AppBundle\Controller;
 
@@ -32,16 +26,17 @@ class ExportController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-
+            // si on a selectionné des espèces dans le select, on filtre par espèce
             if (!$data['taxref']->isEmpty()) {
-                dump($data);
                 $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
                     ->getFiltrer($data);
-            } else {
+
+            } else { //si on n'a rien sélectionné, prend toutes les observations dans la plage de dates
                 $observations = $this->getDoctrine()->getRepository('AppBundle:Observation')
                     ->getFilterWithoutTaxref($data);
             }
 
+            //on execute l'export sur le resultat de notre requete
             return $this->exportObservationsAction($observations);
         };
         return $this->render('ExportForm/exportForm.html.twig', array(
