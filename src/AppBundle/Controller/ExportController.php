@@ -16,7 +16,7 @@ class ExportController extends Controller
 {
     /**
      * @Route("/export-de-donnees", name="filter")
-     * @Method({"GET"})
+     * @Method({"GET","POST"})
      * @Security("has_role('ROLE_ADMIN')")
      *
      */
