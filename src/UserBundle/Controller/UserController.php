@@ -17,7 +17,7 @@ class UserController extends Controller
      *
      * @Route("/admin/users", name="adminUsers")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function viewUsersAction()
     {
@@ -31,7 +31,7 @@ class UserController extends Controller
      *
      * @Route("/admin/users/{username}/delete", name="deleteUser")
      * @Method("POST")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function deleteUserAction(User $user)
     {
@@ -51,7 +51,7 @@ class UserController extends Controller
      *
      * @Route("/admin/users/{username}/disable", name="disableUser")
      * @Method("POST")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function disableUserAction(User $user)
     {
@@ -71,7 +71,7 @@ class UserController extends Controller
      *
      * @Route("/admin/users/{username}/enable", name="enableUser")
      * @Method("POST")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function enableUserAction(User $user)
     {
@@ -86,7 +86,7 @@ class UserController extends Controller
      * Méthode pour promouvoir un user
      * @Route("/admin/users/{username}/promote", name="promoteUser")
      * @Method("POST")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function promoteUserAction(User $user)
     {
@@ -106,7 +106,7 @@ class UserController extends Controller
      *
      * @Route("/admin/users/{username}/demote", name="demoteUser")
      * @Method("POST")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function demoteUserAction(User $user)
     {

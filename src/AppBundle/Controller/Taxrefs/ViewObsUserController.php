@@ -25,6 +25,9 @@ class ViewObsUserController extends Controller
      */
     public function userListTaxrefsAction()
     {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $this->redirectToRoute('admin_listTaxrefs');
+        }
         $listtaxrefs = $this->getDoctrine()->getRepository("AppBundle:Taxref")->getBirdsWithObservation();
 
         return $this->render('ViewAllObsValided/especesUser.html.twig', array('listTaxrefs' => $listtaxrefs));

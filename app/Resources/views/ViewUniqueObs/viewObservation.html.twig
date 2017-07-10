@@ -86,7 +86,13 @@
                             {% endif %}
                                 <a href="{{ path('adminObservations') }}">liste des observations</a>
                             {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_listTaxrefs') }}">Carte</a>
+                            {% elseif is_granted('ROLE_USER') %}
                             <a href="{{ path('user_listTaxrefs') }}">Carte</a>
+                            {% else %}
+                                <a href="{{ path('listTaxrefs') }}">Carte</a>
+                            {% endif %}
                         </div>
                     </div>
 

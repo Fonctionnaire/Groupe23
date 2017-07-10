@@ -62,6 +62,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/voir-observation/{id}", name="viewObservation", options={"expose"=true})
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */
     public function viewObservationAction(Request $request, $id)
@@ -91,6 +92,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/observationModale/{id}", options={"expose"=true} , name="observationModale")
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */
     public function observationModaleAction($id)
@@ -108,31 +110,5 @@ class ObservationController extends BaseController
         return $this->render(':Admin:observationModale.html.twig', array(
             'observation' => $observation,
         ));
-    }
-
-    /**
-     * Affiche un formulaire pour modifier une observation
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Method({"GET", "POST"})
-     * @Route("/admin/observation/{id}/editer", requirements={"id": "\d+"}, name="edit")
-     */
-    public function editObservationAction(Observation $observation, Request $request)
-    {
-        $observation->setAdminUsername($this->get('security.token_storage')->getToken()->getUser()->getUsername());
-        $entityManager = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ObservationEditType::class, $observation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $this->addFlash('success', 'Observation modifiée avec succès');
-            return $this->redirect($this->generateUrl('viewObservation', array('id' => $observation->getId())));
-        }
-        return $this->render(
-            'Admin/observationEdit.html.twig', [
-                'observation' => $observation,
-                'form' => $form->createView(),
-            ]
-        );
     }
 }
