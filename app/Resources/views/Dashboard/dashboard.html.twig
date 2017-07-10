@@ -73,7 +73,7 @@
                 <tbody>
                 {% for observation in listObservations %}
                     <tr {% if observation.valided == false %}class="info" {% endif %}>
-                        <td>{% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> publiée{% else %} en attente de validation{% endif %}</td>
+                        <td>{% if observation.valided == true %}<i class="fa fa-check" aria-hidden="true" style="color: green;"></i> publiée{% elseif observation.waiting %} en attente de validation{% else %} refusée{% endif %}</td>
                         <td class="dashboard-dateObs">{{ observation.date|date("d-m-Y H:i:s") }}</td>
                         <td>{{ observation.taxref.nonvern }}</td>
                         <td class="dashboard-commentaire">{{ observation.comment }}</td>

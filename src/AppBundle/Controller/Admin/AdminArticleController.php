@@ -18,7 +18,7 @@ class AdminArticleController extends Controller
      * view all articles on admin page
      * @Route("/admin/actualites", name="adminActualites")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function viewArticlesAction()
     {
@@ -30,7 +30,7 @@ class AdminArticleController extends Controller
      * Display form to add a NEW article
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/actualites/ajouter", name="add")
      */
@@ -56,7 +56,7 @@ class AdminArticleController extends Controller
 
     /**
      * Displays a form to edit an existing Article entity.
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      * @Method({"GET", "POST"})
      * @Route("/actualites/{slug}/editer", name="editArticle")
      */
@@ -86,7 +86,7 @@ class AdminArticleController extends Controller
      * Delete Article
      * @Route("/actualites/{slug}/supprimer", name="deleteArticle")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      *
      */
     public function deleteAction(Article $article, Request $request)
