@@ -17,7 +17,7 @@ class AdminCommentController extends Controller
      * View all Comments
      * @Route("/admin/commentaires", name="adminComments")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function viewCommentsAction()
     {
@@ -29,7 +29,7 @@ class AdminCommentController extends Controller
      * Delete Comments
      * @Route("/admin/commentaire/{id}/supprimer", name="deleteComment")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function deleteCommentAction(Comment $comment, Request $request)
     {
@@ -46,7 +46,7 @@ class AdminCommentController extends Controller
      * Unsignal
      * @Method({"GET", "POST"})
      * @Route("/admin/commentaire/{id}/enlever-le-signalement", name="unsignalComment")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function unsignalCommentAction(Comment $comment, Request $request)
     {
@@ -62,7 +62,7 @@ class AdminCommentController extends Controller
     /**
      * @Route("/commentModale/{id}", options={"expose"=true} , name="commentModale")
      * @Method({"GET"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function commentModaleAction($id)
     {
