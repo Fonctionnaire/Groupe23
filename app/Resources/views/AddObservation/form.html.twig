@@ -19,17 +19,18 @@
         {{ form_widget(form.comment) }}
     </div>
 
+
     <div class="input-field">
         {{ form_label(form.latitude, "Latitude *") }}
         {{ form_errors(form.latitude) }}
-        {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude', 'readonly': 'readonly'}}) }}
+        {{ form_widget(form.latitude, {'attr': {'class': 'form-control latitude', 'readonly': 'readonly', 'value': 'latitude'}}) }}
 
     </div>
 
     <div class="input-field">
         {{ form_label(form.longitude, "Longitude *") }}
         {{ form_errors(form.longitude) }}
-        {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude', 'readonly': 'readonly'}}) }}
+        {{ form_widget(form.longitude, {'attr': {'class': 'form-control longitude', 'readonly': 'readonly', 'value': 'longitude'}}) }}
     </div>
 
     <div>
