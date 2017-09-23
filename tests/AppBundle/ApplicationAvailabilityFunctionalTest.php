@@ -24,7 +24,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
             array('/observations-validees'),
             array('/nous-contacter'),
             array('/login'),
-            array('/register/'),
+            array('/inscription/'),
 
         );
     }

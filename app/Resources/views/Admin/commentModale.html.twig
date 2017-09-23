@@ -6,9 +6,32 @@
 
 <div class="modal-fix-footer">
 
-    <a href="{{ path('deleteComment', {'id': comment.id}) }}" class="modal-action modal-close waves-effect waves-light deep-orange-text text-darken-4" role="button" data-confirm="Etes-vous certain de vouloir supprimer ce commentaire ?">Supprimer</a>
-    <a href="{{ path('unsignalComment', {'id': comment.id}) }}" class="modal-action modal-close waves-effect waves-light deep-orange-text text-darken-4" role="button" data-confirm="Etes-vous certain de vouloir valider ce commentaire ?">Valider</a>
+    <form action="{{ url('deleteComment', {'id': comment.id}) }}"
+          id="unsignal" method="post" data-confirmation="true"
+          style="display: inline-block"
+          onsubmit="return confirm('Etes-vous certain de vouloir supprimer ce commentaire ?');">
+        <input type="hidden" name="token"
+               value="{{ csrf_token('disable') }}"/>
+        <button type="submit"
+                class="btn deep-orange darken-4 right-align" style="margin: 5px;">
 
+            <i class="material-icons">delete</i>
+        </button>
+    </form>
+
+
+    <form action="{{ url('unsignalComment', {'id': comment.id}) }}"
+          id="unsignal" method="post" data-confirmation="true"
+          style="display: inline-block"
+          onsubmit="return confirm('Etes-vous certain de vouloir valider ce commentaire ?');">
+        <input type="hidden" name="token"
+               value="{{ csrf_token('disable') }}"/>
+        <button type="submit"
+                class="btn lime darken-2 right-align" style="margin: 5px;">
+
+            <i class="material-icons">done</i>
+        </button>
+    </form>
 
 
 </div>

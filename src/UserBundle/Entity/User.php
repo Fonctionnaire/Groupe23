@@ -76,6 +76,14 @@ class User extends BaseUser
      */
     protected $lastName;
 
+    /**
+     * @Assert\Regex(
+     *  pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/",
+     *  message="Le mot de passe doit contenir entre 8 et 16 caractères alphanumériques dont une majuscule, une minuscule et un chiffre."
+     * )
+     */
+    protected $plainPassword;
+
 
     /**
      * @var string

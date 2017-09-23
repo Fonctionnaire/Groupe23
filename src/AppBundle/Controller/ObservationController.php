@@ -62,6 +62,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/voir-observation/{id}", name="viewObservation", options={"expose"=true})
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */
     public function viewObservationAction(Request $request, $id)
@@ -91,6 +92,7 @@ class ObservationController extends BaseController
 
     /**
      * @Route("/observationModale/{id}", options={"expose"=true} , name="observationModale")
+     * @Security("has_role('ROLE_USER')")
      * @Method({"GET"})
      */
     public function observationModaleAction($id)
