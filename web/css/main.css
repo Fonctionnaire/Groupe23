@@ -1417,7 +1417,7 @@ input[type="tel"]:not(.browser-default){
 
 .titre-second-block
 {
-    padding-bottom: 180px !important;
+    height: 250px !important;
 }
 
 .landing-block-list
