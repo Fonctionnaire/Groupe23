@@ -1623,6 +1623,47 @@ input[type="tel"]:not(.browser-default){
 
 @media all and (max-width: 1024px)
 {
+
+    /* LANDING PAGE */
+
+    .landing-container
+    {
+        max-width: 100% !important;
+    }
+
+    .landing-img-titre h1
+    {
+        font-size: 1.6em !important;
+    }
+    .landing-img-titre h2
+    {
+        font-size: 1.2em !important;
+    }
+
+    .jumelles-first-block
+    {
+        display: none;
+    }
+
+    .jumelles-second-block
+    {
+        width: 60%;
+    }
+
+    .second-landing-block a
+    {
+        margin-bottom: 65px !important;
+        min-height: 0;
+        padding: 0px !important;
+
+    }
+
+    .landing-block-description
+    {
+        border: none;
+        padding-left: inherit !important;
+    }
+
     /* adaptation des colonnes datatables responsive  */
 
     .h1form{
