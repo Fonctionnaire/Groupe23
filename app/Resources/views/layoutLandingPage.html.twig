@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% block metaDescription %}{% endblock %}">
+    <meta name="author" content="Groupe23">
+    <link rel="icon" href="../../favicon.ico">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <title>NAO - {% block titre %}{% endblock %}</title>
+
+    {% block facebookMeta %}
+    {% endblock %}
+
+
+    {% include 'utils/styles.html.twig' %}
+
+</head>
+
+<body>
+
+{% include 'menuLandingPage.html.twig' %}
+
+
+{% include 'utils/flash-messages.html.twig' %}
+
+{% block content %}
+
+{% endblock %}
+
+
+
+{% include 'utils/scripts.html.twig' %}
+
+{% include 'footerLandingPage.html.twig' %}
+</body>
+</html>

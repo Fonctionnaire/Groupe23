@@ -1,0 +1,67 @@
+{% extends 'layoutLandingPage.html.twig' %}
+{% block metaDescription %}
+    NAO. Site participatif de collecte d’observations d’oiseau. Concours.
+{% endblock %}
+{% block titre %}Concours{% endblock %}
+{% block content %}
+
+
+        <div class="first-landing-block white-text">
+            <img src="{{ asset('images/landscape-2073508_960_720.jpg') }}" class="landing-big-img" alt="Images oiseaux">
+            <div class="landing-img-titre center">
+                <h1>PROTEGEZ LES OISEAUX: RECENSEZ-LES ! </h1>
+                <h2>Grand concours de photos d'oiseaux</h2>
+            </div>
+            <div class="landing-button center">
+                <a href="{{ path('fos_user_registration_register') }}" class="waves-effect waves-light btn deep-orange darken-4 z-depth-5" >Je participe</a>
+                <p>Inscription gratuite</p>
+            </div>
+            <img src="{{ asset('images/8267_ACULON_8x21_orange_product.png') }}" class="jumelles-first-block" alt="jumelles">
+        </div>
+    <div class="container landing-container blue-grey lighten-5 z-depth-2">
+        <div class="second-landing-block">
+            <div class="row">
+                <div class="col m12 l5 center">
+                    <img src="{{ asset('images/8267_ACULON_8x21_orange_product.png') }}" class="jumelles-second-block" alt="jumelles">
+                </div>
+                <div class="col m12 l7 titre-second-block valign-wrapper">
+                    <h4 class="center">
+                        Participez à notre grand concours de lancement <br> et gagnez une paire de Jumelles Kite Caiman
+                    </h4>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col m12 l6 landing-block-list">
+                        <p>Pour participer, c'est simple:</p>
+                        <ul>
+                            <li>Créez votre compte Observateur sur le site nao.groupe23.ovh</li>
+                            <li>Observez les oiseaux autour de vous et prenez-les en photo !</li>
+                            <li>Soumettez vos observations en indiquant l'espèce rencontrée</li>
+                            <li>Notez leur position grâce à notre système de géolocalisation facilité</li>
+                            <li>Vous recevrez un mail de confirmation à chaque observation validée</li>
+                        </ul>
+                        <div class="center">
+                            <a href="{{ path('fos_user_registration_register') }}" class="btn waves-effect waves-light z-depth-2 transparent deep-orange-text text-darken-4">participer au concours</a>
+                        </div>
+                    </div>
+                    <div class="col m12 l6 landing-block-description">
+                        <div class="center">
+                            <img src="{{ asset('images/spotting-scope-1504365_1920.jpg') }}" alt="observation" class="landing-img-observation">
+                        </div>
+                            <p>
+                                Nous sommes des passionnés d’ornithologie, naturalistes professionnels ou amateurs engagés pour la protection de l’environnement.
+
+                            </p>
+                            <p>
+                                Notre association intervient régulièrement dans toute la France, pour alerter et sensibiliser les habitants à la fragilité de l’écosystème et par extension celle de nos compères ailés.
+                            </p>
+                            <p>
+                                A nos yeux, la protection de l’environnement est l’affaire de tous, c’est pourquoi nous avons créé ce programme participatif de récolte d’observations citoyennes.
+                            </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
