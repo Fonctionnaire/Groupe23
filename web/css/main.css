@@ -1354,6 +1354,18 @@ input[type="tel"]:not(.browser-default){
     border-radius: 3px;
 }
 
+.first-landing-block a
+{
+    font-size: 1.2em;
+    text-transform: lowercase !important;
+}
+
+.landing-container a
+{
+    font-size: 1.2em;
+    text-transform: lowercase !important;
+}
+
 .first-landing-block
 {
     position: relative;
